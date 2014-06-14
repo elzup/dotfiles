@@ -1,0 +1,2424 @@
+[33mcommit 66dcee600367b0a481e216d594e1766d016cab4b[m
+Author: elzup <guild0105@gmail.com>
+Date:   Sat Jun 14 15:43:23 2014 +0900
+
+    initialize commit
+
+[1mdiff --git a/.Xdefaults b/.Xdefaults[m
+[1mnew file mode 100755[m
+[1mindex 0000000..d8a2f8b[m
+[1m--- /dev/null[m
+[1m+++ b/.Xdefaults[m
+[36m@@ -0,0 +1,18 @@[m
+[32m+[m[32m!== .Xdefaults-utf-8 ===[m
+[32m+[m[32mxterm*reverseVideo: on[m
+[32m+[m[32m*inpuutMethod: uim[m
+[32m+[m
+[32m+[m[32mXTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mXTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mUXTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mUXTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mXTerm*allowSendEvents: True[m
+[32m+[m[32mXTerm*VT100*translation:   #override \[m
+[32m+[m[32m    Shiiiftspace: begin-conversion(_JAPANESE_CONVERSION)[m
+[32m+[m[32mXTerm*OpenIm: true[m
+[32m+[m[32mXTerm*lineSpace: 3[m
+[32m+[m[32mXTerm*saveline: 1000[m
+[32m+[m[32mXTerm*vt100.geometry: 88x24[m
+[32m+[m[32mXTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1[m
+[32m+[m
+[32m+[m[32m!========================[m
+[1mdiff --git a/.Xmodmap b/.Xmodmap[m
+[1mnew file mode 100755[m
+[1mindex 0000000..28e03d8[m
+[1m--- /dev/null[m
+[1m+++ b/.Xmodmap[m
+[36m@@ -0,0 +1,7 @@[m
+[32m+[m[32mclear Lock[m
+[32m+[m[32m!remove Lock = Caps_Lock[m
+[32m+[m[32madd control = Caps_Lock[m
+[32m+[m[32mremove control = Control_L[m
+[32m+[m[32madd Lock = Control_L[m
+[32m+[m
+[32m+[m[32madd mod4 = Muhenkan[m
+[1mdiff --git a/.Xresources b/.Xresources[m
+[1mnew file mode 100755[m
+[1mindex 0000000..026d6e6[m
+[1m--- /dev/null[m
+[1m+++ b/.Xresources[m
+[36m@@ -0,0 +1,25 @@[m
+[32m+[m[32m!== .Xresources-utf-8 ===[m
+[32m+[m[32mxterm*reverseVideo: on[m
+[32m+[m[32m*inpuutMethod: uim[m
+[32m+[m[32mxterm*locale: UTF-8[m
+[32m+[m
+[32m+[m[32m!XTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32m!XTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mXTerm*ximFont: -misc-fixed-medium-r-normal--14-130-75-75-c-140-jisx0208.1983-0[m
+[32m+[m[32m!UXTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32m!UXTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0[m
+[32m+[m[32mUXTerm*ximFont: -misc-fixed-medium-r-normal--14-130-75-75-c-140-jisx0208.1983-0[m
+[32m+[m[32mXTerm*allowSendEvents: True[m
+[32m+[m[32mXTerm*VT100*translation:   #override \[m
+[32m+[m[32m    Shiiiftspace: begin-conversion(_JAPANESE_CONVERSION)[m
+[32m+[m[32mXTerm*OpenIm: true[m
+[32m+[m[32mXTerm*lineSpace: 3[m
+[32m+[m[32mXTerm*saveline: 1000[m
+[32m+[m[32mXTerm*wideBoldFont: fixed[m
+[32m+[m[32mXTerm*vt100.geometry: 88x24[m
+[32m+[m[32mXTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1[m
+[32m+[m
+[32m+[m[32mXTerm*selectToClipboard: true;[m
+[32m+[m[32mXTerm*VT100.translations: #override : select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)[m
+[32m+[m
+[32m+[m[32m!========================[m
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..ca107fe[m
+[1m--- /dev/null[m
+[1m+++ b/.gitignore[m
+[36m@@ -0,0 +1,2 @@[m
+[32m+[m[32m./ime_controller.js[m
+[32m+[m[32m./.gitignore[m
+[1mdiff --git a/.mysetup.sh b/.mysetup.sh[m
+[1mnew file mode 100755[m
+[1mindex 0000000..6bd68fe[m
+[1m--- /dev/null[m
+[1m+++ b/.mysetup.sh[m
+[36m@@ -0,0 +1,21 @@[m
+[32m+[m
+[32m+[m[32m# {{{ settings[m[41m [m
+[32m+[m[32m# keyRepeat speed[m
+[32m+[m[32mxset r rate 150 80[m
+[32m+[m[32m# xset r rate 255 25 # default[m
+[32m+[m
+[32m+[m[32m# }}}[m
+[32m+[m
+[32m+[m[32m# {{{ touchpad[m
+[32m+[m[32msynclient TapButton1=1[m
+[32m+[m[32msynclient TapButton2=2[m
+[32m+[m[32msynclient TapButton3=3[m
+[32m+[m[32msynclient VertEdgeScroll=1[m
+[32m+[m[32msynclient HorizEdgeScroll=1[m
+[32m+[m[32m# }}}[m
+[32m+[m
+[32m+[m[32m# {{{ my startup application[m
+[32m+[m[32m# Dropbox sync start[m
+[32m+[m[32mdropbox start[m
+[32m+[m[32m# }}}[m
+[32m+[m
+[1mdiff --git a/.vimrc b/.vimrc[m
+[1mnew file mode 100755[m
+[1mindex 0000000..4570b10[m
+[1m--- /dev/null[m
+[1m+++ b/.vimrc[m
+[36m@@ -0,0 +1,540 @@[m
+[32m+[m[32mscriptencoding utf-8[m
+[32m+[m[32m" {{{ NeoBundleOptions[m
+[32m+[m[32m"  {{{ -Initialize[m
+[32m+[m[32m"neobundle[m
+[32m+[m[32mfiletype off[m
+[32m+[m
+[32m+[m[32mif has('vim_starting')[m
+[32m+[m[32m    set runtimepath+=~/.vim/bundle/neobundle.vim[m
+[32m+[m[32m    call neobundle#rc(expand('~/.vim/bundle'))[m
+[32m+[m[32mendif[m
+[32m+[m
+[32m+[m[32m"for path in split(glob('~/.vim/bundle/*'), '\n')[m
+[32m+[m[32m"    if isdirectory(path) | let &runtimepath = &runtimepath.','.path | end[m
+[32m+[m[32m"endfor[m
+[32m+[m
+[32m+[m[32m""vundle option[m
+[32m+[m[32m"set runtimepath+='~\.vim\bundle\'[m
+[32m+[m[32m"call vundle#rc()[m
+[32m+[m
+[32m+[m[32m"  }}} end -Initialize[m
+[32m+[m[32m"  {{{ -Bundles[m
+[32m+[m[32m"neobundle[m[41m [m
+[32m+[m[32mNeoBundle 'Shougo/neobundle.vim.git'[m
+[32m+[m[32mNeoBundle 'Shougo/neocomplcache.git'[m
+[32m+[m[32mNeoBundle 'Shougo/neosnippet-snippets'[m
+[32m+[m
+[32m+[m[32mNeoBundle 'Shougo/unite.vim.git'[m
+[32m+[m[32mNeoBundle 'Shougo/vimfiler.git'[m
+[32m+[m[32mNeoBundle 'Shougo/vimshell.vim'[m
+[32m+[m[32mNeoBundle 'scrooloose/syntastic.git'[m
+[32m+[m[32mNeoBundle 'scrooloose/nerdtree.git'[m
+[32m+[m[32m"NeoBundle 'Shougo/neocomplete.vim'[m
+[32m+[m
+[32m+[m[32m"utility view[m
+[32m+[m[32mNeoBundle 'tpope/vim-markdown'[m
+[32m+[m[32mNeoBundle 'itchyny/lightline.vim'[m
+[32m+[m[32mNeoBundle 'LeafCage/foldCC'[m
+[32m+[m[32m"NeoBundle 'yonchu/accelerated-smooth-scroll'[m
+[32m+[m
+[32m+[m[32m"utility input[m
+[32m+[m[32mNeoBundle 'Shougo/neosnippet'[m
+[32m+[m[32mNeoBundle 'Shougo/neosnippet-snippets'[m
+[32m+[m[32mNeoBundle 'scrooloose/snipmate-snippets'[m
+[32m+[m[32mNeoBundle 'tpope/vim-surround'[m
+[32m+[m[32mNeoBundle 'coderifous/textobj-word-column.vim'[m
+[32m+[m[32mNeoBundle 'kana/vim-operator-replace.git'[m
+[32m+[m[32mNeoBundle 'kana/vim-operator-user.git'[m
+[32m+[m[32mNeoBundle 'Align'[m
+[32m+[m[32mNeoBundle 'marijnh/tern_for_vim', {[m
+[32m+[m[32m  \ 'build': {[m
+[32m+[m[32m  \   'others': 'npm install'[m
+[32m+[m[32m  \}}[m
+[32m+[m[32mNeoBundle 'osyo-manga/vim-over'[m
+[32m+[m[32mNeoBundle 'LeafCage/yankround.vim'[m
+[32m+[m[32m"NeoBundle 'thinca/vim-splash'[m
+[32m+[m[32m"NeoBundle 'terryma/vim-multiple-cursors'[m
+[32m+[m[32m"NeoBundle 'haya14busa/vim-easymotion'[m
+[32m+[m
+[32m+[m[32m"tool[m
+[32m+[m[32mNeoBundle 'kien/ctrlp.vim.git'[m
+[32m+[m[32m"NeoBundle 'mbbill/undotree'[m
+[32m+[m[32mNeoBundle 'altercation/vim-colors-solarized'[m
+[32m+[m[32mNeoBundle 'cocopon/colorswatch.vim'[m
+[32m+[m[32mNeoBundle 'AndrewRadev/linediff.vim'[m
+[32m+[m[32mNeoBundle 'thinca/vim-quickrun'[m
+[32m+[m[32mNeoBundle 'mhinz/vim-startify'[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"NeoBundle 'YankRing.vim'[m
+[32m+[m[32m"NeoBundle 'mru.git'[m
+[32m+[m[32m"NeoBundle 'mttn/zen-coding.vim'[m
+[32m+[m[32m"NeoBundle 'emmet-vim'[m
+[32m+[m
+[32m+[m[32m"html support[m
+[32m+[m[32mNeoBundle 'Emmet.vim'[m
+[32m+[m[32m"NeoBundle 'hokaccha/endtagcomment.vim'[m
+[32m+[m
+[32m+[m[32m"sublime text 2 NeoBundle 'mattn/multi-vim'[m
+[32m+[m[32m"NeoBundle 'koron/minimap-vim'[m
+[32m+[m[32mNeoBundle 'koron/minimap-vim'[m
+[32m+[m[32m"[m
+[32m+[m[32m" sound[m
+[32m+[m[32mNeoBundle 'osyo-manga/vim-sound'[m
+[32m+[m
+[32m+[m[32m"language[m
+[32m+[m[32m" less[m[41m [m
+[32m+[m[32mNeoBundle 'groenewege/vim-less'[m
+[32m+[m
+[32m+[m[32m"Lua[m
+[32m+[m[32mNeoBundle 'lua-support'[m
+[32m+[m[32mNeoBundle 'luarefvim'[m
+[32m+[m
+[32m+[m[32m"Game[m
+[32m+[m[32m"NeoBundle 'amix/vim-2048'[m
+[32m+[m[32mNeoBundle 'AshyIsMe/2048'[m
+[32m+[m[32m"NewGame2048[m
+[32m+[m[32mNeoBundle 'thinca/vim-threes'[m
+[32m+[m[32m"ThreesStart[m
+[32m+[m[32m"NeoBundle 'sudoku_game'[m
+[32m+[m[32m"Sudoku~~[m
+[32m+[m[32mNeoBundle 'mfumi/viminesweeper'[m
+[32m+[m[32m"MineSweeper[m
+[32m+[m[32m"NeoBundle 'TeTrls.vim'[m
+[32m+[m[32m"[m
+[32m+[m[32mNeoBundle 'mattn/invader-vim'[m
+[32m+[m[32m"Invader[m
+[32m+[m[32mNeoBundle 'deris/vim-duzzle'[m
+[32m+[m[32m"DuzzleStart[m
+[32m+[m[32m"nmap ,gt :source<Space>TeTrls.vim<Enter>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"twitter[m
+[32m+[m[32mNeoBundle 'basyura/TweetVim'[m
+[32m+[m[32mNeoBundle 'mattn/webapi-vim'[m
+[32m+[m[32mNeoBundle 'basyura/twibill.vim'[m
+[32m+[m[32mNeoBundle 'tyru/open-browser.vim'[m
+[32m+[m[32mNeoBundle 'h1mesuke/unite-outline'[m
+[32m+[m[32mNeoBundle 'basyura/bitly.vim'[m
+[32m+[m[32m"NeoBundle 'TwitVim'[m
+[32m+[m
+[32m+[m[32m"git[m
+[32m+[m[32mNeoBundle 'tpope/vim-fugitive'[m
+[32m+[m
+[32m+[m[32m"colorscheme[m
+[32m+[m[32mNeoBundle 'ujihisa/unite-colorscheme'[m
+[32m+[m[32mNeoBundle 'phd'[m
+[32m+[m[32mNeoBundle 'vim-scripts/summerfruit256.vim'[m
+[32m+[m[32mNeoBundle 'sjl/badwolf'[m
+[32m+[m[32m"[m
+[32m+[m[32mfiletype plugin on[m
+[32m+[m[32mfiletype indent on[m
+[32m+[m
+[32m+[m[32m"  }}} -end Bundles[m
+[32m+[m
+[32m+[m[32m" }}} -end NeoBundleOptions[m
+[32m+[m[32m" {{{ MyConfig[m
+[32m+[m[32m"  {{{ -StartupOptions[m
+[32m+[m[32mset nocompatible[m
+[32m+[m[32mset clipboard=unnamedplus,unnamedplus,autoselect[m
+[32m+[m[32mset modifiable[m
+[32m+[m[32mset write[m
+[32m+[m[32mset go=arc[m
+[32m+[m[32mset tw=0[m
+[32m+[m[32mset langmenu=ja_jp.utf-8[m
+[32m+[m[32mset hlsearch[m
+[32m+[m
+[32m+[m[32mset tags=./tags,../tags,../../tags,../../../tags,.git/*.tags[m
+[32m+[m
+[32m+[m[32mau BufEnter * execute ":lcd " . expand("%:p:h")[m
+[32m+[m[32mset foldmethod=marker[m
+[32m+[m[32mset encoding=utf-8[m
+[32m+[m[32mset nowrap[m
+[32m+[m[32mset laststatus=2[m
+[32m+[m[32mset guifont=Ricty\ 11[m
+[32m+[m[32m"colorscheme[m
+[32m+[m[32msyntax enable[m
+[32m+[m[32m"colorscheme solarized[m
+[32m+[m[32mcolorscheme badwolf[m
+[32m+[m[32mset background=dark[m
+[32m+[m[32m"colorscheme ron[m
+[32m+[m[32m"set incsearch[m
+[32m+[m
+[32m+[m[32mset nobackup[m
+[32m+[m[32mset noswapfile[m
+[32m+[m[32mset fo=q[m
+[32m+[m
+[32m+[m[32m"tab space[m
+[32m+[m[32mset expandtab[m
+[32m+[m[32mset tabstop=4[m
+[32m+[m[32mset shiftwidth=4[m
+[32m+[m[32mset softtabstop=4[m
+[32m+[m[32mset autoindent[m
+[32m+[m[32mset smartindent[m
+[32m+[m
+[32m+[m[32m"numbr[m
+[32m+[m[32mset number[m
+[32m+[m[32mbehave mswin[m
+[32m+[m[32mset tw=0[m
+[32m+[m
+[32m+[m[32m"Window position[m
+[32m+[m[32mwinpos 683 0[m
+[32m+[m[32mset cmdheight=1[m
+[32m+[m
+[32m+[m[32m"  }}} -end -StartupOptions[m
+[32m+[m[32m"  {{{ -KeyMapping[m
+[32m+[m[32minoremap <C-BS> <C-W>[m
+[32m+[m[32mnnoremap <Leader><Leader> <Esc>:so<space>~/.vimrc[m
+[32m+[m
+[32m+[m[32m"Movement[m
+[32m+[m[32mnnoremap G Gzz[m
+[32m+[m[32m"Super input[m
+[32m+[m[32mnnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>[m
+[32m+[m[32mnnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>[m
+[32m+[m[32m"Switching Opacity[m
+[32m+[m[32mnnoremap ,oo :set tra=220<CR>[m
+[32m+[m[32mnnoremap ,on :set tra=0<CR>[m
+[32m+[m[32mnnoremap ,o+ :set tra+=10<CR>[m
+[32m+[m[32mnnoremap ,o- :set tra-=10<CR>[m
+[32m+[m[32m"Window Scaleup[m
+[32m+[m[32mnnoremap ,wj 10<C-W>+[m
+[32m+[m[32mnnoremap ,wk 10<C-W>-[m
+[32m+[m[32mnnoremap ,wl 10<C-W>>[m
+[32m+[m[32mnnoremap ,wh 10<C-W><[m
+[32m+[m[32mnnoremap <C-;> <S-A>;<Esc>[m
+[32m+[m[32m"inoremap <C-;> <Esc><S-A>;[m
+[32m+[m
+[32m+[m[32mnnoremap ,a gg<S-V><S-G>a[m
+[32m+[m[32m"Open on other app[m
+[32m+[m[32mnnoremap ,e :!explorer .<CR>[m
+[32m+[m
+[32m+[m[32mnnoremap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>[m
+[32m+[m[32mnnoremap ,ft :set ft=[m
+[32m+[m[32m"Line number[m
+[32m+[m[32mnnoremap ,nr :set rnu<CR>[m
+[32m+[m[32mnnoremap ,nn :set nornu<CR>[m
+[32m+[m
+[32m+[m[32mhighlight CursorLine gui=underline guifg=NONE guibg=NONE[m
+[32m+[m
+[32m+[m[32m"nmap ,utt <Esc>:UndoTreeToggle[m
+[32m+[m
+[32m+[m[32m"  }}} -end -KeyMapping[m
+[32m+[m[32m"  {{{ -BinayMode[m[41m [m
+[32m+[m[32m"バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin で発動します）[m
+[32m+[m[32maugroup BinaryXXD[m
+[32m+[m[32m        autocmd![m
+[32m+[m[32m        autocmd BufReadPre  *.bin let &binary =1[m
+[32m+[m[32m        autocmd BufReadPost * if &binary | silent %!xxd -g 1[m
+[32m+[m[32m        autocmd BufReadPost * set ft=xxd | endif[m
+[32m+[m[32m        autocmd BufWritePre * if &binary | %!xxd -r[m
+[32m+[m[32m        autocmd BufWritePre * endif[m
+[32m+[m[32m        autocmd BufWritePost * if &binary | silent %!xxd -g 1[m
+[32m+[m[32m        autocmd BufWritePost * set nomod | endif[m
+[32m+[m[32maugroup END[m
+[32m+[m
+[32m+[m[32m"  }}} -end -BinayMode[m
+[32m+[m[32m"  {{{ -SavePosition[m[41m [m
+[32m+[m[32mlet g:save_window_file = expand('~/.vim/.vimwinpos')[m
+[32m+[m[32maugroup SaveWindow[m
+[32m+[m[32m  autocmd![m
+[32m+[m[32m  autocmd VimLeavePre * call s:save_window()[m
+[32m+[m[32m  function! s:save_window()[m
+[32m+[m[32m    let options = [[m
+[32m+[m[32m      \ 'set columns=' . &columns,[m
+[32m+[m[32m      \ 'set lines=' . &lines,[m
+[32m+[m[32m      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),[m
+[32m+[m[32m      \ ][m
+[32m+[m[32m    call writefile(options, g:save_window_file)[m
+[32m+[m[32m  endfunction[m
+[32m+[m[32maugroup END[m
+[32m+[m[32m"if filereadable(g:save_window_file)[m
+[32m+[m[32m"  execute 'source' g:save_window_file[m
+[32m+[m[32m"endif[m
+[32m+[m
+[32m+[m[32m"  }}} -end -SavePosition[m[41m [m
+[32m+[m[32m"  {{{ -Encoding[m[41m [m
+[32m+[m[32mif &encoding !=# 'utf-8'[m
+[32m+[m[32m  set encoding=japan[m
+[32m+[m[32m  set fileencoding=japan[m
+[32m+[m[32mendif[m
+[32m+[m[32mif has('iconv')[m
+[32m+[m[32m  let s:enc_euc = 'euc-jp'[m
+[32m+[m[32m  let s:enc_jis = 'iso-2022-jp'[m
+[32m+[m[32m  " iconvがeucJP-msに対応しているかをチェック[m
+[32m+[m[32m  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"[m
+[32m+[m[32m    let s:enc_euc = 'eucjp-ms'[m
+[32m+[m[32m    let s:enc_jis = 'iso-2022-jp-3'[m
+[32m+[m[32m  " iconvがJISX0213に対応しているかをチェック[m
+[32m+[m[32m  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"[m
+[32m+[m[32m    let s:enc_euc = 'euc-jisx0213'[m
+[32m+[m[32m    let s:enc_jis = 'iso-2022-jp-3'[m
+[32m+[m[32m  endif[m
+[32m+[m[32m  " fileencodingsを構築[m
+[32m+[m[32m  if &encoding ==# 'utf-8'[m
+[32m+[m[32m    let s:fileencodings_default = &fileencodings[m
+[32m+[m[32m    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'[m
+[32m+[m[32m    let &fileencodings = &fileencodings .','. s:fileencodings_default[m
+[32m+[m[32m    unlet s:fileencodings_default[m
+[32m+[m[32m  else[m
+[32m+[m[32m    let &fileencodings = &fileencodings .','. s:enc_jis[m
+[32m+[m[32m    set fileencodings+=utf-8,ucs-2le,ucs-2[m
+[32m+[m[32m    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'[m
+[32m+[m[32m      set fileencodings+=cp932[m
+[32m+[m[32m      set fileencodings-=euc-jp[m
+[32m+[m[32m      set fileencodings-=euc-jisx0213[m
+[32m+[m[32m      set fileencodings-=eucjp-ms[m
+[32m+[m[32m      let &encoding = s:enc_euc[m
+[32m+[m[32m      let &fileencoding = s:enc_euc[m
+[32m+[m[32m    else[m
+[32m+[m[32m      let &fileencodings = &fileencodings .','. s:enc_euc[m
+[32m+[m[32m    endif[m
+[32m+[m[32m  endif[m
+[32m+[m[32m  " 定数を処分[m
+[32m+[m[32m  unlet s:enc_euc[m
+[32m+[m[32m  unlet s:enc_jis[m
+[32m+[m[32mendif[m
+[32m+[m[32m" 日本語を含まない場合は fileencoding に encoding を使うようにする[m
+[32m+[m[32mif has('autocmd')[m
+[32m+[m[32m  function! AU_ReCheck_FENC()[m
+[32m+[m[32m    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0[m
+[32m+[m[32m      let &fileencoding=&encoding[m
+[32m+[m[32m    endif[m
+[32m+[m[32m  endfunction[m
+[32m+[m[32m  autocmd BufReadPost * call AU_ReCheck_FENC()[m
+[32m+[m[32mendif[m
+[32m+[m[32m" 改行コードの自動認識[m
+[32m+[m[32mset fileformats=unix,dos,mac[m
+[32m+[m[32m" □とか○の文字があってもカーソル位置がずれないようにする[m
+[32m+[m[32mif exists('&ambiwidth')[m
+[32m+[m[32m  set ambiwidth=double[m
+[32m+[m[32mendif[m
+[32m+[m
+[32m+[m[32m"  }}} -end -Encoding[m[41m [m
+[32m+[m
+[32m+[m[32m" }}} -end MyConfig[m
+[32m+[m[32m" {{{ PluginOptions[m
+[32m+[m[32m"  {{{ config ctrlp[m[41m [m
+[32m+[m[32mlet g:ctrlp_use_migemo = 1[m
+[32m+[m[32mlet g:ctrlp_clear_cache_on_exit = 0[m
+[32m+[m[32mlet g:ctrlp_mruf_max = 500[m
+[32m+[m[32mlet g:ctrlp_open_new_file = 1[m
+[32m+[m[32mlet g:ctrlp_map = '<c-p>'[m
+[32m+[m[32m"   {{{ ctrlp map[m
+[32m+[m[32mnnoremap ,p :<C-u>CtrlP<CR>[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config neocomplcache[m
+[32m+[m[32mlet g:acp_enableAtStartup = 0[m
+[32m+[m[32mlet g:neocomplcache_enable_at_startup = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_smart_case = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_camel_case_completion = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_underbar_completion = 1[m
+[32m+[m[32mlet g:neocomplcache_min_syntax_length = 3[m
+[32m+[m[32mlet g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config neocomplcache[m
+[32m+[m[32m"au FileType javascript call JavaScriptFold()[m
+[32m+[m[32m"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery[m
+[32m+[m[32mlet $DICT_DIR='~/.vim/dict/'[m
+[32m+[m[32mlet g:neocomplcache_dictionary_filetype_lists = {[m
+[32m+[m[32m            \ 'default'    : '',[m
+[32m+[m[32m            \ 'php'        : $DICT_DIR.'PHP.dict,'       .$DICT_DIR.'html.dict'  ,[m
+[32m+[m[32m            \ 'javascript' : $DICT_DIR.'javascript.dict,'.$DICT_DIR.'jQuery.dict',[m
+[32m+[m[32m            \ 'css'        : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  ,[m
+[32m+[m[32m            \ 'less'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',[m
+[32m+[m[32m            \ 'html'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',[m
+[32m+[m[32m            \ 'c'          : $DICT_DIR.'c.dict',[m
+[32m+[m[32m            \ 'cpp'        : $DICT_DIR.'cpp.dict'[m
+[32m+[m[32m            \ }[m
+[32m+[m[32mif !exists('g:neocomplcache_keyword_patterns')[m
+[32m+[m[32m        let g:neocomplcache_keyword_patterns = {}[m
+[32m+[m[32mendif[m
+[32m+[m[32mlet g:neocomplcache_keyword_patterns['default'] = '\h\w*'[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config neosnippet[m[41m [m
+[32m+[m[32mlet g:neosnippet#snippets_directory='~/.vim/snippets/, ~/var_dumvar_dumpp.vim/snippets/, ~/.vim/bundle/snipmate-snippets/'[m
+[32m+[m[32mimap <c-k> <Plug>(neosnippet_expand_or_jump)[m
+[32m+[m[32msmap <c-k> <Plug>(neosnippet_expand_or_jump)[m
+[32m+[m[32mimap <expr><C-l>[m
+[32m+[m[32m\ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?[m
+[32m+[m[32m\ '\<Plug>(neosnippet_expand_or_jump)' : '\<C-n>'[m
+[32m+[m[32m" SuperTab like snippets behavior.[m
+[32m+[m[32m"   {{{ neosnippet map[m
+[32m+[m[32mimap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"[m
+[32m+[m[32msmap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"[m
+[32m+[m[32mnmap g/ :Unite -buffer-name=search line:forward -start-insert -auto-highlight<CR>[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config unite[m
+[32m+[m[32m" history/yank を有効化する[m
+[32m+[m[32mlet g:unite_source_history_yank_enable = 1[m
+[32m+[m[32m"   {{{ unite map[m
+[32m+[m[32mnnoremap ,ub :<C-u>Unite buffer<CR>[m
+[32m+[m[32mnnoremap ,uh :<C-u>Unite file_mru<CR>[m
+[32m+[m[32mnnoremap ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright <cr>[m
+[32m+[m[32mnnoremap ,uc :<C-u>Unite colorscheme -auto-preview<CR>[m
+[32m+[m[32mmap ,ur :Unite -buffer-name=register register<CR>[m
+[32m+[m[32mmap ,uy     :Unite history/yank<CR>[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config TweetVim[m
+[32m+[m[32mlet g:tweetvim_open_say_cmd = 'botright split'[m
+[32m+[m[32m"   {{{ TweetVim map[m
+[32m+[m[32mnnoremap ,twl :TweetVimHomeTimeline<Enter>[m
+[32m+[m[32mnnoremap ,twe :TweetVimSay<Enter>10<C-w><Esc>:set<Space>winheight=10<Enter>[m
+[32m+[m[32mnnoremap ,twm :TweetVimMentions<Enter>[m
+[32m+[m[32mnnoremap ,tws :TweetVimSwitchAccount<Space>[m
+[32m+[m[32mnnoremap ,twh :let<Space>g:tweetvim_footer="#"<Left>[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config Align[m
+[32m+[m[32m"let g:Align_enable_at_startup = 1;[m
+[32m+[m[32mlet g:Align_xstrlen=3[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config lightLine[m
+[32m+[m[32mlet g:lightlineEnableAtStartup = 1[m
+[32m+[m[32mlet g:lightline = {[m
+[32m+[m[32m      \ 'colorscheme': 'wombat',[m
+[32m+[m[32m      \ 'component': {[m
+[32m+[m[32m      \   'readonly': '%{&readonly?"x":""}',[m
+[32m+[m[32m      \ },[m
+[32m+[m[32m      \ 'separator': { 'left': ">", 'right': ">" },[m
+[32m+[m[32m      \ 'subseparator': { 'left': ">", 'right': ">" }[m
+[32m+[m[32m      \ }[m
+[32m+[m[32m"let g:lightline = {[m
+[32m+[m[32m"      \ 'colorscheme': 'wombat',[m
+[32m+[m[32m"      \ 'component': {[m
+[32m+[m[32m"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',[m
+[32m+[m[32m"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'[m
+[32m+[m[32m"      \ },[m
+[32m+[m[32m"      \ 'separator': { 'left': '⮀', 'right': '⮂' },[m
+[32m+[m[32m"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }[m
+[32m+[m[32m"      \ }[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config startify[m
+[32m+[m[32mnnoremap ,sf :Startify<Enter>[m
+[32m+[m[32m" startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)[m
+[32m+[m[32mlet g:startify_custom_header = [[m
+[32m+[m[32m\"                                    ..",[m
+[32m+[m[32m\"                                  .::::.",[m
+[32m+[m[32m\"                     ___________ :;;;;:`____________",[m
+[32m+[m[32m\"                     \_________/ ?????L \__________/",[m
+[32m+[m[32m\"                       |.....| ????????> :.......'",[m
+[32m+[m[32m\"                       |:::::| $$$$$$'`.:::::::' ,",[m
+[32m+[m[32m\"                      ,|:::::| $$$$'`.:::::::' .OOS.",[m
+[32m+[m[32m\"                    ,7D|;;;;;| $$'`.;;;;;;;' .OOO888S.",[m
+[32m+[m[32m\"                  .GDDD|;;;;;| ?`.;;;;;;;' .OO8DDDDDNNS.",[m
+[32m+[m[32m\"                   'DDO|IIIII| .7IIIII7' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                     'D|IIIIII7IIIII7' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |EEEEEEEEEE7' .DDDDDDDNNNNF`",[m
+[32m+[m[32m\"                       |EEEEEEEEZ' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |888888Z' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |8888Z' ,DDDDDDDNNNNF`",[m
+[32m+[m[32m\"                       |88Z'    'DNNNNNNN'",[m
+[32m+[m[32m\"                       '''        'MMMM'",[m
+[32m+[m[32m\"                                    ''",[m
+[32m+[m[32m\" ",[m
+[32m+[m[32m  \][m
+[32m+[m[32m" よく使うファイルをブックマークとして登録しておく[m
+[32m+[m[32mlet g:startify_bookmarks = [[m
+[32m+[m[32m  \ '~/.vimrc',[m
+[32m+[m[32m  \ '~/note/.memo',[m
+[32m+[m[32m  \ '~/workspace',[m
+[32m+[m[32m  \ ][m
+[32m+[m[32m" \ map(split('date', '\n'), '"   ". v:val') + ['',''],[m
+[32m+[m[32m" デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定[m
+[32m+[m[32mlet g:startify_custom_indices = split('a,b,c,d,f,g,i,m,n,p,r,s,t,u,v,w,x,y,z', ',')[m
+[32m+[m[32m"let g:startify_custom_indices = ['a','b','c','d','f','g','i','m','n','p','r','s','t','u','v','w','x','y','z'][m
+[32m+[m[32mlet g:startify_list_order = [[m
+[32m+[m[32m  \ ['  Recently'],[m
+[32m+[m[32m  \ 'files',[m
+[32m+[m[32m  \ ['  Recently in dir'],[m
+[32m+[m[32m  \ 'dir',[m
+[32m+[m[32m  \ ['  Sessions'],[m
+[32m+[m[32m  \ 'sessions',[m
+[32m+[m[32m  \ ['  Bookmarks'],[m
+[32m+[m[32m  \ 'bookmarks',[m
+[32m+[m[32m  \ ][m
+[32m+[m[32mlet g:startify_files_number = 5[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config foldCC[m
+[32m+[m[32mset foldtext=foldCC#foldtext()[m
+[32m+[m[32mlet g:foldCCtext_head = 'repeat(":", v:foldlevel) . "> "'[m
+[32m+[m[32mlet g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config over.vim[m
+[32m+[m[32m"over.vim option[m
+[32m+[m[32m" over.vimの起動[m
+[32m+[m[32m"  {{{ over map[m
+[32m+[m[32mnmap <silent> ,ov :OverCommandLine<CR>[m
+[32m+[m[32mnmap <silent> ,oV :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>[m
+[32m+[m[32m"vim-operator-replace[m
+[32m+[m[32mnmap <c-p> <Plug>(operator-replace)[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config Quickrun[m
+[32m+[m[32mlet g:quickrun_config={'*': {'split': ''}}[m
+[32m+[m[32m"   {{{ Quicakrun map[m
+[32m+[m[32mnnoremap <silent> ,r :QuickRun[m
+[32m+[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ config yankround[m
+[32m+[m[32mlet g:yankround_max_history = 50[m
+[32m+[m[32mnnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>[m
+[32m+[m[32m"   {{{ yankround map[m
+[32m+[m[32mnmap p <Plug>(yankround-p)[m
+[32m+[m[32mnmap P <Plug>(yankround-P)[m
+[32m+[m[32mnmap <C-p> <Plug>(yankround-prev)[m
+[32m+[m[32mnmap <C-n> <Plug>(yankround-next)[m
+[32m+[m[32m"   }}} -end[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ [x] config undotree.vim[m
+[32m+[m[32m"let g:undotree_EnableAtStartup = 1[m
+[32m+[m[32m"let g:undotree_SetFocusWhenToggle = 1[m
+[32m+[m[32m"let g:undotree_SplitLocation = 'topleft'[m
+[32m+[m[32m"let g:undotree_SplitWidth = 35[m
+[32m+[m[32m"let g:undotree_diffAutoOpen = 1[m
+[32m+[m[32m"let g:undotree_diffpanelHeight = 25[m
+[32m+[m[32m"let g:undotree_RelativeTimestamp = 1[m
+[32m+[m[32m"let g:undotree_TreeNodeShape = '*'[m
+[32m+[m[32m"let g:undotree_HighlightChangedText = 1[m
+[32m+[m[32m"let g:undotree_HighlightSyntax = "UnderLined"[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ [x] config easymotion[m
+[32m+[m[32m""easy-motion option[m
+[32m+[m[32m"let g:EasyMotion_keys='hjklasdfyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'[m
+[32m+[m[32m"let g:EasyMotion_smartcase=1[m
+[32m+[m[32m"let g:EasyMotion_use_migemo=1[m
+[32m+[m[32m"let g:EasyMotion_leader_key="'"[m
+[32m+[m[32m"let g:EasyMotion_grouping=1[m
+[32m+[m[32m"hi EasyMotionTarget ctermbg=none ctermfg=red[m
+[32m+[m[32m"hi EasyMotionShade  ctermbg=none ctermfg=blue[m
+[32m+[m
+[32m+[m[32m"  }}} -end[m
+[32m+[m[32m"  {{{ [x] config NERDTreeToggle[m
+[32m+[m[32m" let g:nerdtreetoggle_enable_at_startup = 1[m
+[32m+[m[41m [m
+[32m+[m[32m"  }}} -end[m
+[32m+[m
+[32m+[m[32m" }}} -end PluginOptions[m
+[32m+[m
+[32m+[m
+[1mdiff --git a/.xinitrc b/.xinitrc[m
+[1mnew file mode 100755[m
+[1mindex 0000000..489cd19[m
+[1m--- /dev/null[m
+[1m+++ b/.xinitrc[m
+[36m@@ -0,0 +1,40 @@[m
+[32m+[m[32m#!/bin/sh[m
+[32m+[m[32m#[m
+[32m+[m[32m# ~/.xinitrc[m
+[32m+[m[32m#[m
+[32m+[m[32m# Executed by startx (run your window manager from here)[m
+[32m+[m
+[32m+[m[32mif [ -d /etc/X11/xinit/xinitrc.d ]; then[m
+[32m+[m[32m  for f in /etc/X11/xinit/xinitrc.d/*; do[m
+[32m+[m[32m    [ -x "$f" ] && . "$f"[m
+[32m+[m[32m  done[m
+[32m+[m[32m  unset f[m
+[32m+[m[32mfi[m
+[32m+[m
+[32m+[m[32mxrdb -merge $HOME/.Xresources[m
+[32m+[m
+[32m+[m[32m# IME[m
+[32m+[m[32m#export GTK_IM_MODULE=uim[m
+[32m+[m[32m#export QT_IM_MODULE=uim[m
+[32m+[m[32m#export XMODIFIERS=@im=uim[m
+[32m+[m[32m#uim-xim &[m[41m [m
+[32m+[m[32m#uim-toolbar-gtk &[m
+[32m+[m[32mexport GTK_IM_MODULE=ibus[m
+[32m+[m[32mexport XMODIFIERS=@im=ibus[m
+[32m+[m[32mexport QT_IM_MODULE=ibus[m
+[32m+[m[32mibus-daemon --xim -d &[m
+[32m+[m
+[32m+[m[32m# xmodmap[m
+[32m+[m[32mxmodmap ~/home/hiro/.Xmodmap[m
+[32m+[m
+[32m+[m[32m# Other Option File[m
+[32m+[m[32m./.mysetup.sh[m
+[32m+[m
+[32m+[m[32m# Desktop[m
+[32m+[m[32mexec awesome[m[41m [m
+[32m+[m[32m#exec gnome-session[m
+[32m+[m[32m#exec cinnamon[m
+[32m+[m
+[32m+[m[32m#exec startkde[m
+[32m+[m[32m#exec startxfce4[m
+[32m+[m[32m#...or the Window Manager of your choice[m
+[1mdiff --git a/.zshrc b/.zshrc[m
+[1mnew file mode 100755[m
+[1mindex 0000000..13c0772[m
+[1m--- /dev/null[m
+[1m+++ b/.zshrc[m
+[36m@@ -0,0 +1,159 @@[m
+[32m+[m[32mbindkey -e[m
+[32m+[m
+[32m+[m[32mautoload -U compinit promptinit[m
+[32m+[m[32m# {{{ GENERAL[m
+[32m+[m[32mexport EDITOR=vim        # エディタをvimに設定[m
+[32m+[m[32mexport LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定[m
+[32m+[m[32mexport KCODE=u           # KCODEにUTF-8を設定[m
+[32m+[m[32mexport AUTOFEATURE=true  # autotestでfeatureを動かす[m
+[32m+[m[32m# }}}[m
+[32m+[m
+[32m+[m[32m# {{{ OPTION[m
+[32m+[m[32msetopt no_beep[m
+[32m+[m[32msetopt auto_cd[m
+[32m+[m[32msetopt correct[m
+[32m+[m[32malias ...='cd ../..'[m
+[32m+[m[32malias ....='cd ../../..'[m
+[32m+[m[32mpromptinit[m
+[32m+[m
+[32m+[m[32mexport[m[41m [m
+[32m+[m
+[32m+[m[32msetopt no_beep           # ビープ音を鳴らさないようにする[m
+[32m+[m[32msetopt auto_cd           # ディレクトリ名の入力のみで移動する[m[41m [m
+[32m+[m[32msetopt auto_pushd        # cd時にディレクトリスタックにpushdする[m
+[32m+[m[32msetopt correct           # コマンドのスペルを訂正する[m
+[32m+[m[32msetopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)[m
+[32m+[m[32msetopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う[m
+[32m+[m[32msetopt notify            # バックグラウンドジョブの状態変化を即時報告する[m
+[32m+[m[32msetopt equals            # =commandを`which command`と同じ処理にする[m
+[32m+[m
+[32m+[m[32msetopt pushd_ignore_dups[m
+[32m+[m[32msetopt extended_glob[m
+[32m+[m[32msetopt hist_ignore_all_dups[m
+[32m+[m[32msetopt hist_ignore_space[m
+[32m+[m
+[32m+[m[32mzstyle ':completion:*:default' menu select=1[m
+[32m+[m[32mzstyle ':completion:*sudo:*' command-path /usr/local/bin /usr/bin /sbin /bin[m
+[32m+[m[32mzstyle ':completion:*' list-colors $$${(s.:.)LS_COLORS}[m
+[32m+[m
+[32m+[m[32mWORDCHARS='*?_-.[]~=&;!#$$&^(){}<>'[m
+[32m+[m[32m#}}}[m
+[32m+[m[32m# {{{ PROMPT[m
+[32m+[m[32m# colors[m
+[32m+[m[32mlocal BLACK=$'%{\e[1;30m%}'[m
+[32m+[m[32mlocal RED=$'%{\e[1;31m%}'[m
+[32m+[m[32mlocal GREEN=$'%{\e[1;32m%}'[m
+[32m+[m[32mlocal YELLOW=$'%{\e[1;33m%}'[m
+[32m+[m[32mlocal BLUE=$'%{\e[1;34m%}'[m
+[32m+[m[32mlocal PURPLE=$'%{\e[1;35m%}'[m
+[32m+[m[32mlocal LIGHTBLUE=$'%{\e[1;36m%}'[m
+[32m+[m[32mlocal WHITE=$'%{\e[1;37m%}'[m
+[32m+[m[32mlocal DEFAULT=$'%{\e[1;m%}'[m
+[32m+[m[32m#	%n	ユーザー名[m
+[32m+[m[32m#	%M	コンピュータ名[m
+[32m+[m[32m#	%c	カレントディレクトリ[m
+[32m+[m[32mPROMPT=$DEFAULT"%n@%M:"$BLUE"%c"$DEFAULT"$ "[m
+[32m+[m[32mPROMPT2="%_$ "[m
+[32m+[m[32mSPROMPT="%r is correct? [n,y,a,e]: "[m[41m [m
+[32m+[m[32mRPROMPT=$DEFAULT"["$GREEN"%*"$DEFAULT"]"[m
+[32m+[m
+[32m+[m[32m# title[m
+[32m+[m[32mcase "${TERM}" in[m
+[32m+[m[32mkterm*|xterm)[m
+[32m+[m	[32mprecmd() {[m
+[32m+[m		[32mecho -ne "\033]0;`basename ${PWD}`[${PWD}]\007"[m
+[32m+[m	[32m}[m
+[32m+[m	[32m;;[m
+[32m+[m[32mesac[m
+[32m+[m[32meval `dircolors`[m
+[32m+[m[32mzstyle ':completion:*:default' list-colors ${LS_COLORS}[m
+[32m+[m[32mzstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'[m
+[32m+[m
+[32m+[m[32m# }}}[m
+[32m+[m[32m# {{{ ALIAS[m
+[32m+[m
+[32m+[m[32m#ls[m
+[32m+[m[32malias ls="ls -F --color=auto -v"	#ディレクトリには/, 色つき, 番号順[m
+[32m+[m[32malias la="ls -a"				#隠しファイルも[m
+[32m+[m[32malias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語[m
+[32m+[m[32malias lla="ls -lha"				#全部詳細[m
+[32m+[m
+[32m+[m[32m#cp[m
+[32m+[m[32malias cp="cp -i"	#上書きを確認[m
+[32m+[m
+[32m+[m[32m#sl[m
+[32m+[m[32malias -g sl="echo you are an idiot!"[m
+[32m+[m
+[32m+[m[32m#ls[m
+[32m+[m[32malias s="ls"[m
+[32m+[m[32malias l="ls"[m
+[32m+[m
+[32m+[m[32m#exit[m
+[32m+[m[32malias eixt="exit"[m
+[32m+[m[32malias :q="exit"[m
+[32m+[m
+[32m+[m[32m#grep[m
+[32m+[m[32malias grep="grep --color=auto"[m
+[32m+[m[32malias fgrep="fgrep --color=auto"[m
+[32m+[m[32malias egrep="egrep --color=auto"[m
+[32m+[m
+[32m+[m[32m#ln[m
+[32m+[m[32malias ln="ln -i -v"[m
+[32m+[m
+[32m+[m[32m#geditのデバッグを消去[m
+[32m+[m[32malias gedit="gedit $@ > /dev/null 2> /dev/null"[m
+[32m+[m
+[32m+[m[32m#extension[m
+[32m+[m[32malias -s c=vim[m
+[32m+[m[32malias -s C=vim[m
+[32m+[m[32malias -s cpp=vim[m
+[32m+[m[32malias -s h=vim[m
+[32m+[m[32malias -s html=vim[m
+[32m+[m[32malias -s java=vim[m
+[32m+[m[32malias -s py=myPyOpen[m
+[32m+[m[32malias -s txt=vim[m
+[32m+[m[32malias -s xhtml=vim[m
+[32m+[m[32malias -s xml=vim[m
+[32m+[m[32malias -s zip=zipinfo[m
+[32m+[m
+[32m+[m[32malias -s png=eog[m
+[32m+[m[32malias -s jpg=eog[m
+[32m+[m[32malias -s jpeg=eog[m
+[32m+[m[32malias -s gif=eog[m
+[32m+[m[32malias -s bmp=eog[m
+[32m+[m
+[32m+[m[32malias -s astah=asta[m
+[32m+[m
+[32m+[m[32m#apache2[m
+[32m+[m[32malias apache2="sudo /etc/init.d/apache2"[m
+[32m+[m
+[32m+[m[32m#sudo用gedit[m
+[32m+[m[32malias suedit="sudo XMODIFIERS=@im=ibus GTK_IM_MODULE=xim gedit"[m
+[32m+[m
+[32m+[m[32m#stdoutをクリップボードへ[m
+[32m+[m[32malias -g toclip=" | xsel -bi"[m
+[32m+[m[32m#stdout+stderrをクリップボードへ[m
+[32m+[m[32malias -g toclipall=" 2>&1 | xsel -bi"[m
+[32m+[m[32m#stdoutをクリップボードとstdoutへ[m
+[32m+[m[32malias -g andclip=" | (cat 1>&2 | xsel -bi) 2>&1"[m
+[32m+[m[32m#stdout+stderrをクリップボードとstdoutへ[m
+[32m+[m[32malias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"[m
+[32m+[m
+[32m+[m[32m#gnome-open[m
+[32m+[m[32malias gopen="gnome-open"[m
+[32m+[m
+[32m+[m[32m#geditのデバッグがウザい[m
+[32m+[m[32malias gedit="gedit >/dev/null 2>/dev/null"[m
+[32m+[m
+[32m+[m[32m# }}}[m
+[32m+[m[32m# {{{ FUNC[m
+[32m+[m[32m# function cd() { builtin cd $@ && ls }[m
+[32m+[m[32mfunction chpwd() { ls -v -F --color=auto }[m
+[32m+[m[32m# }}}[m
+[32m+[m[32m# {{{ SHIRI[m
+[32m+[m[32malias こんにちは="echo 「どうもどうもこんにちは」"[m
+[32m+[m[32malias お腹すいた="echo 「っカレー」"[m
+[32m+[m[32m# }}}[m
+[32m+[m[32m# {{{APP alias[m
+[32m+[m[32malias tweetdeck="chromium --app=https://tweetdeck.twitter.com"[m
+[32m+[m[32m# }}}[m
+[1mdiff --git a/_gvimrc b/_gvimrc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..7b43124[m
+[1m--- /dev/null[m
+[1m+++ b/_gvimrc[m
+[36m@@ -0,0 +1,619 @@[m
+[32m+[m
+[32m+[m[32m" NeoBundleOptions{{{[m
+[32m+[m[32m"head{{{[m
+[32m+[m[32m"neobundle[m
+[32m+[m[32mscriptencoding utf-8[m
+[32m+[m[32mset nocompatible[m
+[32m+[m
+[32m+[m[32mfiletype off[m
+[32m+[m
+[32m+[m[32mfor path in split(glob($HOME.'/.vim/bundle/*'), '\n')[m
+[32m+[m[32m    if isdirectory(path) | let &runtimepath = &runtimepath.','.path | end[m
+[32m+[m[32mendfor[m
+[32m+[m
+[32m+[m[32m""vundle option[m
+[32m+[m[32m"set runtimepath+='$HOME\.vim\bundle\'[m
+[32m+[m[32m"call vundle#rc()[m
+[32m+[m
+[32m+[m[32m"neobundle.vim option[m[41m [m
+[32m+[m[32mcall neobundle#rc(expand('$HOME\.vim\bundle'))[m
+[32m+[m[32m"head}}}[m
+[32m+[m[32m"bundles {{{[m
+[32m+[m[32m"neobundle[m[41m [m
+[32m+[m[32mNeoBundle 'Shougo/neobundle.vim.git'[m
+[32m+[m[32mNeoBundle 'Shougo/neocomplcache.git'[m
+[32m+[m[32mNeoBundle 'Shougo/unite.vim.git'[m
+[32m+[m[32mNeoBundle 'Shougo/vimfiler.git'[m
+[32m+[m[32mNeoBundle 'Shougo/vimshell.vim'[m
+[32m+[m[32mNeoBundle 'scrooloose/syntastic.git'[m
+[32m+[m[32mNeoBundle 'scrooloose/nerdtree.git'[m
+[32m+[m[32m"NeoBundle 'Shougo/neocomplete.vim'[m
+[32m+[m
+[32m+[m[32m"utility view[m
+[32m+[m[32mNeoBundle 'tpope/vim-markdown'[m
+[32m+[m[32mNeoBundle 'itchyny/lightline.vim'[m
+[32m+[m[32mNeoBundle 'LeafCage/foldCC'[m
+[32m+[m[32m"NeoBundle 'yonchu/accelerated-smooth-scroll'[m
+[32m+[m
+[32m+[m[32m"utility input[m
+[32m+[m[32mNeoBundle 'Shougo/neosnippet'[m
+[32m+[m[32mNeoBundle 'thinca/vim-splash'[m
+[32m+[m[32mNeoBundle 'osyo-manga/vim-over'[m
+[32m+[m[32mNeoBundle 'tpope/vim-surround'[m
+[32m+[m[32mNeoBundle 'terryma/vim-multiple-cursors'[m
+[32m+[m[32mNeoBundle 'coderifous/textobj-word-column.vim'[m
+[32m+[m[32mNeoBundle 'kana/vim-operator-replace.git'[m
+[32m+[m[32mNeoBundle 'kana/vim-operator-user.git'[m
+[32m+[m[32mNeoBundle 'haya14busa/vim-easymotion'[m
+[32m+[m
+[32m+[m[32m"tool[m
+[32m+[m[32mNeoBundle 'kien/ctrlp.vim.git'[m
+[32m+[m[32mNeoBundle 'mbbill/undotree'[m
+[32m+[m[32mNeoBundle 'altercation/vim-colors-solarized'[m
+[32m+[m[32mNeoBundle 'cocopon/colorswatch.vim'[m
+[32m+[m[32mNeoBundle 'AndrewRadev/linediff.vim'[m
+[32m+[m[32mNeoBundle 'thinca/vim-quickrun'[m
+[32m+[m[32mNeoBundle 'mhinz/vim-startify'[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"NeoBundle 'YankRing.vim'[m
+[32m+[m[32m"NeoBundle 'mru.git'[m
+[32m+[m[32m"NeoBundle 'mttn/zen-coding.vim'[m
+[32m+[m[32m"NeoBundle 'emmet-vim'[m
+[32m+[m
+[32m+[m[32m"html support[m
+[32m+[m[32mNeoBundle 'Emmet.vim'[m
+[32m+[m[32m"NeoBundle 'hokaccha/endtagcomment.vim'[m
+[32m+[m
+[32m+[m[32m"sublime text 2 NeoBundle 'mattn/multi-vim'[m
+[32m+[m[32m"NeoBundle 'koron/minimap-vim'[m
+[32m+[m[32mNeoBundle 'koron/minimap-vim'[m
+[32m+[m
+[32m+[m[32m" sound[m
+[32m+[m[32mNeoBundle 'osyo-manga/vim-sound'[m
+[32m+[m
+[32m+[m[32m"language[m
+[32m+[m[32m" less[m[41m [m
+[32m+[m[32mNeoBundle 'groenewege/vim-less'[m
+[32m+[m
+[32m+[m[32m"Lua[m
+[32m+[m[32mNeoBundle 'lua-support'[m
+[32m+[m[32mNeoBundle 'luarefvim'[m
+[32m+[m
+[32m+[m[32m"Game[m
+[32m+[m[32m"NeoBundle 'amix/vim-2048'[m
+[32m+[m[32mNeoBundle 'AshyIsMe/2048'[m
+[32m+[m[32m"NewGame2048[m
+[32m+[m[32mNeoBundle 'thinca/vim-threes'[m
+[32m+[m[32m"ThreesStart[m
+[32m+[m[32m"NeoBundle 'sudoku_game'[m
+[32m+[m[32m"Sudoku~~[m
+[32m+[m[32mNeoBundle 'mfumi/viminesweeper'[m
+[32m+[m[32m"MineSweeper[m
+[32m+[m[32mNeoBundle 'TeTrls.vim'[m
+[32m+[m[32m"[m
+[32m+[m[32mNeoBundle 'mattn/invader-vim'[m
+[32m+[m[32m"Invader[m
+[32m+[m[32mNeoBundle 'deris/vim-duzzle'[m
+[32m+[m[32m"DuzzleStart[m
+[32m+[m[32m"nmap ,gt :source<Space>TeTrls.vim<Enter>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"twitter[m
+[32m+[m[32mNeoBundle 'basyura/TweetVim'[m
+[32m+[m[32mNeoBundle 'mattn/webapi-vim'[m
+[32m+[m[32mNeoBundle 'basyura/twibill.vim'[m
+[32m+[m[32mNeoBundle 'tyru/open-browser.vim'[m
+[32m+[m[32mNeoBundle 'h1mesuke/unite-outline'[m
+[32m+[m[32mNeoBundle 'basyura/bitly.vim'[m
+[32m+[m[32m"NeoBundle 'TwitVim'[m
+[32m+[m
+[32m+[m[32m"git[m
+[32m+[m[32mNeoBundle 'tpope/vim-fugitive'[m
+[32m+[m
+[32m+[m[32m"colorscheme[m
+[32m+[m[32mNeoBundle 'ujihisa/unite-colorscheme'[m
+[32m+[m[32mNeoBundle 'vim-scripts/phd'[m
+[32m+[m[32mNeoBundle 'vim-scripts/summerfruit256.vim'[m
+[32m+[m[32mNeoBundle 'sjl/badwolf'[m
+[32m+[m
+[32m+[m[32mfiletype plugin on[m
+[32m+[m[32mfiletype indent on[m
+[32m+[m[32m"bundles -end}}}[m
+[32m+[m[32m"NeoBundle -end}}}[m
+[32m+[m
+[32m+[m[32m"Startup options {{{[m
+[32m+[m[32mset nocompatible[m
+[32m+[m[32mset clipboard+=unnamed[m
+[32m+[m[32mset modifiable[m
+[32m+[m[32mset write[m
+[32m+[m[32mset go=arc[m
+[32m+[m[32mset tw=0[m
+[32m+[m[32msource $VIMRUNTIME/delmenu.vim[m
+[32m+[m[32mset langmenu=ja_jp.utf-8[m
+[32m+[m[32msource $VIMRUNTIME/menu.vim[m
+[32m+[m
+[32m+[m[32mau BufEnter * execute ":lcd " . expand("%:p:h")[m
+[32m+[m[32mset foldmethod=marker[m
+[32m+[m[32mset encoding=utf-8[m
+[32m+[m[32mset nowrap[m
+[32m+[m[32mset laststatus=2[m
+[32m+[m[32m"colorscheme[m
+[32m+[m[32msyntax enable[m
+[32m+[m[32mset background=dark[m
+[32m+[m[32mcolorscheme phd[m
+[32m+[m[32m"colorscheme ron[m
+[32m+[m[32m"set incsearch[m
+[32m+[m
+[32m+[m[32mset backupdir=C:\Temp[m
+[32m+[m[32mset nobackup[m
+[32m+[m[32mset noswapfile[m
+[32m+[m[32mset fo=q[m
+[32m+[m
+[32m+[m[32m"tab space[m
+[32m+[m[32mset expandtab[m
+[32m+[m[32mset tabstop=4[m
+[32m+[m[32mset shiftwidth=4[m
+[32m+[m[32mset softtabstop=4[m
+[32m+[m[32mset autoindent[m
+[32m+[m[32mset smartindent[m
+[32m+[m
+[32m+[m[32m"numbr[m
+[32m+[m[32mset number[m
+[32m+[m[32msource $VIMRUNTIME/vimrc_example.vim[m
+[32m+[m[32msource $VIMRUNTIME/mswin.vim[m
+[32m+[m[32mbehave mswin[m
+[32m+[m[32mset tw=0[m
+[32m+[m
+[32m+[m[32m"Window position[m
+[32m+[m[32mset lines=52[m
+[32m+[m[32mset columns=95[m
+[32m+[m[32mwinpos 683 0[m
+[32m+[m[32mset cmdheight=1[m
+[32m+[m
+[32m+[m[32m" -end }}}[m
+[32m+[m[32m"Key Mapping {{{[m
+[32m+[m[32mimap <C-BS> <C-W>[m
+[32m+[m[32mnmap <Leader><Leader> <Esc>:source $HOME/_gvimrc<CR>[m
+[32m+[m
+[32m+[m[32mnmap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>[m
+[32m+[m[32mimap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>[m
+[32m+[m
+[32m+[m[32mnmap G Gzz[m
+[32m+[m
+[32m+[m[32m"Switching Opacity[m
+[32m+[m[32mnmap ,oo :set tra=220<CR>[m
+[32m+[m[32mnmap ,on :set tra=0<CR>[m
+[32m+[m[32mnmap ,o+ :set tra+=10<CR>[m
+[32m+[m[32mnmap ,o- :set tra-=10<CR>[m
+[32m+[m[32m"Window Scaleup[m
+[32m+[m[32mnmap ,wj 10<C-W>+[m
+[32m+[m[32mnmap ,wk 10<C-W>-[m
+[32m+[m
+[32m+[m[32m"nmap <C-;> <S-A>;<Esc>[m
+[32m+[m[32m"imap <C-;> <Esc><S-A>;[m
+[32m+[m
+[32m+[m[32mnmap ,e :!explorer .<CR>[m
+[32m+[m
+[32m+[m[32mnmap ,a gg<S-V><S-G>a[m
+[32m+[m
+[32m+[m[32mnmap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>[m
+[32m+[m
+[32m+[m[32mnmap ,ft :set ft=[m
+[32m+[m
+[32m+[m[32mnmap ,nn :set rnu<CR>[m
+[32m+[m[32mnmap ,nr :set nornu<CR>[m
+[32m+[m
+[32m+[m[32mhighlight CursorLine gui=underline guifg=NONE guibg=NONE[m
+[32m+[m
+[32m+[m[32mcmap ,ntt <Esc>:NERDTreeToggle[m
+[32m+[m[32mcmap ,ntf <Esc>:NERDTreeFind[m
+[32m+[m[32mcmap ,ntob <Esc>:OpenBookmark<Space>[m
+[32m+[m[32mcmap ,ntb <Esc>:Bookmark<Space>[m
+[32m+[m[32mnmap ,utt <Esc>:UndoTreeToggle[m
+[32m+[m[32mcmap ,nbi <Esc>:NeoBundleInstall[m
+[32m+[m
+[32m+[m[32m"バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin で発動します）[m
+[32m+[m[32maugroup BinaryXXD[m
+[32m+[m[32m        autocmd![m
+[32m+[m[32m        autocmd BufReadPre  *.bin let &binary =1[m
+[32m+[m[32m        autocmd BufReadPost * if &binary | silent %!xxd -g 1[m
+[32m+[m[32m        autocmd BufReadPost * set ft=xxd | endif[m
+[32m+[m[32m        autocmd BufWritePre * if &binary | %!xxd -r[m
+[32m+[m[32m        autocmd BufWritePre * endif[m
+[32m+[m[32m        autocmd BufWritePost * if &binary | silent %!xxd -g 1[m
+[32m+[m[32m        autocmd BufWritePost * set nomod | endif[m
+[32m+[m[32maugroup END[m
+[32m+[m
+[32m+[m
+[32m+[m[32m" -end}}}[m
+[32m+[m[32m" auto position {{{ let g:save_window_file = expand('~/.vimwinpos')[m
+[32m+[m[32maugroup SaveWindow[m
+[32m+[m[32m  autocmd![m
+[32m+[m[32m  autocmd VimLeavePre * call s:save_window()[m
+[32m+[m[32m  function! s:save_window()[m
+[32m+[m[32m    let options = [[m
+[32m+[m[32m      \ 'set columns=' . &columns,[m
+[32m+[m[32m      \ 'set lines=' . &lines,[m
+[32m+[m[32m      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),[m
+[32m+[m[32m      \ ][m
+[32m+[m[32m    call writefile(options, g:save_window_file)[m
+[32m+[m[32m  endfunction[m
+[32m+[m[32maugroup END[m
+[32m+[m
+[32m+[m[32m"if filereadable(g:save_window_file)[m
+[32m+[m[32m"  execute 'source' g:save_window_file[m
+[32m+[m[32m"endif[m
+[32m+[m[32m"}}}[m
+[32m+[m[32m" sound coding {{{[m
+[32m+[m
+[32m+[m[32m"autocmd CursorMovedI * :call vimproc#system_bg("~/.vim/sound/vim-key-sound.rb '" . getline('.')[col('.') - 2] . "'")[m
+[32m+[m
+[32m+[m[32m"" 効果音ディレクトリと拡張子の指定。効果音名を元にフルパスに変換出来るように。[m
+[32m+[m[32m"let s:se_path = "~/.vim/sound/type/"[m
+[32m+[m[32m"let s:se_ext = ".wav"[m
+[32m+[m[32m"function! s:change_sound_name(base_name)[m
+[32m+[m[32m"  return expand(s:se_path . a:base_name . s:se_ext)[m
+[32m+[m[32m"endfunction[m[41m [m
+[32m+[m[32m"[m
+[32m+[m[32m"" sound#play_wavのラッパ[m
+[32m+[m[32m"function! PlaySE(name)[m
+[32m+[m[32m"  call sound#play_wav(s:change_sound_name(a:name))[m
+[32m+[m[32m"endfunction[m
+[32m+[m[32m"[m
+[32m+[m[32m""function! PlaySE(name)[m
+[32m+[m[32m""  silent! exec '!afplay ' . s:se_path . a:name . s:se_ext . ' &'[m
+[32m+[m[32m""endfunction[m
+[32m+[m[32m"[m
+[32m+[m[32m"[m
+[32m+[m[32m""" テスト用。効果音名の上で<Leader><Leader>を押すと再生出来るように[m
+[32m+[m[32m""command! -nargs=1 Play :call PlaySE("<args>")[m
+[32m+[m[32m""nmap <Leader><Leader> :<C-u>Play <C-r><C-w><CR>[m
+[32m+[m[32m"[m
+[32m+[m[32m"" 補完をの完了[m
+[32m+[m[32m"autocmd CompleteDone * call PlaySE("comp")[m
+[32m+[m[32m"" バッファ移動時[m
+[32m+[m[32m"autocmd BufEnter * call PlaySE("move_buffer")[m
+[32m+[m[32m"" 入力時[m
+[32m+[m[32m""autocmd InsertCharPre * call PlaySE("type")[m
+[32m+[m[32m"" 保存時[m
+[32m+[m[32m"autocmd BufWrite * call PlaySE("save")[m
+[32m+[m[32m"" インサートモードに入る時[m
+[32m+[m[32m"autocmd InsertEnter * call PlaySE("in")[m
+[32m+[m[32m"autocmd InsertLeave * call PlaySE("out")[m
+[32m+[m[32m"" タブページ移動時[m
+[32m+[m[32m"autocmd TabEnter * call PlaySE("move")[m
+[32m+[m[32m"[m
+[32m+[m
+[32m+[m[32m" その他バインド[m
+[32m+[m[32m"nmap <silent> J J:<C-u>call PlaySE("portal2")<CR>[m
+[32m+[m[32m"nmap <silent> K K:<C-u>call PlaySE("portal2")<CR>[m
+[32m+[m[32m"nmap <silent> L L:<C-u>call PlaySE("portal2")<CR>[m
+[32m+[m[32m"nmap <silent> H H:<C-u>call PlaySE("portal2")<CR>[m
+[32m+[m
+[32m+[m[32m"[m[41m [m
+[32m+[m[32m"nmap <silent> <Esc><Esc> :<C-u>AnzuClearSearchStatus<CR>:nohlsearch<CR>:call PlaySE("splash")<CR>[m
+[32m+[m[32m"nmap <silent> <C-l><C-l> :<C-u>AnzuClearSearchStatus<CR>:nohlsearch<CR>:call PlaySE("splash")<CR>[m
+[32m+[m
+[32m+[m[32m" }}}[m
+[32m+[m[32m" auto encoding {{{[m
+[32m+[m[32mif &encoding !=# 'utf-8'[m
+[32m+[m[32m  set encoding=japan[m
+[32m+[m[32m  set fileencoding=japan[m
+[32m+[m[32mendif[m
+[32m+[m[32mif has('iconv')[m
+[32m+[m[32m  let s:enc_euc = 'euc-jp'[m
+[32m+[m[32m  let s:enc_jis = 'iso-2022-jp'[m
+[32m+[m[32m  " iconvがeucJP-msに対応しているかをチェック[m
+[32m+[m[32m  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"[m
+[32m+[m[32m    let s:enc_euc = 'eucjp-ms'[m
+[32m+[m[32m    let s:enc_jis = 'iso-2022-jp-3'[m
+[32m+[m[32m  " iconvがJISX0213に対応しているかをチェック[m
+[32m+[m[32m  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"[m
+[32m+[m[32m    let s:enc_euc = 'euc-jisx0213'[m
+[32m+[m[32m    let s:enc_jis = 'iso-2022-jp-3'[m
+[32m+[m[32m  endif[m
+[32m+[m[32m  " fileencodingsを構築[m
+[32m+[m[32m  if &encoding ==# 'utf-8'[m
+[32m+[m[32m    let s:fileencodings_default = &fileencodings[m
+[32m+[m[32m    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'[m
+[32m+[m[32m    let &fileencodings = &fileencodings .','. s:fileencodings_default[m
+[32m+[m[32m    unlet s:fileencodings_default[m
+[32m+[m[32m  else[m
+[32m+[m[32m    let &fileencodings = &fileencodings .','. s:enc_jis[m
+[32m+[m[32m    set fileencodings+=utf-8,ucs-2le,ucs-2[m
+[32m+[m[32m    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'[m
+[32m+[m[32m      set fileencodings+=cp932[m
+[32m+[m[32m      set fileencodings-=euc-jp[m
+[32m+[m[32m      set fileencodings-=euc-jisx0213[m
+[32m+[m[32m      set fileencodings-=eucjp-ms[m
+[32m+[m[32m      let &encoding = s:enc_euc[m
+[32m+[m[32m      let &fileencoding = s:enc_euc[m
+[32m+[m[32m    else[m
+[32m+[m[32m      let &fileencodings = &fileencodings .','. s:enc_euc[m
+[32m+[m[32m    endif[m
+[32m+[m[32m  endif[m
+[32m+[m[32m  " 定数を処分[m
+[32m+[m[32m  unlet s:enc_euc[m
+[32m+[m[32m  unlet s:enc_jis[m
+[32m+[m[32mendif[m
+[32m+[m[32m" 日本語を含まない場合は fileencoding に encoding を使うようにする[m
+[32m+[m[32mif has('autocmd')[m
+[32m+[m[32m  function! AU_ReCheck_FENC()[m
+[32m+[m[32m    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0[m
+[32m+[m[32m      let &fileencoding=&encoding[m
+[32m+[m[32m    endif[m
+[32m+[m[32m  endfunction[m
+[32m+[m[32m  autocmd BufReadPost * call AU_ReCheck_FENC()[m
+[32m+[m[32mendif[m
+[32m+[m[32m" 改行コードの自動認識[m
+[32m+[m[32mset fileformats=unix,dos,mac[m
+[32m+[m[32m" □とか○の文字があってもカーソル位置がずれないようにする[m
+[32m+[m[32mif exists('&ambiwidth')[m
+[32m+[m[32m  set ambiwidth=double[m
+[32m+[m[32mendif[m
+[32m+[m[32m" font option:[m
+[32m+[m[32mif has('win32')[m
+[32m+[m[32m  " Windows用[m
+[32m+[m[32m  set guifont=MS_Gothic:h10:cSHIFTJIS "← h12だったものを、h10に変更[m
+[32m+[m[32m  "set guifont=MS_Mincho:h12:cSHIFTJIS[m
+[32m+[m[32m  " 行間隔の設定[m
+[32m+[m[32m  set linespace=1[m
+[32m+[m[32m  " 一部のUCS文字の幅を自動計測して決める[m
+[32m+[m[32m  if has('kaoriya')[m
+[32m+[m[32m    set ambiwidth=auto[m
+[32m+[m[32m  endif[m
+[32m+[m[32melseif has('mac')[m
+[32m+[m[32m  set guifont=Osaka?等幅:h14[m
+[32m+[m[32melseif has('xfontset')[m
+[32m+[m[32m  " UNIX用 (xfontsetを使用)[m
+[32m+[m[32m  set guifontset=a14,r14,k14[m
+[32m+[m[32mendif[m
+[32m+[m[32m" encoding -end}}}[m
+[32m+[m
+[32m+[m[32m" Plugin Options{{{[m
+[32m+[m
+[32m+[m[32m" autocmd dictionary each FileType[m
+[32m+[m[32m"autocmd FileType php        :set dictionary=$VIM/dict/PHP.dict,$VIM/dict/html.dict,$VIM/dict/css.dict[m
+[32m+[m[32m"autocmd FileType javascript :set dictionary=$VIM/dict/jQuery.dict,$VIM/dict/javascript.dict[m
+[32m+[m[32m"autocmd FileType css        :set dictionary=$VIM/dict/css.dict,$VIM/dict/html.dict[m
+[32m+[m[32m"autocmd FileType less       :set dictionary=$VIM/dict/css.dict,$VIM/dict/html.dict[m
+[32m+[m[32m"autocmd FileType html       :set dictionary=$VIM/dict/css.dict,$VIM/dict/html.dict[m
+[32m+[m[32m"autocmd FileType processing :set dictionary=$VIM/dict/processing.dict[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"syntax setting[m
+[32m+[m[32mau FileType javascript call JavaScriptFold()[m
+[32m+[m[32mau BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery[m
+[32m+[m
+[32m+[m[32m" ctrlp option[m
+[32m+[m
+[32m+[m[32mlet g:ctrlp_use_migemo = 1[m
+[32m+[m[32mlet g:ctrlp_clear_cache_on_exit = 0[m
+[32m+[m[32mlet g:ctrlp_mruf_max = 500[m
+[32m+[m[32mlet g:ctrlp_open_new_file = 1[m
+[32m+[m[32mlet g:ctrlp_map = '<c-p>'[m
+[32m+[m
+[32m+[m[32mnmap ,p :<C-u>CtrlP<CR>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"neocomplcache option[m
+[32m+[m[32mlet g:acp_enableAtStartup = 0[m
+[32m+[m[32mlet g:neocomplcache_enable_at_startup = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_smart_case = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_camel_case_completion = 1[m
+[32m+[m[32mlet g:neocomplcache_enable_underbar_completion = 1[m
+[32m+[m[32mlet g:neocomplcache_min_syntax_length = 3[m
+[32m+[m[32mlet g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'[m
+[32m+[m
+[32m+[m[32mlet $DICT_DIR='C:\Users\hiro\.vim\dict\'[m
+[32m+[m[32mlet g:neocomplcache_dictionary_filetype_lists = {[m
+[32m+[m[32m            \ 'default'    : '',[m
+[32m+[m[32m            \ 'php'        : $DICT_DIR.'PHP.dict,'       .$DICT_DIR.'html.dict'  ,[m
+[32m+[m[32m            \ 'javascript' : $DICT_DIR.'javascript.dict,'.$DICT_DIR.'jQuery.dict',[m
+[32m+[m[32m            \ 'css'        : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  ,[m
+[32m+[m[32m            \ 'less'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',[m
+[32m+[m[32m            \ 'html'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',[m
+[32m+[m[32m            \ 'c'          : $DICT_DIR.'c.dict',[m
+[32m+[m[32m            \ 'cpp'        : $DICT_DIR.'cpp.dict'[m
+[32m+[m[32m            \ }[m
+[32m+[m[32mif !exists('g:neocomplcache_keyword_patterns')[m
+[32m+[m[32m        let g:neocomplcache_keyword_patterns = {}[m
+[32m+[m[32mendif[m
+[32m+[m[32mlet g:neocomplcache_keyword_patterns['default'] = '\h\w*'[m
+[32m+[m
+[32m+[m
+[32m+[m[32m""neocomplete option[m
+[32m+[m[32m"let g:neocomplete#enable_at_startup = 1[m
+[32m+[m[32m"let g:neocomplete#sources#dictionary#dictionaries = {[m
+[32m+[m[32m"            \ 'default'    : '',[m
+[32m+[m[32m"            \ 'php'        : $VIM.'/dict/PHP.dict,'       .$VIM.'/dict/html.dict'  ,[m
+[32m+[m[32m"            \ 'javascript' : $VIM.'/dict/javascript.dict,'.$VIM.'/dict/jQuery.dict',[m
+[32m+[m[32m"            \ 'css'        : $VIM.'/dict/css.dict,'       .$VIM.'/dict/html.dict'  ,[m
+[32m+[m[32m"            \ 'less'       : $VIM.'/dict/css.dict,'       .$VIM.'/dict/html.dict'  ,[m
+[32m+[m[32m"            \ 'html'       : $VIM.'/dict/css.dict,'       .$VIM.'/dict/html.dict',[m
+[32m+[m[32m"            \ 'c'          : $VIM.'/dict/c.dict',[m
+[32m+[m[32m"            \ 'cpp'        : $VIM.'/dict/cpp.dict'[m
+[32m+[m[32m"            \ }[m
+[32m+[m[32m"let g:neocomplete#enable_smart_case = 1[m
+[32m+[m[32m"let g:neocomplete#sources#syntax#min_keyword_length = 3[m
+[32m+[m[32m"let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'[m
+[32m+[m
+[32m+[m[32m" neosnippet option[m
+[32m+[m[32mlet g:neosnippet#snippets_directory='$HOME/.vim/snippets, $HOME/.vim/bundle/snipmate-snippets/snippets'[m
+[32m+[m[32mimap <c-k> <Plug>(neosnippet_expand_or_jump)[m
+[32m+[m[32msmap <c-k> <Plug>(neosnippet_expand_or_jump)[m
+[32m+[m[32mimap <expr><C-l>[m
+[32m+[m[32m\ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?[m
+[32m+[m[32m\ '\<Plug>(neosnippet_expand_or_jump)' : '\<C-n>'[m
+[32m+[m
+[32m+[m[32m" unite.vim option[m
+[32m+[m[32mnmap ,ub :<C-u>Unite buffer<CR>[m
+[32m+[m[32mnmap ,uc :<C-u>Unite file<CR>[m
+[32m+[m[32mnmap ,uh :<C-u>Unite file_mru<CR>[m
+[32m+[m[32mnmap ,uf :<c-u>UniteWithBufferDir -buffer-name=files file -direction=botright <cr>[m
+[32m+[m[32mmap ,ur :Unite -buffer-name=register register<CR>[m
+[32m+[m[32m" history/yank を有効化する[m
+[32m+[m[32mlet g:unite_source_history_yank_enable = 1[m
+[32m+[m[32mmap ,uy     :Unite history/yank<CR>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m" NERDTreeToggle option[m[41m [m
+[32m+[m[32mlet g:nerdtreetoggle_enable_at_startup = 1[m
+[32m+[m
+[32m+[m[32m" undotree.vim option[m[41m [m
+[32m+[m[32mlet g:undotree_EnableAtStartup = 1[m
+[32m+[m[32mlet g:undotree_SetFocusWhenToggle = 1[m
+[32m+[m[32mlet g:undotree_SplitLocation = 'topleft'[m
+[32m+[m[32mlet g:undotree_SplitWidth = 35[m
+[32m+[m[32mlet g:undotree_diffAutoOpen = 1[m
+[32m+[m[32mlet g:undotree_diffpanelHeight = 25[m
+[32m+[m[32mlet g:undotree_RelativeTimestamp = 1[m
+[32m+[m[32mlet g:undotree_TreeNodeShape = '*'[m
+[32m+[m[32mlet g:undotree_HighlightChangedText = 1[m
+[32m+[m[32mlet g:undotree_HighlightSyntax = "UnderLined"[m
+[32m+[m
+[32m+[m[32m" TweetVim[m
+[32m+[m[32mnmap ,twl :TweetVimHomeTimeline<Enter>[m
+[32m+[m[32mnmap ,twe :TweetVimSay<Enter>10<C-w><Esc>:set<Space>winheight=10<Enter>[m
+[32m+[m[32mnmap ,twm :TweetVimMentions<Enter>[m
+[32m+[m[32mnmap ,tws :TweetVimSwitchAccount<Space>[m
+[32m+[m[32mnmap ,twh :let<Space>g:tweetvim_footer="#"<Left>[m
+[32m+[m
+[32m+[m[32mlet g:tweetvim_open_say_cmd = 'botright split'[m
+[32m+[m
+[32m+[m[32m" align.vim option[m
+[32m+[m[32m"let g:Align_enable_at_startup = 1;[m
+[32m+[m[32mlet g:Align_xstrlen=3[m
+[32m+[m
+[32m+[m[32m" lightLine.vim option[m[41m [m
+[32m+[m
+[32m+[m[32mlet g:lightlineEnableAtStartup = 1[m
+[32m+[m[32mlet g:lightline = {[m
+[32m+[m[32m      \ 'colorscheme': 'wombat',[m
+[32m+[m[32m      \ 'component': {[m
+[32m+[m[32m      \   'readonly': '%{&readonly?"x":""}',[m
+[32m+[m[32m      \ },[m
+[32m+[m[32m      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },[m
+[32m+[m[32m      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }[m
+[32m+[m[32m      \ }[m
+[32m+[m[32m"let g:lightline = {[m
+[32m+[m[32m"      \ 'colorscheme': 'wombat',[m
+[32m+[m[32m"      \ 'component': {[m
+[32m+[m[32m"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',[m
+[32m+[m[32m"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'[m
+[32m+[m[32m"      \ },[m
+[32m+[m[32m"      \ 'separator': { 'left': '⮀', 'right': '⮂' },[m
+[32m+[m[32m"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }[m
+[32m+[m[32m"      \ }[m
+[32m+[m
+[32m+[m[32m" smoos-scroll.vim option[m[41m [m
+[32m+[m[32m"let g:ac_smooth_scroll_du_sleep_time_msec = 2[m
+[32m+[m
+[32m+[m[32m"" vim-processing[m[41m [m
+[32m+[m[32m"let g:quickrun_enable_at_startup = 1[m
+[32m+[m[32m"let g:quickrun_config = {}[m
+[32m+[m[32m""let g:quickrun_config.processing =  {[m
+[32m+[m[32m""      \     'command': 'processing-java',[m
+[32m+[m[32m""      \     'exec': '%c --sketch=$PWD/ --output=/Library/Processing --run --force',[m
+[32m+[m[32m""      \   }[m
+[32m+[m[32m"let g:quickrun_config.cpp =  {[m
+[32m+[m[32m"      \     'command': 'g++',[m
+[32m+[m[32m"      \     'exec': '-std=c++11',[m
+[32m+[m[32m"      \   }[m
+[32m+[m[32m""<F10>で保存後Processing実行[m
+[32m+[m[32m"function! RunP5()[m
+[32m+[m[32m"    silent execute '!start C:\Program Files\AutoHotkey\exes\vimp5.exe ' . "\"" . expand("%:r"). "\" " . "\"" . expand("%:p"). "\""[m
+[32m+[m[32m"endfunction[m
+[32m+[m[32m"autocmd FileType processing nmap <silent> <F10> :up<CR>:call RunP5()<CR>[m
+[32m+[m
+[32m+[m[32m"startify options[m
+[32m+[m
+[32m+[m[32mnmap ,sf :Startify<Enter>[m
+[32m+[m[32m" startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)[m
+[32m+[m[32mlet g:startify_custom_header = [[m
+[32m+[m[32m\"                                    ..",[m
+[32m+[m[32m\"                                  .::::.",[m
+[32m+[m[32m\"                     ___________ :;;;;:`____________",[m
+[32m+[m[32m\"                     \_________/ ?????L \__________/",[m
+[32m+[m[32m\"                       |.....| ????????> :.......'",[m
+[32m+[m[32m\"                       |:::::| $$$$$$'`.:::::::' ,",[m
+[32m+[m[32m\"                      ,|:::::| $$$$'`.:::::::' .OOS.",[m
+[32m+[m[32m\"                    ,7D|;;;;;| $$'`.;;;;;;;' .OOO888S.",[m
+[32m+[m[32m\"                  .GDDD|;;;;;| ?`.;;;;;;;' .OO8DDDDDNNS.",[m
+[32m+[m[32m\"                   'DDO|IIIII| .7IIIII7' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                     'D|IIIIII7IIIII7' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |EEEEEEEEEE7' .DDDDDDDNNNNF`",[m
+[32m+[m[32m\"                       |EEEEEEEEZ' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |888888Z' .DDDDDDDDNNNF`",[m
+[32m+[m[32m\"                       |8888Z' ,DDDDDDDNNNNF`",[m
+[32m+[m[32m\"                       |88Z'    'DNNNNNNN'",[m
+[32m+[m[32m\"                       '''        'MMMM'",[m
+[32m+[m[32m\"                                    ''",[m
+[32m+[m[32m\" ",[m
+[32m+[m[32m  \][m
+[32m+[m[32m" \ map(split('date', '\n'), '"   ". v:val') + ['',''],[m
+[32m+[m[32m" デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定[m
+[32m+[m[32mlet g:startify_custom_indices = ['a','b','c','d','f','g','i','m','n','p','r','s','t','u','v','w','x','y','z'][m
+[32m+[m
+[32m+[m[32m" よく使うファイルをブックマークとして登録しておく[m
+[32m+[m[32mlet g:startify_bookmarks = [[m
+[32m+[m[32m  \ '~/_gvimrc',[m
+[32m+[m[32m  \ '~/localrepos/blog/vac_20131215.md',[m
+[32m+[m[32m  \ ][m
+[32m+[m
+[32m+[m
+[32m+[m[32m"foldCC config[m
+[32m+[m
+[32m+[m[32mset foldtext=foldCC#foldtext()[m
+[32m+[m[32mlet g:foldCCtext_head = '"::>"'[m
+[32m+[m
+[32m+[m[32mnmap ,spk :Splash ~/.vim/splash/into.txt<CR>[m
+[32m+[m
+[32m+[m[32m"autocmd BufRead <ESC>:source $HOME/_gvimrc<CR>[m
+[32m+[m[32m"autocmd BufRead * echo BufRead[m
+[32m+[m[32m"autocmd VimEnter echo VimEnter[m
+[32m+[m[32m"au GUIEnter echo GUIEnter[m
+[32m+[m
+[32m+[m[32m"over.vim config[m
+[32m+[m[32m" over.vimの起動[m
+[32m+[m[32mnmap <silent> <Leader>ov :OverCommandLine<CR>[m
+[32m+[m[32m" カーソル下の単語をハイライト付きで置換[m
+[32m+[m[32mnmap <silent> <Leader>oV :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>[m
+[32m+[m[32m" コピーした文字列をハイライト付きで置換[m
+[32m+[m
+[32m+[m[32m"vim-operator-replace[m
+[32m+[m
+[32m+[m[32mnmap <c-p> <Plug>(operator-replace)[m
+[32m+[m
+[32m+[m[32m"easy-motion config[m
+[32m+[m
+[32m+[m[32mlet g:EasyMotion_keys='hjklasdfyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'[m
+[32m+[m[32mlet g:EasyMotion_smartcase=1[m
+[32m+[m[32mlet g:EasyMotion_use_migemo=1[m
+[32m+[m[32mlet g:EasyMotion_leader_key="'"[m
+[32m+[m[32mlet g:EasyMotion_grouping=1[m
+[32m+[m[32mhi EasyMotionTarget ctermbg=none ctermfg=red[m
+[32m+[m[32mhi EasyMotionShade  ctermbg=none ctermfg=blue[m
+[32m+[m
+[32m+[m[32m" quickrun config[m
+[32m+[m[32mlet g:quickrun_config={'*': {'split': ''}}[m
+[32m+[m
+[32m+[m[32m" vimshell config[m
+[32m+[m
+[32m+[m[32m"[m
+[32m+[m[32mlet g:vimshell_prompt = "% "[m
+[32m+[m[32mlet g:vimshell_secondary_prompt = "> "[m
+[32m+[m[32mlet g:vimshell_user_prompt = 'getcwd()'[m
+[32m+[m[32m"let g:vimshel_right_prompt = "('ω' )"[m
+[32m+[m[32mautocmd FileType vimshell call vimshell#hook#add('postexec', 'change_prompt', 'g:my_vimshell_change_prompt')[m
+[32m+[m
+[32m+[m[32mfunction! g:my_vimshell_change_prompt(args, context)[m
+[32m+[m[32m    let g:vimshell_prompt = getcwd() . "% "[m
+[32m+[m[32m"    call vimshell#set_highlight()[m
+[32m+[m[32mendfunction[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"}}}[m
+[32m+[m[32m"[m
+[1mdiff --git a/_vimperatorrc b/_vimperatorrc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..e825edd[m
+[1m--- /dev/null[m
+[1m+++ b/_vimperatorrc[m
+[36m@@ -0,0 +1,333 @@[m
+[32m+[m[32m"3.7 (created: 2013/04/03 18:20:07)[m
+[32m+[m
+[32m+[m
+[32m+[m[32msource! "C:\\Users\\hiro\\_vimperatorrc.local"[m
+[32m+[m
+[32m+[m[32m" vim: set ft=vimperator:[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"Ctrl+rで再起動,Ctrl+hでヘルプ ,sで設定ファイル再読込[m
+[32m+[m[32mnoremap ,s :so C:\\Users\\Mahito\\_vimperatorrc<CR>[m
+[32m+[m
+[32m+[m[32m"windowsのｺﾋﾟﾍﾟ、切り取り、undo、redo、すべて選択ｼｮｰﾄｶｯﾄｷｰを有効にする[m
+[32m+[m
+[32m+[m[32minoremap <C-a> <Insert><C-a><Insert>[m
+[32m+[m[32minoremap <C-b> b[m
+[32m+[m
+[32m+[m[32mnnoremap ,r :mapc<CR>:cmapc<CR>:imapc<CR>:source _vimperatorrc<CR>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m"補完選択[m
+[32m+[m[32mcnoremap <C-n> <Tab>[m
+[32m+[m[32mcnoremap <C-p> <S-Tab>[m
+[32m+[m
+[32m+[m[32m"ブックマークリスト[m
+[32m+[m[32mnnoremap ,b :bmarks<Space>[m
+[32m+[m
+[32m+[m
+[32m+[m[32m" Backspace に戻るを割り当て[m
+[32m+[m[32mnoremap <BS> <A-Left>[m
+[32m+[m
+[32m+[m[32m" スクロールを５行単位[m
+[32m+[m[32mnnoremap j 5<C-e>[m
+[32m+[m[32mnnoremap k 5<C-y>[m
+[32m+[m
+[32m+[m[32m"タブ移動[m
+[32m+[m[32mnnoremap h gT[m
+[32m+[m[32mnnoremap l gt[m
+[32m+[m
+[32m+[m[32minoremap <c-f> f[m
+[32m+[m
+[32m+[m[32m" フォカース[m
+[32m+[m[32mnnoremap <c-g> :focussearchbar<CR><Down>[m
+[32m+[m
+[32m+[m[32m"ヤンク拡張[m
+[32m+[m[32mnnoremap ,yt :js util.copyToClipboard(buffer.title);<CR>:echo 'Copied text to clipboard[title]: ' + buffer.title<CR>[m
+[32m+[m[32mnnoremap ,yu :js util.copyToClipboard(buffer.URL);<CR>:echo 'Copied text to clipboard[url]: ' + buffer.title<CR>[m
+[32m+[m[32mnnoremap ,yy :js util.copyToClipboard(buffer.title + " " + buffer.URL);<CR>:echo 'Copied text to clipboard[title & url]: ' + buffer.title + " " + buffer.URL<CR>[m
+[32m+[m[32mnnoremap ,yb :js util.copyToClipboard(buffer.);<Left><Left>[m
+[32m+[m[32mnnoremap ,ys :shorturi<CR>[m
+[32m+[m[32mnnoremap ,y/ :shorturi<CR>[m
+[32m+[m
+[32m+[m[32mjs <<EOM[m
+[32m+[m
+[32m+[m[32mfunction getShortUri(url) {[m
+[32m+[m[32m    let uri = 'https://www.googleapis.com/urlshortener/v1/url';[m
+[32m+[m[32m    let xhr = new XMLHttpRequest();[m
+[32m+[m[32m    xhr.open("post", uri, false);[m
+[32m+[m[32m    xhr.setRequestHeader("Content-Type", "application/json");[m
+[32m+[m[32m    xhr.send(JSON.stringify({ longUrl: url }));[m
+[32m+[m[32m    return JSON.parse(xhr.responseText).id;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mcommands.addUserCommand([m
+[32m+[m[32m    ["shorturi"],[m
+[32m+[m[32m    "get google short URI this page",[m
+[32m+[m[32m    function(args, bang, count){[m
+[32m+[m[32m        let url = buffer.URL;[m
+[32m+[m[32m        if (args[0]) {url = args[0];}[m
+[32m+[m[32m        let result = getShortUri(url);[m
+[32m+[m[32m        util.copyToClipboard(result);[m
+[32m+[m[32m        liberator.echo('Created shortURL: ' + result + "<--" + url);[m
+[32m+[m[32m    }[m
+[32m+[m[32m);[m
+[32m+[m
+[32m+[m
+[32m+[m[32mcommands.addUserCommand([m
+[32m+[m[32m    ["now"],[m
+[32m+[m[32m    "echo timestamp just now",[m
+[32m+[m[32m    function(args, bang, count){[m
+[32m+[m[32m        var d = new Date();[m
+[32m+[m[32m        liberator.echo((d.getYear() + 1900) + '-' + d.getMonth() + '-' +  d.getDay() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());[m
+[32m+[m[32m    }[m
+[32m+[m[32m);[m
+[32m+[m
+[32m+[m[32mcommands.addUserCommand([m
+[32m+[m[32m    ["yankinfo"],[m
+[32m+[m[32m    "get current page info and yank to clipboard",[m
+[32m+[m[32m    function(args, bang, count){[m
+[32m+[m[32m        let result = getShortUri(buffer.URL);[m
+[32m+[m[32m        util.copyToClipboard(result);[m
+[32m+[m[32m        liberator.echo("copyed short url");[m
+[32m+[m[32m    },[m
+[32m+[m[32m    {[m
+[32m+[m[32m        subCommands: [[m
+[32m+[m[32m            new Command([m
+[32m+[m[32m            ["title"],[m
+[32m+[m[32m            "page title yank to clipboard",[m
+[32m+[m[32m            function() {[m
+[32m+[m[32m                util.copyToClipboard(buffer.title);[m
+[32m+[m[32m                liberator.echo("yanked title: " + buffer.title);[m
+[32m+[m[32m            }),[m
+[32m+[m[32m            new Command([m
+[32m+[m[32m            ["url"],[m
+[32m+[m[32m            "page url yank to clipboard",[m
+[32m+[m[32m            function() {[m
+[32m+[m[32m                util.copyToClipboard(buffer.URL);[m
+[32m+[m[32m                liberator.echo("yanked url: " + buffer.URL);[m
+[32m+[m[32m            }),[m
+[32m+[m[32m            new Command([m
+[32m+[m[32m            ["titleandurl"],[m
+[32m+[m[32m            "page title and url yank to clipboard",[m
+[32m+[m[32m            function() {[m
+[32m+[m[32m                let text = [buffer.title, buffer.URL].join(" ");[m
+[32m+[m[32m                util.copyToClipboard(text);[m
+[32m+[m[32m                liberator.echo("yanked title and url: " + text);[m
+[32m+[m[32m            }),[m
+[32m+[m[32m            new Command([m
+[32m+[m[32m            ["titleandsurl"],[m
+[32m+[m[32m            "page title and shorturl yank to clipboard",[m
+[32m+[m[32m            function() {[m
+[32m+[m[32m                let text = [buffer.title, getShortUri(buffer.URL)].join(" ");[m
+[32m+[m[32m                util.copyToClipboard(text);[m
+[32m+[m[32m                liberator.echo("yanked title and short url: " + text);[m
+[32m+[m[32m            }),[m
+[32m+[m[32m            new Command([m
+[32m+[m[32m            ["shorturl"],[m
+[32m+[m[32m            "page shorturl yank to clipboard",[m
+[32m+[m[32m            function() {[m
+[32m+[m[32m                let result = getShortUri(buffer.URL);[m
+[32m+[m[32m                util.copyToClipboard(result);[m
+[32m+[m[32m                liberator.echo("yanked short url: " + result);[m
+[32m+[m[32m            }),[m
+[32m+[m[32m        ][m
+[32m+[m[32m    }[m
+[32m+[m[32m);[m
+[32m+[m
+[32m+[m[32mcommands.addUserCommand([m
+[32m+[m[32m    ["focuss[earchbar]"],[m
+[32m+[m[32m    "focus to searchbar",[m
+[32m+[m[32m    function() {[m
+[32m+[m[32m        if (window.content.window.location.hostname.indexOf("www.google.co.jp") != -1)[m[41m [m
+[32m+[m[32m        {[m
+[32m+[m[32m            window.content.window.document.getElementsByName("q")[0].focus();[m
+[32m+[m[32m            liberator.echo("get focusd");[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[32m);[m
+[32m+[m
+[32m+[m[32mEOM[m
+[32m+[m[32m"//        echo 'Copied text to clipboard[shorturl]: ' + result;[m
+[32m+[m
+[32m+[m[32mnoremap zu :undo<TAB>[m
+[32m+[m
+[32m+[m[32m"現URL指定で開く[m
+[32m+[m[32m"nnoremap <C-o> yo<C-v>[m
+[32m+[m
+[32m+[m[32mvnoremap <silent> <C-g> y<Esc><Esc>P[m
+[32m+[m
+[32m+[m[32m"タブグループマネージャのタブ移動[m
+[32m+[m[32mnnoremap <C-h> <C-Up>t<CR>d[m
+[32m+[m[32mnnoremap <C-l> <C-Down>t<CR>d[m
+[32m+[m
+[32m+[m[32m"ブックマーク[m
+[32m+[m[32mnnoremap <S-b> :bmarks<Space>[m
+[32m+[m
+[32m+[m[32m"自動フォーカスの防止[m
+[32m+[m[32mset focuscontent[m
+[32m+[m[32m" GUI[m
+[32m+[m[32m"set guioptions=mT[m
+[32m+[m[32m"ブラウザタイトル[m
+[32m+[m[32mset titlestring="火狐⊂('ω'⊂ )"[m
+[32m+[m[32m"ex mode でインクリメント補完[m
+[32m+[m[32m" set wildoptions=auto[m
+[32m+[m[32m"クイックリンク設定[m
+[32m+[m[32mset hintchars=asdfghjklmn[m
+[32m+[m[32m" コマンドラインでIMEをオフ[m
+[32m+[m[32mlet g:imeoff='cmd'[m
+[32m+[m
+[32m+[m[32m"smooth scroll option[m
+[32m+[m[32mlet smooth_scroll_duration=200[m
+[32m+[m
+[32m+[m[32m" CmdLine[m
+[32m+[m[32mhi Normal     color : LightYellow    ; background: #111 ; font-size: 10pt ;[m[41m [m
+[32m+[m[32mhi CmdLine    color : LightYellow    ; background: #111 ; font-size: 10pt ;[m[41m [m
+[32m+[m[32mhi InfoMsg    color : LightYellow    ; background: #111 ; font-size: 10pt ;[m[41m [m
+[32m+[m[32mhi ModeMsg    color : LightYellow    ; background: #111 ; font-size: 10pt ;[m[41m [m
+[32m+[m[32mhi MoreMsg    color : LimeGreen      ; background: #111 ;[m[41m [m
+[32m+[m[32mhi LineNr     color : DeepPink       ; background: #111 ; font-size: 12pt ;[m[41m [m
+[32m+[m[32mhi Question   color : Yellow         ; background: #111 ; font-size: 12pt ;[m[41m [m
+[32m+[m[32mhi WarningMsg color : DeepPink       ; background: #111 ; font-size: 12pt ;[m[41m [m
+[32m+[m[32mhi ErrorMsg   color : white          ; background: red  ; font-size: 12pt ;[m[41m [m
+[32m+[m[32mhi NonText    color : blue           ; background: #111 ;[m[41m [m
+[32m+[m[32mhi Null       color : CornflowerBlue ;[m[41m [m
+[32m+[m[32mhi URL        color : LightBlue      ;[m[41m [m
+[32m+[m
+[32m+[m[32m" Hint[m
+[32m+[m[32mhi Hint z-index:5000; font-size:14px; color:white; background-color:green; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute; font-family: Menlo, Consolas, Monaco, monospace; text-transform: uppercase;[m
+[32m+[m
+[32m+[m[32m" clock style[m
+[32m+[m[32m"let clock_format='[%t %d]'[m
+[32m+[m[32m"let clock_position='liberator-commadline-prompt'[m
+[32m+[m[32m"let clock_after='false'[m
+[32m+[m[32m"style -name clock chrome://* <<EOM[m
+[32m+[m[32m"#liberator-plugin-clock-box > * {[m
+[32m+[m[32m"    color: green !important;[m
+[32m+[m[32m"}[m
+[32m+[m[32m"EOM[m
+[32m+[m
+[32m+[m[32m"websearch.vimpr[m
+[32m+[m[32m" スターテスライン[m
+[32m+[m
+[32m+[m[32mnnoremap ,sa :wsalc<Space>[m
+[32m+[m[32mnnoremap ,st :wsthesaurus<Space>[m
+[32m+[m[32mnnoremap ,se :wsejje<Space>[m
+[32m+[m[32mnnoremap ,sf :wsforvo<Space>[m
+[32m+[m[32mnnoremap ,sy :wsyoutube<Space>[m
+[32m+[m[32mnnoremap ,sk :wskanjifont<Space>[m
+[32m+[m
+[32m+[m[32mnnoremap ,sg :tabopen google<Space>[m
+[32m+[m[32mnnoremap ,sw :tabopen wikipedia<Space>[m
+[32m+[m[32mnnoremap s :tabopen google<Space>[m
+[32m+[m
+[32m+[m[32mnnoremap ,df <Insert><C-f><Esc><Insert>[m
+[32m+[m[32mnnoremap ,dna :set gui=navigation<CR>[m
+[32m+[m[32mnnoremap ,dnn :set gui=nonavigation<CR>[m
+[32m+[m
+[32m+[m[32mnnoremap ,dtn :set gui=tab<CR>[m
+[32m+[m[32mnnoremap ,dta :set gui=notab<CR>[m
+[32m+[m
+[32m+[m[32m"新規ウィンドウ, リスタートのアンバインド[m
+[32m+[m[32mnnoremap <C-n> :[m
+[32m+[m[32minoremap <C-n> <Down>[m
+[32m+[m[32minoremap <C-p> <Up>[m
+[32m+[m
+[32m+[m[32mnnoremap ,h :history<Space>[m
+[32m+[m
+[32m+[m[32mjavascript <<JS[m
+[32m+[m[32mlet statusLine = document.getElementById("liberator-statusline");[m
+[32m+[m[32mlet bottomBar = document.getElementById("liberator-bottombar");[m
+[32m+[m
+[32m+[m[32m// ステータスバーにブックマークアイコンを移動[m
+[32m+[m[32mlet (statusBar = document.getElementById("status-bar")) {[m
+[32m+[m[32m  let (id = "star-button") {[m
+[32m+[m[32m    if(!document.getElementById("panel-" + id)) {[m
+[32m+[m[32m      let panel = document.createElement("statusbarpanel");[m
+[32m+[m[32m      panel.setAttribute("id", "panel-" + id);[m
+[32m+[m[32m      let (icon = document.getElementById(id)) {[m
+[32m+[m[32m        icon.setAttribute("class", "");[m
+[32m+[m[32m        panel.appendChild(icon);[m
+[32m+[m[32m      }[m
+[32m+[m[32m      statusBar.insertBefore(panel, statusBar.firstChild);[m
+[32m+[m[32m    }[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[32m+[m[32m// ステータスラインの横にステータスバーを移動[m
+[32m+[m[32mlet (statusBar = document.getElementById("status-bar")) {[m
+[32m+[m[32m  statusBar.style.maxHeight = "20px";[m
+[32m+[m[32m  bottomBar.appendChild(statusBar);[m
+[32m+[m[32m}[m
+[32m+[m[32m// ステータスラインにfaviconを移動[m
+[32m+[m[32mlet (favicon = document.getElementById("page-proxy-stack")) {[m
+[32m+[m[32m  if (favicon != null) {[m
+[32m+[m[32m      favicon.style.maxWidth = favicon.style.maxHeight = "20px"[m
+[32m+[m[32m      statusLine.insertBefore(favicon, statusLine.firstChild);[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[32m+[m[32mJS[m
+[32m+[m
+[32m+[m[32m""nico controller[m
+[32m+[m[32m"map ,ni :nicoinfo[m
+[32m+[m[32m"map ,np :nicopause[m
+[32m+[m[32m"map ,nm :nicomute[m
+[32m+[m[32m"map ,nv :nicommentvisible[m
+[32m+[m[32m"map ,nz :nicosize[m
+[32m+[m[32m"map ,ns :nicoseek[m
+[32m+[m[32m"[m
+[32m+[m[32m"[m
+[32m+[m[32m"javascript <<EOM[m
+[32m+[m[32m"// [N]-[m
+[32m+[m[32m"// N 秒前にシークする。[m
+[32m+[m[32m"// 指定なしの場合 10 秒前。[m
+[32m+[m[32m"liberator.mappings.addUserMap([m
+[32m+[m[32m"    [liberator.modes.NORMAL],[m
+[32m+[m[32m"    ['-'],[m
+[32m+[m[32m"    'seek by count backward',[m
+[32m+[m[32m"    function(count) {[m
+[32m+[m[32m"        if(count === -1) count = 10;[m
+[32m+[m[32m"        liberator.execute(':nicoseek! ' + '-' + count);[m
+[32m+[m[32m"    },[m
+[32m+[m[32m"    { flags: liberator.Mappings.flags.COUNT }[m
+[32m+[m[32m");[m
+[32m+[m[32m"[m
+[32m+[m[32m"// [N]+[m
+[32m+[m[32m"// N 秒後にシークする。[m
+[32m+[m[32m"// 指定なしの場合 10 秒後。[m
+[32m+[m[32m"liberator.mappings.addUserMap([m
+[32m+[m[32m"    [liberator.modes.NORMAL],[m
+[32m+[m[32m"    ['+'],[m
+[32m+[m[32m"    'seek by count forward',[m
+[32m+[m[32m"    function(count) {[m
+[32m+[m[32m"        if(count === -1) count = 10;[m
+[32m+[m[32m"        liberator.execute(':nicoseek! ' + count);[m
+[32m+[m[32m"    },[m
+[32m+[m[32m"    { flags: liberator.Mappings.flags.COUNT }[m
+[32m+[m[32m");[m
+[32m+[m[32m"EOM[m
+[32m+[m[32m"[m
+[32m+[m[32m"Twittperator config[m
+[32m+[m[32mlet g:twittperator_use_ssl_connection_for_api_ep = 1[m
+[32m+[m[32mlet g:twittperator_use_chirp = 1[m
+[32m+[m[32mlet g:twittperator_track_words = "ざっぷ,マイクラ,Minecraft,電大"[m
+[32m+[m[32mlet g:twittperator_screen_name = "arzzup"[m
+[32m+[m[32mnnoremap ,tl :tw<CR>[m
+[32m+[m[32mnnoremap ,tw :tw<Space>[m
+[32m+[m[32mnnoremap ,tr :tw<Space>@[m
+[32m+[m[32mnnoremap ,t/ :tw!/<Tab>[m
+[32m+[m[32mnnoremap ,th :tw!thread<Space>[m
+[32m+[m
+[32m+[m[32mnnoremap ,tt :yankinfo titleandurl<CR>: / <C-v><C-a>tw[m[41m [m
+[32m+[m[32mnnoremap ,tp :yankinfo titleandsurl<CR>: / <C-v><C-a>tw[m[41m [m
+[32m+[m[32m"nnoremap ,tp :<C-u>twuri<CR><C-a><Right><Right><Right>[m
+[32m+[m[32m"nnoremap ,tt :<C-u>echo [" /".buffer.title,buffer.URI].join(" "),modes.EX)<CR>:<Up><C-a>tw<Space><Space>/<Space><Left><Left><Left>[m
+[32m+[m
+[32m+[m[32m" Firefoxのタブを開く位置をデフォで現在のタブの右隣にする（※ gBrowser.addTabの改造）"[m
+[32m+[m[32mjs <<EOM[m
+[32m+[m[32mgBrowser.addTab = liberator.eval([m
+[32m+[m[32m    '(' +[m
+[32m+[m[32m    gBrowser.addTab.toSource()[m
+[32m+[m[32m            .replace(/var\s*aRelatedToCurrent;/, 'var aRelatedToCurrent = true;')[m
+[32m+[m[32m            .replace(/aRelatedToCurrent\s*=\s*params\.relatedToCurrent;/, 'aRelatedToCurrent = params.relatedToCurrent === undefined ? true : params.relatedToCurrent;') +[m
+[32m+[m[32m    ')',[m
+[32m+[m[32m    gBrowser.addTab);[m
+[32m+[m[32mEOM[m
+[1mdiff --git a/_vimrc b/_vimrc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..617e632[m
+[1m--- /dev/null[m
+[1m+++ b/_vimrc[m
+[36m@@ -0,0 +1 @@[m
+[32m+[m[32m:source $HOME/_gvimrc[m
+[1mdiff --git a/_vrapperrc b/_vrapperrc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9cc7120[m
+[1m--- /dev/null[m
+[1m+++ b/_vrapperrc[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32mset guioptions+=a[m
+[32m+[m
+[32m+[m[32mset autoindent[m
+[32m+[m[32mset ignorecase[m
+[32m+[m[32mset smartcase[m
+[32m+[m
+[32m+[m
+[32m+[m[32mset clipboard=unnamed[m
+[32m+[m[32mset hlsearch[m
+[32m+[m[32mset statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8Pt clipboard=unnamed[m
+[32m+[m
+[32m+[m[32m//noremap <C-n> <Down>[m
+[32m+[m[32m//noremap <C-p> <Up>[m
+[32m+[m[32m//inoremap <C-n> <Down>[m
+[32m+[m[32m//inoremap <C-p> <Up>[m
+[32m+[m
+[1mdiff --git a/_vsvimrc b/_vsvimrc[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4ce0ef6[m
+[1m--- /dev/null[m
+[1m+++ b/_vsvimrc[m
+[36m@@ -0,0 +1,12 @@[m
+[32m+[m[32mset clipboard=unnamed[m
+[32m+[m
+[32m+[m[32mset expandtab[m
+[32m+[m[32mset tabstop=4[m
+[32m+[m[32mset shiftwidth=4[m
+[32m+[m[32mset softtabstop=4[m
+[32m+[m[32mset autoindent[m
+[32m+[m[32mset smartindent[m
+[32m+[m
+[32m+[m
+[32m+[m
+[32m+[m
+[1mdiff --git a/ime_controller.js b/ime_controller.js[m
+[1mnew file mode 100644[m
+[1mindex 0000000..cce11f0[m
+[1m--- /dev/null[m
+[1m+++ b/ime_controller.js[m
+[36m@@ -0,0 +1,73 @@[m
+[32m+[m[32m/**[m
+[32m+[m[32m * ==VimperatorPlugin==[m
+[32m+[m[32m * @name              IME Controller Lite[m
+[32m+[m[32m * @description       control imput method at into commandline-mode[m
+[32m+[m[32m * @description-ja    �R�}���h���C�����[�h�ڍs����IME�̐�����s��[m
+[32m+[m[32m * @author            teramako teramako@gmail.com[m
+[32m+[m[32m * @namespace         http://d.hatena.ne.jp/teramako/[m
+[32m+[m[32m * @maxVersion        0.6pre[m
+[32m+[m[32m * @minVersion        0.6pre[m
+[32m+[m[32m * ==/VimperatorPlugin==[m
+[32m+[m[32m *[m
+[32m+[m[32m *  Please set g:ex_ime_mode and g:textarea_ime_mode value.[m
+[32m+[m[32m *[m[41m [m
+[32m+[m[32m *  g:ex_ime_mode:[m
+[32m+[m[32m *   used at into EX mode[m
+[32m+[m[32m *[m[41m [m
+[32m+[m[32m *  g:textarea_ime_mode:[m
+[32m+[m[32m *   used at into TEXTAREA mode from INSERT mode and "noinsertmode" is set.[m
+[32m+[m[32m *[m[41m [m
+[32m+[m[32m *  ex).[m
+[32m+[m[32m *  :let g:ex_ime_mode = "inactive"[m
+[32m+[m[32m *  :let g:textarea_ime_mode = "inactive"[m
+[32m+[m[32m *[m
+[32m+[m[32m *  following values are available:[m
+[32m+[m[32m *      "auto"     : No change[m
+[32m+[m[32m *      "active"   : Initially IME on[m
+[32m+[m[32m *      "inactive" : Initially IME off[m
+[32m+[m[32m *      "disabled"  : Disable IME[m
+[32m+[m[32m *[m
+[32m+[m[32m *  more details: see http://developer.mozilla.org/en/docs/CSS:ime-mode[m
+[32m+[m[32m *[m
+[32m+[m[32m *  if these values are null, "inactive" is used[m
+[32m+[m[32m *[m
+[32m+[m[32m */[m
+[32m+[m
+[32m+[m[32mliberator.plugins.imeController = (function(){[m
+[32m+[m[32m    var inputElement = document.getAnonymousElementByAttribute([m
+[32m+[m[32m        document.getElementById('liberator-commandline-command'),'anonid','input'[m
+[32m+[m[32m        );[m[41m [m
+[32m+[m[32m    function getMode(name){[m
+[32m+[m[32m        return liberator.globalVariables[name] ? liberator.globalVariables[name] : 'inactive';[m
+[32m+[m[32m    }[m[41m   [m
+[32m+[m[32m    function preExec(target,name,func){[m
+[32m+[m[32m        var original = target[name];[m
+[32m+[m[32m        target[name] = function(){[m
+[32m+[m[32m            func.apply(this,arguments);[m
+[32m+[m[32m            return original.apply(target,arguments);[m
+[32m+[m[32m        }[m[41m   [m
+[32m+[m[32m    }[m[41m   [m
+[32m+[m[32m    preExec(commandline,'open',function(){[m
+[32m+[m[32m        liberator.plugins.imeController.set(inputElement, getMode('ex_ime_mode'));[m
+[32m+[m[32m    });[m
+[32m+[m[32m    preExec(events,'onEscape',function(){[m
+[32m+[m[32m        if (liberator.mode == modes.INSERT && (modes.extended & modes.TEXTAREA) && !options.insertmode){[m
+[32m+[m[32m            var inputField = buffer.lastInputField;[m
+[32m+[m[32m            if (liberator.plugins.imeController.set(inputField, getMode('textarea_ime_mode'))){[m
+[32m+[m[32m                inputField.blur();[m
+[32m+[m[32m                setTimeout(function(){inputField.focus();},0);[m
+[32m+[m[32m            }[m[41m   [m
+[32m+[m[32m        }[m[41m   [m
+[32m+[m[32m    });[m
+[32m+[m[32m    return {[m
+[32m+[m[32m        set: function(elem, mode){[m
+[32m+[m[32m            if (elem && mode) return elem.style.imeMode = mode;[m
+[32m+[m[32m            return false;[m
+[32m+[m[32m        },[m[41m [m
+[32m+[m[32m            reset: function(){[m
+[32m+[m[32m                delete liberator.globalVariables.ex_ime_mode;[m
+[32m+[m[32m                delete liberator.globalVariables.textarea_ime_mode;[m
+[32m+[m[32m            }[m[41m   [m
+[32m+[m[32m    };[m[41m [m
+[32m+[m[32m})();[m
+[32m+[m[32m// vim: sw=4 ts=4 et:[m
+[1mdiff --git a/rc.lua b/rc.lua[m
+[1mnew file mode 100644[m
+[1mindex 0000000..46d4eb4[m
+[1m--- /dev/null[m
+[1m+++ b/rc.lua[m
+[36m@@ -0,0 +1,462 @@[m
+[32m+[m[32m-- Standard awesome library[m
+[32m+[m[32mlocal gears = require("gears")[m
+[32m+[m[32mlocal awful = require("awful")[m
+[32m+[m[32mawful.rules = require("awful.rules")[m
+[32m+[m[32mrequire("awful.autofocus")[m
+[32m+[m[32m-- Widget and layout library[m
+[32m+[m[32mlocal wibox = require("wibox")[m
+[32m+[m[32m-- Theme handling library[m
+[32m+[m[32mlocal beautiful = require("beautiful")[m
+[32m+[m[32m-- Notification library[m
+[32m+[m[32mlocal naughty = require("naughty")[m
+[32m+[m[32mlocal menubar = require("menubar")[m
+[32m+[m
+[32m+[m
+[32m+[m[32m-- {{{ Error handling[m
+[32m+[m[32m-- Check if awesome encountered an error during startup and fell back to[m
+[32m+[m[32m-- another config (This code will only ever execute for the fallback config)[m
+[32m+[m[32mif awesome.startup_errors then[m
+[32m+[m[32m    naughty.notify({ preset = naughty.config.presets.critical,[m
+[32m+[m[32m                     title = "Oops, there were errors during startup!",[m
+[32m+[m[32m                     text = awesome.startup_errors })[m
+[32m+[m[32mend[m
+[32m+[m
+[32m+[m[32m-- Handle runtime errors after startup[m
+[32m+[m[32mdo[m
+[32m+[m[32m    local in_error = false[m
+[32m+[m[32m    awesome.connect_signal("debug::error", function (err)[m
+[32m+[m[32m        -- Make sure we don't go into an endless error loop[m
+[32m+[m[32m        if in_error then return end[m
+[32m+[m[32m        in_error = true[m
+[32m+[m
+[32m+[m[32m        naughty.notify({ preset = naughty.config.presets.critical,[m
+[32m+[m[32m                         title = "Oops, an error happened!",[m
+[32m+[m[32m                         text = err })[m
+[32m+[m[32m        in_error = false[m
+[32m+[m[32m    end)[m
+[32m+[m[32mend[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Variable definitions[m
+[32m+[m[32m-- Themes define colours, icons, font and wallpapers.[m
+[32m+[m[32m-- theme_name = "elzup" -- extends elric theme[m
+[32m+[m[32m-- theme_name = "elric"[m
+[32m+[m[32m-- theme_name = "blackburn"[m
+[32m+[m[32mtheme_name = "blue"[m
+[32m+[m[32m-- theme_name = "cool-blue"[m
+[32m+[m[32mbeautiful.init("~/.config/awesome/themes/" .. theme_name .. "/theme.lua")[m
+[32m+[m
+[32m+[m[32m-- This is used later as the default terminal and editor to run.[m
+[32m+[m[32mterminal = "xterm"[m
+[32m+[m[32meditor = os.getenv("EDITOR") or "nano"[m
+[32m+[m[32meditor_cmd = terminal .. " -e " .. editor[m
+[32m+[m
+[32m+[m[32m-- Default modkey.[m
+[32m+[m[32m-- Usually, Mod4 is the key with a logo between Control and Alt.[m
+[32m+[m[32m-- If you do not like this or do not have such a key,[m
+[32m+[m[32m-- I suggest you to remap Mod4 to another key using xmodmap or other tools.[m
+[32m+[m[32m-- However, you can use another modifier like Mod1, but it may interact with others.[m
+[32m+[m[32mmodkey = "Mod4"[m
+[32m+[m
+[32m+[m[32m-- Table of layouts to cover with awful.layout.inc, order matters.[m
+[32m+[m[32mlocal layouts =[m
+[32m+[m[32m{[m
+[32m+[m[32m    awful.layout.suit.floating,[m
+[32m+[m[32m    awful.layout.suit.tile,[m
+[32m+[m[32m    awful.layout.suit.tile.left,[m
+[32m+[m[32m    awful.layout.suit.tile.bottom,[m
+[32m+[m[32m    awful.layout.suit.tile.top,[m
+[32m+[m[32m    awful.layout.suit.fair,[m
+[32m+[m[32m    awful.layout.suit.fair.horizontal,[m
+[32m+[m[32m    awful.layout.suit.spiral,[m
+[32m+[m[32m    awful.layout.suit.spiral.dwindle,[m
+[32m+[m[32m    awful.layout.suit.max,[m
+[32m+[m[32m    awful.layout.suit.max.fullscreen,[m
+[32m+[m[32m    awful.layout.suit.magnifier[m
+[32m+[m[32m}[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Wallpaper[m
+[32m+[m[32m-- if theme_name == "elzup" then[m
+[32m+[m[32m--     while true[m
+[32m+[m[32m--         do[m
+[32m+[m[32m--             gears.wallpaper.maximized(beautiful.wallpaper, s, true)[m
+[32m+[m[32m--             sleep 15m[m
+[32m+[m[32m--     done &[m
+[32m+[m[32m-- elseif beautiful.wallpaper then[m
+[32m+[m[32mif beautiful.wallpaper then[m
+[32m+[m[32m    for s = 1, screen.count() do[m
+[32m+[m[32m        gears.wallpaper.maximized(beautiful.wallpaper, s, true)[m
+[32m+[m[32m    end[m
+[32m+[m[32mend[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Tags[m
+[32m+[m[32m-- Define a tag table which hold all screen tags.[m
+[32m+[m[32mtags = {}[m
+[32m+[m[32mfor s = 1, screen.count() do[m
+[32m+[m[32m    -- Each screen has its own tag table.[m
+[32m+[m[32m    tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])[m
+[32m+[m[32mend[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Menu[m
+[32m+[m[32m-- Create a laucher widget and a main menu[m
+[32m+[m[32mmyawesomemenu = {[m
+[32m+[m[32m   { "manual", terminal .. " -e man awesome" },[m
+[32m+[m[32m   { "edit config", editor_cmd .. " " .. awesome.conffile },[m
+[32m+[m[32m   { "restart", awesome.restart },[m
+[32m+[m[32m   { "quit", awesome.quit }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mmymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },[m
+[32m+[m[32m                                    { "open terminal", terminal }[m
+[32m+[m[32m                                  }[m
+[32m+[m[32m                        })[m
+[32m+[m
+[32m+[m[32mmylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,[m
+[32m+[m[32m                                     menu = mymainmenu })[m
+[32m+[m
+[32m+[m[32m-- Menubar configuration[m
+[32m+[m[32mmenubar.utils.terminal = terminal -- Set the terminal for applications that require it[m
+[32m+[m[32mmenubar.cache_entries = true[m
+[32m+[m[32mmenubar.app_folders = { "/usr/share/applications/", "~/.gnome/apps/" }[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Wibox[m
+[32m+[m[32m-- Create a textclock widget[m
+[32m+[m[32mmytextclock = awful.widget.textclock()[m
+[32m+[m[32m-- mytextclock = awful.widget.textclock({ align = "right" }, "%m/%d %H:%%5M:%S")[m
+[32m+[m[32m-- mytextclock = awful.widget.textclock({ align = "right" }, " %Y-%m-%d %a %H:%M:%S ", 1)[m
+[32m+[m
+[32m+[m[32m-- Create a wibox for each screen and add it[m
+[32m+[m[32mmywibox = {}[m
+[32m+[m[32mmypromptbox = {}[m
+[32m+[m[32mmylayoutbox = {}[m
+[32m+[m[32mmytaglist = {}[m
+[32m+[m[32mmytaglist.buttons = awful.util.table.join([m
+[32m+[m[32m                    awful.button({ }, 1, awful.tag.viewonly),[m
+[32m+[m[32m                    awful.button({ modkey }, 1, awful.client.movetotag),[m
+[32m+[m[32m                    awful.button({ }, 3, awful.tag.viewtoggle),[m
+[32m+[m[32m                    awful.button({ modkey }, 3, awful.client.toggletag),[m
+[32m+[m[32m                    awful.button({ }, 4, function(t) awful.tag.viewnext(awful.tag.getscreen(t)) end),[m
+[32m+[m[32m                    awful.button({ }, 5, function(t) awful.tag.viewprev(awful.tag.getscreen(t)) end)[m
+[32m+[m[32m                    )[m
+[32m+[m[32mmytasklist = {}[m
+[32m+[m[32mmytasklist.buttons = awful.util.table.join([m
+[32m+[m[32m                     awful.button({ }, 1, function (c)[m
+[32m+[m[32m                                              if c == client.focus then[m
+[32m+[m[32m                                                  c.minimized = true[m
+[32m+[m[32m                                              else[m
+[32m+[m[32m                                                  -- Without this, the following[m
+[32m+[m[32m                                                  -- :isvisible() makes no sense[m
+[32m+[m[32m                                                  c.minimized = false[m
+[32m+[m[32m                                                  if not c:isvisible() then[m
+[32m+[m[32m                                                      awful.tag.viewonly(c:tags()[1])[m
+[32m+[m[32m                                                  end[m
+[32m+[m[32m                                                  -- This will also un-minimize[m
+[32m+[m[32m                                                  -- the client, if needed[m
+[32m+[m[32m                                                  client.focus = c[m
+[32m+[m[32m                                                  c:raise()[m
+[32m+[m[32m                                              end[m
+[32m+[m[32m                                          end),[m
+[32m+[m[32m                     awful.button({ }, 3, function ()[m
+[32m+[m[32m                                              if instance then[m
+[32m+[m[32m                                                  instance:hide()[m
+[32m+[m[32m                                                  instance = nil[m
+[32m+[m[32m                                              else[m
+[32m+[m[32m                                                  instance = awful.menu.clients({[m
+[32m+[m[32m                                                      theme = { width = 250 }[m
+[32m+[m[32m                                                  })[m
+[32m+[m[32m                                              end[m
+[32m+[m[32m                                          end),[m
+[32m+[m[32m                     awful.button({ }, 4, function ()[m
+[32m+[m[32m                                              awful.client.focus.byidx(1)[m
+[32m+[m[32m                                              if client.focus then client.focus:raise() end[m
+[32m+[m[32m                                          end),[m
+[32m+[m[32m                     awful.button({ }, 5, function ()[m
+[32m+[m[32m                                              awful.client.focus.byidx(-1)[m
+[32m+[m[32m                                              if client.focus then client.focus:raise() end[m
+[32m+[m[32m                                          end))[m
+[32m+[m
+[32m+[m[32mfor s = 1, screen.count() do[m
+[32m+[m[32m    -- Create a promptbox for each screen[m
+[32m+[m[32m    mypromptbox[s] = awful.widget.prompt()[m
+[32m+[m[32m    -- Create an imagebox widget which will contains an icon indicating which layout we're using.[m
+[32m+[m[32m    -- We need one layoutbox per screen.[m
+[32m+[m[32m    mylayoutbox[s] = awful.widget.layoutbox(s)[m
+[32m+[m[32m    mylayoutbox[s]:buttons(awful.util.table.join([m
+[32m+[m[32m                           awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),[m
+[32m+[m[32m                           awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),[m
+[32m+[m[32m                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),[m
+[32m+[m[32m                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))[m
+[32m+[m[32m    -- Create a taglist widget[m
+[32m+[m[32m    mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)[m
+[32m+[m
+[32m+[m[32m    -- Create a tasklist widget[m
+[32m+[m[32m    mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)[m
+[32m+[m
+[32m+[m[32m    -- Create the wibox[m
+[32m+[m[32m    mywibox[s] = awful.wibox({ position = "top", screen = s })[m
+[32m+[m
+[32m+[m[32m    -- Widgets that are aligned to the left[m
+[32m+[m[32m    local left_layout = wibox.layout.fixed.horizontal()[m
+[32m+[m[32m    left_layout:add(mylauncher)[m
+[32m+[m[32m    left_layout:add(mytaglist[s])[m
+[32m+[m[32m    left_layout:add(mypromptbox[s])[m
+[32m+[m
+[32m+[m[32m    -- Widgets that are aligned to the right[m
+[32m+[m[32m    local right_layout = wibox.layout.fixed.horizontal()[m
+[32m+[m[32m    if s == 1 then right_layout:add(wibox.widget.systray()) end[m
+[32m+[m[32m    right_layout:add(mytextclock)[m
+[32m+[m[32m    right_layout:add(mylayoutbox[s])[m
+[32m+[m
+[32m+[m[32m    -- Now bring it all together (with the tasklist in the middle)[m
+[32m+[m[32m    local layout = wibox.layout.align.horizontal()[m
+[32m+[m[32m    layout:set_left(left_layout)[m
+[32m+[m[32m    layout:set_middle(mytasklist[s])[m
+[32m+[m[32m    layout:set_right(right_layout)[m
+[32m+[m
+[32m+[m[32m    mywibox[s]:set_widget(layout)[m
+[32m+[m[32mend[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Mouse bindings[m
+[32m+[m[32mroot.buttons(awful.util.table.join([m
+[32m+[m[32m    awful.button({ }, 3, function () mymainmenu:toggle() end),[m
+[32m+[m[32m    awful.button({ }, 4, awful.tag.viewnext),[m
+[32m+[m[32m    awful.button({ }, 5, awful.tag.viewprev)[m
+[32m+[m[32m))[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Key bindings[m
+[32m+[m[32mglobalkeys = awful.util.table.join([m
+[32m+[m[32m    awful.key({ modkey,           }, "h",   awful.tag.viewprev       ),[m
+[32m+[m[32m    awful.key({ modkey,           }, "l",  awful.tag.viewnext       ),[m
+[32m+[m[32m    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),[m
+[32m+[m
+[32m+[m[32m    awful.key({ modkey,           }, "j",[m
+[32m+[m[32m        function ()[m
+[32m+[m[32m            awful.client.focus.byidx( 1)[m
+[32m+[m[32m            if client.focus then client.focus:raise() end[m
+[32m+[m[32m        end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "k",[m
+[32m+[m[32m        function ()[m
+[32m+[m[32m            awful.client.focus.byidx(-1)[m
+[32m+[m[32m            if client.focus then client.focus:raise() end[m
+[32m+[m[32m        end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "w", function () mymainmenu:show() end),[m
+[32m+[m
+[32m+[m[32m    -- Layout manipulation[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto),[m
+[32m+[m[32m    awful.key({ modkey,           }, "Tab",[m
+[32m+[m[32m        function ()[m
+[32m+[m[32m            awful.client.focus.history.previous()[m
+[32m+[m[32m            if client.focus then[m
+[32m+[m[32m                client.focus:raise()[m
+[32m+[m[32m            end[m
+[32m+[m[32m        end),[m
+[32m+[m
+[32m+[m[32m    -- Standard program[m
+[32m+[m[32m    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "r", awesome.restart),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "q", awesome.quit),[m
+[32m+[m
+[32m+[m[32m    awful.key({ modkey,           }, "Left",     function () awful.tag.incmwfact( 0.05)    end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "Right",     function () awful.tag.incmwfact(-0.05)    end),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)      end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)         end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)         end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1) end),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1) end),[m
+[32m+[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "n", awful.client.restore),[m
+[32m+[m
+[32m+[m[32m    -- Prompt[m
+[32m+[m[32m    awful.key({ modkey },            "r",     function () mypromptbox[mouse.screen]:run() end),[m
+[32m+[m
+[32m+[m[32m    awful.key({ modkey }, "x",[m
+[32m+[m[32m              function ()[m
+[32m+[m[32m                  awful.prompt.run({ prompt = "Run Lua code: " },[m
+[32m+[m[32m                  mypromptbox[mouse.screen].widget,[m
+[32m+[m[32m                  awful.util.eval, nil,[m
+[32m+[m[32m                  awful.util.getdir("cache") .. "/history_eval")[m
+[32m+[m[32m              end),[m
+[32m+[m[32m    -- Menubar[m
+[32m+[m[32m    awful.key({ modkey }, "p", function() menubar.show() end)[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32mclientkeys = awful.util.table.join([m
+[32m+[m[32m    awful.key({ modkey,           }, "f",      function (c) c.fullscreen = not c.fullscreen  end),[m
+[32m+[m[32m    awful.key({ modkey, "Shift"   }, "c",      function (c) c:kill()                         end),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ),[m
+[32m+[m[32m    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "o",      awful.client.movetoscreen                        ),[m
+[32m+[m[32m    awful.key({ modkey,           }, "t",      function (c) c.ontop = not c.ontop            end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "s",[m
+[32m+[m[32m        function (c)[m
+[32m+[m[32m            -- The client currently has the input focus, so it cannot be[m
+[32m+[m[32m            -- minimized, since minimized clients can't have the focus.[m
+[32m+[m[32m            c.minimized = true[m
+[32m+[m[32m        end),[m
+[32m+[m[32m    awful.key({ modkey,           }, "m",[m
+[32m+[m[32m        function (c)[m
+[32m+[m[32m            c.maximized_horizontal = not c.maximized_horizontal[m
+[32m+[m[32m            c.maximized_vertical   = not c.maximized_vertical[m
+[32m+[m[32m        end)[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32m-- Bind all key numbers to tags.[m
+[32m+[m[32m-- Be careful: we use keycodes to make it works on any keyboard layout.[m
+[32m+[m[32m-- This should map on the top row of your keyboard, usually 1 to 9.[m
+[32m+[m[32mfor i = 1, 9 do[m
+[32m+[m[32m    globalkeys = awful.util.table.join(globalkeys,[m
+[32m+[m[32m        -- View tag only.[m
+[32m+[m[32m        awful.key({ modkey }, "#" .. i + 9,[m
+[32m+[m[32m                  function ()[m
+[32m+[m[32m                        local screen = mouse.screen[m
+[32m+[m[32m                        local tag = awful.tag.gettags(screen)[i][m
+[32m+[m[32m                        if tag then[m
+[32m+[m[32m                           awful.tag.viewonly(tag)[m
+[32m+[m[32m                        end[m
+[32m+[m[32m                  end),[m
+[32m+[m[32m        -- Toggle tag.[m
+[32m+[m[32m        awful.key({ modkey, "Control" }, "#" .. i + 9,[m
+[32m+[m[32m                  function ()[m
+[32m+[m[32m                      local screen = mouse.screen[m
+[32m+[m[32m                      local tag = awful.tag.gettags(screen)[i][m
+[32m+[m[32m                      if tag then[m
+[32m+[m[32m                         awful.tag.viewtoggle(tag)[m
+[32m+[m[32m                      end[m
+[32m+[m[32m                  end),[m
+[32m+[m[32m        -- Move client to tag.[m
+[32m+[m[32m        awful.key({ modkey, "Shift" }, "#" .. i + 9,[m
+[32m+[m[32m                  function ()[m
+[32m+[m[32m                      if client.focus then[m
+[32m+[m[32m                          local tag = awful.tag.gettags(client.focus.screen)[i][m
+[32m+[m[32m                          if tag then[m
+[32m+[m[32m                              awful.client.movetotag(tag)[m
+[32m+[m[32m                          end[m
+[32m+[m[32m                     end[m
+[32m+[m[32m                  end),[m
+[32m+[m[32m        -- Toggle tag.[m
+[32m+[m[32m        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,[m
+[32m+[m[32m                  function ()[m
+[32m+[m[32m                      if client.focus then[m
+[32m+[m[32m                          local tag = awful.tag.gettags(client.focus.screen)[i][m
+[32m+[m[32m                          if tag then[m
+[32m+[m[32m                              awful.client.toggletag(tag)[m
+[32m+[m[32m                          end[m
+[32m+[m[32m                      end[m
+[32m+[m[32m                  end))[m
+[32m+[m[32mend[m
+[32m+[m
+[32m+[m[32mclientbuttons = awful.util.table.join([m
+[32m+[m[32m    awful.button({ }, 1, function (c) client.focus = c; c:raise() end),[m
+[32m+[m[32m    awful.button({ modkey }, 1, awful.mouse.client.move),[m
+[32m+[m[32m    awful.button({ modkey }, 3, awful.mouse.client.resize))[m
+[32m+[m
+[32m+[m[32m-- Set keys[m
+[32m+[m[32mroot.keys(globalkeys)[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Rules[m
+[32m+[m[32m-- Rules to apply to new clients (through the "manage" signal).[m
+[32m+[m[32mawful.rules.rules = {[m
+[32m+[m[32m    -- All clients will match this rule.[m
+[32m+[m[32m    { rule = { },[m
+[32m+[m[32m      properties = { border_width = beautiful.border_width,[m
+[32m+[m[32m                     border_color = beautiful.border_normal,[m
+[32m+[m[32m                     focus = awful.client.focus.filter,[m
+[32m+[m[32m                     raise = true,[m
+[32m+[m[32m                     keys = clientkeys,[m
+[32m+[m[32m                     buttons = clientbuttons } },[m
+[32m+[m[32m    { rule = { class = "MPlayer" },[m
+[32m+[m[32m      properties = { floating = true } },[m
+[32m+[m[32m    { rule = { class = "pinentry" },[m
+[32m+[m[32m      properties = { floating = true } },[m
+[32m+[m[32m    { rule = { class = "gimp" },[m
+[32m+[m[32m      properties = { floating = true } },[m
+[32m+[m[32m    -- Set Firefox to always map on tags number 2 of screen 1.[m
+[32m+[m[32m    -- { rule = { class = "Firefox" },[m
+[32m+[m[32m    --   properties = { tag = tags[1][2] } },[m
+[32m+[m[32m}[m
+[32m+[m[32m-- }}}[m
+[32m+[m
+[32m+[m[32m-- {{{ Signals[m
+[32m+[m[32m-- Signal function to execute when a new client appears.[m
+[32m+[m[32mclient.connect_signal("manage", function (c, startup)[m
+[32m+[m[32m    -- Enable sloppy focus[m
+[32m+[m[32m    c:connect_signal("mouse::enter", function(c)[m
+[32m+[m[32m        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier[m
+[32m+[m[32m            and awful.client.focus.filter(c) then[m
+[32m+[m[32m            client.focus = c[m
+[32m+[m[32m        end[m
+[32m+[m[32m    end)[m
+[32m+[m
+[32m+[m[32m    if not startup then[m
+[32m+[m[32m        -- Set the windows at the slave,[m
+[32m+[m[32m        -- i.e. put it at the end of others instead of setting it master.[m
+[32m+[m[32m        -- awful.client.setslave(c)[m
+[32m+[m
+[32m+[m[32m        -- Put windows in a smart way, only if they does not set an initial position.[m
+[32m+[m[32m        if not c.size_hints.user_position and not c.size_hints.program_position then[m
+[32m+[m[32m            awful.placement.no_overlap(c)[m
+[32m+[m[32m            awful.placement.no_offscreen(c)[m
+[32m+[m[32m        end[m
+[32m+[m[32m    end[m
+[32m+[m
+[32m+[m[32m    local titlebars_enabled = false[m
+[32m+[m[32m    if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then[m
+[32m+[m[32m        -- buttons for the titlebar[m
+[32m+[m[32m        local buttons = awful.util.table.join([m
+[32m+[m[32m                awful.button({ }, 1, function()[m
+[32m+[m[32m                    client.focus = c[m
+[32m+[m[32m                    c:raise()[m
+[32m+[m[32m                    awful.mouse.client.move(c)[m
+[32m+[m[32m                end),[m
+[32m+[m[32m                awful.button({ }, 3, function()[m
+[32m+[m[32m                    client.focus = c[m
+[32m+[m[32m                    c:raise()[m
+[32m+[m[32m                    awful.mouse.client.resize(c)[m
+[32m+[m[32m                end)[m
+[32m+[m[32m                )[m
+[32m+[m
+[32m+[m[32m        -- Widgets that are aligned to the left[m
+[32m+[m[32m        local left_layout = wibox.layout.fixed.horizontal()[m
+[32m+[m[32m        left_layout:add(awful.titlebar.widget.iconwidget(c))[m
+[32m+[m[32m        left_layout:buttons(buttons)[m
+[32m+[m
+[32m+[m[32m        -- Widgets that are aligned to the right[m
+[32m+[m[32m        local right_layout = wibox.layout.fixed.horizontal()[m
+[32m+[m[32m        right_layout:add(awful.titlebar.widget.floatingbutton(c))[m
+[32m+[m[32m        right_layout:add(awful.titlebar.widget.maximizedbutton(c))[m
+[32m+[m[32m        right_layout:add(awful.titlebar.widget.stickybutton(c))[m
+[32m+[m[32m        right_layout:add(awful.titlebar.widget.ontopbutton(c))[m
+[32m+[m[32m        right_layout:add(awful.titlebar.widget.closebutton(c))[m
+[32m+[m
+[32m+[m[32m        -- The title goes in the middle[m
+[32m+[m[32m        local middle_layout = wibox.layout.flex.horizontal()[m
+[32m+[m[32m        local title = awful.titlebar.widget.titlewidget(c)[m
+[32m+[m[32m        title:set_align("center")[m
+[32m+[m[32m        middle_layout:add(title)[m
+[32m+[m[32m        middle_layout:buttons(buttons)[m
+[32m+[m
+[32m+[m[32m        -- Now bring it all together[m
+[32m+[m[32m        local layout = wibox.layout.align.horizontal()[m
+[32m+[m[32m        layout:set_left(left_layout)[m
+[32m+[m[32m        layout:set_right(right_layout)[m
+[32m+[m[32m        layout:set_middle(middle_layout)[m
+[32m+[m
+[32m+[m[32m        awful.titlebar(c):set_widget(layout)[m
+[32m+[m[32m    end[m
+[32m+[m[32mend)[m
+[32m+[m
+[32m+[m[32m-- client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)[m
+[32m+[m[32m-- client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)[m
+[32m+[m[32m-- }}}[m
