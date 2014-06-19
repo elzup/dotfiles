@@ -27,14 +27,22 @@ NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim.git'
 NeoBundle 'Shougo/vimfiler.git'
 NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimproc.vim'
 NeoBundle 'scrooloose/syntastic.git'
-NeoBundle 'scrooloose/nerdtree.git'
+NeoBundle 'rking/ag.vim'
+NeoBundle 'Sixeight/unite-grep.git'
 "NeoBundle 'Shougo/neocomplete.vim'
+
+"fix
+"NeoBundle 'fuenor/im_control.vim'
 
 "utility view
 NeoBundle 'tpope/vim-markdown'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'LeafCage/foldCC'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'scrooloose/nerdtree.git'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 "utility input
@@ -52,6 +60,7 @@ NeoBundle 'marijnh/tern_for_vim', {
   \}}
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'LeafCage/yankround.vim'
+NeoBundle 'haya14busa/vim-migemo'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
 "NeoBundle 'haya14busa/vim-easymotion'
@@ -151,6 +160,7 @@ set foldmethod=marker
 set encoding=utf-8
 set nowrap
 set laststatus=2
+set autochdir
 set guifont=Ricty\ 11
 "colorscheme
 syntax enable
@@ -181,16 +191,18 @@ set tw=0
 winpos 683 0
 set cmdheight=1
 
+highlight CursorLine gui=underline guifg=NONE guibg=NONE
+
 "  }}} -end -StartupOptions
-"  {{{ -KeyMapping
+"  {{{ -Key mapping
 inoremap <C-BS> <C-W>
-nnoremap <Leader><Leader> <Esc>:so<space>~/.vimrc
+nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
+nnoremap <silent> <Space>p :<C-u>tabnew $MYVIMRC<CR>
 
 "Movement
 nnoremap G Gzz
 "Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
-nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 "Switching Opacity
 nnoremap ,oo :set tra=220<CR>
 nnoremap ,on :set tra=0<CR>
@@ -214,9 +226,33 @@ nnoremap ,ft :set ft=
 nnoremap ,nr :set rnu<CR>
 nnoremap ,nn :set nornu<CR>
 
-highlight CursorLine gui=underline guifg=NONE guibg=NONE
-
-"nmap ,utt <Esc>:UndoTreeToggle
+"switching windows
+nnoremap s <Nop>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sL <C-w>L
+nnoremap sH <C-w>H
+nnoremap sn gt
+nnoremap sp gT
+nnoremap sr <C-w>r
+nnoremap s= <C-w>=
+nnoremap sw <C-w>w
+nnoremap so <C-w>_<C-w>|
+nnoremap sO <C-w>=
+nnoremap sN :<C-u>bn<CR>
+nnoremap sP :<C-u>bp<CR>
+nnoremap st :<C-u>tabnew<CR>
+nnoremap sT :<C-u>Unite tab<CR>
+nnoremap ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
+nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
 "  }}} -end -KeyMapping
 "  {{{ -BinayMode 
@@ -319,7 +355,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_mruf_max = 500
 let g:ctrlp_open_new_file = 1
 let g:ctrlp_map = '<c-p>'
-"   {{{ ctrlp map
+"   {{{ ctrlp mapping
 nnoremap ,p :<C-u>CtrlP<CR>
 
 "   }}} -end
@@ -363,7 +399,7 @@ imap <expr><C-l>
 \ neosnippet#expandable() <Bar><Bar> neosnippet#jumpable() ?
 \ '\<Plug>(neosnippet_expand_or_jump)' : '\<C-n>'
 " SuperTab like snippets behavior.
-"   {{{ neosnippet map
+"   {{{ neosnippet mapping
 imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 nmap g/ :Unite -buffer-name=search line:forward -start-insert -auto-highlight<CR>
@@ -374,20 +410,38 @@ nmap g/ :Unite -buffer-name=search line:forward -start-insert -auto-highlight<CR
 "  {{{ config unite
 " history/yank を有効化する
 let g:unite_source_history_yank_enable = 1
-"   {{{ unite map
-nnoremap ,ub :<C-u>Unite buffer<CR>
-nnoremap ,uh :<C-u>Unite file_mru<CR>
-nnoremap ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright <cr>
-nnoremap ,uc :<C-u>Unite colorscheme -auto-preview<CR>
+call unite#custom#source('line', 'matchers', 'matcher_migemo')
+"   {{{ unite grep
+let g:unite_enable_start_insert = 1
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+" unite grep に ag(The Silver Searcher) を使う
+"if executable('ag')
+"  let g:unite_source_grep_command = 'ag'
+"  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+"  let g:unite_source_grep_recursive_opt = ''
+"endif
+
+"   }}} -end
+"   {{{ unite mapping
+nnoremap <silent> ,ub :<C-u>Unite buffer -start-insert<CR>
+nnoremap <silent> ,um :<C-u>Unite file_mru -start-insert<CR>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright <cr>
+nnoremap <silent> ,uc :<C-u>Unite colorscheme -auto-preview<CR>
 map ,ur :Unite -buffer-name=register register<CR>
 map ,uy     :Unite history/yank<CR>
+
+nnoremap <silent> <Space>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> ,ug :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
+
+nnoremap <silent> <Space>/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
 
 "   }}} -end
 
 "  }}} -end
 "  {{{ config TweetVim
 let g:tweetvim_open_say_cmd = 'botright split'
-"   {{{ TweetVim map
+"   {{{ TweetVim mapping
 nnoremap ,twl :TweetVimHomeTimeline<Enter>
 nnoremap ,twe :TweetVimSay<Enter>10<C-w><Esc>:set<Space>winheight=10<Enter>
 nnoremap ,twm :TweetVimMentions<Enter>
@@ -403,24 +457,14 @@ let g:Align_xstrlen=3
 
 "  }}} -end
 "  {{{ config lightLine
+" lightline
 let g:lightlineEnableAtStartup = 1
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
-      \ },
-      \ 'separator': { 'left': ">", 'right': ">" },
-      \ 'subseparator': { 'left': ">", 'right': ">" }
-      \ }
-"let g:lightline = {
-"      \ 'colorscheme': 'wombat',
-"      \ 'component': {
-"      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-"      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
-"      \ },
-"      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-"      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-"      \ }
+      \ 'colorscheme': 'wombat' }
+" tabline
+let g:lightline.tabline = {
+      \ 'left': [ [ 'tabs' ] ],
+      \ 'right': [ [ 'close' ] ] }
 
 "  }}} -end
 "  {{{ config startify
@@ -477,11 +521,10 @@ let g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s", v:folddashes, v:fo
 
 "  }}} -end
 "  {{{ config over.vim
-"over.vim option
 " over.vimの起動
-"  {{{ over map
-nmap <silent> ,ov :OverCommandLine<CR>
-nmap <silent> ,oV :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+"   {{{ over mapping
+nmap <silent> <Space>: :OverCommandLine<CR>
+nmap <silent> <Space>s :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 "vim-operator-replace
 nmap <c-p> <Plug>(operator-replace)
 
@@ -490,8 +533,15 @@ nmap <c-p> <Plug>(operator-replace)
 "  }}} -end
 "  {{{ config Quickrun
 let g:quickrun_config={'*': {'split': ''}}
-"   {{{ Quicakrun map
-nnoremap <silent> ,r :QuickRun
+"   {{{ Quicakrun mapping
+nnoremap <silent> ,r :QuickRun<CR>
+
+"   }}} -end
+
+"  }}} -end
+"  {{{ config NERDTree
+"   {{{ NERDTree mapping
+nnoremap <silent>,nt :<C-u>NERDTree<CR>
 
 "   }}} -end
 
@@ -499,12 +549,21 @@ nnoremap <silent> ,r :QuickRun
 "  {{{ config yankround
 let g:yankround_max_history = 50
 nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
-"   {{{ yankround map
+"   {{{ yankround mapping
 nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
+
 "   }}} -end
+"   {{{ yankround mapping
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
+
+"   }}} -end
+
 "  }}} -end
 "  {{{ [x] config undotree.vim
 "let g:undotree_EnableAtStartup = 1
@@ -530,11 +589,29 @@ nmap <C-n> <Plug>(yankround-next)
 "hi EasyMotionShade  ctermbg=none ctermfg=blue
 
 "  }}} -end
-"  {{{ [x] config NERDTreeToggle
-" let g:nerdtreetoggle_enable_at_startup = 1
- 
+"  {{{ [x] config im_control
+" 「日本語入力固定モード」切替キー
+"inoremap <silent> <C-j> <C-r>=IMState('FixMode')<CR>
+"" PythonによるIBus制御指定
+"let IM_CtrlIBusPython = 1
+""バッファ毎に日本語入力固定モードの状態を制御。
+"let g:IM_CtrlBufLocalMode = 1
+
+"  }}} -end
+"  {{{ config vim-indent-guides
+" Vim 起動時 vim-indent-guides を自動起動
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=1
+" 自動カラー無効
+" let g:indent_guides_auto_colors=0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+
 "  }}} -end
 
 " }}} -end PluginOptions
-
-

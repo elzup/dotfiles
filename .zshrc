@@ -7,21 +7,17 @@ export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
 # }}}
-
 # {{{ OPTION
 setopt no_beep
 setopt auto_cd
-setopt correct
 alias ...='cd ../..'
 alias ....='cd ../../..'
 promptinit
 
-export 
-
 setopt no_beep           # ビープ音を鳴らさないようにする
 setopt auto_cd           # ディレクトリ名の入力のみで移動する 
 setopt auto_pushd        # cd時にディレクトリスタックにpushdする
-setopt correct           # コマンドのスペルを訂正する
+# setopt correct           # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
 setopt prompt_subst      # プロンプト定義内で変数置換やコマンド置換を扱う
 setopt notify            # バックグラウンドジョブの状態変化を即時報告する
@@ -32,11 +28,22 @@ setopt extended_glob
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
+export
+
 zstyle ':completion:*:default' menu select=1
 zstyle ':completion:*sudo:*' command-path /usr/local/bin /usr/bin /sbin /bin
 zstyle ':completion:*' list-colors $$${(s.:.)LS_COLORS}
 
 WORDCHARS='*?_-.[]~=&;!#$$&^(){}<>'
+
+# {{{ THEME
+ZSH_THEME="powerline"
+POWERLINE_HIDE_HOST_NAME="true"
+POWERLINE_HIDE_GIT_PROMPT_STATUS="true"
+POWERLINE_SHOW_GIT_ON_RIGHT="true"
+
+# }}}
+
 #}}}
 # {{{ PROMPT
 # colors
@@ -84,6 +91,9 @@ alias cp="cp -i"	#上書きを確認
 #sl
 alias -g sl="echo you are an idiot!"
 
+#auto app
+alias hoge=""
+
 #ls
 alias s="ls"
 alias l="ls"
@@ -100,9 +110,13 @@ alias egrep="egrep --color=auto"
 #ln
 alias ln="ln -i -v"
 
+#xmodmap
+alias xmod="xmodmap ~/.Xmodmap"
+
 #geditのデバッグを消去
 alias gedit="gedit $@ > /dev/null 2> /dev/null"
 
+#  {{{ extensions
 #extension
 alias -s c=vim
 alias -s C=vim
@@ -121,8 +135,12 @@ alias -s jpg=eog
 alias -s jpeg=eog
 alias -s gif=eog
 alias -s bmp=eog
+#wines
+alias -s exe=wine
 
-alias -s astah=asta
+alias -s asta=astah
+
+#  }}} -end extensions
 
 #apache2
 alias apache2="sudo /etc/init.d/apache2"
@@ -145,15 +163,24 @@ alias gopen="gnome-open"
 #geditのデバッグがウザい
 alias gedit="gedit >/dev/null 2>/dev/null"
 
+#git
+alias graph="log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short"
+
 # }}}
 # {{{ FUNC
 # function cd() { builtin cd $@ && ls }
 function chpwd() { ls -v -F --color=auto }
-# }}}
-# {{{ SHIRI
-alias こんにちは="echo 「どうもどうもこんにちは」"
-alias お腹すいた="echo 「っカレー」"
+
 # }}}
 # {{{APP alias
 alias tweetdeck="chromium --app=https://tweetdeck.twitter.com"
+
+# }}} -end
+
+# {{{ PLAY
+# {{{ MY SHIRI
+alias こんにちは="echo 「どうもどうもこんにちは」"
+alias お腹すいた="echo 「っカレー」"
 # }}}
+
+# }}} -end

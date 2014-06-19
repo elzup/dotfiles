@@ -14,5 +14,7 @@ XTerm*lineSpace: 3
 XTerm*saveline: 1000
 XTerm*vt100.geometry: 88x24
 XTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+XTerm*forceName: Ricty
+XTerm*forceDoublesize: Ricty
 
 !========================
