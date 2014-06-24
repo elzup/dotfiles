@@ -26,6 +26,7 @@ ibus-daemon --xim -d &
 
 # xmodmap
 xmodmap ~/home/hiro/.Xmodmap
+# clipit
 
 # Other Option File
 ./.mysetup.sh

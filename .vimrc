@@ -28,7 +28,14 @@ NeoBundle 'Shougo/unite.vim.git'
 NeoBundle 'Shougo/vimfiler.git'
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/vimproc.vim'
+NeoBundle 'Shougo/vimproc', {
+  \ 'build' : {
+    \ 'windows' : 'make -f make_mingw32.mak',
+    \ 'cygwin' : 'make -f make_cygwin.mak',
+    \ 'mac' : 'make -f make_mac.mak',
+    \ 'unix' : 'make -f make_unix.mak',
+  \ },
+\ }
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'Sixeight/unite-grep.git'
@@ -60,7 +67,7 @@ NeoBundle 'marijnh/tern_for_vim', {
   \}}
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'LeafCage/yankround.vim'
-NeoBundle 'haya14busa/vim-migemo'
+"NeoBundle 'haya14busa/vim-migemo'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
 "NeoBundle 'haya14busa/vim-easymotion'
@@ -152,13 +159,15 @@ set go=arc
 set tw=0
 set langmenu=ja_jp.utf-8
 set hlsearch
-
+" commandline complete
+set wildmenu
+set wildmode=longest:full,full
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
+" foldmethod
+set fdm=marker
 
-au BufEnter * execute ":lcd " . expand("%:p:h")
-set foldmethod=marker
-set encoding=utf-8
-set nowrap
+au BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
+
 set laststatus=2
 set autochdir
 set guifont=Ricty\ 11
@@ -167,9 +176,9 @@ syntax enable
 "colorscheme solarized
 colorscheme badwolf
 set background=dark
-"colorscheme ron
-"set incsearch
+"colorscheme ron "set incsearch
 
+"backup
 set nobackup
 set noswapfile
 set fo=q
@@ -350,7 +359,7 @@ endif
 " }}} -end MyConfig
 " {{{ PluginOptions
 "  {{{ config ctrlp 
-let g:ctrlp_use_migemo = 1
+let g:ctrlp_use_migemo = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_mruf_max = 500
 let g:ctrlp_open_new_file = 1
@@ -415,6 +424,8 @@ call unite#custom#source('line', 'matchers', 'matcher_migemo')
 let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
+let g:unite_source_file_mru_limit = 50
+let g:unite_source_file_mru_filename_format = ''
 " unite grep に ag(The Silver Searcher) を使う
 "if executable('ag')
 "  let g:unite_source_grep_command = 'ag'
@@ -499,19 +510,19 @@ let g:startify_bookmarks = [
   \ ]
 " \ map(split('date', '\n'), '"   ". v:val') + ['',''],
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
-let g:startify_custom_indices = split('a,b,c,d,f,g,i,m,n,p,r,s,t,u,v,w,x,y,z', ',')
+let g:startify_custom_indices = split('a,b,c,d,f,g,i,m,n,p,r,u,v,w,x,y,z', ',')
 "let g:startify_custom_indices = ['a','b','c','d','f','g','i','m','n','p','r','s','t','u','v','w','x','y','z']
 let g:startify_list_order = [
   \ ['  Recently'],
   \ 'files',
-  \ ['  Recently in dir'],
-  \ 'dir',
-  \ ['  Sessions'],
-  \ 'sessions',
   \ ['  Bookmarks'],
   \ 'bookmarks',
   \ ]
-let g:startify_files_number = 5
+let g:startify_files_number = 8
+"  \ ['  Recently in dir'],
+"  \ 'dir',
+"  \ ['  Sessions'],
+"  \ 'sessions',
 
 "  }}} -end
 "  {{{ config foldCC
@@ -565,6 +576,21 @@ nmap <C-n> <Plug>(yankround-next)
 "   }}} -end
 
 "  }}} -end
+"  {{{ config vim-indent-guides
+" Vim 起動時 vim-indent-guides を自動起動
+let g:indent_guides_enable_on_vim_startup=1
+" ガイドをスタートするインデントの量
+let g:indent_guides_start_level=4
+" 自動カラー無効
+" let g:indent_guides_auto_colors=0
+" 奇数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" 偶数番目のインデントの色
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+" ガイドの幅
+let g:indent_guides_guide_size = 1
+
+"  }}} -end
 "  {{{ [x] config undotree.vim
 "let g:undotree_EnableAtStartup = 1
 "let g:undotree_SetFocusWhenToggle = 1
@@ -596,21 +622,6 @@ nmap <C-n> <Plug>(yankround-next)
 "let IM_CtrlIBusPython = 1
 ""バッファ毎に日本語入力固定モードの状態を制御。
 "let g:IM_CtrlBufLocalMode = 1
-
-"  }}} -end
-"  {{{ config vim-indent-guides
-" Vim 起動時 vim-indent-guides を自動起動
-let g:indent_guides_enable_on_vim_startup=1
-" ガイドをスタートするインデントの量
-let g:indent_guides_start_level=1
-" 自動カラー無効
-" let g:indent_guides_auto_colors=0
-" 奇数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-" 偶数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
-" ガイドの幅
-let g:indent_guides_guide_size = 1
 
 "  }}} -end
 

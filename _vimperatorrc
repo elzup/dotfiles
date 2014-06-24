@@ -49,6 +49,9 @@ nnoremap ,yb :js util.copyToClipboard(buffer.);<Left><Left>
 nnoremap ,ys :shorturi<CR>
 nnoremap ,y/ :shorturi<CR>
 
+autocmd LocationChange .* js modes.passAllKeys = false
+autocmd LocationChange www\\.tumblr\\.(co\\.jp|com) js modes.passAllKeys = true
+
 js <<EOM
 
 function getShortUri(url) {
@@ -215,6 +218,7 @@ nnoremap ,se :wsejje<Space>
 nnoremap ,sf :wsforvo<Space>
 nnoremap ,sy :wsyoutube<Space>
 nnoremap ,sk :wskanjifont<Space>
+nnoremap ,sn :wsnico<Space>
 
 nnoremap ,sg :tabopen google<Space>
 nnoremap ,sw :tabopen wikipedia<Space>

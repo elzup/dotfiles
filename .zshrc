@@ -92,7 +92,7 @@ alias cp="cp -i"	#上書きを確認
 alias -g sl="echo you are an idiot!"
 
 #auto app
-alias hoge=""
+alias do=""
 
 #ls
 alias s="ls"
@@ -110,8 +110,9 @@ alias egrep="egrep --color=auto"
 #ln
 alias ln="ln -i -v"
 
-#xmodmap
+#useful
 alias xmod="xmodmap ~/.Xmodmap"
+alias shutdown="sudo shutdown"
 
 #geditのデバッグを消去
 alias gedit="gedit $@ > /dev/null 2> /dev/null"
