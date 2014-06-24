@@ -163,10 +163,11 @@ set hlsearch
 set wildmenu
 set wildmode=longest:full,full
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
-" foldmethod
-set fdm=marker
 
 au BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
+set foldmethod=marker
+set encoding=utf-8
+set nowrap
 
 set laststatus=2
 set autochdir
