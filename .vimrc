@@ -519,7 +519,7 @@ let g:startify_list_order = [
   \ ['  Bookmarks'],
   \ 'bookmarks',
   \ ]
-let g:startify_files_number = 8
+let g:startify_files_number = 10
 "  \ ['  Recently in dir'],
 "  \ 'dir',
 "  \ ['  Sessions'],
