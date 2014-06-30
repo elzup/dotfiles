@@ -356,6 +356,12 @@ if exists('&ambiwidth')
 endif
 
 "  }}} -end -Encoding 
+"  {{{ -FileType 
+" Lecture
+au BufNewFile,BufRead *.lecture,*.lect,*.memo setf lecture
+au BufNewFile,BufRead .vimperatorc,.vrapperrc setf vim
+
+"  }}} -end -FileType 
 
 " }}} -end MyConfig
 " {{{ PluginOptions
