@@ -633,3 +633,5 @@ let g:indent_guides_guide_size = 1
 "  }}} -end
 
 " }}} -end PluginOptions
+" 
+" vim:set foldmethod=marker:
