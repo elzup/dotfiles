@@ -169,6 +169,8 @@ set foldmethod=marker
 set encoding=utf-8
 set nowrap
 
+set autochdir
+
 set laststatus=2
 set autochdir
 set guifont=Ricty\ 11
@@ -633,5 +635,4 @@ let g:indent_guides_guide_size = 1
 "  }}} -end
 
 " }}} -end PluginOptions
-" 
 " vim:set foldmethod=marker:
