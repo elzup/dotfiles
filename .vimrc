@@ -50,6 +50,7 @@ NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/nerdtree.git'
+NeoBundle 'taglist.vim'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 "utility input
@@ -67,6 +68,7 @@ NeoBundle 'marijnh/tern_for_vim', {
   \}}
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'LeafCage/yankround.vim'
+NeoBundle 'AndrewRadev/switch.vim'
 "NeoBundle 'haya14busa/vim-migemo'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
@@ -80,7 +82,6 @@ NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'mhinz/vim-startify'
-
 
 "NeoBundle 'YankRing.vim'
 "NeoBundle 'mru.git'
@@ -211,6 +212,8 @@ inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
 nnoremap <silent> <Space>p :<C-u>tabnew $MYVIMRC<CR>
 
+"inoremap <BS> <Nop>
+
 "Movement
 nnoremap G Gzz
 "Super input
@@ -230,13 +233,16 @@ nnoremap <C-;> <S-A>;<Esc>
 
 nnoremap ,a gg<S-V><S-G>a
 "Open on other app
-nnoremap ,e :!explorer .<CR>
+"nnoremap ,e :!explorer .<CR>
 
 nnoremap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
 nnoremap ,ft :set ft=
 "Line number
 nnoremap ,nr :set rnu<CR>
 nnoremap ,nn :set nornu<CR>
+
+"reopen
+nnoremap ,e :e ++enc=utf8
 
 "switching windows
 nnoremap s <Nop>
@@ -358,12 +364,6 @@ if exists('&ambiwidth')
 endif
 
 "  }}} -end -Encoding 
-"  {{{ -FileType 
-" Lecture
-au BufNewFile,BufRead *.lecture,*.lect,*.memo setf lecture
-au BufNewFile,BufRead .vimperatorc,.vrapperrc setf vim
-
-"  }}} -end -FileType 
 
 " }}} -end MyConfig
 " {{{ PluginOptions
@@ -562,6 +562,7 @@ nnoremap <silent> ,r :QuickRun<CR>
 "  {{{ config NERDTree
 "   {{{ NERDTree mapping
 nnoremap <silent>,nt :<C-u>NERDTree<CR>
+nnoremap <silent><A-1> :<C-u>NERDTree<CR>:Tlist<CR>
 
 "   }}} -end
 
@@ -598,6 +599,23 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 " ガイドの幅
 let g:indent_guides_guide_size = 1
+
+"  }}} -end
+"  {{{ config Switch.vim
+let g:switch_custom_definitions =
+    \ [
+    \   ['foo', 'bar', 'baz'],
+    \   ['○', '×', '・'],
+    \   ['―', '△', '▲', '○', '●']
+    \ ]
+nnoremap + :call switch#Switch(g:switch_custom_definitions)<cr>
+nnoremap - :Switch<cr>
+
+"  }}} -end
+"  {{{ config TagList.vim
+let g:Tlist_Use_Split_Window = 1
+let g:Tlist_WinHeight = 20
+
 
 "  }}} -end
 "  {{{ [x] config undotree.vim

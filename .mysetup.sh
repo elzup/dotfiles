@@ -18,6 +18,6 @@ synclient HorizEdgeScroll=1
 # Dropbox sync start
 dropbox start
 # clibor
-wine /opt/clibor/Clibor.exe
+# wine /opt/clibor/Clibor.exe
 # }}}
 

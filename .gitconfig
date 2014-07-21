@@ -24,6 +24,7 @@
     ci = commit -a           # modifiedなファイルを全てstageへ
     cam = commit -a --amend  # 直前のcommitを修正
     co = checkout
+    mt = master
   # branch関連
     br = branch
     ba = branch -a           # originも含めた全てのbranchを表示
