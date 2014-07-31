@@ -515,6 +515,7 @@ let g:startify_custom_header = [
 let g:startify_bookmarks = [
   \ '~/.vimrc',
   \ '~/note/.memo',
+  \ '~/note/solved.memo',
   \ '~/workspace',
   \ ]
 " \ map(split('date', '\n'), '"   ". v:val') + ['',''],

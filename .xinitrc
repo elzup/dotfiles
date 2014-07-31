@@ -31,6 +31,9 @@ xmodmap ~/home/hiro/.Xmodmap
 # Other Option File
 ./.mysetup.sh
 
+# xset +fp /usr/share/fonts/local
+# xset fp reflash
+
 # Desktop
 exec awesome 
 #exec gnome-session
