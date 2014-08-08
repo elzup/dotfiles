@@ -21,8 +21,10 @@ endif
 "  {{{ -Bundles
 "neobundle 
 NeoBundle 'Shougo/neobundle.vim.git'
-NeoBundle 'Shougo/neocomplcache.git'
+"NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'Shougo/neocomplcache.git'
 
 NeoBundle 'Shougo/unite.vim.git'
 NeoBundle 'Shougo/vimfiler.git'
@@ -39,7 +41,6 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'Sixeight/unite-grep.git'
-"NeoBundle 'Shougo/neocomplete.vim'
 
 "fix
 "NeoBundle 'fuenor/im_control.vim'
@@ -55,7 +56,6 @@ NeoBundle 'taglist.vim'
 
 "utility input
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'scrooloose/snipmate-snippets'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'coderifous/textobj-word-column.vim'
@@ -69,6 +69,8 @@ NeoBundle 'marijnh/tern_for_vim', {
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'LeafCage/yankround.vim'
 NeoBundle 'AndrewRadev/switch.vim'
+NeoBundle 'alpaca-tc/alpaca_tags'
+NeoBundle 'tpope/vim-endwise'
 "NeoBundle 'haya14busa/vim-migemo'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
@@ -82,6 +84,7 @@ NeoBundle 'cocopon/colorswatch.vim'
 NeoBundle 'AndrewRadev/linediff.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'mhinz/vim-startify'
+NeoBundle 'mattn/gist-vim'
 
 "NeoBundle 'YankRing.vim'
 "NeoBundle 'mru.git'
@@ -164,6 +167,8 @@ set hlsearch
 set wildmenu
 set wildmode=longest:full,full
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
+"空へはばたけ
+"set virtualedit=all
 
 au BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
 set foldmethod=marker
@@ -410,7 +415,8 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 "  }}} -end
 "  {{{ config neosnippet 
-let g:neosnippet#snippets_directory='~/.vim/snippets/, ~/var_dumvar_dumpp.vim/snippets/, ~/.vim/bundle/snipmate-snippets/'
+let g:neosnippet#snippets_directory='~/.vim/snippets/, ~/var_dumvar_dumpp.vim/snippets/, ~/.vim/bundle/neosnippet-snippets'
+
 imap <c-k> <Plug>(neosnippet_expand_or_jump)
 smap <c-k> <Plug>(neosnippet_expand_or_jump)
 imap <expr><C-l>
@@ -433,7 +439,7 @@ call unite#custom#source('line', 'matchers', 'matcher_migemo')
 let g:unite_enable_start_insert = 1
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
-let g:unite_source_file_mru_limit = 50
+let g:unite_source_file_mru_limit = 100
 let g:unite_source_file_mru_filename_format = ''
 " unite grep に ag(The Silver Searcher) を使う
 "if executable('ag')
@@ -572,14 +578,7 @@ nnoremap <silent><A-1> :<C-u>NERDTree<CR>:Tlist<CR>
 let g:yankround_max_history = 50
 nnoremap <silent>g<C-p> :<C-u>CtrlPYankRound<CR>
 "   {{{ yankround mapping
-nmap p <Plug>(yankround-p)
-nmap P <Plug>(yankround-P)
-nmap <C-p> <Plug>(yankround-prev)
-nmap <C-n> <Plug>(yankround-next)
-
-"   }}} -end
-"   {{{ yankround mapping
-nmap p <Plug>(yankround-p)
+" nmap p <Plug>(yankround-p)
 nmap P <Plug>(yankround-P)
 nmap <C-p> <Plug>(yankround-prev)
 nmap <C-n> <Plug>(yankround-next)
@@ -591,7 +590,7 @@ nmap <C-n> <Plug>(yankround-next)
 " Vim 起動時 vim-indent-guides を自動起動
 let g:indent_guides_enable_on_vim_startup=1
 " ガイドをスタートするインデントの量
-let g:indent_guides_start_level=4
+let g:indent_guides_start_level=1
 " 自動カラー無効
 " let g:indent_guides_auto_colors=0
 " 奇数番目のインデントの色
@@ -607,10 +606,20 @@ let g:switch_custom_definitions =
     \ [
     \   ['foo', 'bar', 'baz'],
     \   ['○', '×', '・'],
-    \   ['―', '△', '▲', '○', '●']
+    \   ['―', '△', '▲', '○', '●'],
+    \   ['absolute', 'relative', 'fixed'],
+    \   ['left', 'right', 'top', 'bottom']
     \ ]
 nnoremap + :call switch#Switch(g:switch_custom_definitions)<cr>
 nnoremap - :Switch<cr>
+
+"  }}} -end
+"  {{{ config gist.vim
+let g:github_user = "elzzup"
+let g:github_token = "688153244513531cc44c754637f19ee9f4debd97"
+let g:gist_curl_options = "-k"
+let g:gist_private = "-P"
+let g:gist_detect_filetype = 1
 
 "  }}} -end
 "  {{{ config TagList.vim
@@ -654,4 +663,5 @@ let g:Tlist_WinHeight = 20
 "  }}} -end
 
 " }}} -end PluginOptions
+
 " vim:set foldmethod=marker:
