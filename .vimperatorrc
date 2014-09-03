@@ -1,0 +1,444 @@
+" vim: set ft=vim:
+" vim: set foldmethod=marker:
+
+" {{{ style
+style -name tbg chrome://* <<EOM
+tabs#tabbrowser-tabs > * {
+    background-color: rgba(200,200,200,.2);
+}
+EOM
+
+style -name commandline-ime chrome://* <<EOM
+    #liberator-commandline-command input {ime-mode: inactive;}
+    #liberator-commandline-command { background: transparent !important; }
+EOM
+
+echo 
+execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
+javascript <<JS
+let suffix_chars = ['php', 'fire']
+liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * 2)] + '.css');
+JS
+" let suffix_chars = ['php', 'fire']
+" echo suffix_chars[Rand() % 2] . '.vimp'
+
+"style -name clock chrome://* <<EOM
+"#liberator-plugin-clock-box > * {
+"    color: green !important;
+"}
+"EOM
+
+" }}}
+" {{{ ignore keys
+"autocmd LocationChange .* :fmapc
+"autocmd LocationChange tumblr\\.com fmaps j k
+"
+" ignorekeys add (www)?\\.tumblr\\.(co\\.jp|com) -except :,t,d,<C-n>,<C-p>,b,l,h,a,<C-f>,<C-b>,g
+ignorekeys add tweetdeck\.twitter\.com -except :,a,g,<Esc>,<C-[>
+" ignorekeys add tumblr\.com -except :,<C-n>,<C-p>,a,g,<Esc>,<C-[>
+
+" }}}
+" {{{ key mapping
+"  {{{ file keymap
+" source! "C:\\Users\\hiro\\_vimperatorrc.local"
+nnoremap <Leader><Leader> :so .vimperator/.vimperatorrc<CR>
+
+"  }}}
+"  {{{ unbind os
+inoremap <C-b> b
+
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+
+" TODO
+nnoremap <C-j> <Nop>
+nnoremap <C-k> <Nop>
+
+
+"  }}}
+"  {{{ basic
+" complecache
+cnoremap <C-n> <Tab>
+cnoremap <C-p> <S-Tab>
+" コマンドモードで履歴を遡る
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+
+nnoremap ,b :bmarks<Space>
+noremap <BS> <A-Left>
+" movement
+nnoremap j 5<C-e>
+nnoremap k 5<C-y>
+nnoremap h gT
+nnoremap l gt
+nnoremap <C-n> gt
+inoremap <c-f> f
+nnoremap <c-g> :focussearchbar<CR><Down>
+
+" unmap 
+nnoremap <C-q> <S-q>
+
+" ブックマーク処理
+nnoremap a a<Space>-T<Space>
+
+"ヤンク拡張
+nnoremap ,yt :js util.copyToClipboard(buffer.title);<CR>:echo 'Copied text to clipboard[title]: ' + buffer.title<CR>
+nnoremap ,yu :js util.copyToClipboard(buffer.URL);<CR>:echo 'Copied text to clipboard[url]: ' + buffer.title<CR>
+nnoremap ,yy :js util.copyToClipboard(buffer.title + " " + buffer.URL);<CR>:echo 'Copied text to clipboard[title & url]: ' + buffer.title + " " + buffer.URL<CR>
+nnoremap ,yb :js util.copyToClipboard(buffer.);<Left><Left>
+nnoremap ,ys :shorturi<CR>
+nnoremap ,y/ :shorturi<CR>
+
+noremap zu :undo<TAB>
+
+"現URL指定で開く
+"nnoremap <C-o> yo<C-v>
+
+vnoremap <silent> <C-g> y<Esc><Esc>P
+
+"タブグループマネージャのタブ移動
+nnoremap <C-h> <C-Up>t<CR>d
+nnoremap <C-l> <C-Down>t<CR>d
+
+"ブックマーク
+nnoremap <S-b> :bmarks<Space>
+
+nnoremap f f<S-F11>
+nnoremap t t<S-F11>
+nnoremap : :<S-F11>
+
+inoremap <C-u> <C-e><C-U>
+cnoremap <C-u> <C-e><C-U>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
+" panorama mapping
+nnoremap ,pc :<C-u>panorama<Space>
+nnoremap <C-l> :<C-u>panorama switch<Space>
+nnoremap ,ps :<C-u>panorama switch<Space>
+nnoremap ,pa :<C-u>panorama add<Space>
+nnoremap ,pl :<C-u>panorama list<CR>
+" 現在のタブをタブグループに追加
+nnoremap ,pp :<C-u>panorama pushtab<Space>
+" 現在のタブグループにタブを追加
+nnoremap ,pu :<C-u>panorama pulltab<Space>
+nnoremap ,pr :<C-u>panorama remove<Space>
+" タブグループビューを開く
+nnoremap ,po <C-S-e>
+
+nnoremap vs :so<Space>~/.vimperator/colors/tbg-
+
+
+"  }}}
+"  {{{ action
+"現在のページをChromeで開く
+nnoremap <silent> ,c y:<c-u>!chromium<Space>--new-window<Space><S-Insert>&<CR><Esc>
+
+nnoremap <silent> e :javascript<Space>TreeStyleTabBrowserAutoHide.toggleMode();<CR>
+"  }}}
+
+" }}}
+" {{{ baseic myconfigs
+
+"ブラウザタイトル
+set titlestring="火狐⊂('ω'⊂ )"
+"クイックリンク設定
+set hintchars=asdfghjklmn
+"自動フォーカスの防止
+set focuscontent
+" GUIバーの初期表示状態
+set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+"ex mode でインクリメント補完
+" set wildoptions=auto
+
+command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“delcommand “+”<args>”);liberator.execute(“runtime plugin/”+”<args>.js”);
+
+" {{{ ime off
+" コマンドラインでIMEをオフ
+" let g:imekeys_methods='x,w'
+" let g:imeoff='cmd'
+" let g:ime_activate_wkey='\[Shift]\[F11]'
+" let g:ime_deactivate_wkey='\[Shift]\[F12]'
+
+noremap <silent> f :!fcitx-remote -c<cr>qf
+noremap <silent> F :!fcitx-remote -c<cr>qF
+
+"autocmd LocationChange .* :js getBrowser().mCurrentBrowser.collapsed = buffer.URL == "about:blank" ? true : false
+
+"  }}}
+
+" }}}
+"  {{{ color styles
+
+"source 
+colorscheme my
+so ~/.vimperator/colors/my.css
+" let g:styles =
+
+"  }}}
+"  {{{ config websearch
+
+" スターテスライン
+"   {{{ websearch mapping
+nnoremap sa :wsalc<Space>
+nnoremap sr :wsthesaurus<Space>
+nnoremap se :wsejje<Space>
+nnoremap sf :wsforvo<Space>
+nnoremap sk :wskanjifont<Space>
+nnoremap sg :wsgithub<Space>
+nnoremap sn :wsnico<Space>
+nnoremap ss :wsnetslang<Space>
+nnoremap st :wstwitterfind<Space>
+
+nnoremap sy :tabopen youtube<Space>
+nnoremap sw :tabopen wikipedia<Space>
+nnoremap ss :tabopen google<Space>
+
+nnoremap vf <Insert><C-f><Esc><Insert>
+
+" gui,ツールバーのの表示非表示切替
+" dn[a|n]ナビゲーションバー
+nnoremap <silent> w :toggle navbar<CR>
+" db[a|n]ブックマーク
+nnoremap <silent> vb :toggle bookbar<CR>
+" タブ
+" nnoremap vt :set gui=notab<CR>
+
+nnoremap ,h :history<Space>
+
+"   }}}
+
+"  }}}
+"  {{{ config statusLine
+javascript <<JS
+let statusLine = document.getElementById("liberator-statusline");
+let bottomBar = document.getElementById("liberator-bottombar");
+
+// ステータスバーにブックマークアイコンを移動
+let (statusBar = document.getElementById("status-bar")) {
+  let (id = "star-button") {
+    if(!document.getElementById("panel-" + id)) {
+      let panel = document.createElement("statusbarpanel");
+      panel.setAttribute("id", "panel-" + id);
+      let (icon = document.getElementById(id)) {
+        icon.setAttribute("class", "");
+        panel.appendChild(icon);
+      }
+      statusBar.insertBefore(panel, statusBar.firstChild);
+    }
+  }
+}
+// ステータスラインの横にステータスバーを移動
+let (statusBar = document.getElementById("status-bar")) {
+  statusBar.style.maxHeight = "20px";
+  bottomBar.appendChild(statusBar);
+}
+// ステータスラインにfaviconを移動
+let (favicon = document.getElementById("page-proxy-stack")) {
+  if (favicon != null) {
+      favicon.style.maxWidth = favicon.style.maxHeight = "20px"
+      statusLine.insertBefore(favicon, statusLine.firstChild);
+  }
+}
+JS
+
+"   }}}
+"  {{{ config smooth scroll
+let smooth_scroll_duration=200
+
+"  }}}
+"  {{{ config nico controller
+"map ,ni :nicoinfo
+"map ,np :nicopause
+"map ,nm :nicomute
+"map ,nv :nicommentvisible
+"map ,nz :nicosize
+"map ,ns :nicoseek
+"
+"
+"javascript <<EOM
+"// [N]-
+"// N 秒前にシークする。
+"// 指定なしの場合 10 秒前。
+"liberator.mappings.addUserMap(
+"    [liberator.modes.NORMAL],
+"    ['-'],
+"    'seek by count backward',
+"    function(count) {
+"        if(count === -1) count = 10;
+"        liberator.execute(':nicoseek! ' + '-' + count);
+"    },
+"    { flags: liberator.Mappings.flags.COUNT }
+");
+"
+"// [N]+
+"// N 秒後にシークする。
+"// 指定なしの場合 10 秒後。
+"liberator.mappings.addUserMap(
+"    [liberator.modes.NORMAL],
+"    ['+'],
+"    'seek by count forward',
+"    function(count) {
+"        if(count === -1) count = 10;
+"        liberator.execute(':nicoseek! ' + count);
+"    },
+"    { flags: liberator.Mappings.flags.COUNT }
+");
+"EOM
+
+"  }}}
+" {{{ config Twittperator
+let g:twittperator_use_ssl_connection_for_api_ep = 1
+let g:twittperator_use_chirp = 1
+let g:twittperator_track_words = "ざっぷ,マイクラ,Minecraft,電大"
+let g:twittperator_screen_name = "arzzup"
+
+"  {{{ twittperatro mapping
+nnoremap ,tl :tw<CR>
+nnoremap ,tw :tw<Space>
+nnoremap ,tr :tw<Space>@
+nnoremap ,t/ :tw!/<Tab>
+nnoremap ,th :tw!thread<Space>
+
+nnoremap ,tc :tw<Space>こころぴょんぴょん！<CR>
+
+nnoremap ,tt :yankinfo titleandurl<CR>: / <C-v><C-a>tw 
+nnoremap ,tp :yankinfo titleandsurl<CR>: / <C-v><C-a>tw 
+"nnoremap ,tp :<C-u>twuri<CR><C-a><Right><Right><Right>
+"nnoremap ,tt :<C-u>echo [" /".buffer.title,buffer.URI].join(" "),modes.EX)<CR>:<Up><C-a>tw<Space><Space>/<Space><Left><Left><Left>
+"  }}}
+" }}}
+"  {{{ [x] config clock
+" clock style
+"let clock_format='[%t %d]'
+"let clock_position='liberator-commadline-prompt'
+"let clock_after='false'
+
+"  }}}
+" {{{ config toggler.js
+js <<EOM
+liberator.globalVariables.toggler = {
+  navbar:  ["set gui=navigation", "set gui=nonavigation"],
+  bookbar:  ["set gui=bookmarks", "set gui=nobookmarks"],
+};
+EOM
+
+" }}}
+" {{{ jss
+"  {{{ firefox fix
+" Firefoxのタブを開く位置をデフォで現在のタブの右隣にする（※ gBrowser.addTabの改造）"
+js <<EOM
+gBrowser.addTab = liberator.eval(
+    '(' +
+    gBrowser.addTab.toSource()
+            .replace(/var\s*aRelatedToCurrent;/, 'var aRelatedToCurrent = true;')
+            .replace(/aRelatedToCurrent\s*=\s*params\.relatedToCurrent;/, 'aRelatedToCurrent = params.relatedToCurrent === undefined ? true : params.relatedToCurrent;') +
+    ')',
+    gBrowser.addTab);
+EOM
+
+"  }}}
+"  {{{ yankinfo
+js <<EOM
+
+function getShortUri(url) {
+    let uri = 'https://www.googleapis.com/urlshortener/v1/url';
+    let xhr = new XMLHttpRequest();
+    xhr.open("post", uri, false);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(JSON.stringify({ longUrl: url }));
+    return JSON.parse(xhr.responseText).id;
+}
+
+commands.addUserCommand(
+    ["shorturi"],
+    "get google short URI this page",
+    function(args, bang, count){
+        let url = buffer.URL;
+        if (args[0]) {url = args[0];}
+        let result = getShortUri(url);
+        util.copyToClipboard(result);
+        liberator.echo('Created shortURL: ' + result + "<--" + url);
+    }
+);
+
+commands.addUserCommand(
+    ["now"],
+    "echo timestamp just now",
+    function(args, bang, count){
+        var d = new Date();
+        liberator.echo((d.getYear() + 1900) + '-' + d.getMonth() + '-' +  d.getDay() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+    }
+);
+
+commands.addUserCommand(
+    ["yankinfo"],
+    "get current page info and yank to clipboard",
+    function(args, bang, count){
+        let result = getShortUri(buffer.URL);
+        util.copyToClipboard(result);
+        liberator.echo("copyed short url");
+    },
+    {
+        subCommands: [
+            new Command(
+            ["title"],
+            "page title yank to clipboard",
+            function() {
+                util.copyToClipboard(buffer.title);
+                liberator.echo("yanked title: " + buffer.title);
+            }),
+            new Command(
+            ["url"],
+            "page url yank to clipboard",
+            function() {
+                util.copyToClipboard(buffer.URL);
+                liberator.echo("yanked url: " + buffer.URL);
+            }),
+            new Command(
+            ["titleandurl"],
+            "page title and url yank to clipboard",
+            function() {
+                let text = [buffer.title, buffer.URL].join(" ");
+                util.copyToClipboard(text);
+                liberator.echo("yanked title and url: " + text);
+            }),
+            new Command(
+            ["titleandsurl"],
+            "page title and shorturl yank to clipboard",
+            function() {
+                let text = [buffer.title, getShortUri(buffer.URL)].join(" ");
+                util.copyToClipboard(text);
+                liberator.echo("yanked title and short url: " + text);
+            }),
+            new Command(
+            ["shorturl"],
+            "page shorturl yank to clipboard",
+            function() {
+                let result = getShortUri(buffer.URL);
+                util.copyToClipboard(result);
+                liberator.echo("yanked short url: " + result);
+            }),
+        ]
+    }
+);
+
+commands.addUserCommand(
+    ["focuss[earchbar]"],
+    "focus to searchbar",
+    function() {
+        if (window.content.window.location.hostname.indexOf("www.google.co.jp") != -1) 
+        {
+            window.content.window.document.getElementsByName("q")[0].focus();
+            liberator.echo("get focusd");
+        }
+    }
+);
+
+EOM
+"//        echo 'Copied text to clipboard[shorturl]: ' + result;
+
+"  }}}
+
+" }}}
+

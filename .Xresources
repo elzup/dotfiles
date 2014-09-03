@@ -16,7 +16,7 @@ XTerm*OpenIm: true
 XTerm*lineSpace: 3
 XTerm*saveline: 1000
 XTerm*wideBoldFont: fixed
-XTerm*vt100.geometry: 88x24
+XTerm*vt100.geometry: 100x28
 XTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 
 XTerm*selectToClipboard: true;

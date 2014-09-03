@@ -41,6 +41,7 @@ NeoBundle 'Shougo/vimproc', {
 NeoBundle 'scrooloose/syntastic.git'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'Sixeight/unite-grep.git'
+NeoBundle 'tsukkee/unite-tag'
 
 "fix
 "NeoBundle 'fuenor/im_control.vim'
@@ -52,6 +53,7 @@ NeoBundle 'LeafCage/foldCC'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'taglist.vim'
+NeoBundle 'szw/vim-tags'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 
 "utility input
@@ -105,6 +107,8 @@ NeoBundle 'osyo-manga/vim-sound'
 "language
 " less 
 NeoBundle 'groenewege/vim-less'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'claco/jasmine.vim'
 
 "Lua
 NeoBundle 'lua-support'
@@ -166,9 +170,13 @@ set hlsearch
 " commandline complete
 set wildmenu
 set wildmode=longest:full,full
-set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
 "空へはばたけ
 "set virtualedit=all
+
+" tags
+set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
+au BufNewFile,BufRead *.php set tags+=$HOME/php.tags 
+au BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "ctags --languages=php -f ~/php.tags `pwd` 2>/dev/null &"
 
 au BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
 set foldmethod=marker
@@ -248,6 +256,13 @@ nnoremap ,nn :set nornu<CR>
 
 "reopen
 nnoremap ,e :e ++enc=utf8
+
+"file command 
+"lessのコンパイル
+autocmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
+autocmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
+
+nnoremap <silent> Q :quitall<CR>
 
 "switching windows
 nnoremap s <Nop>
@@ -442,11 +457,12 @@ let g:unite_enable_smart_case = 1
 let g:unite_source_file_mru_limit = 100
 let g:unite_source_file_mru_filename_format = ''
 " unite grep に ag(The Silver Searcher) を使う
-"if executable('ag')
-"  let g:unite_source_grep_command = 'ag'
-"  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-"  let g:unite_source_grep_recursive_opt = ''
-"endif
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+vnoremap /g y:Unite grep::-iHRn:<C-R>=escape(@", '\\.*$^[]')<CR><CR>
 
 "   }}} -end
 "   {{{ unite mapping
@@ -460,7 +476,7 @@ map ,uy     :Unite history/yank<CR>
 nnoremap <silent> <Space>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,ug :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
-nnoremap <silent> <Space>/ :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+nnoremap <silent> <Space>/ :<C-u>Unite -buffer-name=search line -start-insert<CR>
 
 "   }}} -end
 
@@ -561,7 +577,7 @@ nmap <c-p> <Plug>(operator-replace)
 "  {{{ config Quickrun
 let g:quickrun_config={'*': {'split': ''}}
 "   {{{ Quicakrun mapping
-nnoremap <silent> ,r :QuickRun<CR>
+nnoremap <silent> ,q :QuickRun<CR>
 
 "   }}} -end
 
@@ -608,7 +624,8 @@ let g:switch_custom_definitions =
     \   ['○', '×', '・'],
     \   ['―', '△', '▲', '○', '●'],
     \   ['absolute', 'relative', 'fixed'],
-    \   ['left', 'right', 'top', 'bottom']
+    \   ['left', 'right', 'top', 'bottom'],
+    \   ['for', 'foreach', 'while']
     \ ]
 nnoremap + :call switch#Switch(g:switch_custom_definitions)<cr>
 nnoremap - :Switch<cr>
@@ -663,5 +680,4 @@ let g:Tlist_WinHeight = 20
 "  }}} -end
 
 " }}} -end PluginOptions
-
 " vim:set foldmethod=marker:

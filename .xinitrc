@@ -19,13 +19,14 @@ xrdb -merge $HOME/.Xresources
 #export XMODIFIERS=@im=uim
 #uim-xim & 
 #uim-toolbar-gtk &
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-ibus-daemon --xim -d &
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS="@im=fcitx"
+export DefaultIMModule=fcitx
+# ibus-daemon --xim -d &
 
 # xmodmap
-xmodmap ~/home/hiro/.Xmodmap
+xmodmap /home/hiro/.Xmodmap
 # clipit
 
 # Other Option File

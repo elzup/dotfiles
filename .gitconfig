@@ -22,8 +22,10 @@
     rbm = rebase master      # masterへのrebaseはよく使うのでalias
     ad = add
     ci = commit -a           # modifiedなファイルを全てstageへ
+    cm = commit -am          # コミットメッセージ
     cam = commit -a --amend  # 直前のcommitを修正
     co = checkout
+    cob = checkout -b
     mt = master
   # branch関連
     br = branch
@@ -46,6 +48,7 @@
     dw = diff --color-words    # 単語単位でいろつけてdiff
     dc = diff --cached         # addされているものとのdiff
     ds = diff --staged         # 同上(1.6.1移行)
+    dis = diff --shortstat      # 行数のみ
     d1 = diff HEAD~            # HEADから1つ前とdiff
     d2 = diff HEAD~~           # HEADから2つ前とdiff
     d3 = diff HEAD~~~          # HEADから3つ前とdiff

@@ -17,7 +17,8 @@ synclient HorizEdgeScroll=1
 # {{{ my startup application
 # Dropbox sync start
 dropbox start
-# clibor
+klipper
+# autokey-gtk
 # wine /opt/clibor/Clibor.exe
 # }}}
 
