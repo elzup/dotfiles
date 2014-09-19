@@ -79,7 +79,7 @@ nnoremap <c-g> :focussearchbar<CR><Down>
 nnoremap <C-q> <S-q>
 
 " ブックマーク処理
-nnoremap a a<Space>-T<Space>
+" nnoremap a a<Space>-T<Space>
 
 "ヤンク拡張
 nnoremap ,yt :js util.copyToClipboard(buffer.title);<CR>:echo 'Copied text to clipboard[title]: ' + buffer.title<CR>
@@ -134,7 +134,25 @@ nnoremap vs :so<Space>~/.vimperator/colors/tbg-
 "現在のページをChromeで開く
 nnoremap <silent> ,c y:<c-u>!chromium<Space>--new-window<Space><S-Insert>&<CR><Esc>
 
+" ツリータブのトグル
 nnoremap <silent> e :javascript<Space>TreeStyleTabBrowserAutoHide.toggleMode();<CR>
+" 標準検索バーの非表示
+nnoremap vf <Insert><C-f><Esc><Insert>
+
+" gui,ツールバーのの表示非表示切替
+" dn[a|n]ナビゲーションバー
+nnoremap <silent> w :toggle navbar<CR>
+" db[a|n]ブックマーク
+nnoremap <silent> vb :toggle bookbar<CR>
+" タブ
+" nnoremap vt :set gui=notab<CR>
+"ヒストリーの表示
+nnoremap ,h :history<Space>
+
+" 一つ前のページに戻って現在のページを別タブで開く 
+nnoremap <silent> <c-h> yHP
+
+nnoremap ,a :alert<Space>
 "  }}}
 
 " }}}
@@ -150,6 +168,9 @@ set focuscontent
 set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 "ex mode でインクリメント補完
 " set wildoptions=auto
+"
+" デフォルト検索エンジン
+set defsearch=google
 
 command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“delcommand “+”<args>”);liberator.execute(“runtime plugin/”+”<args>.js”);
 
@@ -188,23 +209,16 @@ nnoremap sk :wskanjifont<Space>
 nnoremap sg :wsgithub<Space>
 nnoremap sn :wsnico<Space>
 nnoremap ss :wsnetslang<Space>
-nnoremap st :wstwitterfind<Space>
+nnoremap stt :tabopen twitter<Space>
+nnoremap sts :wstwitterfind<Space>
+nnoremap stf :wstwitterfollow<Space>
+nnoremap si :wsgoogleimg<Space>
+nnoremap sl :wslogsoku<Space>
 
 nnoremap sy :tabopen youtube<Space>
 nnoremap sw :tabopen wikipedia<Space>
 nnoremap ss :tabopen google<Space>
 
-nnoremap vf <Insert><C-f><Esc><Insert>
-
-" gui,ツールバーのの表示非表示切替
-" dn[a|n]ナビゲーションバー
-nnoremap <silent> w :toggle navbar<CR>
-" db[a|n]ブックマーク
-nnoremap <silent> vb :toggle bookbar<CR>
-" タブ
-" nnoremap vt :set gui=notab<CR>
-
-nnoremap ,h :history<Space>
 
 "   }}}
 

@@ -51,10 +51,10 @@ NeoBundle 'tpope/vim-markdown'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'LeafCage/foldCC'
 NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'scrooloose/nerdtree.git'
 NeoBundle 'taglist.vim'
 NeoBundle 'szw/vim-tags'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
+"NeoBundle 'scrooloose/nerdtree.git'
 
 "utility input
 NeoBundle 'Shougo/neosnippet'
@@ -106,6 +106,7 @@ NeoBundle 'osyo-manga/vim-sound'
 
 "language
 " less 
+NeoBundle 'javacomplete'
 NeoBundle 'groenewege/vim-less'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'claco/jasmine.vim'
@@ -144,6 +145,9 @@ NeoBundle 'basyura/bitly.vim'
 
 "git
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+NeoBundle 'airblade/vim-gitgutter'
+
 
 "colorscheme
 NeoBundle 'ujihisa/unite-colorscheme'
@@ -172,6 +176,8 @@ set wildmenu
 set wildmode=longest:full,full
 "空へはばたけ
 "set virtualedit=all
+" 対応括弧に'<'と'>'のペアを追加
+set matchpairs& matchpairs+=<:>
 
 " tags
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
@@ -206,7 +212,12 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+" 大文字小文字
+set ignorecase
+" 大文字を含む場合は区別
 set smartindent
+set incsearch
+set splitright
 
 "numbr
 set number
@@ -221,14 +232,35 @@ highlight CursorLine gui=underline guifg=NONE guibg=NONE
 
 "  }}} -end -StartupOptions
 "  {{{ -Key mapping
+"
+" Unbind kye
+nnoremap gt <Nop>
+nnoremap gT <Nop>
+
 inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
 nnoremap <silent> <Space>p :<C-u>tabnew $MYVIMRC<CR>
+
+nnoremap ym :<C-u>MessCopy<CR>
+
+" setting 
+nnoremap <silent> <Space>u :10sp solved.memo<CR><C-w>j:vs todo.memo<CR>
 
 "inoremap <BS> <Nop>
 
 "Movement
 nnoremap G Gzz
+nnoremap V V$h
+vnoremap v $h
+
+nnoremap * *zz
+nnoremap # #zz
+
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+
+
 "Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
 "Switching Opacity
@@ -292,8 +324,15 @@ nnoremap sQ :<C-u>bd<CR>
 nnoremap sb :<C-u>Unite buffer_tab -buffer-name=file<CR>
 nnoremap sB :<C-u>Unite buffer -buffer-name=file<CR>
 
+" Shift + 矢印でウィンドウサイズを変更
+nnoremap <S-Left>  <C-w><
+nnoremap <S-Right> <C-w>>
+nnoremap <S-Up>    <C-w>-
+nnoremap <S-Down>  <C-w>+
+
 "  }}} -end -KeyMapping
-"  {{{ -BinayMode 
+"  {{{ -Augroup
+"   {{{ -BinayMode 
 "バイナリ編集(xxd)モード（vim -b での起動、もしくは *.bin で発動します）
 augroup BinaryXXD
         autocmd!
@@ -306,7 +345,14 @@ augroup BinaryXXD
         autocmd BufWritePost * set nomod | endif
 augroup END
 
-"  }}} -end -BinayMode
+" release autogroup in MyAutoCmd
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+"   }}} -end
+"
+"  }}} -end -Augroup
 "  {{{ -SavePosition 
 let g:save_window_file = expand('~/.vim/.vimwinpos')
 augroup SaveWindow
@@ -384,7 +430,18 @@ if exists('&ambiwidth')
 endif
 
 "  }}} -end -Encoding 
+"  {{{ -Funcs
+command! MessCopy call s:messcopy()
+function! s:messcopy()
+redir @+>
+silent messages
+redir END
+" Copy to selection too.
+call setreg('*', getreg('+', 1), getregtype('+'))
+echo 'yanked messages'
+endfunction
 
+"  }}} -end Funcs
 " }}} -end MyConfig
 " {{{ PluginOptions
 "  {{{ config ctrlp 
@@ -407,6 +464,7 @@ let g:neocomplcache_enable_camel_case_completion = 1
 let g:neocomplcache_enable_underbar_completion = 1
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplcache_force_overwrite_completefunc=1
 
 "  }}} -end
 "  {{{ config neocomplcache
@@ -478,6 +536,39 @@ nnoremap <silent> ,ug :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W
 
 nnoremap <silent> <Space>/ :<C-u>Unite -buffer-name=search line -start-insert<CR>
 
+nnoremap [unite] <Nop>
+nmap U [unite]
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]r :<C-u>Unite register<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]c :<C-u>Unite bookmark<CR>
+nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
+nnoremap <silent> [unite]w :<C-u>Unite window<CR>
+
+let s:hooks = neobundle#get_hooks("unite.vim")
+function! s:hooks.on_source(bundle)
+  " start unite in insert mode
+  let g:unite_enable_start_insert = 1
+  " use vimfiler to open directory
+  call unite#custom_default_action("source/bookmark/directory", "vimfiler")
+  call unite#custom_default_action("directory", "vimfiler")
+  call unite#custom_default_action("directory_mru", "vimfiler")
+  autocmd MyAutoCmd FileType unite call s:unite_settings()
+  function! s:unite_settings()
+    imap <buffer> <Esc><Esc> <Plug>(unite_exit)
+    nmap <buffer> <Esc> <Plug>(unite_exit)
+    nmap <buffer> <C-n> <Plug>(unite_select_next_line)
+    nmap <buffer> <C-p> <Plug>(unite_select_previous_line)
+  endfunction
+endfunction
+" vimfiler mapping
+"autocmd FileType vimfiler nmap u <BS>
+
+" open vimfiler
+nnoremap <silent><A-1> :<C-u>VimFilerExplorer<CR>:Tlist<CR>
+
 "   }}} -end
 
 "  }}} -end
@@ -536,8 +627,7 @@ let g:startify_custom_header = [
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = [
   \ '~/.vimrc',
-  \ '~/note/.memo',
-  \ '~/note/solved.memo',
+  \ '~/memos/.memo',
   \ '~/workspace',
   \ ]
 " \ map(split('date', '\n'), '"   ". v:val') + ['',''],
@@ -578,14 +668,6 @@ nmap <c-p> <Plug>(operator-replace)
 let g:quickrun_config={'*': {'split': ''}}
 "   {{{ Quicakrun mapping
 nnoremap <silent> ,q :QuickRun<CR>
-
-"   }}} -end
-
-"  }}} -end
-"  {{{ config NERDTree
-"   {{{ NERDTree mapping
-nnoremap <silent>,nt :<C-u>NERDTree<CR>
-nnoremap <silent><A-1> :<C-u>NERDTree<CR>:Tlist<CR>
 
 "   }}} -end
 
@@ -643,8 +725,19 @@ let g:gist_detect_filetype = 1
 let g:Tlist_Use_Split_Window = 1
 let g:Tlist_WinHeight = 20
 
+"  }}} -end
+"  {{{ config gitgutter
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '➜'
+let g:gitgutter_sign_removed = '✘'
+let g:gitgutter_sign_modified_removed = '✔'
 
 "  }}} -end
+"  {{{ config javacomplete
+autocmd FileType java :setlocal omnifunc=javacomplete#Complete
+autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+
+"  }}}
 "  {{{ [x] config undotree.vim
 "let g:undotree_EnableAtStartup = 1
 "let g:undotree_SetFocusWhenToggle = 1
@@ -678,6 +771,12 @@ let g:Tlist_WinHeight = 20
 "let g:IM_CtrlBufLocalMode = 1
 
 "  }}} -end
-
+"  {{{ [x] config NERDTree
+" "   {{{ NERDTree mapping
+" nnoremap <silent>,nt :<C-u>NERDTree<CR>
+" 
+" "   }}} -end
+" 
+"  }}} -end
 " }}} -end PluginOptions
 " vim:set foldmethod=marker:
