@@ -2,9 +2,9 @@
 xterm*reverseVideo: on
 *inpuutMethod: uim
 
-XTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
+!XTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
 XTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
-UXTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
+!UXTerm*ximFont: -misc-ipagothic-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
 UXTerm*ximFont: -misc-fixed-medium-r-normal--0-0-0-0-p-0-jisx0208.1983-0
 XTerm*allowSendEvents: True
 XTerm*VT100*translation:   #override \
@@ -14,7 +14,10 @@ XTerm*lineSpace: 3
 XTerm*saveline: 1000
 XTerm*vt100.geometry: 100x28
 XTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
-XTerm*forceName: Ricty
-XTerm*forceDoublesize: Ricty
+
+XTerm*forcePackedFont: false
+XTerm*faceName: Ricty
+XTerm*faceDoublesize: Ricty
+XTerm*faceSize: 10
 
 !========================

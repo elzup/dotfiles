@@ -105,11 +105,25 @@ NeoBundle 'koron/minimap-vim'
 NeoBundle 'osyo-manga/vim-sound'
 
 "language
+" java
+NeoBundle 'claco/jasmine.vim'
+" javascript
+NeoBundle 'mattn/jscomplete-vim'
+" coffeescript
+NeoBundle 'kchmck/vim-coffee-script'
+" ruby
+NeoBundle 'bbatsov/rubocop'
+" cpp
+NeoBundleLazy 'vim-jp/cpp-vim', {
+            \ 'autoload' : {'filetypes' : 'cpp'}
+            \ }
+NeoBundleLazy 'Rip-Rip/clang_complete', {
+            \ 'autoload' : {'filetypes' : ['c', 'cpp']}
+            \ }
+
 " less 
 NeoBundle 'javacomplete'
 NeoBundle 'groenewege/vim-less'
-NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'claco/jasmine.vim'
 
 "Lua
 NeoBundle 'lua-support'
@@ -178,6 +192,8 @@ set wildmode=longest:full,full
 "set virtualedit=all
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
+" 拡張子からファイルタイプ変更
+filetype on
 
 " tags
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
@@ -228,7 +244,26 @@ set tw=0
 winpos 683 0
 set cmdheight=1
 
-highlight CursorLine gui=underline guifg=NONE guibg=NONE
+" release autogroup in MyAutoCmd
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+
+"set cursorline				" カーソル行をハイライト
+"set cursorcolumn		    " カーソル列をハイライト
+"augroup cch
+"	autocmd! cch
+"	autocmd WinLeave * set nocursorline
+"	autocmd WinEnter,BufRead * set cursorline
+"augroup END
+"hi CursorLine ctermbg=black guibg=black
+"augroup vimrc-auto-cursorline
+"  autocmd!
+"  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+"  autocmd CursorHold,CursorHoldI * setlocal cursorline
+"augroup END
+
 
 "  }}} -end -StartupOptions
 "  {{{ -Key mapping
@@ -291,8 +326,8 @@ nnoremap ,e :e ++enc=utf8
 
 "file command 
 "lessのコンパイル
-autocmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
-autocmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
+autocmd MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
+autocmd MyAutoCmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
 
 nnoremap <silent> Q :quitall<CR>
 
@@ -343,11 +378,6 @@ augroup BinaryXXD
         autocmd BufWritePre * endif
         autocmd BufWritePost * if &binary | silent %!xxd -g 1
         autocmd BufWritePost * set nomod | endif
-augroup END
-
-" release autogroup in MyAutoCmd
-augroup MyAutoCmd
-  autocmd!
 augroup END
 
 "   }}} -end
@@ -445,6 +475,11 @@ endfunction
 " }}} -end MyConfig
 " {{{ PluginOptions
 "  {{{ config ctrlp 
+let g:rsenseHome = "/opt/rsense-0.3"
+let g:rsenseUseOmniFunc = 1
+
+"   }}} -end
+"  {{{ config ctrlp 
 let g:ctrlp_use_migemo = 0
 let g:ctrlp_clear_cache_on_exit = 0
 let g:ctrlp_mruf_max = 500
@@ -457,14 +492,54 @@ nnoremap ,p :<C-u>CtrlP<CR>
 
 "  }}} -end
 "  {{{ config neocomplcache
+" let g:acp_enableAtStartup = 0
+" let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_smart_case = 1
+" let g:neocomplcache_enable_camel_case_completion = 1
+" let g:neocomplcache_enable_underbar_completion = 1
+" let g:neocomplcache_min_syntax_length = 3
+" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+" let g:neocomplcache_force_overwrite_completefunc=1
+
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
+" Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 1
-let g:neocomplcache_enable_underbar_completion = 1
+" Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplcache_force_overwrite_completefunc=1
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+    \ 'default' : ''
+    \ }
+
+" omuni
+"let g:neocomplcache_omni_patterns
+if !exists('g:neocomplcache_omni_patterns')
+  let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 "  }}} -end
 "  {{{ config neocomplcache
@@ -548,6 +623,12 @@ nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 nnoremap <silent> [unite]w :<C-u>Unite window<CR>
 
 let s:hooks = neobundle#get_hooks("unite.vim")
+
+" セーフモードで起動
+let g:vimfiler_safe_mode_by_default = 0
+" editを新しいタブで開く
+"let g:vimfiler_edit_action = 'tabopen'
+
 function! s:hooks.on_source(bundle)
   " start unite in insert mode
   let g:unite_enable_start_insert = 1
@@ -692,9 +773,9 @@ let g:indent_guides_start_level=1
 " 自動カラー無効
 " let g:indent_guides_auto_colors=0
 " 奇数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+autocmd MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
 " 偶数番目のインデントの色
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+autocmd MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
 " ガイドの幅
 let g:indent_guides_guide_size = 1
 
@@ -734,8 +815,34 @@ let g:gitgutter_sign_modified_removed = '✔'
 
 "  }}} -end
 "  {{{ config javacomplete
-autocmd FileType java :setlocal omnifunc=javacomplete#Complete
-autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+autocmd MyAutoCmd FileType java :setlocal omnifunc=javacomplete#Complete
+autocmd MyAutoCmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
+
+"  }}}
+"  {{{ config rubocop
+let g:syntastic_ruby_checkers = ['rubocop']
+
+"  }}}
+"  {{{ config jscomplete
+" DOMとMozilla関連とES6のメソッドを補完
+let g:jscomplete_use = ['dom', 'moz', 'es6th']
+
+"  }}}
+"  {{{ config cpp-vim
+augroup cpp-path
+    autocmd!
+    autocmd FileType cpp setlocal path=.,/usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.1/include/
+augroup END
+let g:clang_jumpto_declaration_key = '<C-t>'
+
+" コマンドオプション
+let g:clang_user_options = '-std=c++11'
+
+
+" clang_complete では自動補完を行わない用に設定
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
 
 "  }}}
 "  {{{ [x] config undotree.vim
@@ -777,6 +884,28 @@ autocmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
 " 
 " "   }}} -end
 " 
+"  }}} -end
+"  {{{ [x] config neocomplete
+" オムニ補完
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"  let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_overwrite_completefunc = 1
+"let g:neocomplete#force_omni_input_patterns.c =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+"let g:neocomplete#force_omni_input_patterns.cpp =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"let g:neocomplete#force_omni_input_patterns.objc =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+"let g:neocomplete#force_omni_input_patterns.objcpp =
+"      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+"let g:neocomplete#force_omni_input_patterns.ruby = 
+"      \ '[^. *\t]\.\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.php =
+"      \ '[^. \t]->\%(\h\w*\)\?\|\h\w*::\%(\h\w*\)\?'
+"let g:neocomplete#force_omni_input_patterns.python =
+"      \ '\h\w*\|[^. \t]\.\w*'
+
 "  }}} -end
 " }}} -end PluginOptions
 " vim:set foldmethod=marker:

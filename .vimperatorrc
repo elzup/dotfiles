@@ -13,10 +13,10 @@ style -name commandline-ime chrome://* <<EOM
     #liberator-commandline-command { background: transparent !important; }
 EOM
 
-echo 
-execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
+"execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
+
 javascript <<JS
-let suffix_chars = ['php', 'fire']
+let suffix_chars = ['php', 'fire', 'baum']
 liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * 2)] + '.css');
 JS
 " let suffix_chars = ['php', 'fire']
@@ -107,8 +107,8 @@ nnoremap f f<S-F11>
 nnoremap t t<S-F11>
 nnoremap : :<S-F11>
 
+" unix key map
 inoremap <C-u> <C-e><C-U>
-cnoremap <C-u> <C-e><C-U>
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
 
@@ -173,6 +173,9 @@ set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 set defsearch=google
 
 command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“delcommand “+”<args>”);liberator.execute(“runtime plugin/”+”<args>.js”);
+
+set errorbells=false
+set visualbell=false
 
 " {{{ ime off
 " コマンドラインでIMEをオフ
