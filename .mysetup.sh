@@ -18,6 +18,7 @@ synclient HorizEdgeScroll=1
 # Dropbox sync start
 dropbox start
 klipper
+php ./work/php/eject/eject.php &
 # autokey-gtk
 # wine /opt/clibor/Clibor.exe
 # }}}

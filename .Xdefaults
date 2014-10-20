@@ -20,4 +20,6 @@ XTerm*faceName: Ricty
 XTerm*faceDoublesize: Ricty
 XTerm*faceSize: 10
 
+XTerm*transparent: true
+
 !========================

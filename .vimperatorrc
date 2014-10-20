@@ -16,8 +16,8 @@ EOM
 "execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
 
 javascript <<JS
-let suffix_chars = ['php', 'fire', 'baum']
-liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * 2)] + '.css');
+let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op']
+liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * suffix_chars.length)] + '.css');
 JS
 " let suffix_chars = ['php', 'fire']
 " echo suffix_chars[Rand() % 2] . '.vimp'
@@ -54,6 +54,8 @@ inoremap <C-p> <Up>
 nnoremap <C-j> <Nop>
 nnoremap <C-k> <Nop>
 
+nnoremap <Space> <Nop>
+
 
 "  }}}
 "  {{{ basic
@@ -63,6 +65,9 @@ cnoremap <C-p> <S-Tab>
 " コマンドモードで履歴を遡る
 cnoremap <C-j> <Down>
 cnoremap <C-k> <Up>
+
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
 
 nnoremap ,b :bmarks<Space>
 noremap <BS> <A-Left>
@@ -335,8 +340,8 @@ nnoremap ,tp :yankinfo titleandsurl<CR>: / <C-v><C-a>tw
 " {{{ config toggler.js
 js <<EOM
 liberator.globalVariables.toggler = {
-  navbar:  ["set gui=navigation", "set gui=nonavigation"],
-  bookbar:  ["set gui=bookmarks", "set gui=nobookmarks"],
+  navbar:  ["set gui=nonavigation", "set gui=navigation"],
+  bookbar:  ["set gui=nobookmarks", "set gui=bookmarks"],
 };
 EOM
 
