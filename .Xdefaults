@@ -12,13 +12,13 @@ XTerm*VT100*translation:   #override \
 XTerm*OpenIm: true
 XTerm*lineSpace: 3
 XTerm*saveline: 1000
-XTerm*vt100.geometry: 100x28
+XTerm*vt100.geometry: 136x30
 XTerm*vt100*font: -miisc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
 
 XTerm*forcePackedFont: false
 XTerm*faceName: Ricty
 XTerm*faceDoublesize: Ricty
-XTerm*faceSize: 10
+XTerm*faceSize: 8
 
 XTerm*transparent: true
 

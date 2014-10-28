@@ -136,14 +136,19 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
             \ }
 NeoBundle 'mediawiki.vim'
 "NeoBundle 'wikipedia.vim'
+" arduino
+NeoBundle "sudar/vim-arduino-syntax"
 
 " less 
-NeoBundle 'javacomplete'
 NeoBundle 'groenewege/vim-less'
 
 "Lua
 NeoBundle 'lua-support'
 NeoBundle 'luarefvim'
+
+" lang complete
+NeoBundle 'javacomplete'
+NeoBundle 'pythoncomplete'
 
 "Game
 "NeoBundle 'amix/vim-2048'
@@ -183,6 +188,7 @@ NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'phd'
 NeoBundle 'vim-scripts/summerfruit256.vim'
 NeoBundle 'sjl/badwolf'
+NeoBundle 'sfsekaran/cobalt.vim'
 "
 filetype plugin on
 filetype indent on
@@ -201,7 +207,7 @@ augroup END
 " vi互換
 set nocompatible
 " clipboard 設定
-set clipboard=unnamed
+set clipboard=unnamedplus,autoselect
 set modifiable
 set write
 
@@ -233,11 +239,11 @@ set autochdir
 
 set laststatus=2
 set autochdir
-set guifont=Ricty\ 11
+set guifont=Ricty\ 10
 "colorscheme
 syntax enable
 "colorscheme solarized
-colorscheme phd
+colorscheme cobalt
 set background=dark
 "colorscheme ron "set incsearch
 
@@ -523,6 +529,9 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#min_syntax_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
+" bit another completes
+let g:neocomplete#force_overwrite_completefunc=1
+
 " Define dictionary.
 let g:neocomplete#dictionary_filetype_lists = {
     \ 'default' : ''
@@ -534,6 +543,7 @@ if !exists('g:neocomplete#omni_patterns')
   let g:neocomplete#omni_patterns = {}
 endif
 let g:neocomplete#omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+let g:neocomplete#omni_patterns.c = '[^. *\t]\.\w*\|\h\w*::'
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -570,6 +580,22 @@ if !exists('g:neocomplete_keyword_patterns')
         let g:neocomplete_keyword_patterns = {}
 endif
 let g:neocomplete_keyword_patterns['default'] = '\h\w*'
+
+
+"   {{{ lang omuni complete
+au MyAutoCmd FileType java       :setlocal omnifunc=javacomplete#Complete
+au MyAutoCmd FileType java       :setlocal completefunc=javacomplete#CompleteParamsInfo
+au MyAutoCmd FileType python     :setlocal omnifunc=pythoncomplete#Complete
+au MyAutoCmd FileType javascript :setlocal omnifunc=jscomplete#CompleteJS
+au MyAutoCmd FileType coffee     :setlocal omnifunc=jscomplete#CompleteJS
+au MyAutoCmd FileType html       :setlocal omnifunc=htmlcomplete#CompleteTags
+au MyAutoCmd FileType css        :setlocal omnifunc=csscomplete#CompleteCSS
+au MyAutoCmd FileType xml        :setlocal omnifunc=xmlcomplete#CompleteTags
+au MyAutoCmd FileType php        :setlocal omnifunc=phpcomplete#CompletePHP
+au MyAutoCmd FileType c          :setlocal omnifunc=ccomplete#Complete
+au MyAutoCmd FileType ruby       :setlocal omnifunc=rubycomplete#Complete
+
+"   }}}
 
 "  }}} -end
 "  {{{ config neosnippet 
@@ -899,11 +925,6 @@ let g:gitgutter_sign_removed = '✘'
 let g:gitgutter_sign_modified_removed = '✔'
 
 "  }}} -end
-"  {{{ config javacomplete
-au MyAutoCmd FileType java :setlocal omnifunc=javacomplete#Complete
-au MyAutoCmd FileType java :setlocal completefunc=javacomplete#CompleteParamsInfo
-
-"  }}}
 "  {{{ config rubocop
 let g:syntastic_ruby_checkers = ['rubocop']
 
@@ -966,7 +987,6 @@ let g:clang_use_library = 1
 "" let g:neocomplcache_enable_underbar_completion = 1
 "" let g:neocomplcache_min_syntax_length = 3
 "" let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"" let g:neocomplcache_force_overwrite_completefunc=1
 "
 "" Disable AutoComplPop.
 "let g:acp_enableAtStartup = 0

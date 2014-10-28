@@ -16,7 +16,7 @@ EOM
 "execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
 
 javascript <<JS
-let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op']
+let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op', 'pro']
 liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * suffix_chars.length)] + '.css');
 JS
 " let suffix_chars = ['php', 'fire']
