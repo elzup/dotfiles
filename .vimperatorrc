@@ -16,7 +16,7 @@ EOM
 "execute 'so ~/.vimperator/colors/tbg-' . suffix_chars[Rand() % 2] . '.css'
 
 javascript <<JS
-let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op', 'pro']
+let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op', 'pro', 'lo']
 liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * suffix_chars.length)] + '.css');
 JS
 " let suffix_chars = ['php', 'fire']
@@ -158,6 +158,10 @@ nnoremap ,h :history<Space>
 nnoremap <silent> <c-h> yHP
 
 nnoremap ,a :alert<Space>
+" google select
+nnoremap <c-j> :googleselect<CR>
+nnoremap <c-k> :googleselect back<CR>
+
 "  }}}
 
 " }}}
@@ -181,6 +185,8 @@ command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“de
 
 set errorbells=false
 set visualbell=false
+
+let g:jquery_filepath = "~/.vimperator/lib/jquery-2.1.1.min.js"
 
 " {{{ ime off
 " コマンドラインでIMEをオフ
@@ -222,6 +228,7 @@ nnoremap sts :wstwitterfind<Space>
 nnoremap stf :wstwitterfollow<Space>
 nnoremap si :wsgoogleimg<Space>
 nnoremap sl :wslogsoku<Space>
+nnoremap str :wsgoogletrend<Space>
 
 nnoremap sy :tabopen youtube<Space>
 nnoremap sw :tabopen wikipedia<Space>
@@ -343,6 +350,20 @@ liberator.globalVariables.toggler = {
   navbar:  ["set gui=nonavigation", "set gui=navigation"],
   bookbar:  ["set gui=nobookmarks", "set gui=bookmarks"],
 };
+EOM
+
+" }}}
+" {{{ config localkeymode
+" 特定のページで一時的にキーマップを有効化
+let g:localkeymode_enable = "true"
+javascript <<EOM
+liberator.globalVariables.localKeyMappings=
+[
+  [/google\.com/, [
+    ['<c-j>', ':googleselect'],
+    ['<c-k>', ':googleselect back'],
+  ]],
+];
 EOM
 
 " }}}

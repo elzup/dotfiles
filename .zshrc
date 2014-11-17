@@ -266,6 +266,8 @@ alias -s xhtml=vim
 alias -s xml=vim
 alias -s zip=zipinfo
 
+alias -s php=php
+
 alias -s ino=arduino
 
 alias -s png=eog

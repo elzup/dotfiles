@@ -6,7 +6,7 @@ filetype off
 
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim
-    call neobundle#rc(expand('~/.vim/bundle'))
+    call neobundle#begin(expand('~/.vim/bundle'))
 endif
 
 "for path in split(glob('~/.vim/bundle/*'), '\n')
@@ -71,6 +71,7 @@ NeoBundle 'AndrewRadev/switch.vim'
 NeoBundle 'alpaca-tc/alpaca_tags'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'kana/vim-arpeggio'
+NeoBundle 'koron/imcsc-vim'
 
 "NeoBundle 'kana/vim-operator-replace.git'
 "NeoBundle 'haya14busa/vim-migemo'
@@ -189,7 +190,10 @@ NeoBundle 'phd'
 NeoBundle 'vim-scripts/summerfruit256.vim'
 NeoBundle 'sjl/badwolf'
 NeoBundle 'sfsekaran/cobalt.vim'
-"
+
+
+call neobundle#end()
+
 filetype plugin on
 filetype indent on
 
@@ -248,8 +252,11 @@ set background=dark
 "colorscheme ron "set incsearch
 
 "backup
+set undofile
+set undodir=~/.vim/undo/
 set nobackup
 set noswapfile
+set nodiff
 set fo=q
 
 "tab space
@@ -258,6 +265,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set autoindent
+set list
+set listchars=tab:▸-,trail:-,nbsp:%,extends:>,precedes:<,eol:$
+
 " 大文字小文字
 set ignorecase
 " 大文字を含む場合は区別
@@ -499,6 +509,7 @@ echo 'yanked messages'
 endfunction
 
 "  }}} -end Funcs
+
 " }}} -end MyConfig
 " {{{ PluginOptions
 "  {{{ config resense
@@ -705,6 +716,7 @@ endfunction
 nnoremap <silent><A-1> :<C-u>VimFilerExplorer<CR>:Tlist<CR>
 
 "   }}} -end
+
 "  }}} -end
 "  {{{ config TweetVim
 let g:tweetvim_open_say_cmd = 'botright split'
@@ -1087,5 +1099,6 @@ let g:clang_use_library = 1
 " "   }}} -end
 " 
 "  }}} -end
+
 " }}} -end PluginOptions
 " vim:set foldmethod=marker:
