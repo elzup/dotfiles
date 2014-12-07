@@ -140,7 +140,7 @@ NeoBundle 'mediawiki.vim'
 " arduino
 NeoBundle "sudar/vim-arduino-syntax"
 
-" less 
+" less
 NeoBundle 'groenewege/vim-less'
 
 "Lua
@@ -150,6 +150,9 @@ NeoBundle 'luarefvim'
 " lang complete
 NeoBundle 'javacomplete'
 NeoBundle 'pythoncomplete'
+
+" md
+NeoBundle 'kannokanno/previm'
 
 "Game
 "NeoBundle 'amix/vim-2048'
@@ -182,6 +185,7 @@ NeoBundle 'basyura/bitly.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'cohama/agit.vim'
 
 
 "colorscheme
@@ -196,6 +200,8 @@ call neobundle#end()
 
 filetype plugin on
 filetype indent on
+
+NeoBundleCheck
 
 "  }}} -end Bundles
 
@@ -275,6 +281,9 @@ set smartindent
 set incsearch
 set splitright
 
+" プレビューウィンドウ非表示
+set completeopt=longest,menu
+
 "numbr
 set number
 behave mswin
@@ -352,8 +361,12 @@ nnoremap ,a gg<S-V><S-G>a
 "Open on other app
 "nnoremap ,e :!explorer .<CR>
 
+" Special Command
 nnoremap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
-nnoremap ,ft :set ft=
+" filetype
+nnoremap ,ft :set filetype=
+nnoremap ,gf :set guifont=Ricty\ 40
+
 "Line number
 nnoremap ,nr :set rnu<CR>
 nnoremap ,nn :set nornu<CR>
@@ -363,6 +376,7 @@ nnoremap ,e :e ++enc=utf8
 
 "file command 
 "lessのコンパイル
+au MyAutoCmd FileType java nnoremap <buffer> ,c :w <BAR> !javac %<CR><Space>
 au MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
 au MyAutoCmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
 
@@ -907,6 +921,8 @@ let g:indent_guides_guide_size = 1
 let g:switch_custom_definitions =
     \ [
     \   ['foo', 'bar', 'baz'],
+    \   ['TRUE', 'FALSE'],
+    \   ['true', 'false'],
     \   ['○', '×', '・'],
     \   ['―', '△', '▲', '○', '●'],
     \   ['absolute', 'relative', 'fixed'],
@@ -989,6 +1005,10 @@ let g:clang_user_options = '-std=c++11'
 let g:clang_complete_auto = 0
 let g:clang_auto_select = 0
 let g:clang_use_library = 1
+
+"  }}}
+"  {{{ config previm
+let g:previm_open_cmd = 'firefox '
 
 "  }}}
 "  {{{ [x] config neocomplcache

@@ -309,6 +309,8 @@ alias gedit="gedit >/dev/null 2>/dev/null"
 #buttery残量の表示
 alias buttery="sudo cat /sys/class/power_supply/CMB1/capacity"
 
+alias python="python2"
+
 #git
 #alias graph="log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short"
 function myline() {
@@ -329,4 +331,11 @@ functoin greps() {
 }
 
 # }}}
+function myPyOpen() {
+	if [ -f $1 ] ; then
+		python $@
+	else
+		python ~/bin/$@
+	fi
+}
 clear
