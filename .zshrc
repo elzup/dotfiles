@@ -311,6 +311,10 @@ alias buttery="sudo cat /sys/class/power_supply/CMB1/capacity"
 
 alias python="python2"
 
+#lang change
+alias lange="LANG=C"
+alias langj="LANG=ja_JP.UTF-8"
+
 #git
 #alias graph="log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short"
 function myline() {
@@ -331,6 +335,7 @@ functoin greps() {
 }
 
 # }}}
+# {{{ python
 function myPyOpen() {
 	if [ -f $1 ] ; then
 		python $@
@@ -338,4 +343,16 @@ function myPyOpen() {
 		python ~/bin/$@
 	fi
 }
+
+# }}}
+# {{{ edit line
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+
+# }}}
+
+bindkey '^]'   vi-find-next-char
+bindkey '^[^]' vi-find-prev-char
+
 clear

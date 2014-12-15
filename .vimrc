@@ -43,6 +43,8 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'Sixeight/unite-grep.git'
 NeoBundle 'tsukkee/unite-tag'
 
+NeoBundle 'vim-jp/vimdoc-ja'
+
 "fix
 "NeoBundle 'fuenor/im_control.vim'
 
@@ -56,7 +58,10 @@ NeoBundle 'szw/vim-tags'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 "NeoBundle 'scrooloose/nerdtree.git'
 
-"utility input
+" utility search
+NeoBundle 'haya14busa/incsearch.vim'
+
+" utility input
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'scrooloose/snipmate-snippets'
 NeoBundle 'tpope/vim-surround'
@@ -120,6 +125,8 @@ NeoBundle 'koron/minimap-vim'
 NeoBundle 'osyo-manga/vim-sound'
 
 "language
+" html5
+NeoBundle 'othree/html5.vim'
 " java
 NeoBundle 'claco/jasmine.vim'
 " javascript
@@ -253,8 +260,11 @@ set guifont=Ricty\ 10
 "colorscheme
 syntax enable
 "colorscheme solarized
-colorscheme cobalt
-set background=dark
+set t_Co=256
+"colorscheme badwolf
+au VimEnter * colorscheme badwolf
+au VimEnter * set background=dark
+
 "colorscheme ron "set incsearch
 
 "backup
@@ -264,6 +274,7 @@ set nobackup
 set noswapfile
 set nodiff
 set fo=q
+
 
 "tab space
 set expandtab
@@ -378,6 +389,7 @@ nnoremap ,e :e ++enc=utf8
 "lessのコンパイル
 au MyAutoCmd FileType java nnoremap <buffer> ,c :w <BAR> !javac %<CR><Space>
 au MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
+au MyAutoCmd FileType scss nnoremap <buffer> ,c :w <BAR> !sass %:%:t:r.css --sourcemap --style compressed<CR><Space>
 au MyAutoCmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
 
 nnoremap <silent> Q :quitall<CR>
@@ -753,7 +765,7 @@ let g:Align_xstrlen=3
 " lightline
 let g:lightlineEnableAtStartup = 1
 let g:lightline = {
-            \ 'colorscheme': 'wombat',
+            \ 'colorscheme': 'badwolf',
             \ 'mode_map': { 'c': 'NORMAL' },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -1009,6 +1021,12 @@ let g:clang_use_library = 1
 "  }}}
 "  {{{ config previm
 let g:previm_open_cmd = 'firefox '
+
+"  }}}
+"  {{{ config incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
 
 "  }}}
 "  {{{ [x] config neocomplcache
