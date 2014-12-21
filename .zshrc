@@ -233,6 +233,7 @@ alias :q="exit"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+GREP_OPTIONS=""
 
 # char alias
 alias -g G="| grep"
@@ -240,6 +241,9 @@ alias -g C='| xsel --input --clipboard'
 
 # ping
 alias pingoogle="ping google.com"
+
+# change background
+alias background="display -window root -resize 1366x768"
 
 #ln
 alias ln="ln -i -v"
@@ -260,6 +264,7 @@ alias -s cpp=vim
 alias -s h=vim
 alias -s html=vim
 alias -s java=vim
+alias -s rb=ruby
 alias -s py=myPyOpen
 alias -s txt=vim
 alias -s xhtml=vim
@@ -354,5 +359,9 @@ bindkey '^xe' edit-command-line
 
 bindkey '^]'   vi-find-next-char
 bindkey '^[^]' vi-find-prev-char
+bindkey '^k' insert-last-word
+
+# プロセス名で補完
+zstyle ':completion:*:processes' command "ps -u $USER"
 
 clear

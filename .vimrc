@@ -150,6 +150,10 @@ NeoBundle "sudar/vim-arduino-syntax"
 " less
 NeoBundle 'groenewege/vim-less'
 
+" stylus
+NeoBundle 'wavded/vim-stylus'
+"NeoBundle 'css3'
+
 "Lua
 NeoBundle 'lua-support'
 NeoBundle 'luarefvim'
@@ -383,14 +387,35 @@ nnoremap ,nr :set rnu<CR>
 nnoremap ,nn :set nornu<CR>
 
 "reopen
-nnoremap ,e :e ++enc=utf8
+nnoremap ,ee :e ++enc=utf8
+nnoremap ,er :e ++ff=dos
+
+" emacs comamndline
+cnoremap <C-a> <Home>
+" 一文字戻る
+cnoremap <C-b> <Left>
+" カーソルの下の文字を削除
+cnoremap <C-d> <Del>
+" 行末へ移動
+cnoremap <C-e> <End>
+" 一文字進む
+cnoremap <C-f> <Right>
+" コマンドライン履歴を一つ進む
+cnoremap <C-n> <Down>
+" コマンドライン履歴を一つ戻る
+cnoremap <C-p> <Up>
+" 前の単語へ移動
+cnoremap <M-b> <S-Left>
+"" 次の単語へ移動
+"cnoremap <M-f> <S-Right>
 
 "file command 
-"lessのコンパイル
+",cコマンドによるコンパイル
 au MyAutoCmd FileType java nnoremap <buffer> ,c :w <BAR> !javac %<CR><Space>
-au MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --compress % > %:t:r.css<CR><Space>
+au MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --source-map=%:t:r.css.map -x % > %:t:r.css<CR><Space>
 au MyAutoCmd FileType scss nnoremap <buffer> ,c :w <BAR> !sass %:%:t:r.css --sourcemap --style compressed<CR><Space>
 au MyAutoCmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
+au MyAutoCmd FileType stylus nnoremap <buffer> ,c :w <BAR> !stylus -m %<CR><Space>
 
 nnoremap <silent> Q :quitall<CR>
 
@@ -765,7 +790,7 @@ let g:Align_xstrlen=3
 " lightline
 let g:lightlineEnableAtStartup = 1
 let g:lightline = {
-            \ 'colorscheme': 'badwolf',
+            \ 'colorscheme': 'default',
             \ 'mode_map': { 'c': 'NORMAL' },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
