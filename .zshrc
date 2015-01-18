@@ -61,7 +61,23 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/opt/grass/bin:/opt/grass/scripts:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/hiro/.gem/ruby/2.1.0/bin"
+path=(
+    $path
+    "/usr/local/sbin"
+    "/usr/local/bin"
+    "/usr/bin"
+    "/opt/grass/bin"
+    "/opt/grass/scripts"
+    "/opt/java/bin"
+    "/opt/java/db/bin"
+    "/opt/java/jre/bin"
+    "/usr/bin/site_perl"
+    "/usr/bin/vendor_perl"
+    "/usr/bin/core_perl"
+    "$HOME/.gem/ruby/2.1.0/bin"
+    "$HOME/.rbenv"
+)
+eval "$(rbenv init -)"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -206,6 +222,8 @@ compdef _mountincmd mountin
 # {{{ option
 # 単語消去で"消す"文字
 WORDCHARS='*?_-.[]~=&;!#$$&^(){}<>'
+
+setopt equals
 # }}} 
 # {{{ alias
 
@@ -233,6 +251,7 @@ alias :q="exit"
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
+#
 GREP_OPTIONS=""
 
 # char alias
@@ -240,10 +259,13 @@ alias -g G="| grep"
 alias -g C='| xsel --input --clipboard'
 
 # ping
-alias pingoogle="ping google.com"
+alias pingoogle="ping -c 3 www.google.com"
 
 # change background
 alias background="display -window root -resize 1366x768"
+
+# get screen resolution 解像度
+alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
 
 #ln
 alias ln="ln -i -v"
@@ -314,11 +336,15 @@ alias gedit="gedit >/dev/null 2>/dev/null"
 #buttery残量の表示
 alias buttery="sudo cat /sys/class/power_supply/CMB1/capacity"
 
-alias python="python2"
+#alias python="python2"
 
 #lang change
 alias lange="LANG=C"
 alias langj="LANG=ja_JP.UTF-8"
+
+function tenki() {
+    php /home/hiro/Documents/opt/php-tenki/tenki.php $1
+}
 
 #git
 #alias graph="log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short"

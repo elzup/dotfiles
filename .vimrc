@@ -1,4 +1,63 @@
+"  {{{ -Encoding 
+set encoding=utf-8
+if &encoding !=# 'utf-8'
+  set encoding=japan
+  set fileencoding=japan
+endif
+if has('iconv')
+  let s:enc_euc = 'euc-jp'
+  let s:enc_jis = 'iso-2022-jp'
+  " iconvがeucJP-msに対応しているかをチェック
+  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'eucjp-ms'
+    let s:enc_jis = 'iso-2022-jp-3'
+  " iconvがJISX0213に対応しているかをチェック
+  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'euc-jisx0213'
+    let s:enc_jis = 'iso-2022-jp-3'
+  endif
+  " fileencodingsを構築
+  if &encoding ==# 'utf-8'
+    let s:fileencodings_default = &fileencodings
+    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    let &fileencodings = &fileencodings .','. s:fileencodings_default
+    unlet s:fileencodings_default
+  else
+    let &fileencodings = &fileencodings .','. s:enc_jis
+    set fileencodings+=utf-8,ucs-2le,ucs-2
+    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
+      set fileencodings+=cp932
+      set fileencodings-=euc-jp
+      set fileencodings-=euc-jisx0213
+      set fileencodings-=eucjp-ms
+      let &encoding = s:enc_euc
+      let &fileencoding = s:enc_euc
+    else
+      let &fileencodings = &fileencodings .','. s:enc_euc
+    endif
+  endif
+  " 定数を処分
+  unlet s:enc_euc
+  unlet s:enc_jis
+endif
+" 日本語を含まない場合は fileencoding に encoding を使うようにする
+if has('autocmd')
+  function! AU_ReCheck_FENC()
+    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+      let &fileencoding=&encoding
+    endif
+  endfunction
+  autocmd BufReadPost * call AU_ReCheck_FENC()
+endif
+" 改行コードの自動認識
+set fileformats=unix,dos,mac
+" □とか○の文字があってもカーソル位置がずれないようにする
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
 scriptencoding utf-8
+"  }}} -end -Encoding 
 " {{{ NeoBundleOptions
 "  {{{ -Initialize
 "neobundle
@@ -77,6 +136,7 @@ NeoBundle 'alpaca-tc/alpaca_tags'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'kana/vim-arpeggio'
 NeoBundle 'koron/imcsc-vim'
+NeoBundle 'tpope/vim-abolish'
 
 "NeoBundle 'kana/vim-operator-replace.git'
 "NeoBundle 'haya14busa/vim-migemo'
@@ -91,6 +151,7 @@ NeoBundle 'kana/vim-operator-user.git'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'coderifous/textobj-word-column.vim'
 NeoBundle 'akiyan/vim-textobj-php'
+NeoBundle 'bps/vim-textobj-python'
 NeoBundle 'kana/vim-textobj-datetime'
 NeoBundle 'mattn/vim-textobj-url'
 NeoBundle 'kana/vim-textobj-function'
@@ -127,10 +188,21 @@ NeoBundle 'osyo-manga/vim-sound'
 "language
 " html5
 NeoBundle 'othree/html5.vim'
+"php
+NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
+\    'autoload' : {
+\        'filetypes': 'php',},}
+" python
+NeoBundle 'python.vim'
+NeoBundle 'kevinw/pyflakes-vim'
+NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'pythoncomplete'
+NeoBundle 'nvie/vim-flake8'
 " java
 NeoBundle 'claco/jasmine.vim'
 " javascript
 NeoBundle 'mattn/jscomplete-vim'
+NeoBundle 'javacomplete'
 " coffeescript
 NeoBundle 'kchmck/vim-coffee-script'
 " ruby
@@ -157,10 +229,8 @@ NeoBundle 'wavded/vim-stylus'
 "Lua
 NeoBundle 'lua-support'
 NeoBundle 'luarefvim'
-
-" lang complete
-NeoBundle 'javacomplete'
-NeoBundle 'pythoncomplete'
+"Tex
+NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 " md
 NeoBundle 'kannokanno/previm'
@@ -226,14 +296,14 @@ augroup MyAutoCmd
 augroup END
 
 " vi互換
-set nocompatible
+" set nocompatible
 " clipboard 設定
 set clipboard=unnamedplus,autoselect
 set modifiable
 set write
 
-set go=arc
-set tw=0
+set guioptions=arc
+set textwidth=0
 set langmenu=ja_jp.utf-8
 set hlsearch
 " commandline complete
@@ -253,7 +323,6 @@ au MyAutoCmd BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "cta
 
 au MyAutoCmd BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
 set foldmethod=marker
-set encoding=utf-8
 set nowrap
 
 set autochdir
@@ -265,9 +334,9 @@ set guifont=Ricty\ 10
 syntax enable
 "colorscheme solarized
 set t_Co=256
+set background=dark
 "colorscheme badwolf
-au VimEnter * colorscheme badwolf
-au VimEnter * set background=dark
+colorscheme badwolf
 
 "colorscheme ron "set incsearch
 
@@ -277,7 +346,7 @@ set undodir=~/.vim/undo/
 set nobackup
 set noswapfile
 set nodiff
-set fo=q
+set formatoptions=q
 
 
 "tab space
@@ -296,13 +365,13 @@ set smartindent
 set incsearch
 set splitright
 
+
 " プレビューウィンドウ非表示
 set completeopt=longest,menu
 
 "numbr
 set number
 behave mswin
-set tw=0
 
 "Window position
 winpos 683 0
@@ -322,7 +391,6 @@ set cmdheight=1
 "  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 "  autocmd CursorHold,CursorHoldI * setlocal cursorline
 "augroup END
-
 
 "  }}} -end -StartupOptions
 "  {{{ -Key mapping
@@ -360,10 +428,22 @@ nnoremap <C-CR> O<Esc>
 "Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
 "Switching Opacity
-nnoremap ,oo :set tra=220<CR>
-nnoremap ,on :set tra=0<CR>
-nnoremap ,o+ :set tra+=10<CR>
-nnoremap ,o- :set tra-=10<CR>
+let g:save_window_file = expand('~/.vim/.vimwinpos')
+if has("win32")
+    nnoremap ,oo :set tra=220<CR>
+    nnoremap ,on :set tra=0<CR>
+    nnoremap ,o+ :set tra+=10<CR>
+    nnoremap ,o- :set tra-=10<CR>
+else
+    function! s:Transset(opacity)
+        call system('transset-df --id ' . v:windowid . ' ' . a:opacity)
+    endfunction
+    command! -nargs=1 Transset call <SID>Transset(<q-args>) 
+    nnoremap ,oo :set tra=220<CR>
+    nnoremap ,on :set tra=0<CR>
+    nnoremap ,o+ :set tra+=10<CR>
+    nnoremap ,o- :set tra-=10<CR>
+endif
 "Window Scaleup
 nnoremap ,wj 10<C-W>+
 nnoremap ,wk 10<C-W>-
@@ -382,14 +462,20 @@ nnoremap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
 nnoremap ,ft :set filetype=
 nnoremap ,gf :set guifont=Ricty\ 40
 
-"Line number
+"
 nnoremap ,nr :set rnu<CR>
 nnoremap ,nn :set nornu<CR>
+
+" expandtab
+nnoremap ,ex :set expandtab<CR>
+nnoremap ,en :set noexpandtab<CR>
 
 "reopen
 nnoremap ,ee :e ++enc=utf8
 nnoremap ,er :e ++ff=dos
 
+" 強制書き込み
+nnoremap ,w :w !sudo tee %<CR>
 " emacs comamndline
 cnoremap <C-a> <Home>
 " 一文字戻る
@@ -408,14 +494,6 @@ cnoremap <C-p> <Up>
 cnoremap <M-b> <S-Left>
 "" 次の単語へ移動
 "cnoremap <M-f> <S-Right>
-
-"file command 
-",cコマンドによるコンパイル
-au MyAutoCmd FileType java nnoremap <buffer> ,c :w <BAR> !javac %<CR><Space>
-au MyAutoCmd FileType less nnoremap <buffer> ,c :w <BAR> !lessc --source-map=%:t:r.css.map -x % > %:t:r.css<CR><Space>
-au MyAutoCmd FileType scss nnoremap <buffer> ,c :w <BAR> !sass %:%:t:r.css --sourcemap --style compressed<CR><Space>
-au MyAutoCmd FileType coffee nnoremap <buffer> ,c :w <BAR> !coffee -c % > %:t:r.js<CR><Space>
-au MyAutoCmd FileType stylus nnoremap <buffer> ,c :w <BAR> !stylus -m %<CR><Space>
 
 nnoremap <silent> Q :quitall<CR>
 
@@ -461,7 +539,7 @@ augroup BinaryXXD
         autocmd!
         autocmd BufReadPre  *.bin let &binary =1
         autocmd BufReadPost * if &binary | silent %!xxd -g 1
-        autocmd BufReadPost * set ft=xxd | endif
+        autocmd BufReadPost * set filetype=xxd | endif
         autocmd BufWritePre * if &binary | %!xxd -r
         autocmd BufWritePre * endif
         autocmd BufWritePost * if &binary | silent %!xxd -g 1
@@ -472,82 +550,29 @@ augroup END
 "
 "  }}} -end -Augroup
 "  {{{ -SavePosition 
-let g:save_window_file = expand('~/.vim/.vimwinpos')
-augroup SaveWindow
-  autocmd!
-  autocmd VimLeavePre * call s:save_window()
-  function! s:save_window()
-    let options = [
-      \ 'set columns=' . &columns,
-      \ 'set lines=' . &lines,
-      \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
-      \ ]
-    call writefile(options, g:save_window_file)
-  endfunction
-augroup END
+if has("win32")
+    let g:save_window_file = expand('~/.vim/.vimwinpos')
+    augroup SaveWindow
+        autocmd!
+        autocmd VimLeavePre * call s:save_window()
+        function! s:save_window()
+            let options = [
+                        \ 'set columns=' . &columns,
+                        \ 'set lines=' . &lines,
+                        \ 'winpos ' . getwinposx() . ' ' . getwinposy(),
+                        \ ]
+            call writefile(options, g:save_window_file)
+        endfunction
+    augroup END
+else
+    set columns=100
+    set lines=30
+endif
 "if filereadable(g:save_window_file)
 "  execute 'source' g:save_window_file
 "endif
 
 "  }}} -end -SavePosition 
-"  {{{ -Encoding 
-if &encoding !=# 'utf-8'
-  set encoding=japan
-  set fileencoding=japan
-endif
-if has('iconv')
-  let s:enc_euc = 'euc-jp'
-  let s:enc_jis = 'iso-2022-jp'
-  " iconvがeucJP-msに対応しているかをチェック
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'eucjp-ms'
-    let s:enc_jis = 'iso-2022-jp-3'
-  " iconvがJISX0213に対応しているかをチェック
-  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let s:enc_euc = 'euc-jisx0213'
-    let s:enc_jis = 'iso-2022-jp-3'
-  endif
-  " fileencodingsを構築
-  if &encoding ==# 'utf-8'
-    let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
-    let &fileencodings = &fileencodings .','. s:fileencodings_default
-    unlet s:fileencodings_default
-  else
-    let &fileencodings = &fileencodings .','. s:enc_jis
-    set fileencodings+=utf-8,ucs-2le,ucs-2
-    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
-      set fileencodings+=cp932
-      set fileencodings-=euc-jp
-      set fileencodings-=euc-jisx0213
-      set fileencodings-=eucjp-ms
-      let &encoding = s:enc_euc
-      let &fileencoding = s:enc_euc
-    else
-      let &fileencodings = &fileencodings .','. s:enc_euc
-    endif
-  endif
-  " 定数を処分
-  unlet s:enc_euc
-  unlet s:enc_jis
-endif
-" 日本語を含まない場合は fileencoding に encoding を使うようにする
-if has('autocmd')
-  function! AU_ReCheck_FENC()
-    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-      let &fileencoding=&encoding
-    endif
-  endfunction
-  autocmd BufReadPost * call AU_ReCheck_FENC()
-endif
-" 改行コードの自動認識
-set fileformats=unix,dos,mac
-" □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
-
-"  }}} -end -Encoding 
 "  {{{ -Funcs
 command! MessCopy call s:messcopy()
 function! s:messcopy()
@@ -564,7 +589,7 @@ endfunction
 " }}} -end MyConfig
 " {{{ PluginOptions
 "  {{{ config resense
-let g:rsenseHome = "/opt/rsense-0.3"
+let g:rsenseHome = '/opt/rsense-0.3'
 let g:rsenseUseOmniFunc = 1
 
 "   }}} -end
@@ -592,11 +617,21 @@ let g:neocomplete#min_syntax_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " bit another completes
-let g:neocomplete#force_overwrite_completefunc=1
+let g:neocomplete#force_overwrite_completefunc = 1
 
 " Define dictionary.
-let g:neocomplete#dictionary_filetype_lists = {
-    \ 'default' : ''
+let b:dict_path='/home/hiro/.vim/dict/'
+
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default'    : '',
+    \ 'php'        : join([b:dict_path.'PHP.dict', b:dict_path.'html.dict', b:dict_path.'twitter.dict'], ','),
+    \ 'ruby'       : join([b:dict_path.'twitter.dict'], ','),
+    \ 'javascript' : join([b:dict_path.'javascript.dict', b:dict_path.'jQuery.dict'], ','),
+    \ 'css'        : join([b:dict_path.'css.dict', b:dict_path.'html.dict'], ','),
+    \ 'less'       : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
+    \ 'html'       : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
+    \ 'c'          : join([b:dict_path.'c.dict'], ','),
+    \ 'cpp'        : join([b:dict_path.'cpp.dict'], ',')
     \ }
 
 " omuni
@@ -626,24 +661,7 @@ inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
 
 "au FileType javascript call JavaScriptFold()
-"au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-let $DICT_DIR='~/.vim/dict/'
-let g:neocomplete_dictionary_filetype_lists = {
-            \ 'default'    : '',
-            \ 'php'        : $DICT_DIR.'PHP.dict,'       .$DICT_DIR.'html.dict'  ,
-            \ 'javascript' : $DICT_DIR.'javascript.dict,'.$DICT_DIR.'jQuery.dict',
-            \ 'css'        : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  ,
-            \ 'less'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',
-            \ 'html'       : $DICT_DIR.'css.dict,'       .$DICT_DIR.'html.dict'  .$DICT_DIR.'bootstrap_less.dict',
-            \ 'c'          : $DICT_DIR.'c.dict',
-            \ 'cpp'        : $DICT_DIR.'cpp.dict'
-            \ }
-if !exists('g:neocomplete_keyword_patterns')
-        let g:neocomplete_keyword_patterns = {}
-endif
-let g:neocomplete_keyword_patterns['default'] = '\h\w*'
-
-
+"au BufRead,BufNewFile jquery.*.js set filetype=javascript syntax=jquery
 "   {{{ lang omuni complete
 au MyAutoCmd FileType java       :setlocal omnifunc=javacomplete#Complete
 au MyAutoCmd FileType java       :setlocal completefunc=javacomplete#CompleteParamsInfo
@@ -720,7 +738,7 @@ nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 nnoremap <silent> [unite]w :<C-u>Unite window<CR>
 
-let s:hooks = neobundle#get_hooks("unite.vim")
+let s:hooks = neobundle#get_hooks('unite.vim')
 
 "   }}} -end
 
@@ -751,9 +769,9 @@ function! s:hooks.on_source(bundle)
     " start unite in insert mode
     let g:unite_enable_start_insert = 1
     " use vimfiler to open directory
-    call unite#custom_default_action("source/bookmark/directory", "vimfiler")
-    call unite#custom_default_action("directory", "vimfiler")
-    call unite#custom_default_action("directory_mru", "vimfiler")
+    call unite#custom_default_action('source/bookmark/directory', 'vimfiler')
+    call unite#custom_default_action('directory', 'vimfiler')
+    call unite#custom_default_action('directory_mru', 'vimfiler')
     autocmd MyAutoCmd FileType unite call s:unite_settings()
     function! s:unite_settings()
         imap <buffer> <Esc><Esc> <Plug>(unite_exit)
@@ -790,7 +808,6 @@ let g:Align_xstrlen=3
 " lightline
 let g:lightlineEnableAtStartup = 1
 let g:lightline = {
-            \ 'colorscheme': 'default',
             \ 'mode_map': { 'c': 'NORMAL' },
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
@@ -810,24 +827,24 @@ let g:lightline = {
             \ }
 
 function! MyModified()
-    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    return &filetype =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! MyReadonly()
-    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
+    return &filetype !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
 endfunction
 
 function! MyFilename()
     return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-                \ (&ft == 'vimfiler' ? vimfiler#get_status_string() : 
-                \  &ft == 'unite' ? unite#get_status_string() : 
-                \  &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ (&filetype == 'vimfiler' ? vimfiler#get_status_string() : 
+                \  &filetype == 'unite' ? unite#get_status_string() : 
+                \  &filetype == 'vimshell' ? vimshell#get_status_string() :
                 \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
                 \ ('' != MyModified() ? ' ' . MyModified() : '')
 endfunction
 
 function! MyFugitive()
-    if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
+    if &filetype !~? 'vimfiler\|gundo' && exists('*fugitive#head')
         let _ = fugitive#head()
         return strlen(_) ? '⭠ '._ : ''
     endif
@@ -843,7 +860,7 @@ function! MyFiletype()
 endfunction
 
 function! MyFileencoding()
-    return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    return winwidth(0) > 70 ? (strlen(&fileencoding) ? &fileencoding : &encoding) : ''
 endfunction
 
 function! MyMode()
@@ -971,10 +988,10 @@ nnoremap - :Switch<cr>
 
 "  }}} -end
 "  {{{ config gist.vim
-let g:github_user = "elzzup"
-let g:github_token = "688153244513531cc44c754637f19ee9f4debd97"
-let g:gist_curl_options = "-k"
-let g:gist_private = "-P"
+let g:github_user = 'elzzup'
+let g:github_token = '688153244513531cc44c754637f19ee9f4debd97'
+let g:gist_curl_options = '-k'
+let g:gist_private = '-P'
 let g:gist_detect_filetype = 1
 
 "  }}} -end
@@ -991,7 +1008,12 @@ let g:gitgutter_sign_modified_removed = '✔'
 
 "  }}} -end
 "  {{{ config rubocop
+" robocop
 let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_mode_map = {
+    \ 'mode': 'active',
+    \ 'passive_filetypes': ['python']
+    \}
 
 "  }}}
 "  {{{ config emmet
@@ -1054,6 +1076,77 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 "  }}}
+"  {{{ config jedi-search
+command! -nargs=0 JediRename :call jedi#rename()
+"let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+"let g:jedi#rename_command = ""
+
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"    let g:neocomplete#force_omni_input_patterns = {}
+"endif
+"let g:neocomplete#force_omni_input_patterns.python = '\h\w*\|[^. \t]\.\w*'
+
+"  }}}
+"  {{{ config php_cs_fixer
+let s:hooks = neobundle#get_hooks('vim-php-cs-fixer')
+function! s:hooks.on_source(bundle)
+    let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer' " define the path to the php-cs-fixer.phar
+    let g:php_cs_fixer_level='all'              " which level ?
+    let g:php_cs_fixer_config='default'         " configuration
+    let g:php_cs_fixer_php_path='php'           " Path to PHP
+    " If you want to define specific fixers:
+    "let g:php_cs_fixer_fixers_list = 'linefeed,short_tag,indentation'
+    let g:php_cs_fixer_enable_default_mapping=1 " Enable the mapping by default (<leader>pcd)
+    let g:php_cs_fixer_dry_run=0                " Call command with dry-run option
+    let g:php_cs_fixer_verbose=0                " Return the output of command if 1, else an inline information.
+    nnoremap <Leader>php :call PhpCsFixerFixFile()<CR>
+endfunction
+unlet s:hooks
+
+"  }}}
+"  {{{ config bps/vim-textobj-python
+let g:textobj_python_no_default_key_mappings = 1
+
+"  }}}
+"  {{{ config latex
+filetype plugin on
+filetype indent on
+set shellslash
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
+let g:Imap_UsePlaceHolders = 1
+let g:Imap_DeleteEmptyPlaceHolders = 1
+let g:Imap_StickyPlaceHolders = 0
+let g:Tex_DefaultTargetFormat = 'pdf'
+let g:Tex_MultipleCompileFormats='dvi,pdf'
+"let g:Tex_FormatDependency_pdf = 'pdf'
+let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+"let g:Tex_FormatDependency_pdf = 'dvi,ps,pdf'
+let g:Tex_FormatDependency_ps = 'dvi,ps'
+let g:Tex_CompileRule_pdf = 'ptex2pdf -u -l -ot "-synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
+"let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = 'luajitlatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = 'xelatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+"let g:Tex_CompileRule_pdf = 'ps2pdf $*.ps'
+let g:Tex_CompileRule_ps = 'dvips -Ppdf -o $*.ps $*.dvi'
+let g:Tex_CompileRule_dvi = 'uplatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
+let g:Tex_BibtexFlavor = 'upbibtex'
+let g:Tex_MakeIndexFlavor = 'mendex -U $*.idx'
+let g:Tex_UseEditorSettingInDVIViewer = 1
+let g:Tex_ViewRule_pdf = 'xdg-open'
+"let g:Tex_ViewRule_pdf = 'evince'
+"let g:Tex_ViewRule_pdf = 'okular --unique'
+"let g:Tex_ViewRule_pdf = 'zathura -s -x "vim --servername synctex -n --remote-silent +\%{line} \%{input}"'
+"let g:Tex_ViewRule_pdf = 'qpdfview --unique'
+"let g:Tex_ViewRule_pdf = 'texworks'
+"let g:Tex_ViewRule_pdf = 'mupdf'
+"let g:Tex_ViewRule_pdf = 'firefox -new-window'
+"let g:Tex_ViewRule_pdf = 'chromium --new-window'
+
+"  }}}
 "  {{{ [x] config neocomplcache
 "" let g:acp_enableAtStartup = 0
 "" let g:neocomplcache_enable_at_startup = 1
@@ -1104,7 +1197,7 @@ map g/ <Plug>(incsearch-stay)
 "inoremap <expr><C-e>  neocomplcache#cancel_popup()
 "
 ""au FileType javascript call JavaScriptFold()
-""au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+""au BufRead,BufNewFile jquery.*.js set filetype=javascript syntax=jquery
 "let $DICT_DIR='~/.vim/dict/'
 "let g:neocomplcache_dictionary_filetype_lists = {
 "            \ 'default'    : '',

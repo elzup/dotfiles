@@ -18,7 +18,9 @@ synclient HorizEdgeScroll=1
 # Dropbox sync start
 dropbox start
 klipper
-sudo nohup php /home/hiro/work/php/eject/stream.php &
+
+php /home/hiro/work/php/pcscript/stream.php &
+
 # php ./work/php/eject/eject.php &
 # autokey-gtk
 # wine /opt/clibor/Clibor.exe
