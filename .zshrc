@@ -15,7 +15,7 @@ export ZSH=$HOME/.oh-my-zsh
 # mrtazz murilasso muse nanotech nebirhos nicoulaj norm obraun peepcode philips pmcgee pure pygmalion re5et rgm risto rixius rkj-repos rkj robbyrussell
 # sammy simonoff simple skaro smt sonicradish sorin sporty_256 steeef sunaku sunrise superjarin suvash takashiyoshida terminalparty theunraveler tjkirch
 # tjkirch_mod tonotdo trapd00r wedisagree wezm+ wezm wuffers xiong-chiamiov-plus xiong-chiamiov ys zhann
-ZSH_THEME="adben"
+ZSH_THEME="adben_elzup"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -261,11 +261,11 @@ alias -g C='| xsel --input --clipboard'
 # ping
 alias pingoogle="ping -c 3 www.google.com"
 
-# change background
-alias background="display -window root -resize 1366x768"
-
 # get screen resolution 解像度
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
+
+# change background
+alias background="display -window root -resize \`screensize\`"
 
 #ln
 alias ln="ln -i -v"
@@ -389,5 +389,10 @@ bindkey '^k' insert-last-word
 
 # プロセス名で補完
 zstyle ':completion:*:processes' command "ps -u $USER"
+case ${OSTYPE} in
+    darwin*)
+        unalias ls
+        ;;
+esac
 
 clear

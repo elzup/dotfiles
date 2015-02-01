@@ -50,7 +50,7 @@ fcitx
 # xset fp reflash
 
 # Desktop
-exec awesome 
+exec awesome
 #exec gnome-session
 #exec cinnamon
 

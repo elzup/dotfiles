@@ -35,15 +35,6 @@ export AUTOFEATURE=true  # autotestでfeatureを動かす
 
 
 #}}}
-# {{{ FUNC
-typeset -ga chpwd_functions
-
-function _toriaezu_ls() {
-ls -v -F --color=auto
-}
-
-chpwd_functions+=_toriaezu_ls
-# }}}
 # {{{APP alias
 alias tweetdeck="chromium --app=https://tweetdeck.twitter.com"
 alias firefoxp="firefox -P answer --new-instance"

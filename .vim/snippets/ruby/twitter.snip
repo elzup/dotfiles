@@ -1,0 +1,516 @@
+snippet     statuses/home_timeline
+abbr        自分のホームタイムラインツイート一覧を取得
+options     word
+    statuses/home_timeline
+
+snippet     statuses/mentions_timeline
+abbr        自分のメンション付きツイート一覧を取得
+options     word
+    statuses/mentions_timeline
+
+snippet     statuses/retweets_of_me
+abbr        リツイートされた自分のツイート一覧を取得
+options     word
+    statuses/retweets_of_me
+
+snippet     statuses/user_timeline
+abbr        指定ユーザのツイート一覧を取得
+options     word
+    statuses/user_timeline
+
+snippet     statuses/show/:id
+abbr        指定のツイートを取得
+options     word
+    statuses/show/:id
+
+snippet     statuses/retweets/:id
+abbr        指定ツイートのリツイート一覧を取得
+options     word
+    statuses/retweets/:id
+
+snippet     statuses/oembed
+abbr        指定ツイートの埋め込み用のタグを取得
+options     word
+    statuses/oembed
+
+snippet     statuses/update
+abbr        ツイートを投稿
+options     word
+    statuses/update
+
+snippet     statuses/destroy/:id
+abbr        指定のツイートを削除
+options     word
+    statuses/destroy/:id
+
+snippet     statuses/retweet/:id
+abbr        指定ツイートをリツイート
+options     word
+    statuses/retweet/:id
+
+snippet     statuses/update_with_media
+abbr        画像付きのツイートを投稿
+options     word
+    statuses/update_with_media
+
+snippet     search/tweets
+abbr        指定の問い合わせにマッチするツイート一覧を取得
+options     word
+    search/tweets
+
+snippet     statuses/filter
+abbr        指定の問い合わせにマッチするツイートをストリーミングで取得
+options     word
+    statuses/filter
+
+snippet     statuses/sample
+abbr        全ツイートからランダムに選ばれたサンプルツイートをストリーミングで取得
+options     word
+    statuses/sample
+
+snippet     statuses/firehose
+abbr        全ツイートをストリーミングで取得(特別な許可が必要)
+options     word
+    statuses/firehose
+
+snippet     user
+abbr        自分のタイムライン、イベントをストリーミングで取得
+options     word
+    user
+
+snippet     site
+abbr        複数ユーザのタイムライン、イベントをストリーミングで取得
+options     word
+    site
+
+snippet     direct_messages
+abbr        受信したダイレクトメッセージ一覧を取得
+options     word
+    direct_messages
+
+snippet     direct_messages/sent
+abbr        送信したダイレクトメッセージ一覧を取得
+options     word
+    direct_messages/sent
+
+snippet     direct_messages/show
+abbr        指定のダイレクトメッセージを取得
+options     word
+    direct_messages/show
+
+snippet     direct_messages/destroy
+abbr        指定のダイレクトメッセージを削除
+options     word
+    direct_messages/destroy
+
+snippet     direct_messages/new
+abbr        ダイレクトメッセージを送信
+options     word
+    direct_messages/new
+
+snippet     friends/list
+abbr        自分がフォローしているユーザ一覧を取得
+options     word
+    friends/list
+
+snippet     friends/ids
+abbr        指定ユーザがフォローしているユーザID一覧を取得
+options     word
+    friends/ids
+
+snippet     followers/list
+abbr        自分のフォロワー一覧を取得
+options     word
+    followers/list
+
+snippet     followers/ids
+abbr        指定ユーザをフォローしているユーザID一覧を取得
+options     word
+    followers/ids
+
+snippet     friendships/show
+abbr        指定のユーザ同士のフォロー関係を取得
+options     word
+    friendships/show
+
+snippet     friendships/lookup
+abbr        自分と指定ユーザのフォロー関係を取得
+options     word
+    friendships/lookup
+
+snippet     friendships/incoming
+abbr        自分にフォローリクエストしているユーザID一覧を取得
+options     word
+    friendships/incoming
+
+snippet     friendships/outgoing
+abbr        自分が送信したフォローリクエストの認証が保留中のユーザID一覧を取得
+options     word
+    friendships/outgoing
+
+snippet     friendships/no_retweets/ids
+abbr        リツイートを表示しないように設定しているユーザ一覧を取得
+options     word
+    friendships/no_retweets/ids
+
+snippet     friendships/create
+abbr        指定のユーザをフォロー
+options     word
+    friendships/create
+
+snippet     friendships/destroy
+abbr        指定のユーザをアンフォロー
+options     word
+    friendships/destroy
+
+snippet     friendships/update
+abbr        指定ユーザのデバイス通知、リツイート通知を有効/無効を変更
+options     word
+    friendships/update
+
+snippet     users/show
+abbr        指定のユーザを取得
+options     word
+    users/show
+
+snippet     users/lookup
+abbr        指定のユーザ一覧を取得(複数指定可)
+options     word
+    users/lookup
+
+snippet     users/search
+abbr        指定の問い合わせにマッチするユーザ情報を取得
+options     word
+    users/search
+
+snippet     users/contributees
+abbr        指定ユーザの運営アカウント(ライター先)を取得
+options     word
+    users/contributees
+
+snippet     users/contributors
+abbr        指定ユーザのライターを取得
+options     word
+    users/contributors
+
+snippet     users/profile_banner
+abbr        指定ユーザのプロフィールバナーを取得
+options     word
+    users/profile_banner
+
+snippet     account/settings
+abbr        自分の設定(トレンドの場所、位置、睡眠時間情報等)を取得
+options     word
+    account/settings
+
+snippet     account/verify_credentials
+abbr        自分が有効なユーザかを取得
+options     word
+    account/verify_credentials
+
+snippet     account/settings
+abbr        自分の設定(トレンドの場所、位置、睡眠時間情報等)を更新
+options     word
+    account/settings
+
+snippet     account/update_delivery_device
+abbr        SMS機能の有効/無効(<a href="https://support.twitter.com/groups/34-apps-sms-and-mobile/topics/153-twitter-via-sms/articles/452572-sms-faq">日本では利用不可</a>)
+options     word
+    account/update_delivery_device
+
+snippet     account/update_profile
+abbr        自分のプロフィールを変更
+options     word
+    account/update_profile
+
+snippet     account/update_profile_background_image
+abbr        自分のプロフィール背景を変更
+options     word
+    account/update_profile_background_image
+
+snippet     account/update_profile_colors
+abbr        自分のプロフィール画面の各種色を変更
+options     word
+    account/update_profile_colors
+
+snippet     account/update_profile_image
+abbr        自分のプロフィール画像を変更
+options     word
+    account/update_profile_image
+
+snippet     account/remove_profile_banner
+abbr        自分のプロフィールバナーを削除
+options     word
+    account/remove_profile_banner
+
+snippet     account/update_profile_banner
+abbr        自分のプロフィールバナーを変更
+options     word
+    account/update_profile_banner
+
+snippet     blocks/list
+abbr        自分がブロックしているユーザ一覧を取得
+options     word
+    blocks/list
+
+snippet     blocks/ids
+abbr        自分がブロックしているユーザIDを取得
+options     word
+    blocks/ids
+
+snippet     blocks/create
+abbr        指定のユーザをブロック
+options     word
+    blocks/create
+
+snippet     blocks/destroy
+abbr        指定のユーザのブロックを解除
+options     word
+    blocks/destroy
+
+snippet     users/suggestions/:slug
+abbr        指定カテゴリのおすすめユーザ一覧を取得
+options     word
+    users/suggestions/:slug
+
+snippet     users/suggestions
+abbr        おすすめユーザのカテゴリリストを取得
+options     word
+    users/suggestions
+
+snippet     users/suggestions/:slug/members
+abbr        指定カテゴリのおすすめユーザのツイート一覧を取得
+options     word
+    users/suggestions/:slug/members
+
+snippet     favorites/list
+abbr        指定ユーザのお気に入り一覧を取得
+options     word
+    favorites/list
+
+snippet     favorites/destroy
+abbr        指定ツイートのお気に入りを取消
+options     word
+    favorites/destroy
+
+snippet     favorites/create
+abbr        指定ツイートをお気に入り
+options     word
+    favorites/create
+
+snippet     lists/list
+abbr        指定ユーザのリスト一覧を取得
+options     word
+    lists/list
+
+snippet     lists/ownerships
+abbr        指定ユーザのリスト一覧を取得。自分を指定した場合はプライベートリストのみ取得
+options     word
+    lists/ownerships
+
+snippet     lists/show
+abbr        指定のリストを取得
+options     word
+    lists/show
+
+snippet     lists/statuses
+abbr        指定リストのツイート一覧を取得
+options     word
+    lists/statuses
+
+snippet     lists/subscriptions
+abbr        指定ユーザがフォローしているリスト一覧を取得
+options     word
+    lists/subscriptions
+
+snippet     lists/memberships
+abbr        指定ユーザがフォローされているリスト一覧を取得
+options     word
+    lists/memberships
+
+snippet     lists/destroy
+abbr        指定のリストを削除
+options     word
+    lists/destroy
+
+snippet     lists/update
+abbr        指定のリスト情報の設定(リスト名、パブリック/プライベート、説明)を変更
+options     word
+    lists/update
+
+snippet     lists/create
+abbr        リストを作成
+options     word
+    lists/create
+
+snippet     lists/subscribers
+abbr        指定リストをフォローしているユーザ一覧を取得
+options     word
+    lists/subscribers
+
+snippet     lists/subscribers/show
+abbr        指定ユーザが指定リストをフォローしているかを取得
+options     word
+    lists/subscribers/show
+
+snippet     lists/subscribers/create
+abbr        指定のリストをフォロー
+options     word
+    lists/subscribers/create
+
+snippet     lists/subscribers/destroy
+abbr        指定のリストをアンフォロー
+options     word
+    lists/subscribers/destroy
+
+snippet     lists/members/show
+abbr        自分の指定リストに指定のユーザが追加されているかを取得
+options     word
+    lists/members/show
+
+snippet     lists/members
+abbr        自分の指定リストに追加しているユーザ一覧を取得
+options     word
+    lists/members
+
+snippet     lists/members/create
+abbr        自分の指定リストに指定ユーザを追加
+options     word
+    lists/members/create
+
+snippet     lists/members/create_all
+abbr        自分の指定リストに指定ユーザを追加(複数指定可)
+options     word
+    lists/members/create_all
+
+snippet     lists/members/destroy
+abbr        自分の指定リストから指定ユーザを削除
+options     word
+    lists/members/destroy
+
+snippet     lists/members/destroy_all
+abbr        自分の指定リストから指定ユーザを削除(複数指定可)
+options     word
+    lists/members/destroy_all
+
+snippet     saved_searches/list
+abbr        検索メモ一覧を取得
+options     word
+    saved_searches/list
+
+snippet     saved_searches/show/:id
+abbr        検索メモを取得
+options     word
+    saved_searches/show/:id
+
+snippet     saved_searches/create
+abbr        検索メモを作成
+options     word
+    saved_searches/create
+
+snippet     saved_searches/destroy/:id
+abbr        検索メモを削除
+options     word
+    saved_searches/destroy/:id
+
+snippet     geo/id/:place_id
+abbr        指定ジオコードから場所情報を取得
+options     word
+    geo/id/:place_id
+
+snippet     geo/reverse_geocode
+abbr        指定の緯度・経度から場所情報を取得
+options     word
+    geo/reverse_geocode
+
+snippet     geo/search
+abbr        指定の情報から場所情報を取得
+options     word
+    geo/search
+
+snippet     geo/similar_places
+abbr        指定の緯度・経度、地名から場所情報一覧を取得
+options     word
+    geo/similar_places
+
+snippet     geo/place
+abbr        指定の情報から場所情報を作成
+options     word
+    geo/place
+
+snippet     trends/place
+abbr        指定WOEIDのトレンドを取得
+options     word
+    trends/place
+
+snippet     trends/available
+abbr        有効なトレンド地域一覧を取得
+options     word
+    trends/available
+
+snippet     trends/closest
+abbr        指定の緯度・経度から最も近いトレンド地域を取得
+options     word
+    trends/closest
+
+snippet     users/report_spam
+abbr        指定ユーザをスパム報告
+options     word
+    users/report_spam
+
+snippet     oauth/authenticate
+abbr        ウェブブラウザ用のOAuthユーザー認証
+options     word
+    oauth/authenticate
+
+snippet     oauth/authorize
+abbr        OAuthユーザー認証
+options     word
+    oauth/authorize
+
+snippet     oauth/access_token
+abbr        アクセストークンを取得
+options     word
+    oauth/access_token
+
+snippet     oauth/request_token
+abbr        リクエストトークンを取得
+options     word
+    oauth/request_token
+
+snippet     oauth2/token
+abbr        <a href="https://dev.twitter.com/docs/auth/application-only-auth">OAuth2ユーザー認証</a>
+options     word
+    oauth2/token
+
+snippet     oauth2/invalidate_token
+abbr        OAuth 2 Bearer Tokenを無効にする
+options     word
+    oauth2/invalidate_token
+
+snippet     help/configuration
+abbr        Twitterの各種
+options     word
+    help/configuration
+
+snippet     help/languages
+abbr        Twitterでサポートしている言語一覧を取得
+options     word
+    help/languages
+
+snippet     help/privacy
+abbr        Twitterのプライバシーポリシーを取得
+options     word
+    help/privacy
+
+snippet     help/tos
+abbr        Twitterのサービス利用規約を取得
+options     word
+    help/tos
+
+snippet     application/rate_limit_status
+abbr        APIのリクエスト残数/リセット時間を取得
+options     word
+    application/rate_limit_status
+
+

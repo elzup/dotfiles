@@ -1,0 +1,11 @@
+snippet scrape_start
+abbr スクレイピング
+options head
+    from urllib.request import urlopen
+    from bs4 import BeautifulSoup
+    
+    url = "${0}"
+    page = urlopen(url)
+    bs = BeautifulSoup(page)
+    for li in (bs.find('li')):
+        print(li.string)
