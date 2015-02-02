@@ -1,0 +1,13 @@
+alias ls="ls -G"	#ディレクトリには/, 色つき, 番号順
+alias -g C='| pbcopy'
+
+alias gvim="mvim"
+
+path=(/Applications/ ~/bin(N-/) /usr/local/bin(N-/) ${path})
+# path=(/Applications/MacVim.app/Contents/MacOS ~/bin(N-/) /usr/local/bin(N-/) ${path})
+
+alias firefox="open -a Firefox"
+alias safari="open -a Safari"
+alias prev="open -a Preview"
+alias finder="open -a Finder"
+alias chrome="open -a Google\ Chrome"
