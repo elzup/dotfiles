@@ -1,0 +1,18 @@
+ 
+.treestyletab-tabbar-toolbar[treestyletab-mode="vertical"] > toolbarbutton.toolbarbutton-1 {
+}
+#liberator-multiline-output-content {
+    overflow-x: hidden !important;
+}
+
+toolbaritem#urlbar-container {
+    display: none;
+}
+toolbar#nav-bar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+tab.tabbrowser-tab {
+    z-index: 0 !important;
+}
