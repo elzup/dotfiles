@@ -7,7 +7,9 @@ path=(/Applications/ ~/bin(N-/) /usr/local/bin(N-/) ${path})
 # path=(/Applications/MacVim.app/Contents/MacOS ~/bin(N-/) /usr/local/bin(N-/) ${path})
 
 alias firefox="open -a Firefox"
+alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -P "answer" &'
 alias safari="open -a Safari"
 alias prev="open -a Preview"
 alias finder="open -a Finder"
 alias chrome="open -a Google\ Chrome"
+
