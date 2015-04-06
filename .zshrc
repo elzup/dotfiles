@@ -389,6 +389,7 @@ bindkey '^k' insert-last-word
 
 # プロセス名で補完
 zstyle ':completion:*:processes' command "ps -u $USER"
+
 case ${OSTYPE} in
     darwin*)
         unalias ls

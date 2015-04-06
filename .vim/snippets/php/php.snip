@@ -184,12 +184,12 @@ snippet print_httpheader
 abbr httpヘッダを表示
     print_r(get_headers('${1:http://}'));
 
-snippet runtime_measure_start
+snippet speedtest_start
 abbr 実行時間計測
 options head
     $time_start = microtime(true);
 
-snippet runtime_measure_end
+snippet speedtest_end
 abbr 実行時間計測終了
 options head
     $time_end = microtime(true);
