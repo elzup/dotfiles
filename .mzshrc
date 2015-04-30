@@ -1,4 +1,4 @@
-alias ls="ls -G"	#ディレクトリには/, 色つき, 番号順
+alias ls="ls -alh -G"	#ディレクトリには/, 色つき, 番号順
 alias -g C='| pbcopy'
 
 alias gvim="mvim"
