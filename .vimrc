@@ -114,6 +114,7 @@ NeoBundle 'LeafCage/foldCC'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'taglist.vim'
 NeoBundle 'szw/vim-tags'
+NeoBundle 'ZoomWin'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 "NeoBundle 'scrooloose/nerdtree.git'
 
@@ -137,9 +138,9 @@ NeoBundle 'tpope/vim-endwise'
 NeoBundle 'kana/vim-arpeggio'
 NeoBundle 'koron/imcsc-vim'
 NeoBundle 'tpope/vim-abolish'
+NeoBundle 'haya14busa/vim-migemo'
 
 "NeoBundle 'kana/vim-operator-replace.git'
-"NeoBundle 'haya14busa/vim-migemo'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
 "NeoBundle 'haya14busa/vim-easymotion'
@@ -186,8 +187,11 @@ NeoBundle 'koron/minimap-vim'
 NeoBundle 'osyo-manga/vim-sound'
 
 "language
+" SQL
+NeoBundle 'vim-scripts/dbext.vim', '18.0'
 " html5
 NeoBundle 'othree/html5.vim'
+NeoBundle 'bendavis78/vim-polymer'
 "php
 NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \    'autoload' : {
@@ -216,6 +220,9 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
             \ }
 NeoBundle 'mediawiki.vim'
 "NeoBundle 'wikipedia.vim'
+
+" jade
+NeoBundle 'digitaltoad/vim-jade'
 " arduino
 NeoBundle "sudar/vim-arduino-syntax"
 
@@ -225,6 +232,9 @@ NeoBundle 'groenewege/vim-less'
 " stylus
 NeoBundle 'wavded/vim-stylus'
 "NeoBundle 'css3'
+
+" SmallTalk
+NeoBundle 'vim-scripts/st.vim'
 
 "Lua
 NeoBundle 'lua-support'
@@ -251,7 +261,7 @@ NeoBundle 'mattn/invader-vim'
 "Invader
 NeoBundle 'deris/vim-duzzle'
 "DuzzleStart
-"nmap ,gt :source<Space>TeTrls.vim<Enter>
+"nmap <Leader>gt :source<Space>TeTrls.vim<Enter>
 
 "twitter
 NeoBundle 'basyura/TweetVim'
@@ -276,6 +286,11 @@ NeoBundle 'vim-scripts/summerfruit256.vim'
 NeoBundle 'sjl/badwolf'
 NeoBundle 'sfsekaran/cobalt.vim'
 
+" browsing
+NeoBundle 'yuratomo/w3m.vim'
+
+" funny
+NeoBundle 'mattn/vim-kaikyaku-buster'
 
 call neobundle#end()
 
@@ -325,11 +340,18 @@ au MyAutoCmd BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
 set foldmethod=marker
 set nowrap
 
-set autochdir
+set scrolloff=5
+
+" Depected
+" set autochdir
 
 set laststatus=2
-set autochdir
-set guifont=Ricty\ 10
+if has("mac")
+    set guifont=Ricty\ Regular\ for\ Powerline:h13
+else
+    set guifont=Ricty\ 10
+endif
+
 "colorscheme
 syntax enable
 "colorscheme solarized
@@ -369,17 +391,19 @@ set splitright
 " プレビューウィンドウ非表示
 set completeopt=longest,menu
 
-"numbr
-set number
+" numbr
+" set number
+set relativenumber
 behave mswin
 
 "Window position
 winpos 683 0
 set cmdheight=1
 
-
-"set cursorline				" カーソル行をハイライト
-"set cursorcolumn		    " カーソル列をハイライト
+" カーソル行をハイライト
+"set cursorline
+" カーソル列をハイライト
+"set cursorcolumn
 "augroup cch
 "	autocmd! cch
 "	autocmd WinLeave * set nocursorline
@@ -391,6 +415,40 @@ set cmdheight=1
 "  autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 "  autocmd CursorHold,CursorHoldI * setlocal cursorline
 "augroup END
+
+" augroup vimrc-auto-cursorline
+"     autocmd!
+"     autocmd CursorMoved,CursorMovedI * call Auto_cursorline('CursorMoved')
+"     autocmd CursorHold,CursorHoldI * call Auto_cursorline('CursorHold')
+"     autocmd WinEnter * call Auto_cursorline('WinEnter')
+"     autocmd WinLeave * call Auto_cursorline('WinLeave')
+" 
+"     let g:cursorline_lock = 0
+"     function! Auto_cursorline(event)
+"         if a:event ==# 'WinEnter'
+"             setlocal cursorline
+"             setlocal cursorcolumn
+"             let g:cursorline_lock = 2
+"         elseif a:event ==# 'WinLeave'
+"             setlocal nocursorline
+"             setlocal nocursorcolumn
+"         elseif a:event ==# 'CursorMoved'
+"             if g:cursorline_lock
+"                 if 1 < g:cursorline_lock
+"                     let g:cursorline_lock = 1
+"                 else
+"                     setlocal nocursorline
+"                     setlocal nocursorcolumn
+"                     let g:cursorline_lock = 0
+"                 endif
+"             endif
+"         elseif a:event ==# 'CursorHold'
+"             setlocal cursorline
+"             setlocal cursorcolumn
+"             let g:cursorline_lock = 1
+"         endif
+"     endfunction
+" augroup END
 
 "  }}} -end -StartupOptions
 "  {{{ -Key mapping
@@ -406,10 +464,10 @@ inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
 nnoremap <silent> <Space>p :<C-u>tabnew $MYVIMRC<CR>
 
-nnoremap ,ym :<C-u>MessCopy<CR>
+nnoremap <Leader>ym :<C-u>MessCopy<CR>
 
 " setting 
-nnoremap <silent> <Space>u :10sp solved.memo<CR><C-w>j:vs todo.memo<CR>
+nnoremap <silent> <Space>u :10sp solved.memo<CR><C-w>j:vs snippet.memo<CR>:vs keywords.md<CR>
 
 "inoremap <BS> <Nop>
 
@@ -433,52 +491,62 @@ nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
 "Switching Opacity
 let g:save_window_file = expand('~/.vim/.vimwinpos')
 if has("win32")
-    nnoremap ,oo :set tra=220<CR>
-    nnoremap ,on :set tra=0<CR>
-    nnoremap ,o+ :set tra+=10<CR>
-    nnoremap ,o- :set tra-=10<CR>
+    nnoremap <Leader>oo :set tra=220<CR>
+    nnoremap <Leader>on :set tra=0<CR>
+    nnoremap <Leader>o+ :set tra+=10<CR>
+    nnoremap <Leader>o- :set tra-=10<CR>
+elseif has("mac")
+    set transparency=10
+    nnoremap <Leader>oo :set transparency=50<CR>
+    nnoremap <Leader>on :set transparency=0<CR>
+    nnoremap <Leader>o+ :set transparency+=10<CR>
+    nnoremap <Leader>o- :set transparency-=10<CR>
+    nnoremap <Leader>os :set transparency=
 else
     function! s:Transset(opacity)
         call system('transset-df --id ' . v:windowid . ' ' . a:opacity)
     endfunction
     command! -nargs=1 Transset call <SID>Transset(<q-args>) 
-    nnoremap ,oo :set tra=220<CR>
-    nnoremap ,on :set tra=0<CR>
-    nnoremap ,o+ :set tra+=10<CR>
-    nnoremap ,o- :set tra-=10<CR>
+    nnoremap <Leader>oo :set tra=220<CR>
+    nnoremap <Leader>on :set tra=0<CR>
+    nnoremap <Leader>o+ :set tra+=10<CR>
+    nnoremap <Leader>o- :set tra-=10<CR>
 endif
 "Window Scaleup
-nnoremap ,wj 10<C-W>+
-nnoremap ,wk 10<C-W>-
-nnoremap ,wl 10<C-W>>
-nnoremap ,wh 10<C-W><
+nnoremap <Leader>wj 10<C-W>+
+nnoremap <Leader>wk 10<C-W>-
+nnoremap <Leader>wl 10<C-W>>
+nnoremap <Leader>wh 10<C-W><
 nnoremap <C-;> <S-A>;<Esc>
 "inoremap <C-;> <Esc><S-A>;
 
-nnoremap ,a gg<S-V><S-G>a
+nnoremap <Leader>a gg<S-V><S-G>a
 "Open on other app
-"nnoremap ,e :!explorer .<CR>
+"nnoremap <Leader>e :!explorer .<CR>
 
 " Special Command
-nnoremap ,min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
+nnoremap <Leader>min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
 " filetype
-nnoremap ,ft :set filetype=
-nnoremap ,gf :set guifont=Ricty\ 40
-
+nnoremap <Leader>ft :set filetype=
+if has("mac")
+    nnoremap <Leader>gf :set guifont=Ricty\ Regular\ for\ Powerline:h40
+else
+    nnoremap <Leader>gf :set guifont=Ricty\ 40
+endif
 "
-nnoremap ,nr :set rnu<CR>
-nnoremap ,nn :set nornu<CR>
+nnoremap <Leader>nr :set rnu<CR>
+nnoremap <Leader>nn :set nornu<CR>
 
 " expandtab
-nnoremap ,ex :set expandtab<CR>
-nnoremap ,en :set noexpandtab<CR>
+nnoremap <Leader>ex :set expandtab<CR>
+nnoremap <Leader>en :set noexpandtab<CR>
 
 "reopen
-nnoremap ,ee :e ++enc=utf8
-nnoremap ,er :e ++ff=dos
+nnoremap <Leader>ee :e ++enc=utf8
+nnoremap <Leader>er :e ++ff=dos
 
 " 強制書き込み
-nnoremap ,w :w !sudo tee %<CR>
+nnoremap <Leader>w :w !sudo tee %<CR>
 " emacs comamndline
 cnoremap <C-a> <Home>
 " 一文字戻る
@@ -603,7 +671,7 @@ let g:ctrlp_mruf_max = 500
 let g:ctrlp_open_new_file = 1
 let g:ctrlp_map = '<c-p>'
 "   {{{ ctrlp mapping
-nnoremap ,p :<C-u>CtrlP<CR>
+nnoremap <Leader>p :<C-u>CtrlP<CR>
 
 "   }}} -end
 
@@ -626,15 +694,16 @@ let g:neocomplete#force_overwrite_completefunc = 1
 let b:dict_path='/home/hiro/.vim/dict/'
 
 let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default'    : '',
-    \ 'php'        : join([b:dict_path.'PHP.dict', b:dict_path.'html.dict', b:dict_path.'twitter.dict'], ','),
-    \ 'ruby'       : join([b:dict_path.'twitter.dict'], ','),
-    \ 'javascript' : join([b:dict_path.'javascript.dict', b:dict_path.'jQuery.dict'], ','),
-    \ 'css'        : join([b:dict_path.'css.dict', b:dict_path.'html.dict'], ','),
-    \ 'less'       : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
-    \ 'html'       : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
-    \ 'c'          : join([b:dict_path.'c.dict'], ','),
-    \ 'cpp'        : join([b:dict_path.'cpp.dict'], ',')
+    \ 'default'       : '',
+    \ 'php'           : join([b:dict_path.'PHP.dict', b:dict_path.'html.dict', b:dict_path.'twitter.dict'], ','),
+    \ 'ruby'          : join([b:dict_path.'twitter.dict'], ','),
+    \ 'javascript'    : join([b:dict_path.'javascript.dict', b:dict_path.'jQuery.dict'], ','),
+    \ 'css'           : join([b:dict_path.'css.dict', b:dict_path.'html.dict'], ','),
+    \ 'less'          : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
+    \ 'html'          : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
+    \ 'c'             : join([b:dict_path.'c.dict'], ','),
+    \ 'cpp'           : join([b:dict_path.'cpp.dict'], ','),
+    \ 'editmsg'       : join(['~/.vim/dict/git/*.dict'], ',')
     \ }
 
 " omuni
@@ -694,6 +763,7 @@ imap <expr><C-l>
 imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 nmap g/ :Unite -buffer-name=search line:forward -start-insert -auto-highlight<CR>
+" imap <S-Space> <Space>
 
 "   }}} -end
 
@@ -722,8 +792,8 @@ nnoremap <silent> ,ub :<C-u>Unite buffer -start-insert<CR>
 nnoremap <silent> ,um :<C-u>Unite file_mru -start-insert<CR>
 nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file -direction=botright <cr>
 nnoremap <silent> ,uc :<C-u>Unite colorscheme -auto-preview<CR>
-map ,ur :Unite -buffer-name=register register<CR>
-map ,uy     :Unite history/yank<CR>
+map <Leader>ur :Unite -buffer-name=register register<CR>
+map <Leader>uy     :Unite history/yank<CR>
 
 nnoremap <silent> <Space>g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 nnoremap <silent> ,ug :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
@@ -785,19 +855,20 @@ function! s:hooks.on_source(bundle)
 endfunction
 "   {{{ vimfiler mapping
 " open vimfiler
-nnoremap <silent><A-1> :<C-u>VimFilerExplorer<CR>:Tlist<CR>
-
+" defualt
+nnoremap <F1> :<C-u>VimFilerExplorer<CR>
+  "}}}
 "   }}} -end
 
 "  }}} -end
 "  {{{ config TweetVim
 let g:tweetvim_open_say_cmd = 'botright split'
 "   {{{ TweetVim mapping
-nnoremap ,twl :TweetVimHomeTimeline<Enter>
-nnoremap ,twe :TweetVimSay<Enter>10<C-w><Esc>:set<Space>winheight=10<Enter>
-nnoremap ,twm :TweetVimMentions<Enter>
-nnoremap ,tws :TweetVimSwitchAccount<Space>
-nnoremap ,twh :let<Space>g:tweetvim_footer="#"<Left>
+nnoremap <Leader>twl :TweetVimHomeTimeline<Enter>
+nnoremap <Leader>twe :TweetVimSay<Enter>10<C-w><Esc>:set<Space>winheight=10<Enter>
+nnoremap <Leader>twm :TweetVimMentions<Enter>
+nnoremap <Leader>tws :TweetVimSwitchAccount<Space>
+nnoremap <Leader>twh :let<Space>g:tweetvim_footer="#"<Left>
 
 "   }}} -end
 
@@ -818,7 +889,6 @@ let g:lightline = {
             \ 'component_function': {
             \   'modified': 'MyModified',
             \   'readonly': 'MyReadonly',
-            \   'fugitive': 'MyFugitive',
             \   'filename': 'MyFilename',
             \   'fileformat': 'MyFileformat',
             \   'filetype': 'MyFiletype',
@@ -878,7 +948,7 @@ let g:lightline.tabline = {
 
 "  }}} -end
 "  {{{ config startify
-nnoremap ,sf :Startify<Enter>
+" nnoremap <Leader>sf :Startify<Enter>
 " startifyのヘッダー部分に表示する文字列を設定する(dateコマンドを実行して日付を設定している)
 let g:startify_custom_header = [
 \"                                    ..",
@@ -925,9 +995,10 @@ let g:startify_files_number = 10
 
 "  }}} -end
 "  {{{ config foldCC
-set foldtext=foldCC#foldtext()
+set foldtext=foldCCtext()
 let g:foldCCtext_head = 'repeat(":", v:foldlevel) . "> "'
 let g:foldCCtext_tail = 'printf("   %s[%4d lines  Lv%-2d]%s", v:folddashes, v:foldend-v:foldstart+1, v:foldlevel, v:folddashes)'
+let g:foldCCtext_enable_autofdc_adjuster = 1
 
 "  }}} -end
 "  {{{ config over.vim
@@ -942,7 +1013,7 @@ nmap <silent> <Space>s :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
 "  {{{ config Quickrun
 let g:quickrun_config={'*': {'split': ''}}
 "   {{{ Quicakrun mapping
-nnoremap <silent> ,q :QuickRun<CR>
+nnoremap <silent> <Leader>q :QuickRun<CR>
 
 "   }}} -end
 
@@ -1010,13 +1081,19 @@ let g:gitgutter_sign_removed = '✘'
 let g:gitgutter_sign_modified_removed = '✔'
 
 "  }}} -end
-"  {{{ config rubocop
-" robocop
-let g:syntastic_ruby_checkers = ['rubocop']
+"  {{{ config syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = {
-    \ 'mode': 'active',
-    \ 'passive_filetypes': ['python']
+    \ 'mode': 'passive',
+    \ 'active_filetypes': ['python', 'ruby', 'php', 'javascript']
     \}
+let g:syntastic_ruby_checkers=['rubocop']
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_php_checkers=['php', 'phpcs']
+let g:syntastic_javascript_checkers = ['jslint']
+let g:syntastic_quite_warnings=0
+nmap <Leader>s :SyntasticCheck<CR>
 
 "  }}}
 "  {{{ config emmet
@@ -1071,12 +1148,6 @@ let g:clang_use_library = 1
 "  }}}
 "  {{{ config previm
 let g:previm_open_cmd = 'firefox '
-
-"  }}}
-"  {{{ config incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 "  }}}
 "  {{{ config jedi-search
@@ -1262,6 +1333,11 @@ let g:Tex_ViewRule_pdf = 'xdg-open'
 " }}} -end PluginOptions
 
 if has("mac")
-    source ".mvimrc"
+    source ~/.mvimrc
 endif
+
+if has('gui_macvim')
+    let $PYTHON3_DLL="/usr/local/Cellar/python3/3.4.1_1/Frameworks/Python.framework/Versions/3.4/Python"
+endif
+
 " vim:set foldmethod=marker:

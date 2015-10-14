@@ -16,6 +16,7 @@ export ZSH=$HOME/.oh-my-zsh
 # sammy simonoff simple skaro smt sonicradish sorin sporty_256 steeef sunaku sunrise superjarin suvash takashiyoshida terminalparty theunraveler tjkirch
 # tjkirch_mod tonotdo trapd00r wedisagree wezm+ wezm wuffers xiong-chiamiov-plus xiong-chiamiov ys zhann
 ZSH_THEME="adben_elzup"
+# ZSH_THEME="random"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -55,7 +56,7 @@ ZSH_THEME="adben_elzup"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,17 +107,12 @@ eval "$(rbenv init -)"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # }}}
-source ./.myzshrc
+source ~/.myzshrc
+## vim mode
+# bindkey -v
 # {{{ path
 #
 export PATH=~/CodeSourcery/Sourcery_G++_Lite/bin:$PATH
-
-# android ndk
-export PATH=$PATH:/opt/android-ndk-r9d
-export NDK_ROOT=/opt/android-ndk-r9d
-export ANDROID_NDK_ROOT=/opt/android-ndk-r9d
-export ANDROID_SDK_ROOT=/opt/android-sdk
-export ANT_ROOT=/usr/bin
 
 
 # }}}
@@ -228,16 +224,15 @@ setopt equals
 # {{{ alias
 
 #ls
-alias ls="ls -F --color=auto -v"	#ディレクトリには/, 色つき, 番号順
+alias ls="ls -F --color=auto -v -al"	#ディレクトリには/, 色つき, 番号順
 alias la="ls -a"				#隠しファイルも
 alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
 alias lla="ls -lha"				#全部詳細
 
+alias tig="tig --all"	#ディレクトリには/, 色つき, 番号順
+
 #cp
 alias cp="cp -i"	#上書きを確認
-
-#sl
-alias -g sl="echo you are an idiot!"
 
 #ls
 alias s="ls"
@@ -257,6 +252,9 @@ GREP_OPTIONS=""
 # char alias
 alias -g G="| grep"
 alias -g C='| xsel --input --clipboard'
+alias -g P='| percol'
+alias -g X='| xargs'
+alias -g PX='| peco | xargs'
 
 # ping
 alias pingoogle="ping -c 3 www.google.com"
@@ -265,7 +263,22 @@ alias pingoogle="ping -c 3 www.google.com"
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
 
 # change background
-alias background="display -window root -resize \`screensize\`"
+case ${OSTYPE} in
+    darwin*)
+        background() {
+            bg=$1
+            if [ ${bg%%:*} = "http" ] ; then ;
+                filename=${${bg:t}%\?*}
+                wget $bg -O ~/Pictures/tmpbg/$filename
+                bg=~/Pictures/tmpbg/$filename
+                ;fi
+            osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$bg\""
+        }
+        ;;
+    *)
+        alias background="display -window root -resize \`screensize\`"
+        ;;
+esac
 
 #ln
 alias ln="ln -i -v"
@@ -336,7 +349,8 @@ alias gedit="gedit >/dev/null 2>/dev/null"
 #buttery残量の表示
 alias buttery="sudo cat /sys/class/power_supply/CMB1/capacity"
 
-#alias python="python2"
+alias python="python3"
+alias pip="pip3"
 
 #lang change
 alias lange="LANG=C"
@@ -383,17 +397,224 @@ bindkey '^xe' edit-command-line
 
 # }}}
 
+# autojump
+alias j="autojump"
+if [ -f `brew --prefix`/etc/autojump ]; then
+  . `brew --prefix`/etc/autojump
+fi
+
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+autoload -Uz add-zsh-hock
+
 bindkey '^]'   vi-find-next-char
 bindkey '^[^]' vi-find-prev-char
 bindkey '^k' insert-last-word
 
 # プロセス名で補完
 zstyle ':completion:*:processes' command "ps -u $USER"
+zstyle ':chpwd:*' recent-dirs-max 500
+if echo $OSTYPE | grep -q darwin; then
+    source ~/.mzshrc
+fi
 
+function chpwd() { ls }
+
+# antigen
+if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
+  source $HOME/.zsh/antigen/antigen.zsh
+  antigen bundle mollifier/anyframe
+  antigen apply
+#  _zsh_highlight_myhighlighter_highlighter() {
+#    ZSH_HIGHLIGHT_STYLES[alias]='fg=orange,bold'
+#  }
+#  ZSH_HIGHLIGHT_HIGHLIGHTERS+=(myhighlighter)
+  antigen-bundle zsh-users/zsh-syntax-highlighting
+fi
+
+alias cdr="anyframe-widget-cdr"
+
+ENHANCD_COMMAND=cdd; export ENHANCD_COMMAND
+if [ -f ~/enhancd/enhancd.sh ]; then
+    source ~/enhancd/enhancd.sh
+fi
+
+# percol
+function percol-search-document() {
+    if [ $# -ge 1 ]; then
+        DOCUMENT_DIR=$*
+    else
+        DOCUMENT_DIR=($HOME/Dropbox)
+        if [ -d $HOME/Documents ]; then
+            DOCUMENT_DIR=($HOME/Documents $DOCUMENT_DIR)
+        fi
+    fi
+    SELECTED_FILE=$(echo $DOCUMENT_DIR | \
+        xargs find | \
+        grep -E "\.(txt|md|pdf|key|numbers|pages|doc|xls|ppt)$" | \
+        percol --match-method migemo)
+    if [ $? -eq 0 ]; then
+        echo $SELECTED_FILE | sed 's/ /\\ /g'
+    fi
+}
+alias pd='percol-search-document'
+
+function percol_select_history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+    CURSOR=$#BUFFER             # move cursor
+    zle -R -c                   # refresh
+}
+#----- history search with percol
+function exists { which $1 &> /dev/null }
+if exists percol; then
+    function percol_select_history() {
+        local tac
+        exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        CURSOR=$#BUFFER         # move cursor
+        zle -R -c               # refresh
+    }
+
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
+alias lope='percol-search-locate'
+# clear
+
+# vim bind normalmode extends emacskey
+autoload history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+# bindkey "^P" history-beginning-search-backward-end
+# bindkey "^N" history-beginning-search-forward-end
+bindkey "^U" backward-kill-line
+# bindkey "^F" emacs-forward-word
+# bindkey "^B" emacs-back-word
+bindkey "^F" forward-char
+bindkey "^B" backward-char
+bindkey "^A" beginning-of-line
+bindkey "^E" end-of-line
+
+alias mv="mv -i"
+alias unzipjar="jar xvf"
 case ${OSTYPE} in
     darwin*)
-        unalias ls
+        alias rm='rmtrash'
         ;;
 esac
 
-clear
+
+# auto sodo
+alias htop="sudo htop"
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+# android ndk
+export PATH=$PATH:/opt/android-ndk-r10d
+
+case ${OSTYPE} in
+    darwin*)
+        export ANDROID_NDK_ROOT=/Applications/Android/android-ndk-r10d
+        export ANDROID_SDK_ROOT=/Applications/Android/sdk
+        export ANT_ROOT=/Applications/Android/apache-ant-1.9.4
+        export NDK_ROOT=/Applications/Android/android-ndk-r10d
+        ;;
+    *)
+        export NDK_ROOT=/opt/android-ndk-r9d
+        export ANDROID_NDK_ROOT=/opt/android-ndk-r9d
+        export ANDROID_SDK_ROOT=/opt/android-sdk
+        export ANT_ROOT=/usr/bin
+        ;;
+esac
+
+export PTOOLSPATH=~/phalcon-tools
+export PATH=$PATH:$PTOOLSPATH
+export PATH=$PATH:/Users/hiro/Applications/android-sdk-macosx/platform-tools
+
+export PATH=$PATH:~/bin/
+
+
+function git() { hub "$@" }
+
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+export DYLD_FALLBACK_LIBRARY_PATH=/opt/local/lib
+
+export PATH=/Users/hiro/torch/install/bin:$PATH  # Added automatically by torch-dist
+export LD_LIBRARY_PATH=/Users/hiro/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
+export DYLD_LIBRARY_PATH=/Users/hiro/torch/install/lib:$DYLD_LIBRARY_PATH  # Added automatically by torch-dist
+
+# # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+# export COCOS_CONSOLE_ROOT=/Users/hiro/Library/cocos2d-x-3.6/tools/cocos2d-console/bin
+# export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+# # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+# export COCOS_TEMPLATES_ROOT=/Users/hiro/Library/cocos2d-x-3.6/templates
+# export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
+export COCOS_CONSOLE_ROOT=/Users/hiro/Applications/cocos2d-x-3.2/tools/cocos2d-console/bin
+export PATH=$COCOS_CONSOLE_ROOT:$PATH
+
+
+# pyenv
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+
+export PHPENV_ROOT="/usr/local/phpenv"
+PATH="$PATH:$PHPENV_ROOT/bin"
+eval "$(phpenv init -)"
+
+# rbenv & phpenv
+export PATH=$HOME/.rbenv/bin:$HOME/.phpenv/bin:$PATH
+eval "$(rbenv init -)"
+eval "$(phpenv init -)"
+
+
+# caffe
+export PYTHONPATH=/path/to/caffe/python:$PYTHONPATH
+export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:$HOME/.pyenv/versions/anaconda-2.0.1/lib:/usr/local/lib:/usr/lib
+
+# plus addon
+
+# nvm
+NVM_HOME=${HOME}/.nvm
+if [ -e "${NVM_HOME}" ]; then
+  source ${NVM_HOME}/nvm.sh
+  nvm use stable
+fi 
+
+
+PERL_MB_OPT="--install_base \"/Users/hiro/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/Users/hiro/perl5"; export PERL_MM_OPT;
+
+
+export PERL_CPANM_OPT="--local-lib=$HOME/.perl-extlib"
+
+export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
+
+alias emacs="echo -e '
+   \\  less  /
+　　｢＼
+　　ヽ )　　　／~)
+　　/ /　　　(　/
+　 / /　　　 ｜｜ < drwxr-xr-x
+　(　＼　　　｜｜
+　 ＼　＼　　/ ｜
+　　 ＼　ヽ／　/　
+　　　｜　　／ﾅﾉ
+
+  ＿人人 人人＿ 
+  ＞　grep　＜ 
+  ￣Y^Y^Y^Y￣'"
