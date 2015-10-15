@@ -1,0 +1,9 @@
+" nnoremap sn gt
+" nnoremap sp gT
+
+" nmap / :action Find<CR>
+
+" set number
+set relativenumber
+
+set number
