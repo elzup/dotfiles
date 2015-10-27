@@ -392,8 +392,8 @@ set splitright
 set completeopt=longest,menu
 
 " numbr
-" set number
 set relativenumber
+set number
 behave mswin
 
 "Window position
@@ -457,8 +457,8 @@ set cmdheight=1
 " nnoremap ; :
 " nnoremap : ;
 " Unbind key
-nnoremap gt <Nop>
-nnoremap gT <Nop>
+" nnoremap gt <Nop>
+" nnoremap gT <Nop>
 
 inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
@@ -482,36 +482,10 @@ nnoremap # #zz
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-nnoremap gT <Nop>
-
 nnoremap <C-CR> O<Esc>
 
 "Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
-"Switching Opacity
-let g:save_window_file = expand('~/.vim/.vimwinpos')
-if has("win32")
-    nnoremap <Leader>oo :set tra=220<CR>
-    nnoremap <Leader>on :set tra=0<CR>
-    nnoremap <Leader>o+ :set tra+=10<CR>
-    nnoremap <Leader>o- :set tra-=10<CR>
-elseif has("mac")
-    set transparency=10
-    nnoremap <Leader>oo :set transparency=50<CR>
-    nnoremap <Leader>on :set transparency=0<CR>
-    nnoremap <Leader>o+ :set transparency+=10<CR>
-    nnoremap <Leader>o- :set transparency-=10<CR>
-    nnoremap <Leader>os :set transparency=
-else
-    function! s:Transset(opacity)
-        call system('transset-df --id ' . v:windowid . ' ' . a:opacity)
-    endfunction
-    command! -nargs=1 Transset call <SID>Transset(<q-args>) 
-    nnoremap <Leader>oo :set tra=220<CR>
-    nnoremap <Leader>on :set tra=0<CR>
-    nnoremap <Leader>o+ :set tra+=10<CR>
-    nnoremap <Leader>o- :set tra-=10<CR>
-endif
 "Window Scaleup
 nnoremap <Leader>wj 10<C-W>+
 nnoremap <Leader>wk 10<C-W>-
@@ -1067,6 +1041,10 @@ let g:github_token = '688153244513531cc44c754637f19ee9f4debd97'
 let g:gist_curl_options = '-k'
 let g:gist_private = '-P'
 let g:gist_detect_filetype = 1
+" mac
+if has("mac")
+    let g:gist_clip_command = 'pbcopy'
+endif
 
 "  }}} -end
 "  {{{ config TagList.vim

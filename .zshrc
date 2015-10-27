@@ -539,8 +539,10 @@ export PATH=$PATH:/Users/hiro/Applications/android-sdk-macosx/platform-tools
 
 export PATH=$PATH:~/bin/
 
+export SAVEHIST=100000
 
 function git() { hub "$@" }
+eval "$(hub alias -s)"
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
