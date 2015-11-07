@@ -28,7 +28,8 @@ let g:plugin_loader_roots = '~/.vimperator/vimperator-plugins-other/,~/.vimperat
 
 " 利用するプラグインたち
 " TODO: to array
-let g:plugin_loader_plugins = '_libly,alert,auto_source,caret-hint,copy,echopy,feedSomeKeys_3,google-exopen,googleselect,hint-tombloo_elzup,imekeys,longcat,memo,nicontroller,nume,pushfind,toggler,tombloo_elzup,twittperator,uaSwitchLite,websearch,youtubeamp,smooth-scroll,trunk';
+" smooth-scroll,
+let g:plugin_loader_plugins = '_libly,alert,auto_source,caret-hint,copy,echopy,feedSomeKeys_3,google-exopen,googleselect,hint-tombloo_elzup,imekeys,longcat,memo,nicontroller,nume,pushfind,toggler,tombloo_elzup,twittperator,uaSwitchLite,websearch,youtubeamp,trunk';
 
 " }}}
 "
