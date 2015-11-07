@@ -20,6 +20,7 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'ruby'          : join([b:dict_path.'twitter.dict'], ','),
     \ 'javascript'    : join([b:dict_path.'javascript.dict', b:dict_path.'jQuery.dict'], ','),
     \ 'css'           : join([b:dict_path.'css.dict', b:dict_path.'html.dict'], ','),
+    \ 'stylus'        : join([b:dict_path.'css.dict', b:dict_path.'html.dict'], ','),
     \ 'less'          : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
     \ 'html'          : join([b:dict_path.'css.dict', b:dict_path.'html.dict', b:dict_path.'bootstrap_less.dict'], ','),
     \ 'c'             : join([b:dict_path.'c.dict'], ','),
@@ -60,6 +61,7 @@ au MyAutoCmd FileType java       :setlocal omnifunc=javacomplete#Complete
 au MyAutoCmd FileType java       :setlocal completefunc=javacomplete#CompleteParamsInfo
 au MyAutoCmd FileType python     :setlocal omnifunc=pythoncomplete#Complete
 au MyAutoCmd FileType javascript :setlocal omnifunc=jscomplete#CompleteJS
+au FileType javascript :setlocal omnifunc=jscomplete#CompleteJS
 au MyAutoCmd FileType coffee     :setlocal omnifunc=jscomplete#CompleteJS
 au MyAutoCmd FileType html       :setlocal omnifunc=htmlcomplete#CompleteTags
 au MyAutoCmd FileType css        :setlocal omnifunc=csscomplete#CompleteCSS

@@ -1,4 +1,3 @@
-
 " release autogroup in MyAutoCmd
 
 if &compatible

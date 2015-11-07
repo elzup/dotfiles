@@ -6,7 +6,7 @@
 
 inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
-nnoremap <silent> <Space>p :<C-u>tabnew $MYVIMRC<CR>
+nnoremap <silent> <Space>p :<C-u>tabnew ~/.vim/rc/init.vim<CR>
 
 nnoremap <Leader>ym :<C-u>MessCopy<CR>
 
@@ -78,6 +78,7 @@ cnoremap <C-f> <Right>
 " コマンドライン履歴を一つ進む
 cnoremap <C-n> <Down>
 " コマンドライン履歴を一つ戻る
+
 cnoremap <C-p> <Up>
 " 前の単語へ移動
 cnoremap <M-b> <S-Left>

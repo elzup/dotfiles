@@ -70,6 +70,7 @@ NeoBundle 'kana/vim-arpeggio'
 NeoBundle 'koron/imcsc-vim'
 NeoBundle 'tpope/vim-abolish'
 NeoBundle 'haya14busa/vim-migemo'
+NeoBundle 'mattn/emmet-vim'
 
 "NeoBundle 'kana/vim-operator-replace.git'
 "NeoBundle 'thinca/vim-splash'
@@ -104,11 +105,6 @@ NeoBundle 'mattn/gist-vim'
 "NeoBundle 'YankRing.vim'
 "NeoBundle 'mru.git'
 "NeoBundle 'mttn/zen-coding.vim'
-"NeoBundle 'emmet-vim'
-
-"html support
-NeoBundle 'Emmet.vim'
-"NeoBundle 'hokaccha/endtagcomment.vim'
 
 "sublime text 2 NeoBundle 'mattn/multi-vim'
 NeoBundle 'koron/minimap-vim'
@@ -122,7 +118,9 @@ NeoBundle 'osyo-manga/vim-sound'
 NeoBundle 'vim-scripts/dbext.vim', '18.0'
 " html5
 NeoBundle 'othree/html5.vim'
-NeoBundle 'bendavis78/vim-polymer'
+NeoBundle 'hokaccha/vim-html5validator'
+NeoBundle 'hail2u/vim-css3-syntax'
+
 "php
 NeoBundleLazy 'stephpy/vim-php-cs-fixer', {
 \    'autoload' : {
@@ -135,9 +133,14 @@ NeoBundle 'pythoncomplete'
 NeoBundle 'nvie/vim-flake8'
 " java
 NeoBundle 'claco/jasmine.vim'
+
 " javascript
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mattn/jscomplete-vim'
-NeoBundle 'javacomplete'
+NeoBundle 'mxw/vim-jsx'
+NeoBundle 'STRML/JSXHint'
+
 " coffeescript
 NeoBundle 'kchmck/vim-coffee-script'
 " ruby
@@ -162,7 +165,6 @@ NeoBundle 'groenewege/vim-less'
 
 " stylus
 NeoBundle 'wavded/vim-stylus'
-"NeoBundle 'css3'
 
 " SmallTalk
 NeoBundle 'vim-scripts/st.vim'
