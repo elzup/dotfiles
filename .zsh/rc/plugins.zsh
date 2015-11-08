@@ -22,3 +22,5 @@ zstyle ':completion:*:processes' command "ps -u $USER"
 zstyle ':chpwd:*' recent-dirs-max 500
 function chpwd() { ls }
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
