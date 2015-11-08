@@ -1,0 +1,6 @@
+[submodule ".vimperator/vimperator-plugins-other/caisui/vimperator"]
+	path = .vimperator/vimperator-plugins-other/caisui/vimperator
+	url = https://github.com/caisui/vimperator.git
+[submodule ".vimperator/vimperator-plugins-other/websearch.vimpr"]
+	path = .vimperator/vimperator-plugins-other/websearch.vimpr
+	url = git@github.com:elzzup/websearch.vimpr.git
