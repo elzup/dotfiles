@@ -1,0 +1,15 @@
+ime_controller.js
+.ssh/
+
+# vimperator
+.vimperator/plugin/
+.vimperator/colors/
+.zshenv
+
+# vim
+.vim/bundle/
+.vim/undo/
+
+# zsh
+.zsh/*
+!.zsh/rc/
