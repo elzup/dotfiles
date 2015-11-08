@@ -53,7 +53,6 @@ nnoremap <C-q> <Nop>
 " nnoremap a a<Space>-T<Space>
 "
 "  {{{ util
-" source! "C:\\Users\\hiro\\_vimperatorrc.local"
 nnoremap <Leader><Leader> :so ~/.vimperatorrc<CR>
 
 "  }}}
