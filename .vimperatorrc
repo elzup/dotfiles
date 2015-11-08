@@ -22,14 +22,43 @@ nnoremap sh :tabopen<Space>hatena<Space>
 
 
 " {{{ vimperator plugins
+javascript <<JS
+let plugin_paths = [
+    '~/.vimperator/vimperator-plugins-other/',
+    '~/.vimperator/vimperator-plugins/',
+    '~/.vimperator/vimperator-plugins-other/caisui/vimperator/plugin/',
+    '~/.vimperator/vimperator-plugins-other/websearch.vimpr/'
+];
+liberator.execute("let g:plugin_loader_roots = '" + (plugin_paths.join(',')) + "'");
 
-let g:plugin_loader_roots = '~/.vimperator/vimperator-plugins-other/,~/.vimperator/vimperator-plugins/,~/.vimperator/vimperator-plugins-other/caisui/vimperator/plugin/,~/.vimperator/vimperator-plugins-other/websearch.vimpr/'
-
-
-" 利用するプラグインたち
-" TODO: to array
-" smooth-scroll,
-let g:plugin_loader_plugins = '_libly,alert,auto_source,caret-hint,copy,echopy,feedSomeKeys_3,google-exopen,googleselect,hint-tombloo_elzup,imekeys,longcat,memo,nicontroller,nume,pushfind,toggler,tombloo_elzup,twittperator,uaSwitchLite,websearch,youtubeamp,trunk';
+let plugin_names = [
+    '_libly',
+    'alert',
+    'auto_source',
+    'caret-hint',
+    'copy',
+    'echopy',
+    'feedSomeKeys_3',
+    'google-exopen',
+    'googleselect',
+    'hint-tombloo_elzup',
+    'imekeys',
+    'longcat',
+    'memo',
+    'nicontroller',
+    'nume',
+    'pushfind',
+    'toggler',
+    'tombloo_elzup',
+    'twittperator',
+    'uaSwitchLite',
+    'websearch',
+    'youtubeamp',
+    'smooth-scroll',
+    'trunk'
+];
+liberator.execute("let g:plugin_loader_plugins = '" + (plugin_names.join(',')) + "'");
+JS
 
 " }}}
 "
@@ -131,21 +160,17 @@ nnoremap <C-q> <Nop>
 " nnoremap a a<Space>-T<Space>
 
 "ヤンク拡張
-nnoremap ,yt :js util.copyToClipboard(buffer.title);<CR>:echo 'Copied text to clipboard[title]: ' + buffer.title<CR>
-nnoremap ,yu :js util.copyToClipboard(buffer.URL);<CR>:echo 'Copied text to clipboard[url]: ' + buffer.title<CR>
-nnoremap ,yy :js util.copyToClipboard(buffer.title + " " + buffer.URL);<CR>:echo 'Copied text to clipboard[title & url]: ' + buffer.title + " " + buffer.URL<CR>
-nnoremap ,yb :js util.copyToClipboard(buffer.);<Left><Left>
-nnoremap ,ys :shorturi<CR>
-nnoremap ,y/ :shorturi<CR>
+nnoremap YT :copy title<CR>
+nnoremap YY :copy titleAndTitle<CR>
+nnoremap YA :copy anchor<CR>
+nnoremap YS :shorturi<CR>
 
-noremap zu :undo<TAB>
-
-"現URL指定で開く
+" 現URL指定で開く
 "nnoremap <C-o> yo<C-v>
 
 vnoremap <silent> <C-g> y<Esc><Esc>P
 
-"タブグループマネージャのタブ移動
+" タブグループマネージャのタブ移動
 " nnoremap <C-h> <C-Up>t<CR>d
 " nnoremap <C-l> <C-Down>t<CR>d
 
