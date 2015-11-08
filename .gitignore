@@ -3,7 +3,6 @@ ime_controller.js
 
 # vimperator
 .vimperator/plugin/
-.vimperator/vimperator-plugins/
 .vimperator/colors/
 .vimperator/info/
 .vimperator/dev/
