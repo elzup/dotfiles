@@ -1,5 +1,3 @@
-" {{{ -Key mapping
-"
 " swich colons
 " nnoremap ; :
 " nnoremap : ;
@@ -120,5 +118,3 @@ nnoremap <S-Left>  <C-w><
 nnoremap <S-Right> <C-w>>
 nnoremap <S-Up>    <C-w>-
 nnoremap <S-Down>  <C-w>+
-
-" }}} -end -KeyMapping
