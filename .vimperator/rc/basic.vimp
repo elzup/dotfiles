@@ -1,0 +1,41 @@
+
+"ブラウザタイトル
+set titlestring="火狐⊂('ω'⊂ )"
+"クイックリンク設定
+" set hintchars=asdfghjklmn
+"自動フォーカスの防止
+set focuscontent
+" GUIバーの初期表示状態
+set gui=addons,nobookmarks,nomenu,nonavigation,tabs
+"ex mode でインクリメント補完
+" set wildoptions=auto
+"
+" デフォルト検索エンジン
+set defsearch=google
+
+command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“delcommand “+”<args>”);liberator.execute(“runtime plugin/”+”<args>.js”);
+
+set errorbells=false
+set visualbell=false
+
+
+
+
+
+
+
+
+
+
+"
+" IME
+style -name commandline-ime chrome://* <<EOM
+    #liberator-commandline-command input {ime-mode: inactive;}
+    #liberator-commandline-command { background: transparent !important; }
+EOM
+
+noremap <silent> f :!fcitx-remote -c<cr>qf
+noremap <silent> F :!fcitx-remote -c<cr>qF
+
+" open tab default right
+" source ./js/opentab_right.js

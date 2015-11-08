@@ -1,0 +1,26 @@
+
+source ~/.vimperator/rc/js/load_plugins.js
+
+let g:jquery_filepath = "~/.vimperator/lib/jquery-2.1.1.min.js"
+
+" smooth_scroll
+let smooth_scroll_duration=200
+
+" Twittperator
+let g:twittperator_use_ssl_connection_for_api_ep = 1
+let g:twittperator_use_chirp = 1
+let g:twittperator_screen_name = "arzzup"
+
+" websearch
+source ~/.vimperator/rc/js/websearch.rc.js
+
+" toggle
+source ~/.vimperator/rc/js/toggle.rc.js
+
+" localkeymode
+let g:localkeymode_enable = "true"
+source ~/.vimperator/rc/js/toggle.rc.js
+
+
+" my
+source ~/.vimperator/rc/js/get_short_uri.js

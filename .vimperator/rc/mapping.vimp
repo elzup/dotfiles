@@ -1,0 +1,179 @@
+
+"  {{{ unbind os
+inoremap <C-b> b
+
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+imap <C-m> <Enter>
+cmap <C-m> <Enter>
+nmap <C-m> <Enter>
+
+" hint mode
+" map -modes hints -b <C-i> <Tab>
+
+" TODO
+nnoremap <C-j> <Nop>
+nnoremap <C-k> <Nop>
+
+nnoremap <Space> <Nop>
+
+"再起動
+nnoremap ZR :<C-u>res<CR>
+
+"  }}}
+"  {{{ basic
+" complecache
+cnoremap <C-n> <Tab>
+cnoremap <C-i> <Tab>
+cnoremap <C-p> <S-Tab>
+" コマンドモードで履歴を遡る
+cnoremap <C-j> <Down>
+cnoremap <C-k> <Up>
+
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+
+noremap <BS> <A-Left>
+" movement
+nnoremap j 5<C-e>
+nnoremap k 5<C-y>
+nnoremap h 5<Left>
+nnoremap l 5<Right>
+nnoremap <C-n> gt
+inoremap <c-f> f
+nnoremap <Up><Up><Down><Down><Left><Right><Left><Right>ab ZZ
+
+nnoremap <C-h> :history! -max=1 
+nnoremap B :bmarks!<Space>
+
+" unmap 
+nnoremap <C-q> <Nop>
+
+" ブックマーク処理
+" nnoremap a a<Space>-T<Space>
+"
+"  {{{ util
+" source! "C:\\Users\\hiro\\_vimperatorrc.local"
+nnoremap <Leader><Leader> :so ~/.vimperatorrc<CR>
+
+"  }}}
+
+"ヤンク拡張
+nnoremap YT :copy title<CR>
+nnoremap YY :copy titleAndTitle<CR>
+nnoremap YA :copy anchor<CR>
+nnoremap YS :shorturi<CR>
+
+" 現URL指定で開く
+"nnoremap <C-o> yo<C-v>
+
+vnoremap <silent> <C-g> y<Esc><Esc>P
+
+" タブグループマネージャのタブ移動
+" nnoremap <C-h> <C-Up>t<CR>d
+" nnoremap <C-l> <C-Down>t<CR>d
+
+nnoremap f f<S-F11>
+nnoremap t t<S-F11>
+nnoremap : :<S-F11>
+
+" unix key map
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+
+" panorama mapping
+nnoremap ,pc :<C-u>panorama<Space>
+nnoremap <C-l> :<C-u>panorama switch<Space>
+nnoremap ,ps :<C-u>panorama switch<Space>
+nnoremap ,pa :<C-u>panorama add<Space>
+nnoremap ,pl :<C-u>panorama list<CR>
+" 現在のタブをタブグループに追加
+nnoremap ,pp :<C-u>panorama pushtab<Space>
+" 現在のタブグループにタブを追加
+nnoremap ,pu :<C-u>panorama pulltab<Space>
+nnoremap ,pr :<C-u>panorama remove<Space>
+" タブグループビューを開く
+nnoremap ,po <C-S-e>
+
+nnoremap vs :so<Space>~/.vimperator/colors/tbg-
+
+nnoremap ,od :tabopen ~/Downloads/<CR>
+nnoremap ,ou :tabopen ~/<CR>
+nnoremap ,oh :tabopen ~/<CR>
+
+"  }}}
+"  {{{ action
+"現在のページをChromeで開く
+" nnoremap <silent> ,c y:<c-u>!chromium<Space>--new-window<Space><S-Insert>&<CR><Esc>
+" if has("mac") {
+"     nnoremap <silent> ,c y:<c-u>!open -a Google\ Chrome <S-Insert>&<CR><Esc>
+" }
+" 現在のページをvim(W3m) で開く
+nnoremap <silent> ,v y:<C-u>!gvim<Space>+"W3m<Space><S-Insert>"<Space>&<CR><Esc>
+
+" ツリータブのトグル
+nnoremap <silent> e :javascript<Space>TreeStyleTabBrowserAutoHide.toggleMode();<CR>
+" 標準検索バーの非表示
+nnoremap vf <Insert><C-f><Esc><Insert>
+
+" gui,ツールバーのの表示非表示切替
+" dn[a|n]ナビゲーションバー
+nnoremap <silent> w :toggle navbar<CR>
+" db[a|n]ブックマーク
+nnoremap <silent> vb :toggle bookbar<CR>
+" タブ
+" nnoremap vt :set gui=notab<CR>
+
+" 一つ前のページに戻って現在のページを別タブで開く 
+" nnoremap <silent> <c-h> yHP
+
+nnoremap ,a :alert<Space>
+" google select
+nnoremap <silent> <c-j> :googleselect<CR>
+nnoremap <silent> <c-k> :googleselect back<CR>
+
+inoremap <silent> <c-j> <Esc>:googleselect<CR>
+inoremap <silent> <c-k> <Esc>:googleselect back<CR>
+" fmap -u='\.google\.com/.*' -m=NORMAL <c-j> :googleselect<CR>
+" fmap -u='\.google\.com/.*' -m=NORMAL <c-k> :googleselect back<CR>
+
+"  }}}
+
+
+
+nnoremap sn :wsnico<Space>
+nnoremap stt :tabopen twitter<Space>
+" TODO nnoremap sl :ws_logsoku<Space>
+nnoremap stl :wstwilog<Space>
+nnoremap str :wsgoogletrend<Space>
+
+" nnoremap sg :wsgithub<Space>
+nnoremap sg :tabopen<Space>github<Space>
+nnoremap sy :tabopen<Space>youtube<Space>
+nnoremap sw :tabopen<Space>wikipedia<Space>
+nnoremap ss :tabopen<Space>google<Space>
+
+nnoremap sa :tabopen<Space>amazon<Space>
+nnoremap sh :tabopen<Space>hatena<Space>
+
+" Twittperator
+nnoremap <Leader>t/ :tw!/<Tab>
+nnoremap <Leader>th :tw!thread<Space>
+nnoremap <Leader>tb :tabopen<Space>https://twitter.com/intent/tweet?text=
+
+nnoremap <Leader>tc :tw<Space>こころぴょんぴょん！<CR>
+
+nnoremap <Leader>tt :yankinfo titleandurl<CR>: / <C-v><C-a>tw
+nnoremap <Leader>tp :yankinfo titleandsurl<CR>: / <C-v><C-a>tw
+
+
+" ignorekeys
+
+"autocmd LocationChange .* :fmapc
+"autocmd LocationChange tumblr\\.com fmaps j k
+"
+" ignorekeys add (www)?\\.tumblr\\.(co\\.jp|com) -except :,t,d,<C-n>,<C-p>,b,l,h,a,<C-f>,<C-b>,g
+ignorekeys add tweetdeck\.twitter\.com -except :,a,g,<Esc>,<C-[>
+" ignorekeys add tumblr\.com -except :,<C-n>,<C-p>,a,g,<Esc>,<C-[>
+
+

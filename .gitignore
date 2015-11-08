@@ -3,8 +3,11 @@ ime_controller.js
 
 # vimperator
 .vimperator/plugin/
+.vimperator/vimperator-plugins/
 .vimperator/colors/
-.zshenv
+.vimperator/info/
+.vimperator/dev/
+# .vimperator/vimperator-plugins-other/
 
 # vim
 .vim/bundle/
@@ -12,4 +15,5 @@ ime_controller.js
 
 # zsh
 .zsh/*
+.zshenv
 !.zsh/rc/
