@@ -21,6 +21,9 @@ source ~/.vimperator/rc/js/toggle.rc.js
 let g:localkeymode_enable = "true"
 source ~/.vimperator/rc/js/toggle.rc.js
 
+" hatena bookmark
+source ~/.vimperator/rc/js/hatena_bookmark.js
+set complete+=H
 
 " my
 source ~/.vimperator/rc/js/get_short_uri.js
