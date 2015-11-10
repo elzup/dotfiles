@@ -5,6 +5,8 @@ set titlestring="火狐⊂('ω'⊂ )"
 " set hintchars=asdfghjklmn
 "自動フォーカスの防止
 set focuscontent
+" eidtor
+" set editor=mvim
 " GUIバーの初期表示状態
 set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 "ex mode でインクリメント補完
@@ -12,7 +14,6 @@ set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 "
 " デフォルト検索エンジン
 set defsearch=google
-
 command! -nargs=1 -complete=usercommand reloadcommand js liberator.execute(“delcommand “+”<args>”);liberator.execute(“runtime plugin/”+”<args>.js”);
 
 set errorbells=false

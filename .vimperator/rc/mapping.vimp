@@ -1,6 +1,5 @@
 " {{{ unmap
 nnoremap <Space> <Nop>
-nnoremap <C-q> <Nop>
 
 nnoremap f f<S-F11>
 nnoremap t t<S-F11>
@@ -11,10 +10,10 @@ nnoremap : :<S-F11>
 " {{{ unix key map
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
+map <C-m> <CR>
 
 " inoremap <C-n> <Down>
 " inoremap <C-p> <Up>
-map <C-m> <CR>
 
 cnoremap <C-n> <Tab>
 cnoremap <C-p> <S-Tab>
@@ -57,6 +56,9 @@ nnoremap vs :so<Space>~/.vimperator/colors/tbg-
 " if has("mac") {
 "     nnoremap <silent> ,c y:<c-u>!open -a Google\ Chrome <S-Insert>&<CR><Esc>
 " }
+"
+" firefox mute
+map <C-t> <C-m>
 
 " 現在のページをvim(W3m) で開く
 nnoremap <silent> <Leader>vw y:<C-u>!gvim<Space>+"W3m<Space><S-Insert>"<Space>&<CR><Esc>
@@ -81,12 +83,9 @@ nnoremap B :bmarks!<Space>
 " 選択テキストをググる
 vnoremap <silent> <C-g> y:<Esc>P
 
-" タブグループマネージャのタブ移動
-" nnoremap <C-h> <C-Up>t<CR>d
-" nnoremap <C-l> <C-Down>t<CR>d
-" google select
 " }}}
 " {{{ googleselect
+" google select
 nnoremap <silent> <c-j> :googleselect<CR>
 nnoremap <silent> <c-k> :googleselect back<CR>
 
