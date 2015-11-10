@@ -19,7 +19,7 @@ source ~/.vimperator/rc/js/toggle.rc.js
 
 " localkeymode
 let g:localkeymode_enable = "true"
-source ~/.vimperator/rc/js/toggle.rc.js
+source ~/.vimperator/rc/js/localkey.rc.js
 
 " hatena bookmark
 source ~/.vimperator/rc/js/hatena_bookmark.js

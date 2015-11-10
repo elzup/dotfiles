@@ -1,5 +1,5 @@
 # {{{ overwrap options alias
-alias ls="ls -F --color=auto -v -al"	#ディレクトリには/, 色つき, 番号順
+alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
 alias la="ls -a"				#隠しファイルも
 alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
 alias lla="ls -lha"				#全部詳細
@@ -45,6 +45,7 @@ alias pingoogle="ping -c 3 www.google.com"
 
 # get screen resolution 解像度
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
+alias firefoxp="firefox -P answer --new-instance"
 
 # }}} - usefuls
 # {{{ extensions

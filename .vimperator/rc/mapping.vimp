@@ -5,7 +5,6 @@ nnoremap f f<S-F11>
 nnoremap t t<S-F11>
 nnoremap : :<S-F11>
 
-
 " }}}
 " {{{ unix key map
 inoremap <C-b> <Left>
@@ -58,11 +57,9 @@ nnoremap vs :so<Space>~/.vimperator/colors/tbg-
 " }
 "
 " firefox mute
-map <C-t> <C-m>
-
+nnoremap <C-t> i<C-m>
 " 現在のページをvim(W3m) で開く
 nnoremap <silent> <Leader>vw y:<C-u>!gvim<Space>+"W3m<Space><S-Insert>"<Space>&<CR><Esc>
-
 " ツリータブのトグル
 nnoremap <silent> e :javascript<Space>TreeStyleTabBrowserAutoHide.toggleMode();<CR>
 " 標準検索バーの非表示
