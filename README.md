@@ -1,10 +1,4 @@
 #Elzup's Dot Files
 ---
-##Environment
-+ Archlinux
-    * zsh
-    * awesome
-    * xterm
-    * vim
-    * gvim
-    * Filefox-vimperator
+
+.dropboxignore 的なことができないのでファイル階層を一つ下げた

@@ -1,1 +1,0 @@
-runtime! rc/init.vim
