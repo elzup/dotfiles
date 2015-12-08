@@ -1,18 +1,18 @@
-ime_controller.js
-.ssh/
+/dotfiles/ime_controller.js
+/dotfiles/.ssh/
 
 # vimperator
-.vimperator/plugin/
-.vimperator/colors/
-.vimperator/info/
-.vimperator/dev/
+/dotfiles/.vimperator/plugin/
+/dotfiles/.vimperator/colors/
+/dotfiles/.vimperator/info/
+/dotfiles/.vimperator/dev/
 # .vimperator/vimperator-plugins-other/
 
 # vim
-.vim/bundle/
-.vim/undo/
+/dotfiles/.vim/bundle/
+/dotfiles/.vim/undo/
 
 # zsh
-.zsh/*
-.zshenv
-!.zsh/rc/
+/dotfiles/.zsh/*
+/dotfiles/.zshenv
+!/dotfiles/.zsh/rc/
