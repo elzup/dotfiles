@@ -1,0 +1,33 @@
+# option setting
+#
+set main-view = id date author commit-title:graph=yes,refs=yes
+set diff-options = -m --first-parent
+
+
+
+# NOT:  External user-defined command
+# from tigrc document
+# http://jonas.nitro.dk/tig/tigrc.5.html#_external_user_defined_command
+#
+# !  Run the command in the foreground with output shown.
+# @  Run the command in the background with no output.
+# ?  Prompt the user before executing the command.
+# <  Exit Tig after executing the command.
+
+# bind setting
+bind status + !git commit --amend
+bind status D !@?git checkout HEAD -- %(file)
+
+bind main p !@?<git pull %(remote) %(branch):%(branch)
+bind main P !@?<git push %(remote) %(branch):%(branch)
+
+bind main P !@?<git push %(remote) %(branch):%(branch)
+
+bind main E !@?<git reset --hard %(commit)
+
+bind main c !@?git checkout %(commit)
+
+bind stash s !@?git stash
+
+bind main    R !git rebase -i %(commit)
+bind diff    R !git rebase -i %(commit)
