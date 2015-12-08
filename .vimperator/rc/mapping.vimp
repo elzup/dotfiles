@@ -9,7 +9,9 @@ nnoremap : :<S-F11>
 " {{{ unix key map
 inoremap <C-b> <Left>
 inoremap <C-f> <Right>
-map <C-m> <CR>
+inoremap <C-m> <CR>
+cnoremap <C-m> <CR>
+nnoremap <C-m> <CR>
 
 " inoremap <C-n> <Down>
 " inoremap <C-p> <Up>
@@ -26,10 +28,10 @@ cnoremap <C-f> <Right>
 "
 " }}}
 " {{{ movement
-nnoremap j 5<C-e>
-nnoremap k 5<C-y>
-nnoremap h 5<Left>
-nnoremap l 5<Right>
+nnoremap j 7<C-e>
+nnoremap k 7<C-y>
+nnoremap h 7<Left>
+nnoremap l 7<Right>
 "
 " }}}
 " {{{ panorama mapping
@@ -56,7 +58,7 @@ nnoremap vs :so<Space>~/.vimperator/colors/tbg-
 "     nnoremap <silent> ,c y:<c-u>!open -a Google\ Chrome <S-Insert>&<CR><Esc>
 " }
 "
-" firefox mute
+" firefox mute 割当キーに<C-t>正直もったいない
 nnoremap <C-t> i<C-m>
 " 現在のページをvim(W3m) で開く
 nnoremap <silent> <Leader>vw y:<C-u>!gvim<Space>+"W3m<Space><S-Insert>"<Space>&<CR><Esc>

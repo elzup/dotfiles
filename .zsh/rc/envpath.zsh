@@ -1,8 +1,9 @@
-. ./envs/android.zsh
-# . ./envs/vm.zsh
-# . ./envs/cocos.zsh
-# . ./envs/pyenv.zsh
-. ./envs/phpenv.zsh
-. ./envs/rbenv.zsh
-# . ./envs/nvmenv.zsh
-. ./envs/perl.zsh
+. $ZSHRCHOME/envs/android.zsh
+# . $ZSHRCHOME/envs/vm.zsh
+# . $ZSHRCHOME/envs/cocos.zsh
+# . $ZSHRCHOME/envs/pyenv.zsh
+# . $ZSHRCHOME/envs/phpenv.zsh
+. $ZSHRCHOME/envs/rbenv.zsh
+# . $ZSHRCHOME/envs/nvmenv.zsh
+. $ZSHRCHOME/envs/perl.zsh
+. $ZSHRCHOME/envs/go.zsh

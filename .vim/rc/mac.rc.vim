@@ -1,5 +1,5 @@
 set clipboard=unnamed,autoselect
-colorscheme badwolf
+colorscheme phd
 set guioptions-=a
 
 if has('gui_macvim')

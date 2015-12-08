@@ -42,6 +42,8 @@ endif
 
 runtime! rc/plugins/*.vim
 
+" scripts load
+call s:source_rc('./scripts/countline.vim')
 
 " vim:set foldmethod=marker
 " vim:set foldcolumn=3

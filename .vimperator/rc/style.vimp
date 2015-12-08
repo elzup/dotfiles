@@ -1,7 +1,7 @@
 
 " color style
 colorscheme my
-so ~/.vimperator/colors/my.css
+" so ~/.vimperator/colors/my.css
 
 
 " tab

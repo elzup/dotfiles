@@ -40,6 +40,10 @@ alias yaourt="yaourt --noconfirm"
 alias lange="LANG=C"
 alias langj="LANG=ja_JP.UTF-8"
 
+# rails
+# alias rails="./bin/rails"
+alias rake="./bin/rake"
+
 # ping
 alias pingoogle="ping -c 3 www.google.com"
 
@@ -56,7 +60,7 @@ alias -s h=vim
 alias -s html=vim
 alias -s java=vim
 alias -s rb=ruby
-alias -s py=myPyOpen
+alias -s py=python
 alias -s txt=vim
 alias -s xhtml=vim
 alias -s xml=vim

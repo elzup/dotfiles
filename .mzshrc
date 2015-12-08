@@ -13,4 +13,5 @@ alias prev="open -a Preview"
 alias finder="open -a Finder"
 alias chrome="open -a Google\ Chrome"
 
-alias rm='rmtrash'
+# rmtrash がぶっ壊れた
+# alias rm='rmtrash'

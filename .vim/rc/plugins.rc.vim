@@ -114,8 +114,6 @@ NeoBundle 'koron/minimap-vim'
 NeoBundle 'osyo-manga/vim-sound'
 
 "language
-" SQL
-NeoBundle 'vim-scripts/dbext.vim', '18.0'
 " html5
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hokaccha/vim-html5validator'
@@ -153,12 +151,12 @@ NeoBundleLazy 'Rip-Rip/clang_complete', {
             \ 'autoload' : {'filetypes' : ['c', 'cpp']}
             \ }
 NeoBundle 'mediawiki.vim'
-"NeoBundle 'wikipedia.vim'
+" NeoBundle 'wikipedia.vim'
 
 " jade
 NeoBundle 'digitaltoad/vim-jade'
 " arduino
-NeoBundle "sudar/vim-arduino-syntax"
+NeoBundle 'sudar/vim-arduino-syntax'
 
 " less
 NeoBundle 'groenewege/vim-less'
@@ -185,7 +183,7 @@ NeoBundle 'AshyIsMe/2048'
 NeoBundle 'thinca/vim-threes'
 "ThreesStart
 "NeoBundle 'sudoku_game'
-"Sudoku~~
+"Sudoku
 NeoBundle 'mfumi/viminesweeper'
 "MineSweeper
 "NeoBundle 'TeTrls.vim'
@@ -198,6 +196,7 @@ NeoBundle 'deris/vim-duzzle'
 
 "twitter
 NeoBundle 'basyura/TweetVim'
+
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'basyura/twibill.vim'
 NeoBundle 'tyru/open-browser.vim'
@@ -216,7 +215,6 @@ NeoBundle 'cohama/agit.vim'
 NeoBundle 'ujihisa/unite-colorscheme'
 NeoBundle 'phd'
 NeoBundle 'vim-scripts/summerfruit256.vim'
-NeoBundle 'sjl/badwolf'
 NeoBundle 'sfsekaran/cobalt.vim'
 
 " browsing

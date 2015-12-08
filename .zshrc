@@ -5,7 +5,8 @@ ZSHRCHOME="${ZSHHOME}/rc"
 . $ZSHRCHOME/basic.zsh
 . $ZSHRCHOME/oh-my-zsh.rc.zsh
 . $ZSHRCHOME/plugins.zsh
-# . $ZSHRCHOME/envpath.zsh
+. $ZSHRCHOME/envpath.zsh
+. $ZSHRCHOME/bind.zsh
 # . $ZSHRCHOME/vimbind.zsh
 
 # {{{ source plugins, helpers

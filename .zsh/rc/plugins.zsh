@@ -22,5 +22,8 @@ zstyle ':completion:*:processes' command "ps -u $USER"
 zstyle ':chpwd:*' recent-dirs-max 500
 function chpwd() { ls }
 
+# sl_tweet
+alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
+
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

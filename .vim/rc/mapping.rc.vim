@@ -56,6 +56,7 @@ nnoremap <Leader>nn :set norelativenumber<CR>
 " expandtab
 nnoremap <Leader>ex :set expandtab<CR>
 nnoremap <Leader>en :set noexpandtab<CR>
+inoremap <S-Tab> <C-V><Tab>
 
 "reopen
 nnoremap <Leader>ee :e ++enc=utf8
@@ -118,3 +119,7 @@ nnoremap <S-Left>  <C-w><
 nnoremap <S-Right> <C-w>>
 nnoremap <S-Up>    <C-w>-
 nnoremap <S-Down>  <C-w>+
+
+" scripts
+cnoremap <Leader>cc :CountText<CR>
+cnoremap <Leader>cl :CountLine<CR>
