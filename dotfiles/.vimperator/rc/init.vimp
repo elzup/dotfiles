@@ -1,0 +1,5 @@
+
+source ~/.vimperator/rc/basic.vimp
+source ~/.vimperator/rc/plugins.vimp
+source ~/.vimperator/rc/mapping.vimp
+source ~/.vimperator/rc/style.vimp

@@ -1,0 +1,21 @@
+
+" color style
+colorscheme my
+" so ~/.vimperator/colors/my.css
+
+
+" tab
+style -name tbg chrome://* <<EOM
+tabs#tabbrowser-tabs > * {
+    background-color: rgba(200,200,200,.2);
+}
+EOM
+
+
+" tree tab background
+javascript <<JS
+let suffix_chars = ['php', 'fire', 'baum', 'css_dn', 'css_op', 'pro', 'lo', 'py']
+liberator.execute('so ~/.vimperator/colors/tbg-' + suffix_chars[Math.floor(Math.random() * suffix_chars.length)] + '.css');
+JS
+
+nmap <Leader>tbg :so ~/.vimperator/colors/tbg-
