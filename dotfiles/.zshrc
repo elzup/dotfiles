@@ -37,3 +37,10 @@ fi
 if echo $OSTYPE | grep -q darwin; then
     source $ZSHRCHOME/.mzshrc
 fi
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/hiro/.sdkman"
+[[ -s "/Users/hiro/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hiro/.sdkman/bin/sdkman-init.sh"
+
+# added by travis gem
+[ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh

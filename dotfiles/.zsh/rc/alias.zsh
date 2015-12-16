@@ -4,7 +4,6 @@ alias la="ls -a"				#隠しファイルも
 alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
 alias lla="ls -lha"				#全部詳細
 
-alias tig="tig --all"	#ディレクトリには/, 色つき, 番号順
 alias mv="mv -i"
 
 #cp

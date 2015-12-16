@@ -97,6 +97,7 @@ inoremap <silent> <c-k> <Esc>:googleselect back<CR>
 " {{{ web search
 nnoremap sn :wsnico<Space>
 nnoremap stt :tabopen twitter<Space>
+nnoremap sty :wsyahootweet<Space>
 " TODO nnoremap sl :ws_logsoku<Space>
 nnoremap stl :wstwilog<Space>
 nnoremap str :wsgoogletrend<Space>
