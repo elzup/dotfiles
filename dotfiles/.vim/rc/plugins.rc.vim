@@ -46,6 +46,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'taglist.vim'
 NeoBundle 'szw/vim-tags'
 NeoBundle 'ZoomWin'
+NeoBundle 'sjl/gundo.vim'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 "NeoBundle 'scrooloose/nerdtree.git'
 
@@ -209,7 +210,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'cohama/agit.vim'
-
+NeoBundle 'pocke/neco-gh-issues'
 
 "colorscheme
 NeoBundle 'ujihisa/unite-colorscheme'
