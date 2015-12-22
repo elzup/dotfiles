@@ -11,6 +11,7 @@
 # vim
 /dotfiles/.vim/bundle/
 /dotfiles/.vim/undo/
+/dotfiles/.vim/plugged/
 
 # zsh
 /dotfiles/.zsh/*
