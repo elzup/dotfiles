@@ -80,6 +80,7 @@ Plug 'koron/imcsc-vim'
 Plug 'tpope/vim-abolish'
 Plug 'haya14busa/vim-migemo'
 Plug 'mattn/emmet-vim'
+Plug 'koron/codic-vim'
 
 "NeoBundle 'kana/vim-operator-replace'
 "NeoBundle 'thinca/vim-splash'
@@ -229,7 +230,7 @@ Plug 'sfsekaran/cobalt.vim'
 Plug 'yuratomo/w3m.vim'
 
 " funny
-Plug 'mattn/vim-kaikyaku-buster'
+" Plug 'mattn/vim-kaikyaku-buster'
 
 call plug#end()
 

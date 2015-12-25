@@ -8,7 +8,7 @@ set guioptions=arc
 set textwidth=0
 set langmenu=ja_jp.utf-8
 set hlsearch
-" commandline complete
+" command line complete
 set wildmenu
 set wildmode=longest:full,full
 "空へはばたけ
@@ -70,11 +70,14 @@ set smartindent
 set incsearch
 set splitright
 
+" スペルチェック
+set spell
+set spelllang=en,cjk
 
 " プレビューウィンドウ非表示
 set completeopt=longest,menu
 
-" numbr
+" number
 set relativenumber
 set number
 behave mswin
