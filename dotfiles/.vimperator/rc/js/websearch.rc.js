@@ -3,6 +3,14 @@ liberator.globalVariables.webSearchTemplates = [
         names: ['wsgems'],
         description: 'search rubygems.org',
         url: 'http://rubygems.org/search?utf8=%E2%9C%93&query=%KEYWORD%'
+    }, {
+        names: ['wsgooglescholar'],
+        description: 'search google scholar',
+        url: 'https://scholar.google.co.jp/scholar?q=%KEYWORD%'
+    }, {
+        names: ['wstwilog'],
+        description: 'search twilog',
+        url: 'http://twilog.org/Arzzup/search?word=%KEYWORD%&ao=a'
 //    }, {
 //        names: ['wsgithub'],
 //        description: 'search github',
@@ -16,3 +24,4 @@ liberator.globalVariables.webSearchTemplates = [
         description: 'search yahoo リアルタイム検索',
         url: 'http://realtime.search.yahoo.co.jp/search?p=%KEYWORD%&ei=UTF-8'
     }];
+

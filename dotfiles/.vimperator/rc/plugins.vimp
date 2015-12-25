@@ -27,3 +27,7 @@ set complete+=H
 
 " my
 source ~/.vimperator/rc/js/get_short_uri.js
+
+" googleselect
+source ~/.vimperator/rc/js/googleselect.rc.js
+
