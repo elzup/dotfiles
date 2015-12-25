@@ -1,0 +1,16 @@
+virtualedit
+ctags
+autochdir
+cursorline
+cursorcolumn
+vim
+filereadable
+endif
+Funcs
+solarized
+win32
+comamndline
+nnoremap
+cnoremap
+Nop
+inoremap

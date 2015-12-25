@@ -1,4 +1,4 @@
-" swich colons
+" switch colons
 " nnoremap ; :
 " nnoremap : ;
 
@@ -11,9 +11,9 @@ nnoremap <Leader>ym :<C-u>MessCopy<CR>
 " setting 
 nnoremap <silent> <Space>u :10sp solved.memo<CR><C-w>j:vs snippet.memo<CR>:vs keywords.md<CR>
 
-"inoremap <BS> <Nop>
+" inoremap <BS> <Nop>
 
-"Movement
+" Movement
 nnoremap G Gzz
 nnoremap V V$h
 vnoremap v $h
@@ -26,19 +26,19 @@ vnoremap <Tab> %
 
 nnoremap <C-CR> O<Esc>
 
-"Super input
+" Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
-"Window Scaleup
+" Window Scaleup
 nnoremap <Leader>wj 10<C-W>+
 nnoremap <Leader>wk 10<C-W>-
 nnoremap <Leader>wl 10<C-W>>
 nnoremap <Leader>wh 10<C-W><
 nnoremap <C-;> <S-A>;<Esc>
-"inoremap <C-;> <Esc><S-A>;
+" inoremap <C-;> <Esc><S-A>;
 
 nnoremap <Leader>a gg<S-V><S-G>a
-"Open on other app
-"nnoremap <Leader>e :!explorer .<CR>
+" Open on other app
+" nnoremap <Leader>e :!explorer .<CR>
 
 " Special Command
 nnoremap <Leader>min :set lines=20<CR>:set columns=30<CR>:winpos 1100 420<CR>
@@ -58,9 +58,13 @@ nnoremap <Leader>ex :set expandtab<CR>
 nnoremap <Leader>en :set noexpandtab<CR>
 inoremap <S-Tab> <C-V><Tab>
 
-"reopen
+" reopen
 nnoremap <Leader>ee :e ++enc=utf8
 nnoremap <Leader>ew :e ++ff=dos
+
+" spell switch
+" nnoremap <Leader>Sa :set spell<CR>
+" nnoremap <Leader>Sd :set nospell<CR>
 
 " 強制書き込み
 nnoremap <Leader>w :w !sudo tee %<CR>
@@ -81,12 +85,12 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 " 前の単語へ移動
 cnoremap <M-b> <S-Left>
-"" 次の単語へ移動
-"cnoremap <M-f> <S-Right>
+" " 次の単語へ移動
+" cnoremap <M-f> <S-Right>
 
 nnoremap <silent> Q :quitall<CR>
 
-"switching windows
+" switching windows
 " nnoremap s <Nop>
 " nnoremap sj <C-w>j
 " nnoremap sk <C-w>k
