@@ -16,4 +16,31 @@ options head
     import time
     start = time.time()
     
-    print(str(time.time() - start) + "ms")
+    print(str((time.time() - start) * 1000) + "ms")
+
+
+snippet input_forend
+abbr stdin 取得, 出力なくなるまで
+options head
+    import sys
+    
+    for line in sys.stdin:
+        pass
+
+
+snippet input_forend_list
+abbr stdin 取得, 出力なくなるまで, list
+options head
+    import sys
+    
+    lines = list(sys.stdin)
+
+snippet base2base
+abbr 進数変換
+options head
+    import string
+    import math
+    
+    def int2base(a, b):
+        return (''.join((string.digits + string.ascii_letters)[(a // b ** i) % b]
+                for i in range(int(math.log(a, b)), -1, -1)))
