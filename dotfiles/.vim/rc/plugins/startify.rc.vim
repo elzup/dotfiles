@@ -23,8 +23,10 @@ let g:startify_custom_header = [
   \]
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = [
-  \ '~/.vimrc',
+  \ '~/.vim/rc/init.vim',
   \ '~/memos/.memo',
+  \ '~/.vim/rc/basic.rc.vim',
+  \ '~/.vim/rc/plugins/',
   \ '~/workspace',
   \ ]
 " \ map(split('date', '\n'), '"   ". v:val') + ['',''],

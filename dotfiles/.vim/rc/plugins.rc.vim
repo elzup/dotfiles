@@ -28,14 +28,8 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimshell.vim'
 Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-\ }
+Plug 'Shougo/vimproc', { 'do': 'make' }
+
 Plug 'scrooloose/syntastic'
 Plug 'rking/ag.vim'
 Plug 'Sixeight/unite-grep'
@@ -51,7 +45,8 @@ Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'itchyny/lightline.vim'
 Plug 'LeafCage/foldCC'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'taglist.vim'
+" Plug 'taglist.vim'
+Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
 Plug 'ZoomWin'
 Plug 'sjl/gundo.vim'
@@ -180,7 +175,7 @@ Plug 'vim-scripts/st.vim'
 Plug 'lua-support'
 Plug 'luarefvim'
 "Tex
-Plug 'git://git.code.sf.net/p/vim-latex/vim-latex'
+Plug 'lervag/vim-latex'
 
 " md
 Plug 'kannokanno/previm'

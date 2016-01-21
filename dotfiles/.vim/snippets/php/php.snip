@@ -180,6 +180,14 @@ abbr エラー強制表示
     ini_set('display_errors', '1');
     error_reporting(E_ALL);
 
+snippet input
+abbr 標準入力
+    $line = trim(fgets(STDIN));
+
+snippet input_cr
+abbr 標準入力と改行分割
+    $lines = explode("\n", trim(fgets(STDIN)));
+
 snippet print_httpheader
 abbr httpヘッダを表示
     print_r(get_headers('${1:http://}'));

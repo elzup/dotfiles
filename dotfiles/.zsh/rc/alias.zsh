@@ -45,6 +45,7 @@ alias rake="./bin/rake"
 
 # ping
 alias pingoogle="ping -c 3 www.google.com"
+alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
 # get screen resolution 解像度
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"

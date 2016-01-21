@@ -30,6 +30,7 @@ nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
 nnoremap <silent> [unite]t :<C-u>Unite tab<CR>
 nnoremap <silent> [unite]w :<C-u>Unite window<CR>
 nnoremap <silent> [unite]g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+nnoremap <silent> [unite]G  :<C-u>Unite grep:. -buffer-name=search-buffer -no-quit<CR>
 
 nnoremap <silent> [unite]/ :<C-u>Unite -buffer-name=search line -start-insert<CR>
 
