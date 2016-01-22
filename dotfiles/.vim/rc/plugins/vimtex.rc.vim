@@ -16,8 +16,8 @@ if has('win32')
     let g:vimtex_view_general_options_latexmk = '-reuse-instance'
 elseif has('unix')
     " let g:vimtex_view_general_viewer = 'open'
-    " let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-    let g:vimtex_view_general_viewer = 'open -a Skim'
+    let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+    " let g:vimtex_view_general_viewer = 'open -a Skim'
     let g:vimtex_view_general_options = '@line @pdf @tex'
 endif
 
