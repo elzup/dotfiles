@@ -100,6 +100,7 @@ nnoremap stt :tabopen twitter<Space>
 nnoremap sty :wsyahootweet<Space>
 " TODO nnoremap sl :ws_logsoku<Space>
 nnoremap stl :wstwilog<Space>
+nnoremap stg :wstogetter<Space>
 " nnoremap str :wsgoogletrend<Space>
 nnoremap sc :wsgooglescholar<Space>
 

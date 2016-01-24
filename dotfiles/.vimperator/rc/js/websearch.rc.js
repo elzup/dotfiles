@@ -11,6 +11,10 @@ liberator.globalVariables.webSearchTemplates = [
         names: ['wstwilog'],
         description: 'search twilog',
         url: 'http://twilog.org/Arzzup/search?word=%KEYWORD%&ao=a'
+    }, {
+        names: ['wstogetter'],
+        description: 'search togetter',
+        url: 'http://togetter.com/search?q=%KEYWORD%'
 //    }, {
 //        names: ['wsgithub'],
 //        description: 'search github',
