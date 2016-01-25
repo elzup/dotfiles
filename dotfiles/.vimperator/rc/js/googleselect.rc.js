@@ -47,5 +47,13 @@ liberator.globalVariables.googleSelectConfigs = [
             top: '0.0em',
             left: '-1.0em'
         }
+    }, {
+        name: 'firefox filer',
+        url: 'file://',
+        element_css_selector: '.file',
+        marker_posfix: {
+            top: '0.0em',
+            left: '-1.0em'
+        }
     }
 ];
