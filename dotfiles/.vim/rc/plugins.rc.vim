@@ -176,7 +176,7 @@ Plug 'lua-support'
 Plug 'luarefvim'
 "Tex
 " Plug 'lervag/vim-latex'
-Plug 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
 " md
 Plug 'kannokanno/previm'
