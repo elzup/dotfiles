@@ -40,6 +40,14 @@ liberator.globalVariables.googleSelectConfigs = [
             left: '-1.0em'
         }
     }, {
+        name: 'anico',
+        url: 'https?://anicobin\.ldblog\.jp',
+        element_css_selector: '.article-continue',
+        marker_posfix: {
+            top: '0.0em',
+            left: '-1.0em'
+        }
+    }, {
         name: 'github scholar',
         url: 'https?://scholar\.google\.co\.jp',
         element_css_selector: '#gs_ccl .gs_r h3 a',

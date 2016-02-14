@@ -31,6 +31,7 @@ let plugin_names = [
     'websearch',
     'youtubeamp',
     'smooth-scroll',
+    'multi_requester',
     'trunk'
 ];
 liberator.execute("let g:plugin_loader_plugins = '" + (plugin_names.join(',')) + "'");

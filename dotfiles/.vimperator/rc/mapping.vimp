@@ -113,6 +113,8 @@ nnoremap ss :tabopen<Space>google<Space>
 nnoremap sa :tabopen<Space>amazon<Space>
 nnoremap sh :tabopen<Space>hatena<Space>
 
+nnoremap sq :tabopen<Space>qiita<Space>
+
 " }}}
 " {{{ Twittperator
 nnoremap <Leader>t/ :tw!/<Tab>
@@ -133,10 +135,16 @@ nnoremap <Leader>tp :yankinfo titleandsurl<CR>: / <C-v><C-a>tw
 " ignorekeys add (www)?\\.tumblr\\.(co\\.jp|com) -except :,t,d,<C-n>,<C-p>,b,l,h,a,<C-f>,<C-b>,g
 ignorekeys add tweetdeck\.twitter\.com -except :,a,g,<Esc>,<C-[>
 " ignorekeys add tumblr\.com -except :,<C-n>,<C-p>,a,g,<Esc>,<C-[>
+
 " }}}
 " {{{ copy
 nnoremap YT :copy title<CR>
 nnoremap YY :copy titleAndTitle<CR>
 nnoremap YA :copy anchor<CR>
 nnoremap YS :shorturi<CR>
+
+" }}}
+" {{{ copy
+nnoremap <Leader>e :mr<Space>alc<Space>
+
 " }}}
