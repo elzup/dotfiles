@@ -98,3 +98,8 @@ alias -g andclip=" | (cat 1>&2 | xsel -bi) 2>&1"
 alias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"
 
 # }}} end pipe
+# {{{ wine
+alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
+
+# }}}
+
