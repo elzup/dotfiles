@@ -1,3 +1,4 @@
+. $ZSHRCHOME/envs/brew.zsh
 . $ZSHRCHOME/envs/android.zsh
 # . $ZSHRCHOME/envs/vm.zsh
 # . $ZSHRCHOME/envs/cocos.zsh
