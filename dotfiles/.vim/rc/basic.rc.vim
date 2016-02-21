@@ -91,7 +91,7 @@ winpos 683 0
 set cmdheight=1
 
 " カーソル行をハイライト
-" set cursorline
+set cursorline
 " カーソル列をハイライト
 " set cursorcolumn
 
