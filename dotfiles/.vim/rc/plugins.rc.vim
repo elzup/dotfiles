@@ -177,6 +177,9 @@ Plug 'luarefvim'
 "Tex
 " Plug 'lervag/vim-latex'
 " Plug 'lervag/vimtex'
+"
+" Erlang
+Plug 'vim-erlang/vim-erlang-omnicomplete'
 
 " md
 Plug 'kannokanno/previm'
