@@ -140,7 +140,7 @@ Plug 'claco/jasmine.vim', { 'for': ['java'] }
 " javascript
 Plug 'jelera/vim-javascript-syntax', { 'for': ['javascript']}
 Plug 'pangloss/vim-javascript', { 'for': ['javascript'] }
-Plug 'mattn/jscomplete-vim', { 'for': ['javascript'] }
+" Plug 'mattn/jscomplete-vim', { 'for': ['javascript'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
 Plug 'STRML/JSXHint', { 'for': ['javascript'] }
 

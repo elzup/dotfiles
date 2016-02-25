@@ -56,6 +56,14 @@ liberator.globalVariables.googleSelectConfigs = [
             left: '-1.0em'
         }
     }, {
+        name: 'Atcoder Qs',
+        url: 'https?://.*.contest.atcoder.jp/assignments',
+        element_css_selector: '.table-wb td:nth-of-type(2) a.linkwrapper',
+        marker_posfix: {
+            top: '0.0em',
+            left: '-1.0em'
+        }
+    }, {
         name: 'firefox filer',
         url: 'file://',
         element_css_selector: '.file',
