@@ -2,7 +2,7 @@ liberator.globalVariables.googleSelectConfigs = [
     {
         name: 'qiita mypage',
         url: 'https?://qiita\.com/?$',
-        element_css_selector: '.activities .item-box-title h1 a',
+        element_css_selector: 'h3.r a',
         marker_posfix: {
             top: '0.0em',
             left: '-1.0em'
