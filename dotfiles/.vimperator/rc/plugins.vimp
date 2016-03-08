@@ -1,5 +1,43 @@
 
-source ~/.vimperator/rc/js/load_plugins.js
+" source ~/.vimperator/rc/js/load_plugins.js
+
+source ~/.vimperator/vimppm/plugin/vimppm/vimppm.js
+
+" ---- vimppm ----
+
+" Github
+vimppm 'elzzup/websearch.vimpr'
+
+" Vimpr
+"
+vimppm '_libly'
+vimppm 'alert'
+vimppm 'auto_source'
+vimppm 'caret-hint'
+vimppm 'copy'
+vimppm 'echopy'
+vimppm 'feedSomeKeys_3'
+vimppm 'google-exopen'
+vimppm 'googleselect'
+vimppm 'hint-tombloo_elzup'
+vimppm 'imekeys'
+vimppm 'longcat'
+vimppm 'memo'
+vimppm 'nicontroller'
+vimppm 'nume'
+vimppm 'pushfind'
+vimppm 'toggler'
+vimppm 'tombloo_elzup'
+vimppm 'twittperator'
+vimppm 'uaSwitchLite'
+vimppm 'websearch'
+vimppm 'youtubeamp'
+vimppm 'smooth-scroll'
+vimppm 'multi_requester'
+vimppm 'trunk'
+
+" ---- vimppm end ----
+
 
 let g:jquery_filepath = "~/.vimperator/lib/jquery-2.1.1.min.js"
 
