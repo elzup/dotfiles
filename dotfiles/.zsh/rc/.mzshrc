@@ -13,5 +13,16 @@ alias prev="open -a Preview"
 alias finder="open -a Finder"
 alias chrome="open -a Google\ Chrome"
 
+
+# {{{ wine
+alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
+alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
+alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
+
+# }}}
+
+# 格言一つ発射
+alias random_saying="cat ~/memos/saying.txt | gshuf -n 1"
+
 # rmtrash がぶっ壊れた
 # alias rm='rmtrash'

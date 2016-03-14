@@ -44,3 +44,5 @@ export SDKMAN_DIR="/Users/hiro/.sdkman"
 
 # added by travis gem
 [ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
+
+random_saying
