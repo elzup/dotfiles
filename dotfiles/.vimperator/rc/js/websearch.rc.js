@@ -24,8 +24,11 @@ liberator.globalVariables.webSearchTemplates = [
         description: 'search niconico video',
         url: 'http://www.nicovideo.jp/search/%KEYWORD%?track=nicouni_search_keyword'
     }, {
+        names: ['wstiqav'],
+        description: 'search yahoo tiqav',
+        url: 'http://tiqav.com/search/%KEYWORD%'
+    }, {
         names: ['wsyahootweet'],
         description: 'search yahoo リアルタイム検索',
         url: 'http://realtime.search.yahoo.co.jp/search?p=%KEYWORD%&ei=UTF-8'
     }];
-

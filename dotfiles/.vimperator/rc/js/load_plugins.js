@@ -3,7 +3,7 @@ let plugin_paths = [
     '~/.vimperator/vimperator-plugins-other/',
     '~/.vimperator/vimperator-plugins/',
     '~/.vimperator/vimperator-plugins-other/caisui/vimperator/plugin/',
-    '~/.vimperator/vimperator-plugins-other/websearch.vimpr/'
+    '~/.vimperator/vimperator-plugins-other/websearch.vimpr.git/'
 ];
 liberator.execute("let g:plugin_loader_roots = '" + (plugin_paths.join(',')) + "'");
 

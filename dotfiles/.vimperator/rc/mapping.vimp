@@ -103,6 +103,7 @@ nnoremap stl :wstwilog<Space>
 nnoremap stg :wstogetter<Space>
 " nnoremap str :wsgoogletrend<Space>
 nnoremap sc :wsgooglescholar<Space>
+nnoremap sv :wstiqav<Space>
 
 " nnoremap sg :wsgithub<Space>
 nnoremap sg :tabopen<Space>github<Space>
