@@ -1,5 +1,13 @@
 liberator.globalVariables.webSearchTemplates = [
     {
+        names: ['wsamazon'],
+        description: 'search amazon',
+        url: 'http://www.amazon.co.jp/s/?field-keywords=%KEYWORD%'
+    }, {
+        names: ['wsamazonprimevideo'],
+        description: 'search amazon video',
+        url: 'http://www.amazon.co.jp/s/?url=search-alias=instant-video&field-keywords=%KEYWORD%'
+    }, {
         names: ['wsgems'],
         description: 'search rubygems.org',
         url: 'http://rubygems.org/search?utf8=%E2%9C%93&query=%KEYWORD%'
@@ -11,6 +19,10 @@ liberator.globalVariables.webSearchTemplates = [
         names: ['wstwilog'],
         description: 'search twilog',
         url: 'http://twilog.org/Arzzup/search?word=%KEYWORD%&ao=a'
+    }, {
+        names: ['wsfavlog'],
+        description: 'search favlog',
+        url: 'http://favolog.org/tweets.rb?id=Arzzup&w=%KEYWORD%&k=tw'
     }, {
         names: ['wstogetter'],
         description: 'search togetter',
@@ -31,4 +43,9 @@ liberator.globalVariables.webSearchTemplates = [
         names: ['wsyahootweet'],
         description: 'search yahoo リアルタイム検索',
         url: 'http://realtime.search.yahoo.co.jp/search?p=%KEYWORD%&ei=UTF-8'
-    }];
+    }, {
+        names: ['wsannict'],
+        description: 'search annict',
+        url: 'https://annict.com/search?q=%KEYWORD%'
+    }
+];

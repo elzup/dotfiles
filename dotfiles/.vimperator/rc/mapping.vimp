@@ -100,10 +100,16 @@ nnoremap stt :tabopen twitter<Space>
 nnoremap sty :wsyahootweet<Space>
 " TODO nnoremap sl :ws_logsoku<Space>
 nnoremap stl :wstwilog<Space>
+nnoremap stf :wsfavlog<Space>
 nnoremap stg :wstogetter<Space>
 " nnoremap str :wsgoogletrend<Space>
 nnoremap sc :wsgooglescholar<Space>
 nnoremap sv :wstiqav<Space>
+
+nnoremap sam :wsamazon<Space>
+nnoremap sap :wsamazonprimevideo<Space>
+
+nnoremap san :wsannict<Space>
 
 " nnoremap sg :wsgithub<Space>
 nnoremap sg :tabopen<Space>github<Space>
