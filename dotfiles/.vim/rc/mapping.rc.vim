@@ -127,3 +127,8 @@ nnoremap <S-Down>  <C-w>+
 " scripts
 cnoremap <Leader>cc :CountText<CR>
 cnoremap <Leader>cl :CountLine<CR>
+
+" scripts
+cnoremap <Leader>sp :set spell<CR>
+cnoremap <Leader>spn :set nospell<CR>
+cnoremap <Leader>nsp :set nospell<CR>
