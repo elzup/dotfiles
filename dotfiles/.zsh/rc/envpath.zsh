@@ -9,3 +9,4 @@
 # . $ZSHRCHOME/envs/nvmenv.zsh
 . $ZSHRCHOME/envs/perl.zsh
 . $ZSHRCHOME/envs/go.zsh
+. $ZSHRCHOME/envs/tensorflow.zsh
