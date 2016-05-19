@@ -50,7 +50,7 @@ liberator.globalVariables.googleSelectConfigs = [
     }, {
         name: 'github scholar',
         url: 'https?://scholar\.google\.co\.jp',
-        element_css_selector: '#gs_ccl .gs_r h3 a',
+        element_css_selector: '#ires .r a',
         marker_posfix: {
             top: '0.0em',
             left: '-1.0em'
