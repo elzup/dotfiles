@@ -21,6 +21,7 @@ let plugin_names = [
     'imekeys',
     'longcat',
     'memo',
+    'namakubi',
     'nicontroller',
     'nume',
     'pushfind',

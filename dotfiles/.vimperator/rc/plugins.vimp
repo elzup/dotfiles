@@ -45,8 +45,8 @@ let g:jquery_filepath = "~/.vimperator/lib/jquery-2.1.1.min.js"
 let smooth_scroll_duration=200
 
 " Twittperator
+let g:twittperator_use_chirp = 0
 let g:twittperator_use_ssl_connection_for_api_ep = 1
-let g:twittperator_use_chirp = 1
 let g:twittperator_screen_name = "arzzup"
 
 " websearch

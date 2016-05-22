@@ -154,4 +154,5 @@ nnoremap YS :shorturi<CR>
 " {{{ copy
 nnoremap <Leader>e :mr<Space>alc<Space>
 
+
 " }}}

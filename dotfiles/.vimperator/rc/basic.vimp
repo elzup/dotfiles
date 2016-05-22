@@ -6,7 +6,7 @@ set titlestring="火狐⊂('ω'⊂ )"
 "自動フォーカスの防止
 set focuscontent
 " eidtor
-" set editor=mvim
+set editor=/usr/local/bin/mvim
 " GUIバーの初期表示状態
 set gui=addons,nobookmarks,nomenu,nonavigation,tabs
 "ex mode でインクリメント補完
