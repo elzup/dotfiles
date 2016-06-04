@@ -24,7 +24,6 @@
                 }
 
                 var extractors = tomblooService.check(context);
-                //        console.log(extractors);
                 tomblooService.share(context, extractors[0], false);
             },
             function () hintXPath

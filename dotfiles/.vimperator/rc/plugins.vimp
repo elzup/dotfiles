@@ -1,42 +1,43 @@
 
-source ~/.vimperator/rc/js/load_plugins.js
-
-" source ~/.vimperator/vimppm/plugin/vimppm/vimppm.js
-" 
 " " ---- vimppm ----
+" source ~/.vimperator/vimppm/vimppm/plugin/vimppm.js
 " 
-" " Github
+" " " Github
 " vimppm 'elzzup/websearch.vimpr'
-" 
-" " Vimpr
-" "
-" vimppm '_libly'
-" vimppm 'alert'
-" vimppm 'auto_source'
-" vimppm 'caret-hint'
-" vimppm 'copy'
-" vimppm 'echopy'
-" vimppm 'feedSomeKeys_3'
-" vimppm 'google-exopen'
-" vimppm 'googleselect'
-" vimppm 'hint-tombloo_elzup'
-" vimppm 'imekeys'
-" vimppm 'longcat'
-" vimppm 'memo'
-" vimppm 'nicontroller'
-" vimppm 'nume'
-" vimppm 'pushfind'
-" vimppm 'toggler'
-" vimppm 'tombloo_elzup'
-" vimppm 'twittperator'
-" vimppm 'uaSwitchLite'
-" vimppm 'websearch'
-" vimppm 'youtubeamp'
-" vimppm 'smooth-scroll'
-" vimppm 'multi_requester'
-" vimppm 'trunk'
+" " 
+" " " Vimpr
+" " "
+" vimppm '_libly.js'
+" vimppm '_smooziee.js'
+" vimppm 'alert.js'
+" vimppm 'auto_source.js'
+" vimppm 'caret-hint.js'
+" vimppm 'copy.js'
+" vimppm 'echopy.js'
+" vimppm 'feedSomeKeys_3.js'
+" vimppm 'google-exopen.js'
+" vimppm 'googleselect.js'
+" vimppm 'hint-tombloo_elzup.js'
+" vimppm 'imekeys.js'
+" vimppm 'longcat.js'
+" vimppm 'memo.js'
+" vimppm 'nicontroller.js'
+" vimppm 'nume.js'
+" vimppm 'pushfind.js'
+" vimppm 'toggler.js'
+" vimppm 'tombloo_elzup.js'
+" vimppm 'twittperator.js'
+" vimppm 'uaSwitchLite.js'
+" vimppm 'websearch.js'
+" vimppm 'youtubeamp.js'
+" vimppm 'multi_requester.js'
+" vimppm 'trunk.js'
+" vimppm 'pluginManager.js'
 " 
 " ---- vimppm end ----
+
+source ~/.vimperator/rc/js/load_plugins.js
+
 
 
 let g:jquery_filepath = "~/.vimperator/lib/jquery-2.1.1.min.js"
@@ -90,3 +91,10 @@ source ~/.vimperator/rc/js/get_short_uri.js
 " googleselect
 source ~/.vimperator/rc/js/googleselect.rc.js
 
+" copyjs
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+    { label: 'titleAndtinyurl',value: 'TITLE and TinyURL', custom: function(){ return buffer.title + ' - ' +  util.httpGet('http://tinyurl.com/api-create.php?url=' + encodeURIComponent(buffer.URL)).responseText; } },
+];
+EOM
+nnoremap ,tb :copy<Space>titleAndtinyurl<CR>:tw<Space>Now<Space>Browsing:<Space><S-Insert><Space>#NowBrowsing

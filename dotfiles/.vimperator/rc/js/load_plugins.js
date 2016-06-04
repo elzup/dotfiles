@@ -21,7 +21,6 @@ let plugin_names = [
     'imekeys',
     'longcat',
     'memo',
-    'namakubi',
     'nicontroller',
     'nume',
     'pushfind',
@@ -33,6 +32,7 @@ let plugin_names = [
     'youtubeamp',
     'smooth-scroll',
     'multi_requester',
+    'pluginManager',
     'trunk'
 ];
 liberator.execute("let g:plugin_loader_plugins = '" + (plugin_names.join(',')) + "'");
