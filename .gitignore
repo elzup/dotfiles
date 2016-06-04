@@ -1,6 +1,11 @@
 /dotfiles/ime_controller.js
 /dotfiles/.ssh/
 
+/dotfiles/.vimperator/dev/
+
+/dotfiles/.vimperator/vimperator-plugins-other/caisui
+/dotfiles/.vimperator/vimppm
+
 # vimperator
 /dotfiles/.vimperator/plugin/
 /dotfiles/.vimperator/colors/
