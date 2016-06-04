@@ -1,9 +1,16 @@
 export ZSHHOME="${HOME}/.zsh"
 ZSHRCHOME="${ZSHHOME}/rc"
 
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
+source ~/.zsh/antigen/antigen.zsh
+antigen bundle sorin-ionescu/prezto
+
 # source rc files
 . $ZSHRCHOME/basic.zsh
-. $ZSHRCHOME/oh-my-zsh.rc.zsh
 . $ZSHRCHOME/plugins.zsh
 . $ZSHRCHOME/envpath.zsh
 . $ZSHRCHOME/bind.zsh
@@ -12,15 +19,6 @@ ZSHRCHOME="${ZSHHOME}/rc"
 # {{{ source plugins, helpers
 ZSHRCPLUGINS="${ZSHRCHOME}/plugins"
 ZSHRCHELPERS="${ZSHRCHOME}/helpers"
-
-# source all files in folder
-if [ -d $ZSHRCPLUGINS -a -r $ZSHRCPLUGINS -a \
-     -x $ZSHRCPLUGINS ]; then
-    for i in $ZSHRCPLUGINS/*; do
-        [[ ${i##*/} = *.zsh ]] &&
-            [ \( -f $i -o -h $i \) -a -r $i ] && . $i
-    done
-fi
 
 # source all files in folder
 if [ -d $ZSHRCHELPERS -a -r $ZSHRCHELPERS -a \
