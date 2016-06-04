@@ -17,8 +17,18 @@ antigen bundle sorin-ionescu/prezto
 # . $ZSHRCHOME/vimbind.zsh
 
 # {{{ source plugins, helpers
+#
+# source all files in folder
 ZSHRCPLUGINS="${ZSHRCHOME}/plugins"
 ZSHRCHELPERS="${ZSHRCHOME}/helpers"
+
+if [ -d $ZSHRCPLUGINS -a -r $ZSHRCPLUGINS -a \
+     -x $ZSHRCPLUGINS ]; then
+    for i in $ZSHRCPLUGINS/*; do
+        [[ ${i##*/} = *.zsh ]] &&
+            [ \( -f $i -o -h $i \) -a -r $i ] && . $i
+    done
+fi
 
 # source all files in folder
 if [ -d $ZSHRCHELPERS -a -r $ZSHRCHELPERS -a \

@@ -10,7 +10,6 @@ fi
 
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
-autoload -Uz add-zsh-hock
 
 # TDOO
 bindkey '^]'   vi-find-next-char
@@ -26,4 +25,4 @@ function chpwd() { ls }
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
 
 # fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
