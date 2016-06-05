@@ -9,6 +9,7 @@ fi
 source ~/.zsh/antigen/antigen.zsh
 antigen bundle sorin-ionescu/prezto
 
+
 # source rc files
 . $ZSHRCHOME/basic.zsh
 . $ZSHRCHOME/plugins.zsh
@@ -17,7 +18,6 @@ antigen bundle sorin-ionescu/prezto
 # . $ZSHRCHOME/vimbind.zsh
 
 # {{{ source plugins, helpers
-#
 # source all files in folder
 ZSHRCPLUGINS="${ZSHRCHOME}/plugins"
 ZSHRCHELPERS="${ZSHRCHOME}/helpers"
@@ -46,9 +46,10 @@ if echo $OSTYPE | grep -q darwin; then
     source $ZSHRCHOME/.mzshrc
 fi
 
+# source mac zshrc
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/hiro/.sdkman"
-[[ -s "/Users/hiro/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hiro/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="/Users/hiro/.sdkman"
+# [[ -s "/Users/hiro/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/hiro/.sdkman/bin/sdkman-init.sh"
 
 # added by travis gem
 [ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh

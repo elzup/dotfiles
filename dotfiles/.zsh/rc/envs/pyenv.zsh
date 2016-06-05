@@ -1,5 +1,6 @@
 CFLAGS="-I$(brew --prefix openssl)/include"
 LDFLAGS="-L$(brew --prefix openssl)/lib"
+
 # # pyenv
 # export PYENV_ROOT="${HOME}/.pyenv"
 # if [ -d "${PYENV_ROOT}" ]; then
