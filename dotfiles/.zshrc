@@ -6,8 +6,13 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-source ~/.zsh/antigen/antigen.zsh
-antigen bundle sorin-ionescu/prezto
+if [[ -f ~/.zsh/antigen/antigen.zsh ]]; then
+    source ~/.zsh/antigen/antigen.zsh
+    antigen bundle mollifier/anyframe
+    antigen bundle sorin-ionescu/prezto
+    antigen apply
+fi
+
 
 
 # source rc files
