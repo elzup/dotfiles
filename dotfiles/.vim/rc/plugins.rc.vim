@@ -99,6 +99,7 @@ Plug 'RyanMcG/vim-textobj-dash'
 Plug 'deris/vim-textobj-enclosedsyntax'
 
 "tool
+Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'cocopon/colorswatch.vim'

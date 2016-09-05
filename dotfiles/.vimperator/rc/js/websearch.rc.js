@@ -18,11 +18,11 @@ liberator.globalVariables.webSearchTemplates = [
     }, {
         names: ['wstwilog'],
         description: 'search twilog',
-        url: 'http://twilog.org/Arzzup/search?word=%KEYWORD%&ao=a'
+        url: 'http://twilog.org/_elzup_/search?word=%KEYWORD%&ao=a'
     }, {
         names: ['wsfavlog'],
         description: 'search favlog',
-        url: 'http://favolog.org/tweets.rb?id=Arzzup&w=%KEYWORD%&k=tw'
+        url: 'http://favolog.org/tweets.rb?id=_elzup_&w=%KEYWORD%&k=tw'
     }, {
         names: ['wstogetter'],
         description: 'search togetter',

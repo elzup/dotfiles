@@ -26,7 +26,7 @@ liberator.globalVariables.googleSelectConfigs = [
     }, {
         name: 'github search',
         url: 'https?://github\.com/search',
-        element_css_selector: '.codesearch-results .repo-list-item h3 a,.code-list-item p.title a:nth-of-type(2),.issue-list-item p.title a,.user-list-info>a',
+        element_css_selector: '.repo-list-name a',
         marker_posfix: {
             top: '0.0em',
             left: '-1.0em'
@@ -74,7 +74,7 @@ liberator.globalVariables.googleSelectConfigs = [
     }, {
         name: 'firefox filer',
         url: 'file://',
-        element_css_selector: '.file',
+        element_css_selector: '.file,.dir',
         marker_posfix: {
             top: '0.0em',
             left: '-1.0em'

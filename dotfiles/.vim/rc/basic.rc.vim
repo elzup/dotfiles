@@ -28,13 +28,14 @@ set foldmethod=marker
 set nowrap
 
 set scrolloff=5
+set transparency=10
 
 " Depreciated
 " set autochdir
 
 set laststatus=2
 if has("mac")
-    set guifont=Ricty\ Regular\ for\ Powerline:h13
+    set guifont=Ricty\ Regular\ for\ Powerline:h16
 else
     set guifont=Ricty\ 10
 endif

@@ -1,5 +1,6 @@
 " {{{ unmap
 nnoremap <Space> <Nop>
+nnoremap <BS> <Nop>
 
 nnoremap f f<S-F11>
 nnoremap t t<S-F11>

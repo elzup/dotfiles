@@ -35,6 +35,8 @@ alias xmod="xmodmap ~/.Xmodmap"
 alias shutdown="sudo shutdown"
 alias yaourt="yaourt --noconfirm"
 
+alias dc="docker-compose"
+
 # lang change
 alias lange="LANG=C"
 alias langj="LANG=ja_JP.UTF-8"

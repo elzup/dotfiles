@@ -59,4 +59,9 @@ fi
 # added by travis gem
 [ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
 
+autoload -U promptinit && promptinit
+prompt pure
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 random_saying
