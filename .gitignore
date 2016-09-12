@@ -22,3 +22,5 @@
 /dotfiles/.zsh/*
 /dotfiles/.zshenv
 !/dotfiles/.zsh/rc/
+
+/dotfiles/.zsh_history
