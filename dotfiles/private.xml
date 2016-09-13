@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<root>
+    <autogen>__KeyToKey__ COMMAND_L, KeyCode::J, KeyCode::Tab, COMMAND_L</autogen>
+    <autogen>__KeyToKey__ COMMAND_L, KeyCode::K, KeyCode::Tab, SHIFT_L, COMMAND_L</autogen>
+    <autogen>__KeyToKey__ KeyCode::BRACKET_LEFT, ModifierFlag::CONTROL_L, KeyCode::ESCAPE</autogen>
+    <appdef>
+        <appname>iTerm2</appname>
+        <equal>com.googlecode.iterm2</equal>
+    </appdef>
+    <appdef>
+        <appname>ViewPic</appname>
+        <equal>com.lightenpdf.imageviewer</equal>
+    </appdef>
+
+    <appdef>
+        <appname>VirtualBox</appname>
+        <equal>org.virtualbox.app.VirtualBoxVM</equal>
+    </appdef>
+
+    <appdef>
+        <appname>XCode</appname>
+        <equal>com.apple.dt.Xcode</equal>
+    </appdef>
+
+    <appdef>
+        <appname>AndroidStudio</appname>
+        <equal>com.google.android.studio</equal>
+    </appdef>
+    <appdef>
+        <appname>AppCode</appname>
+        <equal>com.jetbrains.AppCode</equal>
+    </appdef>
+    <appdef>
+        <appname>PyCharm</appname>
+        <equal>com.jetbrains.pycharm</equal>
+    </appdef>
+    <appdef>
+        <appname>WebStorm</appname>
+        <equal>com.jetbrains.WebStorm</equal>
+    </appdef>
+    <appdef>
+        <appname>PhpStorm</appname>
+        <equal>com.jetbrains.PhpStorm</equal>
+    </appdef>
+    <appdef>
+        <appname>Intellij</appname>
+        <equal>com.jetbrains.intellij</equal>
+    </appdef>
+    <appdef>
+        <appname>CLion</appname>
+        <equal>com.jetbrains.CLion</equal>
+    </appdef>
+    <appdef>
+        <appname>RubyMine</appname>
+        <equal>com.jetbrains.rubymine</equal>
+    </appdef>
+    <appdef>
+        <appname>SourceTree</appname>
+        <equal>com.torushknot.SourceTreeNotMAS</equal>
+    </appdef>
+    <appdef>
+        <appname>eclipse</appname>
+        <equal>org.eclipse.platform.ide</equal>
+    </appdef>
+
+    <item>
+        <name>window swhich like awesome</name>
+        <identifier>com.elzup.karabinar.whindow.swhich</identifier>
+        <autogen>
+            __KeyToKey__
+            KeyCode::H, ModifierFlag::COMMAND_L,
+            KeyCode::TAB, ModifierFlag::COMMAND_L, ModifierFlag::SHIFT_L
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::L, ModifierFlag::COMMAND_L,
+            KeyCode::TAB, ModifierFlag::COMMAND_L
+        </autogen>
+    </item>
+
+    <item>
+        <name>VirtualBox keybind</name>
+        <identifier>com.elzup.karabinar.vm</identifier>
+        <autogen>
+            __KeyToKey__
+            ModifierFlag::COMMAND_L, KeyCode::P,
+            ModifierFlag::OPTION_L, KeyCode::F2
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            ModifierFlag::COMMAND_L, KeyCode::H,
+            ModifierFlag::OPTION_L
+        </autogen>
+    </item>
+
+
+    <item>
+        <name>to Emacs</name>
+        <identifier>com.elzup.karabinar.emacs</identifier>
+        <only>
+            SourceTree
+        </only>
+        <autogen>
+            __KeyToKey__
+            KeyCode::N, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_DOWN
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::P, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_UP
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::F, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_RIGHT
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::B, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_LEFT
+        </autogen>
+    </item>
+
+
+    <item>
+        <name>JetBrains for emacs</name>
+        <identifier>com.elzup.karabinar.jetbrains</identifier>
+        <only>
+            PhpStorm,
+            RubyMine,
+            Intellij,
+            WebStorm,
+            CLion,
+            eclipse,
+            PyCharm,
+            AppCode,
+            AndroidStudio,
+            XCode
+        </only>
+        <autogen>
+            __KeyToKey__
+            KeyCode::N, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_DOWN
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::P, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_UP
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::F, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_RIGHT
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::B, ModifierFlag::CONTROL_L | ModifierFlag::NONE,
+            KeyCode::CURSOR_LEFT
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::BRACKET_LEFT, ModifierFlag::CONTROL_L,
+            KeyCode::ESCAPE
+        </autogen>
+        <autogen>
+            __KeyToKey__
+            KeyCode::M, ModifierFlag::CONTROL_L,
+            KeyCode::ENTER
+        </autogen>
+    </item>
+
+    <item>
+        <name>ViewPic move control</name>
+        <identifier>com.elzup.imageviewer</identifier>
+        <only>ViewPic</only>
+        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::NONE, KeyCode::CURSOR_DOWN</autogen>
+        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::NONE, KeyCode::CURSOR_UP</autogen>
+        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::NONE, KeyCode::CURSOR_LEFT</autogen>
+        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::NONE, KeyCode::CURSOR_RIGHT</autogen>
+    </item>
+    <appdef>
+        <appname>MACVIM</appname>
+        <equal>org.vim.MacVim</equal>
+    </appdef>
+    <list>
+        <item>
+            <name>Leave Insert Mode with EISUU (vim keybind apps)</name>
+            <identifier>com.elzup.private.vim_keybind_apps_esc_with_eisuu</identifier>
+            <only>iTerm2,TERMINAL,MACVIM</only>
+            <autogen>--KeyToKey-- KeyCode::ESCAPE, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
+            <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+        </item>
+    </list>
+
+    <appdef>
+        <appname>ClipMenu</appname>
+        <equal>com.naotaka.ClipMenu</equal>
+    </appdef>
+    <item>
+        <name>ClipMenu move control to vim</name>
+        <identifier>com.elzup.ClipMenu</identifier>
+        <only>ClipMenu</only>
+        <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::NONE, KeyCode::CURSOR_DOWN</autogen>
+        <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::NONE, KeyCode::CURSOR_UP</autogen>
+        <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::NONE, KeyCode::CURSOR_LEFT</autogen>
+        <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::NONE, KeyCode::CURSOR_RIGHT</autogen>
+    </item>
+
+    <item>
+        <identifier>com.elzup.karabinar.com2fun</identifier>
+        <name>Command-L + number to F{number} Key(Function Keys)</name>
+        <autogen>__KeyToKey__ KeyCode::KEY_1, ModifierFlag::COMMAND_L, KeyCode::F1</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_2, ModifierFlag::COMMAND_L, KeyCode::F2</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_3, ModifierFlag::COMMAND_L, KeyCode::F3</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_4, ModifierFlag::COMMAND_L, KeyCode::F4</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_5, ModifierFlag::COMMAND_L, KeyCode::F5</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_6, ModifierFlag::COMMAND_L, KeyCode::F6</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_7, ModifierFlag::COMMAND_L, KeyCode::F7</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_8, ModifierFlag::COMMAND_L, KeyCode::F8</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_9, ModifierFlag::COMMAND_L, KeyCode::F9</autogen>
+        <autogen>__KeyToKey__ KeyCode::KEY_0, ModifierFlag::COMMAND_L, KeyCode::F10</autogen>
+        <autogen>__KeyToKey__ KeyCode::MINUS, ModifierFlag::COMMAND_L, KeyCode::F11</autogen>
+        <autogen>__KeyToKey__ KeyCode::EQUAL, ModifierFlag::COMMAND_L, KeyCode::F12</autogen>
+    </item>
+</root>
