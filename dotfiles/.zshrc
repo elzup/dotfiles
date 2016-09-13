@@ -1,8 +1,17 @@
 # {{{ zplug
 source ~/.zplug/init.zsh
 
-zplug "mollifier/anyframe"
+zplug "mollifier/anyframe", at:4c23cb60
 zplug "zsh-users/zsh-autosuggestions", nice:10
+
+if ! zplug check --verbose; then
+  printf 'Install? [y/N]: '
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+zplug load --verbose
 
 # }}}
 
@@ -59,6 +68,16 @@ function chpwd() { ls }
 
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
+
+# {{{ wine
+alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
+alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
+alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
+
+# }}}
+
+# 格言一つ発射
+alias random_saying="cat ~/memos/saying.txt | gshuf -n 1"
 
 # }}}
 # {{{ bind
