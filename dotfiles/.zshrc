@@ -4,12 +4,16 @@ source ~/.zplug/init.zsh
 zplug "mollifier/anyframe", at:4c23cb60
 zplug "zsh-users/zsh-autosuggestions", nice:10
 
-if ! zplug check --verbose; then
-  printf 'Install? [y/N]: '
-  if read -q; then
-    echo; zplug install
-  fi
-fi
+# #
+# Active here! on install plugin
+# #
+#
+# if ! zplug check --verbose; then
+#   printf 'Install? [y/N]: '
+#   if read -q; then
+#     echo; zplug install
+#   fi
+# fi
 
 zplug load --verbose
 
@@ -20,7 +24,8 @@ zplug load --verbose
 bindkey -e
 ## bindkey -v
 
-autoload -Uz compinit promptinit
+# zplug
+# autoload -Uz compinit promptinit
 
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
@@ -42,6 +47,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 # .zsh_hisotry の上限
 export SAVEHIST=100000
 export HISTFILE=~/.zsh_history
+setopt share_history
 
 setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
 setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
@@ -88,13 +94,6 @@ bindkey '^k' insert-last-word
 
 # }}}
 # {{{ source plugins, helpers
-#  {{{ enhancd
-export ENHANCD_COMMAND=cdd
-if [ -f ~/enhancd/enhancd.sh ]; then
-    source ~/enhancd/enhancd.sh
-fi
-
-#  }}}
 #  {{{ pecol
 function percol-search-document() {
     if [ $# -ge 1 ]; then
@@ -277,7 +276,6 @@ alias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"
 
 # }}}
 # {{{ mac
-# source mac zshrc
 if echo $OSTYPE | grep -q darwin; then
     alias ls="ls -alh -G"
     alias -g C='| pbcopy'
@@ -304,3 +302,8 @@ autoload -U promptinit && promptinit
 prompt pure
 
 random_saying
+
+# zshrc bentch mark
+if (which zprof > /dev/null 2>&1) ;then
+  zprof
+fi
