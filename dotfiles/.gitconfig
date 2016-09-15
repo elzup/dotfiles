@@ -1,6 +1,6 @@
 [user]
-    name = elzzup
-    email = guild0105@gmail.com
+	name = elzup
+	email = guild0105@gmail.com
 [color]
   # colorの設定(以下のコマンドは自動で色つける)
     status = auto
@@ -11,13 +11,16 @@
 [push]
     default = tracking       # defaultのpush先はtrackingしているリポジトリ
 [core]
-    excludesfile = ~/.gitignore  # globalな.gitignoreの指定
-    autocrlf = input                 # CRLFを自動変換
+	autoCRLF = false
+    excludesfile = /Users/hiro/.gitignore_global
+	editor = vim -c \"set fenc=utf-8\"
+    # excludesfile = /Users/hiro/.gitignore_globals/*.gitignore
 [alias]
     st = status
     sh = show
     so = remote show origin
     ft = fetch
+    fa = fetch --all
     up = pull --rebase       # pull rebase
     rbm = rebase master      # masterへのrebaseはよく使うのでalias
     ad = add
@@ -26,12 +29,19 @@
     cam = commit -a --amend  # 直前のcommitを修正
     co = checkout
     cob = checkout -b
+    me = merge
     mt = master
+    pom = push origin master -u
+    rma = rm --cached -r .
+    cmi = commit -am 'Initialize commit'
+	rh = reset --hard
   # branch関連
     br = branch
     ba = branch -a           # originも含めた全てのbranchを表示
     bm = branch --merged     # merge済みのbranchを表示
     bn = branch --no-merged  # mergeしてないbranchを表示
+    branch-delmerged = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
+    bd = branch -D
   # log関連
     wc = whatchanged         # logに変更されたファイルも一緒に出す
     ls = log --stat          # logに変更されたファイルも一緒に出す
@@ -63,3 +73,32 @@
   # grep関連
     gr = grep
     gn = grep -n
+	la = !PAGER=emoji_filter git log --oneline -20 # 絵文字の表示
+  # hub関連
+    pr = pull-request -o -F /Users/hiro/.pullreqmessage.txt -b elzzup:develop -h elzzup:$(git rev-parse --short @)
+	conflicts = !git ls-files -u | cut -f 2 | sort -u
+	dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+[github]
+	user = elzup
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[hub]
+	protocol = ssh
+[merge]
+	ff = false
+[pull]
+	ff = only
+[pager]
+	log = diff-so-fancy | less --tabs=4 -RFX
+	show = diff-so-fancy | less --tabs=4 -RFX
+	diff = diff-so-fancy | less --tabs=4 -RFX
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+[commit]
+	template = /Users/hiro/.gitcommit_template
