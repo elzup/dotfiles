@@ -42,12 +42,30 @@ setopt equals
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+
+autoload -U compinit
+compinit
+zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
+# 補完関数の表示を強化する
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+
+# マッチ種別を別々に表示
+zstyle ':completion:*' group-name ''
+
 # .zsh_hisotry の上限
-export SAVEHIST=100000
+export SAVEHIST=10000
+export HISTSIZE=10000
 export HISTFILE=~/.zsh_history
 setopt share_history
+setopt extended_history
 
 setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
 setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
@@ -70,6 +88,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # プロセス名で補完
 zstyle ':completion:*:processes' command "ps -u $USER"
 zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 function chpwd() { ls }
 
 # sl_tweet
@@ -93,7 +112,7 @@ bindkey '^[^]' vi-find-prev-char
 bindkey '^k' insert-last-word
 
 # }}}
-# {{{ source plugins, helpers
+# {{{ plugins, helpers
 #  {{{ pecol
 function percol-search-document() {
     if [ $# -ge 1 ]; then
@@ -120,7 +139,7 @@ if exists percol; then
     function percol_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(fc -l -n 1 | eval $tac | percol --query "$LBUFFER")
+        BUFFER=$(history -n 1 | eval $tac | percol --query "$LBUFFER")
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
@@ -128,7 +147,8 @@ if exists percol; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
-alias lope='percol-search-locate'
+
+
 
 #  }}}
 #  {{{ background
@@ -195,6 +215,12 @@ alias cdr="anyframe-widget-cdr"
 
 #  }}} - overwrap options alias
 #  {{{ usefuls
+
+# extra cd
+alias ..="cd ../"
+alias ...="cd ../../"
+alias ....="cd ../../../"
+
 # gnome-open
 alias gopen="gnome-open"
 
