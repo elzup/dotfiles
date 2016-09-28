@@ -1284,7 +1284,7 @@ nmap <C-n> <Plug>(yankround-next)
 " }}}
 " {{{ scripts
 " scripts load
-call s:source_rc('./scripts/countline.vim')
+" call s:source_rc('./scripts/countline.vim')
 
 " }}}
 " vim:set foldmethod=marker
