@@ -122,7 +122,9 @@ set foldmethod=marker
 set nowrap
 
 set scrolloff=5
-set transparency=10
+if has("gui_running")
+    set transparency=10
+endif
 
 " Depreciated
 " set autochdir

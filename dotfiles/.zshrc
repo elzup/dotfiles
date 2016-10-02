@@ -45,7 +45,7 @@ export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 
 autoload -U compinit
 compinit
-# zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # 補完関数の表示を強化する
@@ -109,6 +109,8 @@ alias random_saying="cat ~/memos/saying.txt | gshuf -n 1"
 bindkey "^U" backward-kill-line
 bindkey '^]'   vi-find-next-char
 bindkey '^[^]' vi-find-prev-char
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
 bindkey '^k' insert-last-word
 
 # }}}
