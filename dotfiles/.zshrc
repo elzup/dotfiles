@@ -100,9 +100,6 @@ alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
 
 # }}}
 
-# 格言一つ発射
-alias random_saying="cat ~/memos/saying.txt | gshuf -n 1"
-
 # }}}
 # {{{ bind
 bindkey "^U" backward-kill-line
@@ -246,6 +243,9 @@ alias pingoogle="ping -c 3 www.google.com"
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
 
 # get screen resolution 解像度
+# 格言一つ発射
+alias random_saying="cat ~/memos/saying.txt | gshuf -n 1"
+alias saying="python ~/memos/random_say.py"
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
 alias firefoxp="firefox -P answer --new-instance"
 
