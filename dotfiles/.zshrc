@@ -15,7 +15,8 @@ zplug "zsh-users/zsh-autosuggestions", nice:10
 #   fi
 # fi
 
-zplug load --verbose
+zplug load
+# zplug load --verbose
 
 # }}}
 
@@ -23,9 +24,6 @@ zplug load --verbose
 # mode -e emacs, -v vim
 bindkey -e
 ## bindkey -v
-
-# zplug
-# autoload -Uz compinit promptinit
 
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
@@ -43,8 +41,8 @@ export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
-autoload -U compinit
-compinit
+# autoload -U compinit
+# compinit
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
@@ -56,6 +54,7 @@ zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$D
 zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # マッチ種別を別々に表示
 zstyle ':completion:*' group-name ''
@@ -201,9 +200,6 @@ alias mv="mv -i"
 
 #cp
 alias cp="cp -i"	#上書きを確認
-
-#exit
-alias eixt="exit"
 
 #grep
 alias grep="grep --color=auto"
