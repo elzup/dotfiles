@@ -12,7 +12,7 @@ liberator.globalVariables.multi_requester_siteinfo = [
         description:    'Google Scholar 検索',
         url:            'https://scholar.google.co.jp/scholar?q=%s'
     }, {
-        map:            'stw',
+        map:            'stl',
         bang:           true,
         name:           'twilog',
         description:    'Twilog 検索',
@@ -20,9 +20,15 @@ liberator.globalVariables.multi_requester_siteinfo = [
     }, {
         map:            'stf',
         bang:           true,
-        name:           'favlog',
-        description:    'Favolog 検索',
-        url:            'http://favolog.org/tweets.rb?id=_elzup_&w=%s&k=tw'
+        name:           'twitterfollow',
+        description:    'Twitter フォローツイート検索',
+        url:            'https://twitter.com/search?s=follows&vertical=default&q=%s&src=typd'
+//    }, {
+//        map:            'stf',
+//        bang:           true,
+//        name:           'favlog',
+//        description:    'Favolog 検索',
+//        url:            'http://favolog.org/tweets.rb?id=_elzup_&w=%s&k=tw'
     }, {
         map:            'stg',
         bang:           true,
@@ -47,6 +53,18 @@ liberator.globalVariables.multi_requester_siteinfo = [
         name:           'annict',
         description:    'Annict 検索',
         url:            'https://annict.com/search?q=%s'
+    }, {
+        map:            'shb',
+        bang:           true,
+        name:           'hatenabookmark',
+        description:    'はてブ 検索',
+        url:            'http://b.hatena.ne.jp/search/text?q=%s'
+    }, {
+        map:            'si',
+        bang:           true,
+        name:           'irasutoya',
+        description:    'いらすとや検索',
+        url:            'http://www.irasutoya.com/search?q=%s'
     }, {
         name:           'rubygems',
         bang:           true,

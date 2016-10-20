@@ -112,6 +112,8 @@ set matchpairs& matchpairs+=<:>
 " 拡張子からファイルタイプ変更
 filetype on
 
+" 10進数インクリメント
+set nrformats=hex
 " tags
 set tags=./tags,../tags,../../tags,../../../tags,.git/*.tags
 au MyAutoCmd BufNewFile,BufRead *.php set tags+=$HOME/php.tags 
