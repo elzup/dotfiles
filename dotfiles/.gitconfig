@@ -33,6 +33,7 @@
     mt = master
     pom = push origin master -u
     rma = rm --cached -r .
+    remori = remote remove origin
     cmi = commit -am 'Initialize commit'
 	rh = reset --hard
   # branch関連
