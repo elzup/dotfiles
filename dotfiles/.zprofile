@@ -107,3 +107,6 @@ eval "$(direnv hook zsh)"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # }}}
+# {{{ neo-vim
+export XDG_CONFIG_HOME="$HOME/.config"
+# }}}
