@@ -44,3 +44,16 @@ options head
     def int2base(a, b):
         return (''.join((string.digits + string.ascii_letters)[(a // b ** i) % b]
                 for i in range(int(math.log(a, b)), -1, -1)))
+
+
+snippet openr
+abbr Open file
+options head
+    with open('${1:hoge.txt}', 'r', encoding='utf-8') as f:
+        ${0}
+
+snippet openw
+abbr Open file and write
+options head
+    with open('${1:hoge.txt}', 'w', encoding='utf-8') as f:
+        ${0}
