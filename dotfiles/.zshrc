@@ -1,8 +1,13 @@
 # {{{ zplug
 source ~/.zplug/init.zsh
 
-zplug "mollifier/anyframe", at:4c23cb60
-zplug "zsh-users/zsh-autosuggestions", nice:10
+zplug "mollifier/anyframe"
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zsh-users/zsh-history-substring-search"
+
+zplug "mrowa44/emojify"
 
 # #
 # Active here! on install plugin
@@ -45,23 +50,23 @@ export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg
 # compinit
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-
-# 補完関数の表示を強化する
+zstyle ':completion:*:processes' command "ps -u $USER"
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
 zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
 zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
 zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:descriptions' format '%F{yellow}Completing %B%d%b%f'$DEFAULT
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-# マッチ種別を別々に表示
 zstyle ':completion:*' group-name ''
 
+zstyle ':chpwd:*' recent-dirs-max 500
+function chpwd() { ls }
+
+
 # .zsh_hisotry の上限
-export SAVEHIST=10000
-export HISTSIZE=10000
+export SAVEHIST=100000
+export HISTSIZE=100000
 export HISTFILE=~/.zsh_history
 setopt share_history
 setopt extended_history
@@ -84,12 +89,6 @@ fi
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# プロセス名で補完
-zstyle ':completion:*:processes' command "ps -u $USER"
-zstyle ':chpwd:*' recent-dirs-max 500
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-function chpwd() { ls }
-
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
 
@@ -103,8 +102,8 @@ alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
 # }}}
 # {{{ bind
 bindkey "^U" backward-kill-line
-bindkey '^]'   vi-find-next-char
-bindkey '^[^]' vi-find-prev-char
+bindkey '^]f'   vi-find-next-char
+bindkey '^]b' vi-find-prev-char
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
 bindkey '^k' insert-last-word
@@ -173,9 +172,6 @@ function myline() {
     git ls-files | xargs -n1 git --no-pager blame -f -w|grep $1 | wc -l
 }
 
-function git() { hub "$@" }
-eval "$(hub alias -s)"
-
 #  }}}
 #  {{{ print
 print_file () {
@@ -194,6 +190,7 @@ alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
 alias lla="ls -lha"				#全部詳細
 
 alias mv="mv -i"
+alias rm="rmtrash"
 
 #cp
 alias cp="cp -i"	#上書きを確認
@@ -220,6 +217,7 @@ alias ....="cd ../../../"
 alias gopen="gnome-open"
 
 alias python="python3"
+alias ipython="ipython3"
 alias pip="pip3"
 alias htop="sudo htop"
 
@@ -318,7 +316,6 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
-
 # added by travis gem
 [ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
 
@@ -331,3 +328,4 @@ random_saying
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
+
