@@ -22,7 +22,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # }}}
-# {{{ tourch-dist
+# {{{ torch
 export PATH=/Users/hiro/torch/install/bin:$PATH  # Added automatically by torch-dist
 export LD_LIBRARY_PATH=/Users/hiro/torch/install/lib:$LD_LIBRARY_PATH  # Added automatically by torch-dist
 export DYLD_LIBRARY_PATH=/Users/hiro/torch/install/lib:$DYLD_LIBRARY_PATH  # Added automatically by torch-dist
@@ -109,4 +109,5 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # }}}
 # {{{ neo-vim
 export XDG_CONFIG_HOME="$HOME/.config"
+
 # }}}
