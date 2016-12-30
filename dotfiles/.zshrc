@@ -1,5 +1,7 @@
 # {{{ zplug
-source ~/.zplug/init.zsh
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
 
 zplug "mollifier/anyframe"
 zplug "zsh-users/zsh-completions"
@@ -24,7 +26,6 @@ zplug load
 # zplug load --verbose
 
 # }}}
-
 # {{{ basic
 # mode -e emacs, -v vim
 bindkey -e
@@ -92,12 +93,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
 
-# {{{ wine
-alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
-alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
-alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
-
-# }}}
 
 # }}}
 # {{{ bind
@@ -132,11 +127,11 @@ alias pd='percol-search-document'
 
 # history search with percol
 function exists { which $1 &> /dev/null }
-if exists percol; then
+if exists peco; then
     function percol_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(history -n 1 | eval $tac | percol --query "$LBUFFER")
+        BUFFER=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
@@ -180,6 +175,19 @@ print_file () {
   done < "$1"
 }
 #  }}}
+# anyframe {{{
+fpath=(/usr/local/opt/zplug/repos/mollifier/anyframe(N-/) $fpath)
+
+autoload -Uz anyframe-init
+anyframe-init
+
+# }}}
+# {{{ wine
+alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
+alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
+alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
+
+# }}}
 
 # }}}
 # {{{ alias
@@ -316,16 +324,18 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
-# added by travis gem
-[ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
-
+# {{{ pure-prompt
 autoload -U promptinit && promptinit
 prompt pure
 
+# }}}
+# {{{ start printing
 random_saying
 
-# zshrc bentch mark
+# }}}
+# {{{ bench mark
+# zsh zshrc bentch mark
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
-
+# }}}
