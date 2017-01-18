@@ -92,7 +92,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
-
+alias vim="imagesnap -q ~/Pictures/camera_\`date +%Y-%m-%d_%H%M%S\`.jpg && vim"
 
 # }}}
 # {{{ bind
@@ -216,6 +216,8 @@ alias cdr="anyframe-widget-cdr"
 #  }}} - overwrap options alias
 #  {{{ usefuls
 
+alias reload="source ~/.zshrc"
+
 # extra cd
 alias ..="cd ../"
 alias ...="cd ../../"
@@ -243,6 +245,8 @@ alias langj="LANG=ja_JP.UTF-8"
 # rails
 # alias rails="./bin/rails"
 alias rake="./bin/rake"
+
+alias tig="tig --all"
 
 # ping
 alias pingoogle="ping -c 3 www.google.com"

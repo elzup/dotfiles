@@ -4,6 +4,6 @@
 " nmap / :action Find<CR>
 
 " set number
-set relativenumber
+" set relativenumber
 
 set number

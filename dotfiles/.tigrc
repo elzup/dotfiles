@@ -2,6 +2,10 @@
 #
 set main-view = id date author commit-title:graph=yes,refs=yes
 set diff-options = -m --first-parent
+set line-graphics = utf-8
+set tab-size = 2
+set ignore-space = all
+# set split-view-width = 75%
 
 
 

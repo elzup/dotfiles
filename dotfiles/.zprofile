@@ -10,16 +10,15 @@ path=(
     "/usr/bin/site_perl"
     "/usr/bin/vendor_perl"
     "/usr/bin/core_perl"
-    $path
-)
+    $path)
 
 # {{{ brew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # }}}
 # {{{ rvm
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # }}}
 # {{{ torch
@@ -77,7 +76,7 @@ PATH=$HOME/.composer/vendor/bin:$PATH
 
 # }}}
 # {{{ rbenv
-export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/.rbenv/shims:$PATH
 eval "$(rbenv init -)"
 
 # }}}
@@ -104,10 +103,14 @@ eval "$(direnv hook zsh)"
 
 # }}}
 # {{{ nodist
-export PATH=$HOME/.nodebrew/current/bin:$PATH
+# export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 # }}}
 # {{{ neo-vim
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# }}}
+# {{{ yarn
+export PATH="$PATH:`yarn global bin`"
 
 # }}}

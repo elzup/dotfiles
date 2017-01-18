@@ -39,7 +39,7 @@
   # branch関連
     br = branch
     ba = branch -a           # originも含めた全てのbranchを表示
-    bm = branch --merged     # merge済みのbranchを表示
+    bm = branch -m           # rename
     bn = branch --no-merged  # mergeしてないbranchを表示
     branch-delmerged = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
     bd = branch -D
