@@ -57,3 +57,9 @@ abbr Open file and write
 options head
     with open('${1:hoge.txt}', 'w', encoding='utf-8') as f:
         ${0}
+
+snippet stacktrace
+abbr Print error stacktrace
+    import traceback
+    print(traceback.format_exc())
+

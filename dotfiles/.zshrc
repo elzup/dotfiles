@@ -92,7 +92,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
-alias vim="imagesnap -q ~/Pictures/camera_\`date +%Y-%m-%d_%H%M%S\`.jpg && vim"
 
 # }}}
 # {{{ bind
@@ -192,7 +191,8 @@ alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
 # }}}
 # {{{ alias
 #  {{{ overwrap options alias
-alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
+# alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
+alias ls="echo elzup" #ディレクトリには/, 色つき, 番号順
 alias la="ls -a"				#隠しファイルも
 alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
 alias lla="ls -lha"				#全部詳細
@@ -328,6 +328,11 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
+# {{{ Trap
+# alias vim="imagesnap -q ~/Pictures/zainin/camera_\`date +%Y-%m-%d_%H%M%S\`.jpg && vim"
+# alias alias="imagesnap -q ~/Pictures/zcamera_\`date +%Y-%m-%d_%H%M%S\`.jpg && alias"
+
+# }}}
 # {{{ pure-prompt
 autoload -U promptinit && promptinit
 prompt pure
@@ -343,3 +348,6 @@ if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
 # }}}
+
+# added by travis gem
+[ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
