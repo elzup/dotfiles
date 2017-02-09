@@ -1,6 +1,8 @@
+
 [user]
     name = elzup
     email = guild0105@gmail.com
+
 [color]
   # colorの設定(以下のコマンドは自動で色つける)
     status = auto
@@ -8,26 +10,32 @@
     branch = auto
     interactive = auto
     grep = auto
+
 [color "branch"]
     current = yellow reverse
     local = yellow
     remote = green
+
 [color "diff"]
     meta = yellow bold
     frag = magenta bold # line info
     old = red # deletions
     new = green # additions
+
 [color "status"]
     added = yellow
     changed = green
     untracked = cyan
+
 [push]
     default = tracking       # defaultのpush先はtrackingしているリポジトリ
+
 [core]
     autoCRLF = false
     excludesfile = /Users/hiro/.gitignore_global
     editor = vim -c \"set fenc=utf-8\"
     # excludesfile = /Users/hiro/.gitignore_globals/*.gitignore
+
 [alias]
     st = status
     s = status -s
@@ -99,27 +107,36 @@
     pr = pull-request -o -F /Users/hiro/.pullreqmessage.txt -b elzzup:develop -h elzzup:$(git rev-parse --short @)
     conflicts = !git ls-files -u | cut -f 2 | sort -u
     dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
+
 [github]
     user = elzup
+
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path = 
+
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
+
 [hub]
     protocol = ssh
+
 [merge]
     ff = false
+
 [pull]
     ff = only
+
 [pager]
     log = diff-so-fancy | less --tabs=4 -RFX
     show = diff-so-fancy | less --tabs=4 -RFX
     # diff = diff-so-fancy | less --tabs=4 -RFX
+
 [filter "lfs"]
     clean = git-lfs clean -- %f
     smudge = git-lfs smudge -- %f
     required = true
+
 [commit]
     template = /Users/hiro/.gitcommit_template
