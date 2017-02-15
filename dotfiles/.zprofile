@@ -79,6 +79,11 @@ PATH=$HOME/.composer/vendor/bin:$PATH
 export PATH=$HOME/.rbenv/shims:$PATH
 eval "$(rbenv init -)"
 
+# rmagick :-1:
+#
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH="/usr/local/Cellar/imagemagick/7.0.4-7/lib/pkgconfig/":$PKG_CONFIG_PATH
+
 # }}}
 # {{{ perl
 PERL_MB_OPT="--install_base \"/Users/hiro/perl5\""; export PERL_MB_OPT;
@@ -112,5 +117,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # }}}
 # {{{ yarn
 export PATH="$PATH:`yarn global bin`"
+
+# }}}
+# {{{ image magic
+export MAGICK_HOME=/Users/hiro/Library/ImageMagick-7.0.3
+export PATH="$MAGICK_HOME/bin:$PATH"
+export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
 # }}}
