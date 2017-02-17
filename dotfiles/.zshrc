@@ -1,31 +1,3 @@
-# {{{ zplug
-
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
-
-zplug "mollifier/anyframe"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search"
-
-zplug "mrowa44/emojify"
-
-# #
-# Active here! on install plugin
-# #
-#
-# if ! zplug check --verbose; then
-#   printf 'Install? [y/N]: '
-#   if read -q; then
-#     echo; zplug install
-#   fi
-# fi
-
-zplug load
-# zplug load --verbose
-
-# }}}
 # {{{ basic
 # mode -e emacs, -v vim
 bindkey -e
@@ -47,8 +19,13 @@ export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
-# autoload -U compinit
-# compinit
+autoload -U compinit
+compinit
+#  {{{ completion
+fpath=(~/zsh_plugins/zsh-completions/src $fpath)
+
+#  }}}
+#
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*:processes' command "ps -u $USER"
@@ -58,8 +35,8 @@ zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
 zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
 zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
 zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 zstyle ':chpwd:*' recent-dirs-max 500
 function chpwd() { ls }
@@ -92,6 +69,9 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
+
+# auto suggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # }}}
 # {{{ bind
@@ -187,7 +167,6 @@ alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
 alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
 
 # }}}
-
 # }}}
 # {{{ alias
 #  {{{ overwrap options alias
@@ -259,6 +238,8 @@ alias saying="python ~/memos/random_say.py"
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
 alias firefoxp="firefox -P answer --new-instance"
 
+# react native
+alias rn="react-native"
 #  }}} - usefuls
 #  {{{ extensions
 alias -s c=vim
@@ -348,6 +329,3 @@ if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
 # }}}
-
-# added by travis gem
-[ -f /Users/hiro/.travis/travis.sh ] && source /Users/hiro/.travis/travis.sh
