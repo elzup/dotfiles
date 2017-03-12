@@ -55,6 +55,7 @@
     cob = checkout -b
     me = merge
     mt = master
+    poh = origin HEAD -u
     pom = push origin master -u
     rma = rm --cached -r .
     remori = remote remove origin

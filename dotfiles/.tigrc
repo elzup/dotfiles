@@ -32,6 +32,3 @@ bind main E !@?<git reset --hard %(commit)
 bind main c !@?git checkout %(commit)
 
 bind stash s !@?git stash
-
-bind main    R !git rebase -i %(commit)
-bind diff    R !git rebase -i %(commit)

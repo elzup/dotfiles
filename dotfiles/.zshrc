@@ -73,6 +73,9 @@ alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
 # auto suggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
+# syntax hilight
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 # }}}
 # {{{ bind
 bindkey "^U" backward-kill-line
@@ -230,6 +233,8 @@ alias tig="tig --all"
 # ping
 alias pingoogle="ping -c 3 www.google.com"
 alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+
+alias m='vim ~/memos/memo.md'
 
 # get screen resolution 解像度
 # 格言一つ発射
