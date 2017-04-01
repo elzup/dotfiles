@@ -49,7 +49,7 @@ case ${OSTYPE} in
         export ANT_ROOT=/usr/bin
         ;;
 esac
-
+export ANDROID_HOME=$(/usr/libexec/java_home)
 # }}}
 # {{{ python OFF
 # CFLAGS="-I$(brew --prefix openssl)/include"
