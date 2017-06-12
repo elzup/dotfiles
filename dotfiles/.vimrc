@@ -751,7 +751,7 @@ let g:user_emmet_settings = {
 
 "  }}}
 "  {{{ github
-let g:github_user = 'elzzup'
+let g:github_user = 'elzup'
 let g:github_token = '688153244513531cc44c754637f19ee9f4debd97'
 let g:gist_curl_options = '-k'
 let g:gist_private = '-P'

@@ -49,7 +49,13 @@ case ${OSTYPE} in
         export ANT_ROOT=/usr/bin
         ;;
 esac
-export ANDROID_HOME=$(/usr/libexec/java_home)
+# export ANDROID_HOME=$(/usr/libexec/java_home)
+# export ANDROID_HOME=$HOME/Applications/android-sdk-macosx
+export ANDROID_HOME=$HOME/Library/Android/sdk/
+
+export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk-bundle
 # }}}
 # {{{ python OFF
 # CFLAGS="-I$(brew --prefix openssl)/include"
