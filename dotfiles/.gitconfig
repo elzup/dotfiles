@@ -141,3 +141,6 @@
 
 [commit]
     template = /Users/hiro/.gitcommit_template
+
+[ghq]
+    root = ~/

@@ -170,7 +170,20 @@ alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
 alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
 
 # }}}
+#  {{{ ghq
+#
+function cdg () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+
+#  }}}
 # }}}
+
 # {{{ alias
 #  {{{ overwrap options alias
 # alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
