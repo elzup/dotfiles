@@ -100,6 +100,8 @@
     edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   # mergeの際にconflictが起きたファイルをadd
     add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
+  # rebase
+    rc = rebase --continue
   # grep関連
     gr = grep
     gn = grep -n
@@ -143,4 +145,4 @@
     template = /Users/hiro/.gitcommit_template
 
 [ghq]
-    root = ~/
+    root = ~/.ghq/
