@@ -21,6 +21,8 @@ set ignore-space = all
 # bind setting
 bind status + !git commit --amend
 bind status D !@?git checkout HEAD -- %(file)
+bind status T !@?git checkout --theirs %(file)
+bind status O !@?git checkout --ours %(file)
 
 bind main p !@?<git pull %(remote) %(branch):%(branch)
 bind main P !@?<git push %(remote) %(branch):%(branch)
@@ -28,6 +30,7 @@ bind main P !@?<git push %(remote) %(branch):%(branch)
 bind main P !@?<git push %(remote) %(branch):%(branch)
 
 bind main E !@?<git reset --hard %(commit)
+
 
 bind main c !@?git checkout %(commit)
 
