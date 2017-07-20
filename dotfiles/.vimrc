@@ -438,7 +438,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
-Plug 'ZoomWin'
 Plug 'sjl/gundo.vim'
 "NeoBundle 'yonchu/accelerated-smooth-scroll'
 "NeoBundle 'scrooloose/nerdtree'
@@ -450,7 +449,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'Shougo/neosnippet'
 Plug 'scrooloose/snipmate-snippets'
 Plug 'tpope/vim-surround'
-Plug 'Align'
 Plug 'marijnh/tern_for_vim', {
   \ 'build': {
   \   'others': 'npm install'
@@ -466,7 +464,9 @@ Plug 'tpope/vim-abolish'
 Plug 'haya14busa/vim-migemo'
 Plug 'mattn/emmet-vim'
 Plug 'koron/codic-vim'
+Plug 'junegunn/vim-easy-align'
 
+" Plug 'vim-scripts/Align'
 "NeoBundle 'kana/vim-operator-replace'
 "NeoBundle 'thinca/vim-splash'
 "NeoBundle 'terryma/vim-multiple-cursors'
@@ -519,10 +519,10 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['html'] }
 Plug 'stephpy/vim-php-cs-fixer', { 'for': ['php'] }
 
 " python
-Plug 'python.vim', { 'for': ['python'] }
+Plug 'vim-scripts/python.vim', { 'for': ['python'] }
 Plug 'kevinw/pyflakes-vim', { 'for': ['python'] }
 Plug 'davidhalter/jedi-vim', { 'for': ['python'] }
-Plug 'pythoncomplete', { 'for': ['python'] }
+Plug 'vim-scripts/pythoncomplete', { 'for': ['python'] }
 Plug 'nvie/vim-flake8', { 'for': ['python'] }
 
 " java
@@ -545,7 +545,7 @@ Plug 'bbatsov/rubocop', { 'for': ['ruby'] }
 Plug 'vim-jp/cpp-vim', { 'for': 'cpp' }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp']}
 
-Plug 'mediawiki.vim'
+" Plug 'vim-scripts/mediawiki.vim'
 " NeoBundle 'wikipedia.vim'
 
 " jade
@@ -563,8 +563,8 @@ Plug 'wavded/vim-stylus', { 'for': ['stylus'] }
 Plug 'vim-scripts/st.vim'
 
 "Lua
-Plug 'lua-support'
-Plug 'luarefvim'
+" Plug 'lua-support'
+" Plug 'luarefvim'
 "Tex
 " Plug 'lervag/vim-latex'
 " Plug 'lervag/vimtex'
@@ -612,7 +612,7 @@ Plug 'pocke/neco-gh-issues'
 
 "colorscheme
 Plug 'ujihisa/unite-colorscheme'
-Plug 'phd'
+Plug 'vim-sciprts/phd'
 Plug 'vim-scripts/summerfruit256.vim'
 Plug 'sfsekaran/cobalt.vim'
 
@@ -642,12 +642,6 @@ if IsMac()
 endif
 
 " }}}
-" {{{ Plugin config
-"  {{{ Align Vim
-"let g:Align_enable_at_startup = 1;
-let g:Align_xstrlen=3
-
-"  }}}
 "  {{{ Preserve
 function! Preserve(command)
     " Save the last search.
@@ -674,7 +668,8 @@ function! Autopep8()
 endfunction
 
 " Shift + F
-autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
+" autocmd FileType python nnoremap <S-f> :call Autopep8()<CR>
+
 "  }}}
 "  {{{ Codic
 inoremap <silent> <C-x><C-t>  <C-R>=<SID>codic_complete()<CR>
