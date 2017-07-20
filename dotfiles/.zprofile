@@ -1,6 +1,6 @@
 path=(
-    "/usr/local/sbin"
     "/usr/local/bin"
+    "/usr/local/sbin"
     "/usr/bin"
     "/opt/grass/bin"
     "/opt/grass/scripts"
@@ -125,9 +125,18 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export PATH="$PATH:`yarn global bin`"
 
 # }}}
+# {{{ mos
+export PATH=$PATH:$HOME/.mos/bin/
+
+# }}}
 # {{{ image magic
 export MAGICK_HOME=/Users/hiro/Library/ImageMagick-7.0.3
 export PATH="$MAGICK_HOME/bin:$PATH"
 export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
 # }}}
+# {{{ C++
+# export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:$HOME/lib
+# export $HOME/lib
+# }}}
+#
