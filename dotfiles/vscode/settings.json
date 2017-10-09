@@ -1,0 +1,20 @@
+{
+  "window.zoomLevel": 1,
+  "editor.renderWhitespace": "all",
+  "editor.formatOnSave": true,
+
+  "workbench.iconTheme": "seti",
+
+  "eslint.autoFixOnSave": false,
+  "javascript.validate.enable": false,
+
+  "vim.disableAnnoyingNeovimMessage": true,
+  "vim.useSystemClipboard": true,
+
+  "C_Cpp.clang_format_formatOnSave": true,
+
+  "prettier.semi": false,
+  "prettier.trailingComma": "es5",
+  "prettier.singleQuote": true,
+  "workbench.startupEditor": "newUntitledFile"
+}
