@@ -208,10 +208,10 @@ bindkey '^]' peco-src
 # {{{ alias
 #  {{{ overwrap options alias
 # alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
-alias ls="echo elzup" #ディレクトリには/, 色つき, 番号順
-alias la="ls -a"				#隠しファイルも
-alias ll="ls -lh"				#詳細付き, ファイルサイズに接頭語
-alias lla="ls -lha"				#全部詳細
+alias lsa="ls -a"				#隠しファイルも
+alias lsl="ls -lh"				#詳細付き, ファイルサイズに接頭語
+alias lsa="ls -lha"				#全部詳細
+alias lst="ls -lhta"				#詳細付き, ファイルサイズに接頭語
 
 alias mv="mv -i"
 alias rm="rmtrash"
@@ -278,6 +278,7 @@ alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head
 alias firefoxp="firefox -P answer --new-instance"
 
 alias intellij="open -a IntelliJ\ IDEA"
+alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
 

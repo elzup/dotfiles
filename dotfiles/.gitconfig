@@ -58,6 +58,7 @@
     poh = origin HEAD -u
     pom = push origin master -u
     rma = rm --cached -r .
+    ra = !git rm --cached -r . && git add .
     remori = remote remove origin
     cmi = commit -am 'Initialize commit'
     tags = tag -l
@@ -141,8 +142,8 @@
     smudge = git-lfs smudge -- %f
     required = true
 
-[commit]
-    template = /Users/hiro/.gitcommit_template
+# [commit]
+#     template = /Users/hiro/.gitcommit_template
 
 [ghq]
     root = ~/.ghq/

@@ -148,7 +148,7 @@ set background=dark
 set undofile
 set undodir=~/.vim/undo/
 set nobackup
-set noswapfile
+set noswapfile             " I am Japanese Idol
 set nodiff
 set formatoptions=q
 
@@ -1008,11 +1008,8 @@ let g:startify_custom_header = [
   \]
 " よく使うファイルをブックマークとして登録しておく
 let g:startify_bookmarks = [
-  \ '~/.vim/rc/init.vim',
+  \ '~/.vimrc',
   \ '~/memos/.memo',
-  \ '~/.vim/rc/basic.rc.vim',
-  \ '~/.vim/rc/plugins/',
-  \ '~/workspace',
   \ ]
 " \ map(split('date', '\n'), '"   ". v:val') + ['',''],
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定

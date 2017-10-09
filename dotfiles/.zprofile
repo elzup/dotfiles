@@ -1,4 +1,6 @@
 path=(
+    "/usr/sbin"
+    "/bin:/sbin"
     "/usr/local/bin" "/usr/local/sbin"
     "/usr/bin"
     "/opt/grass/bin"
@@ -87,7 +89,7 @@ eval "$(rbenv init -)"
 # rmagick :-1:
 #
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-export PKG_CONFIG_PATH="/usr/local/Cellar/imagemagick/7.0.4-7/lib/pkgconfig/":$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH="/usr/local/Cellar/imagemagick@6/6.9.8-3/lib/pkgconfig/":$PKG_CONFIG_PATH
 
 # }}}
 # {{{ perl
