@@ -50,6 +50,7 @@ setopt share_history
 setopt extended_history
 
 setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
+setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
 setopt HIST_IGNORE_SPACE          # 行頭がスペースのコマンドは記録しない
 

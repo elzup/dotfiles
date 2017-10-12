@@ -1,7 +1,14 @@
 {
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "editor.renderWhitespace": "all",
   "editor.formatOnSave": true,
+
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "jspm_packages": true,
+    "node_modules": true
+  },
 
   "workbench.iconTheme": "seti",
 
@@ -12,6 +19,13 @@
   "vim.useSystemClipboard": true,
 
   "C_Cpp.clang_format_formatOnSave": true,
+
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "vue-html": "html",
+    "plaintext": "jade"
+  },
 
   "prettier.semi": false,
   "prettier.trailingComma": "es5",
