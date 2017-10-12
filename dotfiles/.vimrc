@@ -140,7 +140,6 @@ endif
 
 " color scheme
 syntax enable
-" color scheme solarized
 set t_Co=256
 set background=dark
 
@@ -491,7 +490,6 @@ Plug 'deris/vim-textobj-enclosedsyntax'
 "tool
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
-Plug 'altercation/vim-colors-solarized'
 Plug 'cocopon/colorswatch.vim'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'thinca/vim-quickrun'
@@ -612,9 +610,13 @@ Plug 'pocke/neco-gh-issues'
 
 "colorscheme
 Plug 'ujihisa/unite-colorscheme'
-Plug 'vim-sciprts/phd'
 Plug 'vim-scripts/summerfruit256.vim'
-Plug 'sfsekaran/cobalt.vim'
+Plug 'nightsense/strawberry'
+" Plug 'vim-sciprts/phd'
+" Plug 'sfsekaran/cobalt.vim'
+" Plug 'KKPMW/moonshine-vim'
+" Plug 'AlessandroYorba/Alduin'
+" Plug 'altercation/vim-colors-solarized'
 
 " browsing
 Plug 'yuratomo/w3m.vim'
@@ -633,9 +635,9 @@ filetype indent on
 " {{{ mac setting
 if IsMac()
     set clipboard=unnamed,autoselect
-    colorscheme phd
     set guioptions-=a
-
+    " colorscheme phd
+    " colorscheme alduin
     if has('gui_macvim')
         let $PYTHON3_DLL="/usr/local/Cellar/python3/3.4.1_1/Frameworks/Python.framework/Versions/3.4/Python"
     endif
