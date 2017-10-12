@@ -138,10 +138,10 @@ else
     set guifont=Ricty\ 10
 endif
 
-" color scheme
-syntax enable
-set t_Co=256
-set background=dark
+if has('gui_macvim')
+    let $PYTHON3_DLL="/usr/local/Cellar/python3/3.4.1_1/Frameworks/Python.framework/Versions/3.4/Python"
+endif
+
 
 " backup
 set undofile
@@ -433,7 +433,7 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'itchyny/lightline.vim'
 Plug 'LeafCage/foldCC'
-Plug 'nathanaelkane/vim-indent-guides'
+" Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
@@ -636,14 +636,10 @@ filetype indent on
 if IsMac()
     set clipboard=unnamed,autoselect
     set guioptions-=a
-    " colorscheme phd
-    " colorscheme alduin
-    if has('gui_macvim')
-        let $PYTHON3_DLL="/usr/local/Cellar/python3/3.4.1_1/Frameworks/Python.framework/Versions/3.4/Python"
-    endif
 endif
 
 " }}}
+" {{{ Plugin
 "  {{{ Preserve
 function! Preserve(command)
     " Save the last search.
@@ -723,18 +719,18 @@ let g:clang_auto_select = 0
 let g:clang_use_library = 1
 
 "  }}}
-"  {{{ Ctrl+P
-let g:ctrlp_use_migemo = 0
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_mruf_max = 500
-let g:ctrlp_open_new_file = 1
-let g:ctrlp_map = '<c-p>'
-"   {{{ ctrlp mapping
-nnoremap <Leader>p :<C-u>CtrlP<CR>
-
-"   }}} -end
-
-"  }}}
+""  {{{ Ctrl+P
+"let g:ctrlp_use_migemo = 0
+"let g:ctrlp_clear_cache_on_exit = 0
+"let g:ctrlp_mruf_max = 500
+"let g:ctrlp_open_new_file = 1
+"let g:ctrlp_map = '<c-p>'
+""   {{{ ctrlp mapping
+"nnoremap <Leader>p :<C-u>CtrlP<CR>
+"
+""   }}} -end
+"
+""  }}}
 "  {{{ Emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js EmmetInstall
@@ -1170,18 +1166,18 @@ let s:hooks = neobundle#get_hooks('unite.vim')
 
 "  }}}
 "  {{{ indent
-" Vim 起動時 vim-indent-guides を自動起動
-let g:indent_guides_enable_on_vim_startup=1
-" ガイドをスタートするインデントの量
-let g:indent_guides_start_level=1
-" 自動カラー無効
-" let g:indent_guides_auto_colors=0
-" 奇数番目のインデントの色
-au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-" 偶数番目のインデントの色
-au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
-" ガイドの幅
-let g:indent_guides_guide_size = 1
+" " Vim 起動時 vim-indent-guides を自動起動
+" let g:indent_guides_enable_on_vim_startup=1
+" " ガイドをスタートするインデントの量
+" let g:indent_guides_start_level=1
+" " 自動カラー無効
+" " let g:indent_guides_auto_colors=0
+" " 奇数番目のインデントの色
+" au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
+" " 偶数番目のインデントの色
+" au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
+" " ガイドの幅
+" let g:indent_guides_guide_size = 1
 
 "  }}}
 "  {{{ vim php cs fixer
@@ -1279,12 +1275,24 @@ nmap <C-n> <Plug>(yankround-next)
 
 "  }}}
 " }}}
-" }}}
 " {{{ scripts
 " scripts load
 " call s:source_rc('./scripts/countline.vim')
 
 " }}}
+" }}}
+" {{{ Color scheme
+syntax enable
+set t_Co=256
+set background=dark
+" colorscheme phd
+colorscheme slate
+if has("gui_running")
+    colorscheme strawberry-dark
+    set transparency=10
+endif
+" }}}
+
 " vim:set foldmethod=marker
 " vim:set foldcolumn=3
 " vim:set foldlevel=0
