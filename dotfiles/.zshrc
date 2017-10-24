@@ -204,6 +204,10 @@ zle -N peco-src
 bindkey '^]' peco-src
 
 #  }}}
+#  {{{ pyenv
+#
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+#  }}}
 # }}}
 
 # {{{ alias
