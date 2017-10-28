@@ -1,0 +1,166 @@
+"*":
+  "atom-ctags": {}
+  "atom-ide-ui":
+    "atom-ide-code-format":
+      formatOnSave: true
+      formatOnType: false
+    "atom-ide-datatip": {}
+    "atom-ide-diagnostics-ui":
+      showDiagnosticTraces: true
+    use:
+      "atom-ide-diagnostics-ui": false
+  "autocomplete-clang":
+    includeNonDoxygenCommentsAsDocumentation: true
+    includePaths: [
+      "/usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
+    ]
+  "autocomplete-modules": {}
+  core:
+    closeDeletedFileTabs: true
+    customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".hgrc"
+        ".flowconfig"
+      ]
+      "source.json": [
+        "BUCK.autodeps"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
+    disabledPackages: [
+      "standard-formatter"
+      "vim-surround"
+      "language-babel"
+      "vim-mode-plus-ex-mode"
+      "go-debug"
+      "hyperclick"
+      "flow-ide"
+      "symbols-view"
+      "linter-cppcheck"
+      "script"
+      "multi-cursor"
+      "linter-flow"
+      "linter-cpplint"
+      "language-cpp14"
+      "linter-gcc"
+      "atom-xsltransform"
+      "nuclide"
+      "autocomplete-paths"
+      "ide-typescript"
+      "atom-react-native-css"
+      "atom-react-native-autocomplete"
+      "react-native-snippets"
+      "linter-js-standard"
+      "atom-open-this"
+      "autoclose-html"
+      "busy-signal"
+      "es6-javascript"
+      "linter-xo"
+      "react-es6-snippets"
+      "react-snippets"
+      "js-hyperclick"
+      "goto-definition"
+    ]
+    excludeVcsIgnoredPaths: false
+    followSymlinks: false
+    telemetryConsent: "no"
+  editor:
+    atomicSoftTabs: false
+    fontSize: 22
+    showIndentGuide: true
+    showInvisibles: true
+    softTabs: false
+  "exception-reporting":
+    userId: "f7603f18-17da-4fac-9569-d45eab12e757"
+  "goto-definition":
+    performanceMode: true
+  "ide-flowtype":
+    customFlowPath: {}
+  linter: {}
+  "linter-cpplint": {}
+  "linter-eslint":
+    useGlobalEslint: true
+  "linter-gcc":
+    gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
+  "linter-ui-default":
+    panelHeight: 408
+    showPanel: true
+  nuclide:
+    "nuclide-buck":
+      compileErrorDiagnostics: false
+      suggestTaskRunner: false
+    "nuclide-clang":
+      enableDefaultFlags: false
+    "nuclide-ctags":
+      disableWithHack: false
+    "nuclide-debugger-php":
+      stopOneStopAll: false
+    "nuclide-file-tree":
+      hideIgnoredNames: false
+      showOpenFiles: false
+      showUncommittedChanges: false
+    "nuclide-flow":
+      canUseFlowBin: true
+      enablePushDiagnostics: true
+      enableReferencesHighlight: true
+      excludeOtherAutocomplete: true
+    "nuclide-home":
+      showChangelogs: false
+      showHome: false
+    "nuclide-notifications":
+      onlyNativeFriendly: false
+    "nuclide-objc":
+      enableAutomaticSquareBracketInsertion: false
+    "nuclide-ocaml":
+      enableDiagnostics: false
+    "nuclide-python":
+      autocompleteArguments: false
+      enableLinting: false
+      showGlobalVariables: false
+    "nuclide-quick-open":
+      useSelection: false
+    "nuclide-related-files":
+      openInNextPane: false
+    "nuclide-remote-atom":
+      shouldNotifyWhenCommandLineIsWaitingOnFile: false
+    "nuclide-remote-projects":
+      confirmServerActionOnLastProject: false
+      shutdownServerAfterDisconnection: false
+  "plantuml-viewer":
+    charset: "UTF-8"
+  "prettier-atom":
+    formatOnSaveOptions:
+      enabled: true
+    prettierEslintOptions:
+      prettierLast: true
+    prettierOptions:
+      semi: false
+      singleQuote: true
+      trailingComma: "all"
+      useTabs: true
+    silenceErrors: true
+    useEslint: true
+  runner:
+    scopes:
+      js: "babel-node"
+  "tree-view": {}
+  "vim-mode-plus":
+    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
+  "vim-mode-plus-ex-mode":
+    notifiedUseExMode: true
+  welcome:
+    showOnStartup: false
+  "fuzzy-finder":
+    ignoredNames: [
+      "tmp"
+      ".dir-locals.el"
+      "node_modules"
+    ]
+".ansi.text":
+  editor:
+    autoIndent: true
+".c.source":
+  editor:
+    scrollPastEnd: true
