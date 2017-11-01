@@ -54,7 +54,6 @@
       "react-native-snippets"
       "linter-js-standard"
       "atom-open-this"
-      "autoclose-html"
       "busy-signal"
       "es6-javascript"
       "linter-xo"
@@ -74,6 +73,12 @@
     softTabs: false
   "exception-reporting":
     userId: "f7603f18-17da-4fac-9569-d45eab12e757"
+  "fuzzy-finder":
+    ignoredNames: [
+      "tmp"
+      ".dir-locals.el"
+      "node_modules"
+    ]
   "goto-definition":
     performanceMode: true
   "ide-flowtype":
@@ -85,7 +90,7 @@
   "linter-gcc":
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
-    panelHeight: 408
+    panelHeight: 315
     showPanel: true
   nuclide:
     "nuclide-buck":
@@ -145,19 +150,14 @@
   runner:
     scopes:
       js: "babel-node"
-  "tree-view": {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
   "vim-mode-plus":
     notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true
   welcome:
     showOnStartup: false
-  "fuzzy-finder":
-    ignoredNames: [
-      "tmp"
-      ".dir-locals.el"
-      "node_modules"
-    ]
 ".ansi.text":
   editor:
     autoIndent: true
