@@ -97,6 +97,9 @@ zle -N insert-last-word smart-insert-last-word
 bindkey '^k' insert-last-word
 
 # }}}
+# {{{ hello
+# FLAG_KYOKO_KYOKO_TOSHINO
+# }}}
 # {{{ plugins, helpers
 #  {{{ pecol
 function percol-search-document() {
