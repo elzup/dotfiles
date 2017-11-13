@@ -246,6 +246,10 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+alias rsync-e="rsync -rtvpl --exclude-from=.rsyncignore"
+alias rsync-n="rsync -nrtvpl"
+alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
+
 # gnome-open
 alias gopen="gnome-open"
 
@@ -329,6 +333,9 @@ alias -g C='| xsel --input --clipboard'
 alias -g P='| percol'
 alias -g X='| xargs'
 alias -g PX='| peco | xargs'
+
+alias alert="osascript -e 'display notification \"🕐 get work!\" with title \"Command Finish!\"' -e 'beep 2'"
+alias -g A="&& osascript -e 'display notification \"🕐 get work!\" with title \"Command Finish!\"' -e 'beep 2'"
 
 #stdoutをクリップボードへ
 alias -g toclip=" | xsel -bi"

@@ -12,7 +12,7 @@
   "autocomplete-clang":
     includeNonDoxygenCommentsAsDocumentation: true
     includePaths: [
-      "/usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
+      "/usr/local/Cellar/gcc/7.2.0/include/c++/7.2.0/"
     ]
   "autocomplete-modules": {}
   core:
@@ -47,7 +47,6 @@
       "linter-gcc"
       "atom-xsltransform"
       "nuclide"
-      "autocomplete-paths"
       "ide-typescript"
       "atom-react-native-css"
       "atom-react-native-autocomplete"
@@ -61,24 +60,31 @@
       "react-snippets"
       "js-hyperclick"
       "goto-definition"
+      "autocomplete-paths"
+      "autocomplete-modules"
     ]
     excludeVcsIgnoredPaths: false
     followSymlinks: false
     telemetryConsent: "no"
   editor:
     atomicSoftTabs: false
-    fontSize: 22
+    fontSize: 20
+    scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
     softTabs: false
   "exception-reporting":
     userId: "f7603f18-17da-4fac-9569-d45eab12e757"
+  "file-types":
+    "^.eslintrc$": "source.json"
   "fuzzy-finder":
     ignoredNames: [
       "tmp"
       ".dir-locals.el"
       "node_modules"
     ]
+  "git-blame":
+    columnWidth: 408
   "goto-definition":
     performanceMode: true
   "ide-flowtype":
@@ -86,12 +92,11 @@
   linter: {}
   "linter-cpplint": {}
   "linter-eslint":
-    useGlobalEslint: true
+    disableFSCache: true
   "linter-gcc":
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
     panelHeight: 315
-    showPanel: true
   nuclide:
     "nuclide-buck":
       compileErrorDiagnostics: false
@@ -144,14 +149,12 @@
       semi: false
       singleQuote: true
       trailingComma: "all"
-      useTabs: true
     silenceErrors: true
     useEslint: true
   runner:
     scopes:
       js: "babel-node"
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   "vim-mode-plus":
     notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
   "vim-mode-plus-ex-mode":
