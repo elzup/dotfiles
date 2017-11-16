@@ -195,6 +195,19 @@ function cdg () {
   zle clear-screen
 }
 
+GHQ=`ghq root`/github.com
+ME=`git config --get user.name`
+
+gcd() {
+    ghq get $1
+    if [ `dirname "$1"` = "." ]; then
+        cd $GHQ/$ME/$1
+    else
+        cd $GHQ/$1
+    fi
+}
+alias grep="grep --color=auto"
+
 #  }}}
 #  {{{ peco-ghq
 function peco-src () {
