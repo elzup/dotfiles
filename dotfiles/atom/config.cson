@@ -68,7 +68,7 @@
     telemetryConsent: "no"
   editor:
     atomicSoftTabs: false
-    fontSize: 20
+    fontSize: 25
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
@@ -97,6 +97,9 @@
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
     panelHeight: 315
+    showPanel: true
+    showTooltip: false
+    tooltipFollows: "Keyboard"
   nuclide:
     "nuclide-buck":
       compileErrorDiagnostics: false
@@ -155,8 +158,7 @@
     scopes:
       js: "babel-node"
   "tree-view": {}
-  "vim-mode-plus":
-    notifiedCoffeeScriptNoLongerSupportedToExtendVMP: true
+  "vim-mode-plus": {}
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true
   welcome:

@@ -36,10 +36,10 @@
 #  'cmd-e': 'fuzzy-finder:toggle-file-finder'
   'cmd-e': 'recent-files-fuzzy-finder:toggle-finder'
 
-
 'body':
   'alt-cmd-t': 'nuclide-fuzzy-filename-provider:toggle-provider'
   'cmd-0': 'unset!'
+  'cmd-1': 'unset!'
 
 'atom-text-editor.vim-mode:not(.insert-mode)':
   'alt-cmd-j': 'multi-cursor:expandDown'
@@ -51,6 +51,10 @@
 
 '.platform-darwin':
   'cmd-b': null
+  'cmd-1': 'tree-view:toggle'
+
+'.platform-darwin .tree-view':
+  'cmd-1': 'unset!'
 
 'atom-text-editor.vim-mode-plus:not(.insert-mode)':
   'ctrl-q': 'run:file'
