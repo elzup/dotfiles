@@ -68,7 +68,7 @@
     telemetryConsent: "no"
   editor:
     atomicSoftTabs: false
-    fontSize: 25
+    fontSize: 17
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
@@ -96,7 +96,7 @@
   "linter-gcc":
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
-    panelHeight: 315
+    panelHeight: 408
     showPanel: true
     showTooltip: false
     tooltipFollows: "Keyboard"
