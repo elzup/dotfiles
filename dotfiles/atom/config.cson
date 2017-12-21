@@ -15,6 +15,8 @@
       "/usr/local/Cellar/gcc/7.2.0/include/c++/7.2.0/"
     ]
   "autocomplete-modules": {}
+  "autocomplete-python":
+    useKite: false
   core:
     closeDeletedFileTabs: true
     customFileTypes:
@@ -68,7 +70,7 @@
     telemetryConsent: "no"
   editor:
     atomicSoftTabs: false
-    fontSize: 17
+    fontSize: 15
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
@@ -96,7 +98,7 @@
   "linter-gcc":
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
-    panelHeight: 408
+    panelHeight: 315
     showPanel: true
     showTooltip: false
     tooltipFollows: "Keyboard"
@@ -157,7 +159,9 @@
   runner:
     scopes:
       js: "babel-node"
-  "tree-view": {}
+  teletype: {}
+  "tree-view":
+    hideVcsIgnoredFiles: true
   "vim-mode-plus": {}
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true

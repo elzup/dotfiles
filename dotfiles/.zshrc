@@ -208,6 +208,12 @@ gcd() {
 }
 alias grep="grep --color=auto"
 
+function ghq-new() {
+  NEW_PROJ_PATH=$GHQ/elzup/$1
+  mkdir -p $NEW_PROJ_PATH
+  cd $NEW_PROJ_PATH
+}
+
 #  }}}
 #  {{{ peco-ghq
 function peco-src () {
