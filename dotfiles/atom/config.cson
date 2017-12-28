@@ -86,7 +86,7 @@
       "node_modules"
     ]
   "git-blame":
-    columnWidth: 408
+    columnWidth: 571
   "goto-definition":
     performanceMode: true
   "ide-flowtype":
