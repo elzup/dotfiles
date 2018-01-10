@@ -1,3 +1,12 @@
+# {{{ zplug
+source ~/.zplug/init.zsh
+
+zplug 'zsh-users/zsh-autosuggestions', at: v0.4.2
+zplug 'zsh-users/zsh-syntax-highlighting', at: v0.6.0
+
+zplug load # --verbose
+
+# }}}
 # {{{ basic
 # mode -e emacs, -v vim
 bindkey -e
@@ -19,8 +28,6 @@ export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
 
-autoload -U compinit
-compinit
 #  {{{ completion
 fpath=(~/zsh_plugins/zsh-completions/src $fpath)
 
@@ -72,20 +79,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 # sl_tweet
 alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
-
-# auto suggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# syntax hilight
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# zsh-notify
-#  source ~/.ghq/github.com/marzocchi/zsh-notify/notify.plugin.zsh
-#  zstyle ':notify:*' error-sound "Glass"
-#  zstyle ':notify:*' success-sound "default"
-#  zstyle ':notify:*' command-complete-timeout 3
-
-## [](#installation)
 
 # }}}
 # {{{ bind
@@ -171,15 +164,15 @@ print_file () {
   done < "$1"
 }
 #  }}}
-# anyframe {{{
+#  {{{ anyframe
 
 # $ ghq get git@github.com:mollifier/anyframe.git
-fpath=(/Users/hiro/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
+fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
 
 autoload -Uz anyframe-init
 anyframe-init
 
-# }}}
+#  }}}
 # {{{ wine
 alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
 alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
@@ -403,7 +396,7 @@ prompt pure
 
 # }}}
 # {{{ start printing
-random_saying
+# random_saying
 
 # }}}
 # {{{ zbell
