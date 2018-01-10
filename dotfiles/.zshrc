@@ -27,6 +27,8 @@ fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
 autoload -Uz anyframe-init
 anyframe-init
 
+## direnv
+eval "$(direnv hook zsh)"
 
 ### pecol
 #  {{{ pecol
@@ -323,8 +325,7 @@ if echo $OSTYPE | grep -q darwin; then
 
     alias gvim="mvim"
 
-    path=(/Applications/ ~/bin(N-/) /usr/local/bin(N-/) ${path})
-    # path=(/Applications/MacVim.app/Contents/MacOS ~/bin(N-/) /usr/local/bin(N-/) ${path})
+    # path=(/Applications/ ~/bin(N-/) /usr/local/bin(N-/) ${path})
 
     alias firefox="open -a Firefox"
     alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -P "answer" &'
