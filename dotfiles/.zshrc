@@ -1,100 +1,34 @@
-# {{{ basic
-# mode -e emacs, -v vim
-bindkey -e
-## bindkey -v
+## ----- Plugins -----
 
-export EDITOR=vim        # エディタをvimに設定
-export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
-export KCODE=u           # KCODEにUTF-8を設定
-export AUTOFEATURE=true  # autotestでfeatureを動かす
-
-# User configuration
-
-# 単語消去で"消す"文字
-export WORDCHARS='*?_-.[]~=&;!#$$&^(){}<>'
-## =command を command のパス名に展開する
-setopt equals
-
-export CLICOLOR=1
-export LSCOLORS=Exfxcxdxbxegedabagacad
-export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
-
-#  {{{ completion
 fpath=(~/zsh_plugins/zsh-completions/src $fpath)
 
-#  }}}
-#
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*:processes' command "ps -u $USER"
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
-zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
-zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
-zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
-zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
-
-zstyle ':chpwd:*' recent-dirs-max 500
-function chpwd() { ls }
-
-
-# .zsh_hisotry の上限
-export SAVEHIST=100000
-export HISTSIZE=100000
-export HISTFILE=~/.zsh_history
-setopt share_history
-setopt extended_history
-
-setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
-setopt HIST_IGNORE_SPACE          # 行頭がスペースのコマンドは記録しない
-
-# }}}
-# {{{ plugins
-#
+### zsh-users/zsh-autosuggestions
 # ghq get https://github.com/zsh-users/zsh-autosuggestions
 source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 
+### zsh-syntax-highlighting
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
 source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-autoload -U compinit
-compinit -C
-
+### edit-command-line
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
 
-alias j="autojump"
-if [ -f `brew --prefix`/etc/autojump ]; then
-  . `brew --prefix`/etc/autojump
-fi
 
+### chpwd_recent_dirs
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
-# sl_tweet
-alias sl="ruby ~/.zsh/sl_tweet/sl.rb"
 
-# }}}
-# {{{ bind
-bindkey "^U" backward-kill-line
-bindkey '^]f'   vi-find-next-char
-bindkey '^]b' vi-find-prev-char
-autoload smart-insert-last-word
-zle -N insert-last-word smart-insert-last-word
-bindkey '^k' insert-last-word
+### anyframe
+# $ ghq get git@github.com:mollifier/anyframe.git
+fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
+autoload -Uz anyframe-init
+anyframe-init
 
-# }}}
-# {{{ hello
-# FLAG_KYOKO_KYOKO_TOSHINO
-# }}}
-# {{{ plugins, helpers
+
+### pecol
 #  {{{ pecol
 function percol-search-document() {
     if [ $# -ge 1 ]; then
@@ -132,56 +66,11 @@ fi
 
 
 
-#  }}}
-#  {{{ background
-case ${OSTYPE} in
-    darwin*)
-        background() {
-            bg=$1
-            if [ ${bg%%:*} = "http" ] ; then ;
-                filename=${${bg:t}%\?*}
-                wget $bg -O ~/Pictures/tmpbg/$filename
-                bg=~/Pictures/tmpbg/$filename
-                ;fi
-            osascript -e "tell application \"Finder\" to set desktop picture to POSIX file \"$bg\""
-        }
-        ;;
-    *)
-        alias background="display -window root -resize \`screensize\`"
-        ;;
-esac
-
-#  }}}
-#  {{{ git
-function myline() {
-    git ls-files | xargs -n1 git --no-pager blame -f -w|grep $1 | wc -l
-}
-
-#  }}}
-#  {{{ print
-print_file () {
-  while IFS='' read -r p; do
-    echo "$p"
-  done < "$1"
-}
-#  }}}
-#  {{{ anyframe
-
-# $ ghq get git@github.com:mollifier/anyframe.git
-fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
-
-autoload -Uz anyframe-init
-anyframe-init
-
-#  }}}
-# {{{ wine
-alias typewell="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJR.exe"
-alias typewellk="wine ~/.wine/drive_c/Program\ Files/typewell/TWellJK.exe"
-alias typewelle="wine ~/.wine/drive_c/Program\ Files/typewell/TWellEW.exe"
-
 # }}}
-#  {{{ ghq
-#
+
+### ghq
+# {{{ ghq
+
 function cdg () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
@@ -210,8 +99,6 @@ function ghq-new() {
   cd $NEW_PROJ_PATH
 }
 
-#  }}}
-#  {{{ peco-ghq
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
@@ -223,28 +110,91 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-#  }}}
-#  {{{ pyenv
-#
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-#  }}}
 # }}}
 
-# {{{ alias
-#  {{{ overwrap options alias
-# alias ls="ls -F --color=auto -v -alh"	#ディレクトリには/, 色つき, 番号順
-alias lsa="ls -a"				#隠しファイルも
-alias lsl="ls -lh"				#詳細付き, ファイルサイズに接頭語
-alias lsa="ls -lha"				#全部詳細
-alias lst="ls -lhta"				#詳細付き, ファイルサイズに接頭語
+### pyenv
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+### pure-prompt
+
+autoload -U promptinit && promptinit
+prompt pure
+
+
+## ----- Basic -----
+
+# mode -e emacs, -v vim
+bindkey -e
+# bindkey -v
+
+export EDITOR=vim        # エディタをvimに設定
+export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
+export KCODE=u           # KCODEにUTF-8を設定
+export AUTOFEATURE=true  # autotestでfeatureを動かす
+
+# User configuration
+
+# 単語消去で"消す"文字
+export WORDCHARS='*?_-.[]~=&;!#$$&^(){}<>'
+## =command を command のパス名に展開する
+setopt equals
+
+# {{{ styles
+export CLICOLOR=1
+export LSCOLORS=Exfxcxdxbxegedabagacad
+export LS_COLORS='di=01:ln=35:so=32:pi=33:ex=31:bd=36;01:cd=33;01:su=31;40;07:sg=36;40;07:tw=32;40;07:ow=33;40;07:'
+
+#
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*:processes' command "ps -u $USER"
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' completer _expand _complete _match _prefix _approximate _list _history
+zstyle ':completion:*:messages' format '%F{YELLOW}%d'$DEFAULT
+zstyle ':completion:*:warnings' format '%F{RED}No matches for:''%F{YELLOW} %d'$DEFAULT
+zstyle ':completion:*:descriptions' format '%F{YELLOW}completing %B%d%b'$DEFAULT
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
+zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
+
+zstyle ':chpwd:*' recent-dirs-max 500
+function chpwd() { ls }
+# }}}
+
+### history
+# .zsh_hisotry の上限
+export SAVEHIST=100000
+export HISTSIZE=100000
+export HISTFILE=~/.zsh_history
+setopt share_history
+setopt extended_history
+setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
+setopt HIST_IGNORE_SPACE          # 行頭がスペースのコマンドは記録しない
+
+
+
+### alias
+# {{{ alias
+
+### bind
+bindkey "^U" backward-kill-line
+bindkey '^]f'   vi-find-next-char
+bindkey '^]b' vi-find-prev-char
+autoload smart-insert-last-word
+zle -N insert-last-word smart-insert-last-word
+bindkey '^k' insert-last-word
+
+# overwrap options alias
+alias lsa="ls -a"
 alias mv="mv -i"
 alias rm="rmtrash"
 
-#cp
 alias cp="cp -i"	#上書きを確認
 
-#grep
 alias grep="grep --color=auto"
 alias fgrep="fgrep --color=auto"
 alias egrep="egrep --color=auto"
@@ -254,10 +204,8 @@ alias GREP_OPTIONS=""
 alias ln="ln -i -v"
 alias cdr="anyframe-widget-cdr"
 
-#  }}} - overwrap options alias
-#  {{{ usefuls
 
-alias reload="source ~/.zshrc"
+### usefuls
 
 # extra cd
 alias ..="cd ../"
@@ -280,7 +228,6 @@ alias unzipjar="jar xvf"
 alias xmod="xmodmap ~/.Xmodmap"
 alias shutdown="sudo shutdown"
 alias yaourt="yaourt --noconfirm"
-
 alias dc="docker-compose"
 
 # lang change
@@ -311,11 +258,12 @@ alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
 
-
 # react native
 alias rn="react-native"
-#  }}} - usefuls
-#  {{{ extensions
+
+
+### extensions
+#
 alias -s c=vim
 alias -s C=vim
 alias -s cpp=vim
@@ -338,13 +286,14 @@ alias -s jpg=eog
 alias -s jpeg=eog
 alias -s gif=eog
 alias -s bmp=eog
-#wines
+# wines
 alias -s exe=wine
 
 alias -s asta=astah
 
-#  }}} - extensions
-#  {{{ end pipe
+
+### end pipe
+
 # char alias
 alias -g G="| grep"
 alias -g C='| xsel --input --clipboard'
@@ -364,10 +313,10 @@ alias -g andclip=" | (cat 1>&2 | xsel -bi) 2>&1"
 #stdout+stderrをクリップボードとstdoutへ
 alias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"
 
-#  }}} end pipe
 
 # }}}
 # {{{ mac
+
 if echo $OSTYPE | grep -q darwin; then
     alias ls="ls -alh -G"
     alias -g C='| pbcopy'
@@ -386,88 +335,16 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
-# {{{ Trap
-# alias vim="imagesnap -q ~/Pictures/zainin/camera_\`date +%Y-%m-%d_%H%M%S\`.jpg && vim"
-# alias alias="imagesnap -q ~/Pictures/zcamera_\`date +%Y-%m-%d_%H%M%S\`.jpg && alias"
 
+# {{{ hello
+# FLAG_KYOKO_KYOKO_TOSHINO
 # }}}
-# {{{ pure-prompt
-autoload -U promptinit && promptinit
-prompt pure
 
-# }}}
-# {{{ start printing
-# random_saying
 
-# }}}
-# {{{ zbell
-#
-# # thanks https://gist.github.com/jpouellet/5278239
-# # This script prints a bell character when a command finishes
-# # if it has been running for longer than $zbell_duration seconds.
-# # If there are programs that you know run long that you don't
-# # want to bell after, then add them to $zbell_ignore.
-# #
-# # This script uses only zsh builtins so its fast, there's no needless
-# # forking, and its only dependency is zsh and its standard modules
-# #
-# # Written by Jean-Philippe Ouellet <jpo@vt.edu>
-# # Made available under the ISC license.
-# 
-# # only do this if we're in an interactive shell
-# [[ -o interactive ]] || return
-# 
-# # get $EPOCHSECONDS. builtins are faster than date(1)
-# zmodload zsh/datetime || return
-# 
-# # make sure we can register hooks
-# autoload -Uz add-zsh-hook || return
-# 
-# # initialize zbell_duration if not set
-# (( ${+zbell_duration} )) || zbell_duration=15
-# 
-# # initialize zbell_ignore if not set
-# (( ${+zbell_ignore} )) || zbell_ignore=($EDITOR $PAGER)
-# 
-# # initialize it because otherwise we compare a date and an empty string
-# # the first time we see the prompt. it's fine to have lastcmd empty on the
-# # initial run because it evaluates to an empty string, and splitting an
-# # empty string just results in an empty array.
-# zbell_timestamp=$EPOCHSECONDS
-# 
-# # right before we begin to execute something, store the time it started at
-# zbell_begin() {
-# 	zbell_timestamp=$EPOCHSECONDS
-# 	zbell_lastcmd=$1
-# }
-# 
-# # when it finishes, if it's been running longer than $zbell_duration,
-# # and we dont have an ignored command in the line, then print a bell.
-# zbell_end() {
-# 	ran_long=$(( $EPOCHSECONDS - $zbell_timestamp >= $zbell_duration ))
-# 
-# 	has_ignored_cmd=0
-# 	for cmd in ${(s:;:)zbell_lastcmd//|/;}; do
-# 		words=(${(z)cmd})
-# 		util=${words[1]}
-# 		if (( ${zbell_ignore[(i)$util]} <= ${#zbell_ignore} )); then
-# 			has_ignored_cmd=1
-# 			break
-# 		fi
-# 	done
-# 
-# 	if (( ! $has_ignored_cmd )) && (( ran_long )); then
-# 		say "done!"
-# 	fi
-# }
-# 
-# # register the functions as hooks
-# add-zsh-hook preexec zbell_begin
-# add-zsh-hook precmd zbell_end
-# }}}
-# {{{ bench mark
+
+### bench mark
+
 # zsh zshrc bentch mark
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
-# }}}
