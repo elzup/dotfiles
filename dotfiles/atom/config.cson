@@ -75,10 +75,12 @@
     showIndentGuide: true
     showInvisibles: true
     softTabs: false
+    softWrap: true
   "exception-reporting":
     userId: "f7603f18-17da-4fac-9569-d45eab12e757"
   "file-types":
     "^.eslintrc$": "source.json"
+    "^.textlintrc$": "source.json"
   "fuzzy-finder":
     ignoredNames: [
       "tmp"
@@ -148,12 +150,12 @@
   "prettier-atom":
     formatOnSaveOptions:
       enabled: true
+      excludedGlobs: [
+        ".textlintrc"
+      ]
     prettierEslintOptions:
       prettierLast: true
-    prettierOptions:
-      semi: false
-      singleQuote: true
-      trailingComma: "all"
+    prettierOptions: {}
     silenceErrors: true
     useEslint: true
   runner:
