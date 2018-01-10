@@ -1,12 +1,3 @@
-# {{{ zplug
-source ~/.zplug/init.zsh
-
-zplug 'zsh-users/zsh-autosuggestions', at: v0.4.2
-zplug 'zsh-users/zsh-syntax-highlighting', at: v0.6.0
-
-zplug load # --verbose
-
-# }}}
 # {{{ basic
 # mode -e emacs, -v vim
 bindkey -e
@@ -65,6 +56,16 @@ setopt HIST_IGNORE_SPACE          # 行頭がスペースのコマンドは記�
 
 # }}}
 # {{{ plugins
+#
+# ghq get https://github.com/zsh-users/zsh-autosuggestions
+source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+
+# ghq get https://github.com/zsh-users/zsh-syntax-highlighting
+source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+autoload -U compinit
+compinit -C
+
 autoload -Uz edit-command-line
 zle -N edit-command-line
 bindkey '^xe' edit-command-line
