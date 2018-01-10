@@ -172,7 +172,9 @@ print_file () {
 }
 #  }}}
 # anyframe {{{
-fpath=(/usr/local/opt/zplug/repos/mollifier/anyframe(N-/) $fpath)
+
+# $ ghq get git@github.com:mollifier/anyframe.git
+fpath=(/Users/hiro/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
 
 autoload -Uz anyframe-init
 anyframe-init
