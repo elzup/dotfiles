@@ -70,12 +70,13 @@
     telemetryConsent: "no"
   editor:
     atomicSoftTabs: false
-    fontSize: 15
+    fontSize: 18
     scrollPastEnd: true
     showIndentGuide: true
     showInvisibles: true
     softTabs: false
     softWrap: true
+    softWrapAtPreferredLineLength: true
   "exception-reporting":
     userId: "f7603f18-17da-4fac-9569-d45eab12e757"
   "file-types":
@@ -87,6 +88,10 @@
       ".dir-locals.el"
       "node_modules"
     ]
+  fuzzyFinder:
+    ignoredNames: [
+      "/templates/*"
+    ]
   "git-blame":
     columnWidth: 571
   "goto-definition":
@@ -96,11 +101,13 @@
   linter: {}
   "linter-cpplint": {}
   "linter-eslint":
+    disableEslintIgnore: true
     disableFSCache: true
+    disableWhenNoEslintConfig: false
   "linter-gcc":
     gccIncludePaths: " /usr/local/Cellar/gcc/7.1.0/include/c++/7.1.0/"
   "linter-ui-default":
-    panelHeight: 315
+    panelHeight: 408
     showPanel: true
     showTooltip: false
     tooltipFollows: "Keyboard"
@@ -162,8 +169,7 @@
     scopes:
       js: "babel-node"
   teletype: {}
-  "tree-view":
-    hideVcsIgnoredFiles: true
+  "tree-view": {}
   "vim-mode-plus": {}
   "vim-mode-plus-ex-mode":
     notifiedUseExMode: true

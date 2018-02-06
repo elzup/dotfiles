@@ -142,8 +142,8 @@
     smudge = git-lfs smudge -- %f
     required = true
 
-# [commit]
-#     template = /Users/hiro/.gitcommit_template
+[commit]
+    template = /Users/hiro/.gitcommit_template
 
 [ghq]
     root = ~/.ghq/

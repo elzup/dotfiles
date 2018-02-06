@@ -74,7 +74,7 @@ fi
 # {{{ ghq
 
 function cdg () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  local selected_dir=$(ghq list | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
@@ -160,6 +160,7 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
 zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
+zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 
 zstyle ':chpwd:*' recent-dirs-max 500
 function chpwd() { ls }
@@ -172,10 +173,13 @@ export HISTSIZE=100000
 export HISTFILE=~/.zsh_history
 setopt share_history
 setopt extended_history
-setopt HIST_IGNORE_DUPS           # 前と重複する行は記録しない
-setopt HIST_EXPIRE_DUPS_FIRST
-setopt HIST_IGNORE_ALL_DUPS       # 履歴中の重複行をファイル記録前に無くす
-setopt HIST_IGNORE_SPACE          # 行頭がスペースのコマンドは記録しない
+setopt hist_ignore_dups           # 前と重複する行は記録しない
+setopt hist_ignore_all_dups       # 履歴中の重複行をファイル記録前に無くす
+setopt hist_ignore_space          # 行頭がスペースのコマンドは記録しない
+
+setopt hist_find_no_dups          # 履歴検索中、(連続してなくとも)重複を飛ばす
+setopt hist_reduce_blanks         # 余分な空白は詰めて記録
+setopt hist_no_store              # histroyコマンドは記録しない
 
 
 
