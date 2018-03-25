@@ -63,3 +63,6 @@
 
 'atom-text-editor[data-grammar="source jsx js"]:not([mini]).vim-mode-plus.insert-mode':
   'tab': 'emmet:expand-abbreviation-with-tab'
+
+'.platform-darwin atom-text-editor:not([mini])':
+  'shift-cmd-J': 'unset!'

@@ -6,6 +6,7 @@ path=(
     "/usr/local/sbin"
     "/usr/local/share/git-core/contrib/diff-highlight"
     $HOME"/.mos/bin/"
+    "/usr/local/opt/qt@5.5/bin"
     $path)
 
 # {{{ brew
@@ -49,7 +50,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # rmagick :-1:
 #
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
-export PKG_CONFIG_PATH="/usr/local/Cellar/imagemagick@6/6.9.8-3/lib/pkgconfig/":$PKG_CONFIG_PATH
+export PKG_CONFIG_PATH="/usr/local/opt/imagemagick@6/bin":$PKG_CONFIG_PATH
+
 
 # }}}
 # {{{ perl
@@ -75,9 +77,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 
 # }}}
 # {{{ image magic
-export MAGICK_HOME=$HOME/Library/ImageMagick-7.0.3
-export PATH="$MAGICK_HOME/bin:$PATH"
-export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
+# export MAGICK_HOME=$HOME/Library/ImageMagick-7.0.3
+# export PATH="$MAGICK_HOME/bin:$PATH"
+# export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
 # }}}
 # {{{ C++

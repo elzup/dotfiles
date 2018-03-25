@@ -182,6 +182,11 @@ setopt hist_reduce_blanks         # 余分な空白は詰めて記録
 setopt hist_no_store              # histroyコマンドは記録しない
 
 
+# yarn completion
+autoload -U +X compinit && compinit
+autoload -U +X bashcompinit && bashcompinit
+. ~/.zsh/.yarn-completion
+
 
 ### alias
 # {{{ alias
@@ -263,6 +268,8 @@ alias intellij="open -a IntelliJ\ IDEA"
 alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
+
+alias geai="open https://github.com/elzup/admin/issues"
 
 # react native
 alias rn="react-native"
@@ -353,3 +360,7 @@ fi
 if (which zprof > /dev/null 2>&1) ;then
   zprof
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
