@@ -4,12 +4,23 @@ object Brewfile
 
 object git
 object ghq
+object zsh
 
 object DropBox
-object .ssh
 
 object Dotfiles
 object DotfilesInstall.sh
 object npmGlobal
+
+object .ssh
+
+Brewfile->git
+Brewfile->zsh
+Brewfile->DropBox
+zsh->DotfilesInstall.sh
+ghq->Dotfiles
+
+ghq->DotfilesInstall.sh
+Dotfiles->DotfilesInstall.sh
 
 @enduml
