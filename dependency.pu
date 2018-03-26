@@ -1,18 +1,15 @@
 @startuml
 
-object User
-object Group
-object Member
+object Brewfile
 
-object Event
-object Ticket
+object git
+object ghq
 
-User . Group
-User o.. Member
-Group o.. Member
+object DropBox
+object .ssh
 
-Group o. Event
-Event o.. Ticket
-Member . Ticket
+object Dotfiles
+object DotfilesInstall.sh
+object npmGlobal
 
 @enduml
