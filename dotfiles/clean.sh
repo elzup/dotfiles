@@ -1,6 +1,7 @@
 #!/bin/bash
-mv -f ~/Downloads/*.gif ~/gif/
-mv -f ~/Desktop/*.gif ~/gif/
+mkdir -p ~/Pictures/gif
+mv -f ~/Downloads/*.gif ~/Pictures/gif/
+mv -f ~/Desktop/*.gif ~/Pictures/gif/
 mv -f ~/Downloads/*.jpg ~/Desktop/
 mv -f ~/Downloads/*.JPG ~/Desktop/
 mv -f ~/Downloads/*.png ~/Desktop/
