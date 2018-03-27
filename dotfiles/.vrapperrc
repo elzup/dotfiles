@@ -1,6 +1,0 @@
-" verapperrc
-"
-
-nnoremap s <Nop>
-nnoremap sn gt
-nnoremap sp gT

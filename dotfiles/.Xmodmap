@@ -1,9 +1,0 @@
-clear Lock
-!remove Lock = Caps_Lock
-add control = Caps_Lock
-remove control = Control_L
-add Lock = Control_L
-
-add mod4 = Muhenkan
-
-add shift = Henkan
