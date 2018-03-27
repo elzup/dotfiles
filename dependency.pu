@@ -18,6 +18,12 @@ object sshZip
 ' App
 object 1Password
 object DropBox
+object Atom
+object IntelliJ
+
+' App
+object AtomSetup
+object IntelliJSetup
 
 ' Service
 object GitHubPrivate
@@ -26,9 +32,16 @@ Brewfile->git
 Brewfile->zsh
 Brewfile->DropBox
 Brewfile->1Password
+Brewfile->Atom
+Brewfile->IntelliJ
 
 sshZip->ssh
 1Password->ssh
+1Password->DropBox
+
+1Password->AtomSetup
+Atom->AtomSetup
+IntelliJ->IntelliJSetup
 
 zsh->dotfilesInstall
 ghq->dotfiles
