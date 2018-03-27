@@ -12,18 +12,14 @@ object npmGlobal
 
 
 ' File
-object ssh
-object sshZip
+object sshSetup
 
 ' App
 object 1Password
 object DropBox
-object Atom
-object IntelliJ
 
-' App
-object AtomSetup
-object IntelliJSetup
+' App config
+object IntelliJAtomSetup
 
 ' Service
 object GitHubPrivate
@@ -32,22 +28,20 @@ Brewfile->git
 Brewfile->zsh
 Brewfile->DropBox
 Brewfile->1Password
-Brewfile->Atom
-Brewfile->IntelliJ
 
-sshZip->ssh
-1Password->ssh
+1Password->sshSetup
 1Password->DropBox
 
-1Password->AtomSetup
-Atom->AtomSetup
-IntelliJ->IntelliJSetup
+1Password->IntelliJAtomSetup
 
 zsh->dotfilesInstall
 ghq->dotfiles
 git->ghq
-DropBox->sshZip
-ssh->GitHubPrivate
+DropBox->sshSetup
+sshSetup->GitHubPrivate
+
+GitHubPrivate->IntelliJAtomSetup
+GitHubPrivate->npmGlobal
 
 ghq->dotfilesInstall
 dotfiles->dotfilesInstall
