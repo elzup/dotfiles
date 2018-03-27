@@ -6,21 +6,37 @@ object git
 object ghq
 object zsh
 
-object DropBox
-
-object Dotfiles
-object DotfilesInstall.sh
+object dotfiles
+object dotfilesInstall
 object npmGlobal
 
-object .ssh
+
+' File
+object ssh
+object sshZip
+
+' App
+object 1Password
+object DropBox
+
+' Service
+object GitHubPrivate
 
 Brewfile->git
 Brewfile->zsh
 Brewfile->DropBox
-zsh->DotfilesInstall.sh
-ghq->Dotfiles
+Brewfile->1Password
 
-ghq->DotfilesInstall.sh
-Dotfiles->DotfilesInstall.sh
+sshZip->ssh
+1Password->ssh
+
+zsh->dotfilesInstall
+ghq->dotfiles
+git->ghq
+DropBox->sshZip
+ssh->GitHubPrivate
+
+ghq->dotfilesInstall
+dotfiles->dotfilesInstall
 
 @enduml
