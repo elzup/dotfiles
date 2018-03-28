@@ -6,6 +6,10 @@ set -u
 setup() {
   dotfiles=$HOME/dotfiles
 
+  if [ ! -d "$dotfiles" ]; then
+      git clone https://github.com/elzup/dotfiles "$dotfiles"
+  fi
+
   symlink() {
     ln -sf "$1" "$2"
   }
