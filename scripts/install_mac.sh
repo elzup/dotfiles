@@ -20,6 +20,16 @@ setup() {
   do
     symlink "$dotfiles/$filename" "$HOME/$filename"
   done
+
+  cp -f "$Brewfile/sync-dotfiles.plist" "$launchd/sync-dotfiles.plist"
+  reload "sync-dotfiles.plist"
+}
+
+reload(){
+  echo "Unload $1"
+  launchctl unload ~/Library/LaunchAgents/$1
+  echo "Load $1"
+  launchctl load ~/Library/LaunchAgents/$1
 }
 
 setup
