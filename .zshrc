@@ -1,13 +1,12 @@
 ## ----- Plugins -----
 
-fpath=(~/zsh_plugins/zsh-completions/src $fpath)
-
-### zsh-users/zsh-autosuggestions
+### zsh-utils
+# ghq get https://github.com/zsh-users/zsh-completions
 # ghq get https://github.com/zsh-users/zsh-autosuggestions
-source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-
-### zsh-syntax-highlighting
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
+
+fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
+source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 
 source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### edit-command-line
