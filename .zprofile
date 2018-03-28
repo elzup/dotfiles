@@ -1,9 +1,7 @@
 path=(
-    "/usr/bin"
-    "/usr/sbin"
+    "/usr/bin:/usr/sbin"
+    "/usr/local/bin:/usr/local/sbin"
     "/bin:/sbin"
-    "/usr/local/bin"
-    "/usr/local/sbin"
     "/usr/local/share/git-core/contrib/diff-highlight"
     $HOME"/.mos/bin/"
     "/usr/local/opt/qt@5.5/bin"
@@ -92,5 +90,3 @@ export CPATH=/usr/local/opt/openssl/include:$CPATH
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
-
-
