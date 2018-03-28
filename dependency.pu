@@ -1,49 +1,35 @@
 @startuml
 
-object Brewfile
-
-object git
-object ghq
-object zsh
-
 object dotfiles
-object dotfilesInstall
-object npmGlobal
+object ghq
 
+object purePrompt
+
+object zshWork
 
 ' File
-object sshSetup
+object ssh
 
 ' App
-object 1Password
+object 1Pass
 object DropBox
 
-' App config
-object IntelliJAtomSetup
-
-' Service
-object GitHubPrivate
-
-Brewfile->git
-Brewfile->zsh
-Brewfile->DropBox
-Brewfile->1Password
-
-1Password->sshSetup
-1Password->DropBox
-
-1Password->IntelliJAtomSetup
-
-zsh->dotfilesInstall
+' Atom, JetBrains
+object Editors
 ghq->dotfiles
-git->ghq
-DropBox->sshSetup
-sshSetup->GitHubPrivate
 
-GitHubPrivate->IntelliJAtomSetup
-GitHubPrivate->npmGlobal
 
-ghq->dotfilesInstall
-dotfiles->dotfilesInstall
+1Pass->ssh
+1Pass->DropBox
+
+1Pass->Editors
+
+dotfiles->zshWork
+purePrompt->zshWork
+
+
+dotfiles->ssh
+DropBox->ssh
+ssh->Editors
 
 @enduml
