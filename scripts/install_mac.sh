@@ -5,6 +5,8 @@ set -u
 
 setup() {
   dotfiles=$HOME/dotfiles
+  launchd=$HOME/Library/LaunchAgents
+  plistfile=$dotfiles/sync.dotfiles.plist
 
   if [ ! -d "$dotfiles" ]; then
       git clone https://github.com/elzup/dotfiles "$dotfiles"
@@ -21,8 +23,8 @@ setup() {
     symlink "$dotfiles/$filename" "$HOME/$filename"
   done
 
-  cp -f "$Brewfile/sync-dotfiles.plist" "$launchd/sync-dotfiles.plist"
-  reload "sync-dotfiles.plist"
+  cp -f "$dotfiles/$plistfile" "$launchd/$plistfile"
+  reload "$plistfile"
 }
 
 reload(){
