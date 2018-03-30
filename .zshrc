@@ -1,12 +1,14 @@
 ## ----- Plugins -----
 
 ### zsh-utils
+# mkdir -p ~/.zsh/plugins
 # ghq get https://github.com/zsh-users/zsh-completions
 # ghq get https://github.com/zsh-users/zsh-autosuggestions
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
+# ghq get git@github.com:mollifier/anyframe.git
 
 fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
-source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh 
+source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### edit-command-line
@@ -21,7 +23,6 @@ add-zsh-hook chpwd chpwd_recent_dirs
 
 
 ### anyframe
-# $ ghq get git@github.com:mollifier/anyframe.git
 fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
 autoload -Uz anyframe-init
 anyframe-init
@@ -184,7 +185,6 @@ setopt hist_no_store              # histroyコマンドは記録しない
 # yarn completion
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
-. ~/.zsh/.yarn-completion
 
 
 ### alias
