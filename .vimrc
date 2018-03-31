@@ -133,9 +133,9 @@ endif
 
 set laststatus=2
 if has("mac")
-    set guifont=Ricty\ Regular\ for\ Powerline:h16
+    set guifont=Ricty\ Regular\ for\ Powerline:h24
 else
-    set guifont=Ricty\ 10
+    set guifont=Ricty\ 24
 endif
 
 if has('gui_macvim')
