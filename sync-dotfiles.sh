@@ -1,11 +1,11 @@
 #!/bin/sh
 
-set -e
-set -u
+set -eu
 
 repository=$HOME/dotfiles
 
 cd "$repository"
+sh "./scripts/backup_history.sh"
 /usr/bin/git add .
 /usr/bin/git commit -m "Update `date "+%Y-%m-%d %H:%M:%S"`"
 /usr/bin/git push origin master
