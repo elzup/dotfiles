@@ -267,6 +267,7 @@ alias intellij="open -a IntelliJ\ IDEA"
 alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
+alias androidstudio="open -a Android\ Studio ."
 
 alias geai="open https://github.com/elzup/admin/issues"
 
