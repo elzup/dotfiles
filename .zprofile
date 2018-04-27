@@ -6,6 +6,7 @@ path=(
     "/usr/local/share/git-core/contrib/diff-highlight"
     $HOME"/.mos/bin/"
     "/usr/local/opt/qt@5.5/bin"
+    "$HOME/Library/Python/3.6/bin"
     $path)
 
 # {{{ brew
@@ -91,3 +92,5 @@ export CPATH=/usr/local/opt/openssl/include:$CPATH
 export LDFLAGS=-L/usr/local/opt/openssl/lib
 export CPPFLAGS=-I/usr/local/opt/openssl/include
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
+
+
