@@ -53,3 +53,5 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 .vscode/
+
+yarn-error.log
