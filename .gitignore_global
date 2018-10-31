@@ -55,3 +55,4 @@ fabric.properties
 .vscode/
 
 yarn-error.log
+.tags*
