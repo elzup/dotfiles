@@ -94,3 +94,5 @@ export CPPFLAGS=-I/usr/local/opt/openssl/include
 export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
 
 
+
+export PATH="$HOME/.cargo/bin:$PATH"
