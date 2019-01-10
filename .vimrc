@@ -1010,21 +1010,17 @@ let g:startify_bookmarks = [
   \ '~/.vimrc',
   \ '~/memos/.memo',
   \ ]
-" \ map(split('date', '\n'), '"   ". v:val') + ['',''],
+
 " デフォルトだと、最近使ったファイルの先頭は数字なので、使用するアルファベットを指定
 let g:startify_custom_indices = split('a,b,c,d,f,g,i,m,n,p,r,u,v,w,x,y,z', ',')
-"let g:startify_custom_indices = ['a','b','c','d','f','g','i','m','n','p','r','s','t','u','v','w','x','y','z']
-let g:startify_list_order = [
-  \ ['  Recently'],
-  \ 'files',
-  \ ['  Bookmarks'],
-  \ 'bookmarks',
-  \ ]
+
+let g:startify_lists = [
+            \ { 'type': 'files',     'header': ['   MRU']            },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+            \ ]
+"            \ { 'type': 'sessions',  'header': ['   Sessions']       },
+
 let g:startify_files_number = 10
-"  \ ['  Recently in dir'],
-"  \ 'dir',
-"  \ ['  Sessions'],
-"  \ 'sessions',
 
 "  }}} -end
 "  {{{ config foldCC

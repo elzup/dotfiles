@@ -1,7 +1,7 @@
 path=(
+    "/usr/local/bin:/usr/local/sbin"
     "/usr/local"
     "/usr/bin:/usr/sbin"
-    "/usr/local/bin:/usr/local/sbin"
     "/bin:/sbin"
     "/usr/local/share/git-core/contrib/diff-highlight"
     $HOME"/.mos/bin/"
