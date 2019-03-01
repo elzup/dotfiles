@@ -32,6 +32,6 @@ bind main P !@?<git push %(remote) %(branch):%(branch)
 bind main E !@?<git reset --hard %(commit)
 
 
-bind main c !@?git checkout %(commit)
+bind main c !@?git checkout %(branch)
 
 bind stash s !@?git stash
