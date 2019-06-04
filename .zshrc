@@ -101,6 +101,24 @@ function ghq-new() {
   cd $NEW_PROJ_PATH
 }
 
+mkdev () {
+	if [ ! -n "$1" ]
+	then
+		echo "Usage: mkdev dir-name [org-name]"
+		return
+	fi
+	local dirName=$1
+	local rootDir=$(ghq root)
+	local githubUser="github.com/$(git config user.name)"
+	if echo "${dirName}" | grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} -q "/"
+	then
+		githubUser="github.com"
+	fi
+	local devPath="${rootDir}/${githubUser}/${dirName}"
+	mkdir -p ${devPath}
+	cd ${devPath}
+}
+
 function peco-src () {
   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
