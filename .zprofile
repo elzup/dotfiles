@@ -7,6 +7,8 @@ path=(
     $HOME"/.mos/bin/"
     "/usr/local/opt/qt@5.5/bin"
     "$HOME/Library/Python/3.6/bin"
+    "$HOME/.local/bin"
+    "$(stack path --compiler-bin):$PATH"
     $path)
 
 # {{{ brew
