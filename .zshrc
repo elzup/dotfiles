@@ -140,6 +140,8 @@ bindkey '^]' peco-src
 autoload -U promptinit && promptinit
 prompt pure
 
+###star ship
+# eval "$(starship init zsh)"
 
 ## ----- Basic -----
 
