@@ -132,6 +132,9 @@
 [pull]
     ff = only
 
+[fetch]
+  prune = true
+
 [pager]
     log = diff-so-fancy | less --tabs=4 -RFX
     show = diff-so-fancy | less --tabs=4 -RFX
