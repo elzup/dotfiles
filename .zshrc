@@ -139,6 +139,8 @@ bindkey '^]' peco-src
 
 autoload -U promptinit && promptinit
 prompt pure
+# PROMPT='%(?.%F{magenta}△.%F{red}▲)%f '
+
 
 ###star ship
 # eval "$(starship init zsh)"
