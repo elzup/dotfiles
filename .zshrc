@@ -239,6 +239,8 @@ alias cdr="anyframe-widget-cdr"
 
 ### usefuls
 
+alias npm=prioritize-yarn
+
 # extra cd
 alias ..="cd ../"
 alias ...="cd ../../"
