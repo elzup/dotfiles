@@ -52,6 +52,7 @@
     cm = commit -am          # コミットメッセージ
     cam = commit -a --amend  # 直前のcommitを修正
     sw = switch
+    swr = !"anyframe-widget-insert-git-branch"
     co = checkout
     cob = checkout -b
     me = merge

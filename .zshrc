@@ -50,6 +50,7 @@ function percol-search-document() {
     fi
 }
 alias pd='percol-search-document'
+alias gitsw='anyframe-widget-insert-git-branch'
 
 # history search with percol
 function exists { which $1 &> /dev/null }
@@ -184,7 +185,7 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' 
 zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 
-zstyle ':chpwd:*' recent-dirs-max 500
+zstyle ':chpwd:*' recent-dirs-max 1000
 function chpwd() { ls }
 # }}}
 
