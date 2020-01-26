@@ -34,6 +34,7 @@
     autoCRLF = false
     excludesfile = /Users/hiro/.gitignore_global
     editor = vim -c \"set fenc=utf-8\"
+    ignorecase = false
     # excludesfile = /Users/hiro/.gitignore_globals/*.gitignore
 
 [alias]
