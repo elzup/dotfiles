@@ -76,6 +76,7 @@
     bn = branch --no-merged  # mergeしてないbranchを表示
     branch-delmerged = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
     bd = branch -D
+    db = branch -D
   # log関連
     wc = whatchanged         # logに変更されたファイルも一緒に出す
     ls = log --stat          # logに変更されたファイルも一緒に出す
