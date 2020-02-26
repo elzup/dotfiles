@@ -185,8 +185,6 @@ zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' 
 zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
 
-zstyle ':chpwd:*' recent-dirs-max 1000
-function chpwd() { ls }
 # }}}
 
 ### history
@@ -356,7 +354,7 @@ alias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"
 # {{{ mac
 
 if echo $OSTYPE | grep -q darwin; then
-    alias ls="ls -alh -G"
+    alias ls="exa -l --icons --group-directories-first"
     alias -g C='| pbcopy'
 
     alias gvim="mvim"
@@ -378,6 +376,8 @@ fi
 # }}}
 
 
+zstyle ':chpwd:*' recent-dirs-max 1000
+function chpwd() { ls }
 
 ### bench mark
 
