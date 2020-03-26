@@ -223,6 +223,7 @@ bindkey '^k' insert-last-word
 alias lsa="ls -a"
 alias mv="mv -i"
 alias rm="rmtrash"
+alias sl="ls"
 
 alias cp="cp -i"	#上書きを確認
 
