@@ -101,6 +101,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PGDATA=/usr/local/var/postgres
 
-export JAVA_HOME=`/System/Library/Frameworks/JavaVM.framework/Versions/A/Commands/java_home -v "1.8"`
-PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
+PATH=${JAVA_HOME}/bin:${PATH}
+
 
