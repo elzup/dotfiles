@@ -287,7 +287,7 @@ alias saying="python ~/memos/random_say.py"
 alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head -1"
 alias firefoxp="firefox -P answer --new-instance"
 
-alias intellij="open -a IntelliJ\ IDEA"
+alias intellij="open -a IntelliJ\ IDEA\ CE"
 alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
