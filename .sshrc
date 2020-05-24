@@ -1,0 +1,4 @@
+alias dc="docker-compose"
+alias lsa="ls -a"
+alias cp="cp -i"
+echo ".sshrc loaded"

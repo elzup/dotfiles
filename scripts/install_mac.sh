@@ -18,7 +18,7 @@ setup() {
 
   declare -a arr=(".curlrc" ".gitcommit_template" ".gitconfig"
     ".gitignore_global" ".tigrc" ".zprofile" ".zshrc" 
-    ".ideavimrc" ".vimrc" ".vsvimrc")
+    ".ideavimrc" ".vimrc" ".vsvimrc" ".sshrc")
   for filename in "${arr[@]}"
   do
     symlink "$dotfiles/$filename" "$HOME/$filename"
