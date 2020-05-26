@@ -101,7 +101,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 export PGDATA=/usr/local/var/postgres
 
-export JAVA_HOME=`/usr/libexec/java_home -v 14`
+# export JAVA_HOME=`/usr/libexec/java_home -v 14`
+export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
 PATH=${JAVA_HOME}/bin:${PATH}
-
-
+export ANDROID_HOME=/Users/hiro/Library/Android/sdk
+# export ANDROID_NDK_HOME=/Users/hiro/Library/Android/sdk/ndk-bundle/
+PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
