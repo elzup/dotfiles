@@ -246,6 +246,10 @@ alias ..="cd ../"
 alias ...="cd ../../"
 alias ....="cd ../../../"
 
+alias basename-current='basename ${PWD}'
+alias basename-parent='echo `basename ${PWD%/*}`/`basename $PWD`'
+alias reponame=basename-parent
+
 alias rsync-e="rsync -rtvpl --exclude-from=.rsyncignore"
 alias rsync-n="rsync -nrtvpl"
 alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
