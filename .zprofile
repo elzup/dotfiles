@@ -8,6 +8,7 @@ path=(
     "/usr/local/opt/qt@5.5/bin"
     "$HOME/Library/Python/3.6/bin"
     "$HOME/.local/bin"
+    "/usr/local/opt/gettext/bin"
     "$(stack path --compiler-bin):$PATH"
     $path)
 
@@ -107,3 +108,8 @@ PATH=${JAVA_HOME}/bin:${PATH}
 export ANDROID_HOME=/Users/hiro/Library/Android/sdk
 # export ANDROID_NDK_HOME=/Users/hiro/Library/Android/sdk/ndk-bundle/
 PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+
+# export LDFLAGS="-L/usr/local/opt/gettext/lib"
+# export CPPFLAGS="-I/usr/local/opt/gettext/include"
+
