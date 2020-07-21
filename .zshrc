@@ -254,6 +254,10 @@ alias rsync-e="rsync -rtvpl --exclude-from=.rsyncignore"
 alias rsync-n="rsync -nrtvpl"
 alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
 
+function duh() {
+  du -h -d 1 $1 | sort -h
+}
+
 # gnome-open
 alias gopen="gnome-open"
 
