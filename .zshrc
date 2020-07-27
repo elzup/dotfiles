@@ -257,6 +257,10 @@ alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
 function duh() {
   du -h -d 1 $1 | sort -h
 }
+function randpw(){
+  openssl rand -base64 12 | fold -w 12 | head -1
+}
+
 
 # gnome-open
 alias gopen="gnome-open"
