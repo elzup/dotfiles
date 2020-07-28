@@ -9,7 +9,8 @@ path=(
     "$HOME/Library/Python/3.6/bin"
     "$HOME/.local/bin"
     "/usr/local/opt/gettext/bin"
-    "$(stack path --compiler-bin):$PATH"
+    "/usr/local/opt/binutils/bin"
+    "$(stack path --compiler-bin)"
     $path)
 
 # {{{ brew
