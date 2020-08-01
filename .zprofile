@@ -6,7 +6,6 @@ path=(
     "/usr/local/share/git-core/contrib/diff-highlight"
     $HOME"/.mos/bin/"
     "/usr/local/opt/qt@5.5/bin"
-    "$HOME/Library/Python/3.6/bin"
     "$HOME/.local/bin"
     "/usr/local/opt/gettext/bin"
     "/usr/local/opt/binutils/bin"
