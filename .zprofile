@@ -90,13 +90,21 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # export $HOME/lib
 # }}}
 #
-export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
-export CPATH=/usr/local/opt/openssl/include:$CPATH
-export LDFLAGS=-L/usr/local/opt/openssl/lib
-export CPPFLAGS=-I/usr/local/opt/openssl/include
-export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
 
 
+# export LD_LIBRARY_PATH=/usr/local/opt/openssl/lib:$LD_LIBRARY_PATH
+# export CPATH=/usr/local/opt/openssl/include:$CPATH
+# export LDFLAGS=-L/usr/local/opt/openssl/lib
+# export CPPFLAGS=-I/usr/local/opt/openssl/include
+# export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
+
+# {{{ openssl
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+
+# }}}
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
