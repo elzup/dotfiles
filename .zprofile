@@ -10,6 +10,7 @@ path=(
     "/usr/local/opt/gettext/bin"
     "/usr/local/opt/binutils/bin"
     "$(stack path --compiler-bin)"
+    "$HOME/.cargo/bin"
     $path)
 
 # {{{ brew
@@ -99,14 +100,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
 
 # {{{ openssl
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH
+export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 # }}}
 
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH=":$PATH"
 
 export PGDATA=/usr/local/var/postgres
 
