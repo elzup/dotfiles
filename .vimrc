@@ -122,6 +122,7 @@ au MyAutoCmd BufNewFile,BufRead *.php let g:vim_tags_project_tags_command = "cta
 au MyAutoCmd BufNewFile,BufRead,BufEnter * execute ":lcd" . expand ("%:p:h")
 set foldmethod=marker
 set nowrap
+" xnoremap p "_dP
 
 set scrolloff=5
 if has("gui_running")
@@ -635,7 +636,7 @@ filetype indent on
 " }}}
 " {{{ mac setting
 if IsMac()
-    set clipboard=unnamed,autoselect
+    set clipboard=unnamed
     set guioptions-=a
 endif
 
