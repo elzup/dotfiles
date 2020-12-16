@@ -11,3 +11,8 @@ set surround
 set hlsearch!
 
 set number
+
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+vnoremap <C-j> 5j
+vnoremap <C-k> 5k
