@@ -1291,6 +1291,11 @@ if has("gui_running")
 endif
 " }}}
 
+" {{{ Macro
+let @b = 'Gk$F_lvEygg$p0'
+" }}}
+
 " vim:set foldmethod=marker
 " vim:set foldcolumn=3
 " vim:set foldlevel=0
+"
