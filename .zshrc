@@ -430,3 +430,4 @@ if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
 
+export CLOUDSDK_PYTHON=~/.pyenv/versions/3.8.1/bin/python
