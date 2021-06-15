@@ -275,6 +275,7 @@ alias xmod="xmodmap ~/.Xmodmap"
 alias shutdown="sudo shutdown"
 alias yaourt="yaourt --noconfirm"
 alias dc="docker-compose"
+alias da="direnv allow"
 
 # lang change
 alias lange="LANG=C"
