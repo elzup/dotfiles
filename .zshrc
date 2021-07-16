@@ -277,6 +277,8 @@ alias yaourt="yaourt --noconfirm"
 alias dc="docker-compose"
 alias da="direnv allow"
 
+alias novel="code ~/.ghq/github.com/elzup/nove"
+
 # lang change
 alias lange="LANG=C"
 alias langj="LANG=ja_JP.UTF-8"
