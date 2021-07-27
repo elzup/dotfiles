@@ -160,7 +160,8 @@ set shiftwidth=4
 set softtabstop=4
 set autoindent
 set list
-set listchars=tab:▸-,trail:-,nbsp:%,extends:>,precedes:<,eol:$
+" set listchars=tab:▸-,trail:-,nbsp:%,extends:>,precedes:<,eol:$
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 " 大文字小文字
 set ignorecase
