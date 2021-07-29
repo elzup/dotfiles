@@ -151,3 +151,5 @@
   root = ~/.ghq/
 ; [init]
 	; defaultBranch = main
+[init]
+	defaultBranch = main
