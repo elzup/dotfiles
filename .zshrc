@@ -37,6 +37,7 @@ chpwd_tab_color() {
     */.ghq/github.com/elzup/*) tab-color 100 0 100;; # purple
     */.ghq/github.com/elzup-sandbox/*) tab-color 100 100 255;; # blue
     */.ghq/github.com/planckunits/*) tab-color 50 71 81;; # gray
+    */.ghq/github.com/*o/*) tab-color 255 255 200;; # light yellow
     */.ghq/github.com/*) tab-color 100 100 100;; # base gray
     *) tab-reset;;
   esac
