@@ -21,6 +21,29 @@ bindkey '^xe' edit-command-line
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
+## chpwd_tab_color
+tab-color() {
+    echo -ne "\033]6;1;bg;red;brightness;$1\a"
+    echo -ne "\033]6;1;bg;green;brightness;$2\a"
+    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+
+tab-reset() {
+    echo -ne "\033]6;1;bg;*;default\a"
+}
+
+chpwd_tab_color() {
+  case $PWD/ in
+    */.ghq/github.com/elzup/*) tab-color 100 0 100;; # purple
+    */.ghq/github.com/elzup-sandbox/*) tab-color 100 100 255;; # blue
+    */.ghq/github.com/planckunits/*) tab-color 50 71 81;; # gray
+    */.ghq/github.com/*) tab-color 100 100 100;; # base gray
+    *) tab-reset;;
+  esac
+}
+add-zsh-hook chpwd chpwd_tab_color
+
+chpwd_tab_color
 
 ### anyframe
 fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
@@ -387,16 +410,6 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
-
-tab-color() {
-    echo -ne "\033]6;1;bg;red;brightness;$1\a"
-    echo -ne "\033]6;1;bg;green;brightness;$2\a"
-    echo -ne "\033]6;1;bg;blue;brightness;$3\a"
-}
-
-tab-reset() {
-    echo -ne "\033]6;1;bg;*;default\a"
-}
 
 # {{{ hello
 # FLAG_KYOKO_KYOKO_TOSHINO
