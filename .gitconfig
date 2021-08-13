@@ -101,6 +101,7 @@
   d4 = diff HEAD~~~~         # HEADから4つ前とdiff
   d5 = diff HEAD~~~~~        # HEADから5つ前とdiff
   d10 = diff HEAD~~~~~~~~~~  # HEADから10前とdiff
+  untracked = ls-files --others --exclude-standard
   # mergeの際にconflictが起きたファイルを編集
   edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
   # mergeの際にconflictが起きたファイルをadd
