@@ -303,6 +303,7 @@ alias dc="docker-compose"
 alias da="direnv allow"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"
+alias poem=novel
 
 # lang change
 alias lange="LANG=C"
