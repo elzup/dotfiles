@@ -280,6 +280,11 @@ vnoremap <Tab> %
 
 nnoremap <C-CR> O<Esc>
 
+nnoremap <C-j> 5j
+nnoremap <C-k> 5k
+vnoremap <C-j> 5j
+vnoremap <C-k> 5k
+
 " Super input
 nnoremap <F6> <ESC>i<C-R>=strftime("%Y/%m/%d (%a) %H:%M")<CR><CR>
 " Window Scaleup
