@@ -4,12 +4,12 @@ set -e
 set -u
 
 setup() {
-  dotfiles=$HOME/dotfiles
-  launchd=$HOME/Library/LaunchAgents
-  plistfile=$dotfiles/sync.dotfiles.plist
+  readonly DOTFILES=$HOME/dotfiles
+  readonly LAUNCHD=$HOME/Library/LaunchAgents
+  readonly PLISTFILE=$DOTFILES/sync.dotfiles.plist
 
-  if [ ! -d "$dotfiles" ]; then
-      git clone https://github.com/elzup/dotfiles "$dotfiles"
+  if [ ! -d "$DOTFILES" ]; then
+      git clone https://github.com/elzup/dotfiles "$DOTFILES"
   fi
 
   symlink() {
@@ -21,11 +21,14 @@ setup() {
     ".ideavimrc" ".vimrc" ".vsvimrc" ".sshrc")
   for filename in "${arr[@]}"
   do
-    symlink "$dotfiles/$filename" "$HOME/$filename"
+    symlink "$DOTFILES/$filename" "$HOME/$filename"
   done
 
-  cp -f "$dotfiles/$plistfile" "$launchd/$plistfile"
-  reload "$plistfile"
+  readonly NEOVIM_PATH=$HOME/.config/nvim
+  mkdir -p $NEOVIM_PATH
+  cp -f "$DOTFILES/.vimrc" "$NEOVIM_PATH/init.vim"
+  cp -f "$DOTFILES/$PLISTFILE" "$LAUNCHD/$PLISTFILE"
+  reload "$PLISTFILE"
 }
 
 reload(){
