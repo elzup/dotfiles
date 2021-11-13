@@ -26,7 +26,7 @@ setup() {
 
   readonly NEOVIM_PATH=$HOME/.config/nvim
   mkdir -p $NEOVIM_PATH
-  cp -f "$DOTFILES/.vimrc" "$NEOVIM_PATH/init.vim"
+  symlink "$DOTFILES/.vimrc" "$NEOVIM_PATH/init.vim"
   cp -f "$DOTFILES/$PLISTFILE" "$LAUNCHD/$PLISTFILE"
   reload "$PLISTFILE"
 }

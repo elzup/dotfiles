@@ -94,7 +94,12 @@ scriptencoding utf-8
 " {{{ basic
 "  {{{ -Startup Options
 " clipboard 設定
-set clipboard=unnamedplus,autoselect
+if has('nvim')
+  set clipboard=unnamed
+else
+  set clipboard=unnamedplus,autoselect
+endif
+
 set modifiable
 set write
 
@@ -181,13 +186,18 @@ set completeopt=longest,menu
 " number
 set relativenumber
 set number
-behave mswin
+
+if !has('nvim')
+  behave mswin
+endif
 
 set modeline
 set modelines=5
 
 " Window position
-winpos 683 0
+if !has('nvim')
+  winpos 683 0
+endif
 set cmdheight=1
 
 " カーソル行をハイライト
