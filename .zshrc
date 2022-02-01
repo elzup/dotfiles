@@ -304,6 +304,7 @@ alias da="direnv allow"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"
 alias poem=novel
+alias memo="vim ~/memos/free"
 
 # lang change
 alias lange="LANG=C"
