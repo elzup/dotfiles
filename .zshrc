@@ -162,8 +162,16 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 ### pure-prompt
 
-autoload -U promptinit && promptinit
+autoload -U promptinit; promptinit
+PURE_CMD_MAX_EXEC_TIME=10
+
+zmodload zsh/nearcolor
+zstyle :prompt:pure:git:stash show yes
+
 prompt pure
+
+PS1=__${PS1}
+
 # PROMPT='%(?.%F{magenta}△.%F{red}▲)%f '
 
 
