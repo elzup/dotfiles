@@ -170,8 +170,6 @@ zstyle :prompt:pure:git:stash show yes
 
 prompt pure
 
-PS1=__${PS1}
-
 # PROMPT='%(?.%F{magenta}△.%F{red}▲)%f '
 
 
