@@ -32,10 +32,9 @@
 
 [core]
   autoCRLF = false
-  excludesfile = /Users/hiro/.gitignore_global
+  excludesfile = ~/.gitignore_global
   editor = vim -c \"set fenc=utf-8\"
   ignorecase = false
-  # excludesfile = /Users/hiro/.gitignore_globals/*.gitignore
 
 [alias]
   st = status
@@ -113,7 +112,7 @@
   gn = grep -n
   la = !PAGER=emoji_filter git log --oneline -20 # 絵文字の表示
   # hub関連
-  pr = pull-request -o -F /Users/hiro/.pullreqmessage.txt -b elzzup:develop -h elzzup:$(git rev-parse --short @)
+  pr = pull-request -o -F ~/.pullreqmessage.txt -b elzzup:develop -h elzzup:$(git rev-parse --short @)
   conflicts = !git ls-files -u | cut -f 2 | sort -u
   dsf = "!f() { [ -z \"$GIT_PREFIX\" ] || cd \"$GIT_PREFIX\" && git diff --color \"$@\" | diff-so-fancy | less --tabs=4 -RFX; }; f"
   #
@@ -149,7 +148,7 @@
   # diff = diff-so-fancy | less --tabs=4 -RFX
 
 [commit]
-  template = /Users/hiro/.gitcommit_template
+  template = ~/.gitcommit_template
 
 [ghq]
   root = ~/.ghq/
