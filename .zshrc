@@ -432,12 +432,6 @@ fi
 zstyle ':chpwd:*' recent-dirs-max 1000
 function chpwd() { ls }
 
-### bench mark
-
-# zsh zshrc bentch mark
-if (which zprof > /dev/null 2>&1) ;then
-  zprof
-fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -477,6 +471,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
 # Fig post block. Keep at the bottom of this file.
 eval "$(fig init zsh post)"
 
+### bench mark
+
+# zsh zshrc bentch mark
+# if (which zprof > /dev/null 2>&1) ;then
+#   zprof
+# fi
