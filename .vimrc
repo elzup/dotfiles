@@ -743,6 +743,12 @@ let g:clang_use_library = 1
 "let g:ctrlp_mruf_max = 500
 "let g:ctrlp_open_new_file = 1
 "let g:ctrlp_map = '<c-p>'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.yardoc\|node_modules\|log\|tmp$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 ""   {{{ ctrlp mapping
 "nnoremap <Leader>p :<C-u>CtrlP<CR>
 "
