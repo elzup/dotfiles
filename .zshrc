@@ -471,13 +471,13 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-# Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
 ### bench mark
 
 # zsh zshrc bentch mark
 # if (which zprof > /dev/null 2>&1) ;then
 #   zprof
 # fi
+
+# Fig post block. Keep at the bottom of this file.
+eval "$(fig init zsh post)"
+
