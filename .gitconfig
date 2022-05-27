@@ -63,6 +63,7 @@
   ra = !git rm --cached -r . && git add .
   remori = remote remove origin
   cmi = commit -am 'Initialize commit'
+  cm-ghost = commit --author="agent <agent@example.com>"
   tags = tag -l
   branches = branch -a
   remotes = remote -v
