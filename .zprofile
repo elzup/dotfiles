@@ -1,7 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-export PATH="${PATH}:${HOME}/.local/bin"
-eval "$(fig init zsh pre)"
-
+. "$HOME/.fig/shell/zprofile.pre.zsh"
 path=(
     "/usr/local/bin:/usr/local/sbin"
     "/usr/local"
@@ -138,5 +136,4 @@ export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
-eval "$(fig init zsh post)"
-
+. "$HOME/.fig/shell/zprofile.post.zsh"
