@@ -294,6 +294,9 @@ function randpw(){
   openssl rand -base64 12 | fold -w 12 | head -1
 }
 
+funciton pathname() {
+  basename "$PWD"
+}
 
 # gnome-open
 alias gopen="gnome-open"
