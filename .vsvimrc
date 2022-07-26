@@ -8,3 +8,8 @@ nnoremap <C-j> 5j
 nnoremap <C-k> 5k
 vnoremap <C-j> 5j
 vnoremap <C-k> 5k
+
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
