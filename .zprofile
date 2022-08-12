@@ -137,3 +137,7 @@ export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zprofile.post.zsh" ]] && . "$HOME/.fig/shell/zprofile.post.zsh"
+
+# Julia
+export PATH=${PATH}:/Applications/Julia-1.7.app/Contents/Resources/julia/bin
+
