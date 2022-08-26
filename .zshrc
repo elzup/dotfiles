@@ -257,6 +257,7 @@ alias mv="mv -i"
 alias rm="rmtrash"
 alias rmdir="rmdirtrash"
 alias sl="ls"
+alias lg="lazygit"
 
 alias cp="cp -i"	#上書きを確認
 
