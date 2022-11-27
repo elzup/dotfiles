@@ -422,6 +422,7 @@ if echo $OSTYPE | grep -q darwin; then
     alias prev="open -a Preview"
     alias finder="open -a Finder"
     alias chrome="open -a Google\ Chrome"
+    alias vim="nvim"
 fi
 
 # }}}
