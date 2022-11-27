@@ -236,8 +236,8 @@ if has("win32")
         endfunction
     augroup END
 else
-    set columns=100
-    set lines=30
+"     set columns=100
+"     set lines=30
 endif
 " if filereadable(g:save_window_file)
 "  execute 'source' g:save_window_file
@@ -507,7 +507,7 @@ Plug 'deris/vim-textobj-enclosedsyntax'
 "tool
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
-Plug 'cocopon/colorswatch.vim'
+" Plug 'cocopon/colorswatch.vim'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'thinca/vim-quickrun'
 Plug 'mhinz/vim-startify'
@@ -628,8 +628,10 @@ Plug 'pocke/neco-gh-issues'
 
 "colorscheme
 Plug 'ujihisa/unite-colorscheme'
+Plug 'Gaochengzhi/vimColorSelector'
 Plug 'vim-scripts/summerfruit256.vim'
-Plug 'nightsense/strawberry'
+Plug 'EdenEast/nightfox.nvim'
+" Plug 'nightsense/strawberry'
 " Plug 'vim-sciprts/phd'
 " Plug 'sfsekaran/cobalt.vim'
 " Plug 'KKPMW/moonshine-vim'
@@ -1306,11 +1308,23 @@ syntax enable
 set t_Co=256
 set background=dark
 " colorscheme phd
-colorscheme slate
+" colorscheme slate
+" colorscheme habamax
+colorscheme nightfox
+
 if has("gui_running")
     colorscheme strawberry-dark
     set transparency=10
 endif
+
+
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight Folded ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
+
 " }}}
 
 " {{{ Macro
