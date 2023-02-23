@@ -267,6 +267,8 @@ endfunction
 " nnoremap : ;
 
 inoremap <C-BS> <C-W>
+
+inoremap <C-BS> <C-W>
 nnoremap <silent> <Leader><Leader> :<C-u>so<space>~/.vimrc<CR>
 nnoremap <silent> <Space>p :<C-u>tabnew ~/.vim/rc/init.vim<CR>
 
