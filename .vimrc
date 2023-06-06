@@ -627,6 +627,7 @@ Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
 Plug 'pocke/neco-gh-issues'
+Plug 'github/copilot.vim'
 
 "colorscheme
 Plug 'ujihisa/unite-colorscheme'
@@ -1007,6 +1008,14 @@ if IsMac()
 endif
 let g:rsenseUseOmniFunc = 1
 
+"  }}}
+"  {{{ Copilot
+let g:copilot_filetypes
+  \   gitcommit: v:true,
+  \   markdown: v:true,
+  \   text: v:true,
+  \   ddu-ff-filter: v:false,
+  \ }
 "  }}}
 "  {{{ startify
 " nnoremap <Leader>sf :Startify<Enter>
