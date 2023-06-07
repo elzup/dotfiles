@@ -1010,12 +1010,12 @@ let g:rsenseUseOmniFunc = 1
 
 "  }}}
 "  {{{ Copilot
-let g:copilot_filetypes
-  \   gitcommit: v:true,
-  \   markdown: v:true,
-  \   text: v:true,
-  \   ddu-ff-filter: v:false,
-  \ }
+"let g:copilot_filetypes
+"  \   gitcommit: v:true,
+"  \   markdown: v:true,
+"  \   text: v:true,
+"  \   ddu-ff-filter: v:false,
+"  \ }
 "  }}}
 "  {{{ startify
 " nnoremap <Leader>sf :Startify<Enter>
