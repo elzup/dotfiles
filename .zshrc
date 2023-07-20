@@ -286,6 +286,8 @@ alias rsync-e="rsync -rtvpl --exclude-from=.rsyncignore"
 alias rsync-n="rsync -nrtvpl"
 alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
 
+alias ktest='kotlinc Main.kt && oj t -c "kotlin MainKt" -d ./tests/'
+
 function duh() {
   du -h -d 1 $1 | sort -h
 }
