@@ -134,5 +134,6 @@ fi
 export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
 export PATH="/usr/local/opt/php@7.4/bin:$PATH"
 
+
 # Julia
 export PATH=${PATH}:/Applications/Julia-1.7.app/Contents/Resources/julia/bin
