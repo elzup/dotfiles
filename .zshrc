@@ -311,7 +311,7 @@ alias unzipjar="jar xvf"
 alias xmod="xmodmap ~/.Xmodmap"
 alias shutdown="sudo shutdown"
 alias yaourt="yaourt --noconfirm"
-alias dc="docker-compose"
+alias dc="docker compose"
 alias da="direnv allow"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"
