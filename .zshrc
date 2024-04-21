@@ -1,5 +1,11 @@
 ## ----- Plugins -----
 
+enabled_prof=0
+if [ $enabled_prof -eq 1 ]; then
+  zmodload zsh/zprof
+  zprof
+fi
+
 ### zsh-utils
 # mkdir -p ~/.zsh/plugins
 # ghq get https://github.com/zsh-users/zsh-completions
@@ -162,13 +168,13 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 ### pure-prompt
 
-autoload -U promptinit; promptinit
-PURE_CMD_MAX_EXEC_TIME=10
-
 zmodload zsh/nearcolor
-zstyle :prompt:pure:git:stash show yes
-
-prompt pure
+# autoload -U promptinit; promptinit
+# PURE_CMD_MAX_EXEC_TIME=10
+# 
+# zstyle :prompt:pure:git:stash show yes
+# 
+# prompt pure
 
 # PROMPT='%(?.%F{magenta}△.%F{red}▲)%f '
 
@@ -234,8 +240,30 @@ setopt hist_no_store              # histroyコマンドは記録しない
 
 
 # yarn completion
-autoload -U +X compinit && compinit
-autoload -U +X bashcompinit && bashcompinit
+
+# autoload -U +X compinit && compinit
+_compinit() {
+  local re_initialize=0
+  for match in ~/.zcompdump*(.Nmh+24); do
+    re_initialize=1
+    break
+  done
+  
+  autoload -Uz compinit
+  if [ "$re_initialize" -eq "1" ]; then
+    # echo "cache find"
+    compinit
+    # update the timestamp on compdump file
+    compdump
+  else
+    # echo "cache not find"
+    # omit the check for new functions since we updated today
+    compinit -C
+  fi
+}
+_compinit
+
+# autoload -U +X bashcompinit && bashcompinit
 
 
 ### alias
@@ -436,9 +464,9 @@ zstyle ':chpwd:*' recent-dirs-max 1000
 function chpwd() { ls }
 
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/hiro/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiro/google-cloud-sdk/path.zsh.inc'; fi
@@ -477,8 +505,10 @@ unset __conda_setup
 ### bench mark
 
 # zsh zshrc bentch mark
-# if (which zprof > /dev/null 2>&1) ;then
-#   zprof
-# fi
+if [ $enabled_prof -eq 1 ]; then
+  if (which zprof > /dev/null 2>&1) ;then
+    zprof
+  fi
+fi
 
 bindkey "^F" forward-char
