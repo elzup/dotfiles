@@ -6,6 +6,12 @@ if [ $enabled_prof -eq 1 ]; then
   zprof
 fi
 
+
+is_iterm2=false
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
+  is_iterm2=true
+fi
+
 ### zsh-utils
 # mkdir -p ~/.zsh/plugins
 # ghq get https://github.com/zsh-users/zsh-completions
@@ -13,14 +19,17 @@ fi
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
 # ghq get git@github.com:mollifier/anyframe.git
 
-fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
-source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if $is_iterm2; then
+  fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
+  source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+  source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-### edit-command-line
-autoload -Uz edit-command-line
-zle -N edit-command-line
-bindkey '^xe' edit-command-line
+  ### edit-command-line
+  autoload -Uz edit-command-line
+  zle -N edit-command-line
+  bindkey '^xe' edit-command-line
+fi
+
 
 
 ### chpwd_recent_dirs
@@ -48,9 +57,26 @@ chpwd_tab_color() {
     *) tab-reset;;
   esac
 }
-add-zsh-hook chpwd chpwd_tab_color
+if $is_iterm2; then
+  add-zsh-hook chpwd chpwd_tab_color
+  chpwd_tab_color
+fi
+function set_name () {
+  local dir_name
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    # Inside a Git repository
+    dir_name=$(basename "$(git rev-parse --show-toplevel)")
+  else
+    # Not inside a Git repository
+    dir_name=$(basename "$PWD")
+  fi
+  echo -ne "\033]0;$dir_name\007"
+}
 
-chpwd_tab_color
+
+if [ -n "$ZSH_VERSION" ]; then
+  precmd_functions+=(set_name)
+fi
 
 ### anyframe
 fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
@@ -168,13 +194,17 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 ### pure-prompt
 
-zmodload zsh/nearcolor
-# autoload -U promptinit; promptinit
-# PURE_CMD_MAX_EXEC_TIME=10
-# 
-# zstyle :prompt:pure:git:stash show yes
-# 
-# prompt pure
+
+if $is_iterm2; then
+  export PURE_PROMPT_SYMBOL="❯"
+  zmodload zsh/nearcolor
+  autoload -U promptinit; promptinit
+  PURE_CMD_MAX_EXEC_TIME=10
+  
+  zstyle :prompt:pure:git:stash show yes
+  
+  prompt pure
+fi
 
 # PROMPT='%(?.%F{magenta}△.%F{red}▲)%f '
 
