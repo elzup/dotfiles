@@ -23,6 +23,7 @@ setup() {
   do
     symlink "$DOTFILES/$filename" "$HOME/$filename"
   done
+  symlink "$DOTFILES/.config/starship.toml" "$HOME/.config/starship.toml"
 
   readonly NEOVIM_PATH=$HOME/.config/nvim
   mkdir -p $NEOVIM_PATH

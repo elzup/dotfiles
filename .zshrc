@@ -7,10 +7,6 @@ if [ $enabled_prof -eq 1 ]; then
 fi
 
 
-is_iterm2=false
-if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
-  is_iterm2=true
-fi
 
 ### zsh-utils
 # mkdir -p ~/.zsh/plugins
@@ -19,7 +15,7 @@ fi
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
 # ghq get git@github.com:mollifier/anyframe.git
 
-if $is_iterm2; then
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
   fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
   source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
   source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -57,7 +53,8 @@ chpwd_tab_color() {
     *) tab-reset;;
   esac
 }
-if $is_iterm2; then
+
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
   add-zsh-hook chpwd chpwd_tab_color
   chpwd_tab_color
 fi
@@ -74,7 +71,7 @@ function set_name () {
 }
 
 
-if [ -n "$ZSH_VERSION" ]; then
+if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
   precmd_functions+=(set_name)
 fi
 
@@ -195,7 +192,7 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 ### pure-prompt
 
 
-if $is_iterm2; then
+if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
   export PURE_PROMPT_SYMBOL="❯"
   zmodload zsh/nearcolor
   autoload -U promptinit; promptinit
@@ -542,3 +539,6 @@ if [ $enabled_prof -eq 1 ]; then
 fi
 
 bindkey "^F" forward-char
+if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
+  eval "$(starship init zsh)"
+fi
