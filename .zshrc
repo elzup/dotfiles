@@ -62,7 +62,9 @@ function set_name () {
   local dir_name
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     # Inside a Git repository
-    dir_name=$(basename "$(git rev-parse --show-toplevel)")
+    local root_dir_name=$(basename "$(git rev-parse --show-toplevel)")
+    local relative_path=$(git rev-parse --show-prefix)
+    dir_name="${root_dir_name}/${relative_path}"
   else
     # Not inside a Git repository
     dir_name=$(basename "$PWD")
