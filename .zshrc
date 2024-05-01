@@ -74,7 +74,7 @@ function set_name () {
 
 
 if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
-  precmd_functions+=(set_name)
+  # precmd_functions+=(set_name)
 fi
 
 ### anyframe
