@@ -1,4 +1,5 @@
 
 
 [gcloud]
+disabled = true
 format = 'on [$symbol$active(\($region\))]($style) '
