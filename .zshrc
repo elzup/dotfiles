@@ -304,7 +304,7 @@ bindkey '^]f'   vi-find-next-char
 bindkey '^]b' vi-find-prev-char
 autoload smart-insert-last-word
 zle -N insert-last-word smart-insert-last-word
-bindkey '^k' insert-last-word
+# bindkey '^k' insert-last-word # → alt(meta) + .
 
 # overwrap options alias
 alias lsa="ls -a"
