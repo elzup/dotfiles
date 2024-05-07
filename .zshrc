@@ -249,6 +249,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 zstyle ':completion:*:*:vim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
 zstyle ':completion:*:*:gvim:*:*files' ignored-patterns '*.png' '*.jpg' '*.jpeg' '*.pdf'
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+m:{[:upper:]}={[:lower:]}'
+zstyle ':completion:*' file-sort modification
 
 # }}}
 
@@ -541,6 +542,6 @@ if [ $enabled_prof -eq 1 ]; then
 fi
 
 bindkey "^F" forward-char
-if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
+# if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
   eval "$(starship init zsh)"
-fi
+# fi
