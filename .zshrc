@@ -122,8 +122,6 @@ if exists peco; then
     bindkey '^R' percol_select_history
 fi
 
-
-
 # }}}
 
 ### ghq
