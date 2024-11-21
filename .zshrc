@@ -460,6 +460,24 @@ alias -g andclip=" | (cat 1>&2 | xsel -bi) 2>&1"
 #stdout+stderrをクリップボードとstdoutへ
 alias -g andclipall=" 2>&1 | (cat 1>&2 | xsel -bi) 2>&1"
 
+# less after hilight
+lessc() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: less-c <filename>"
+    return 1
+  fi
+
+  # ccze がインストールされているか確認
+  if command -v ccze >/dev/null 2>&1; then
+    ccze -A < "$1" | less -R
+
+  # `pygmentize` がインストールされているか確認
+  # elif command -v pygmentize >/dev/null 2>&1; then
+  #   pygmentize -g "$1" | less -R
+  # `source-highlight` がインストールされているか確認
+  fi
+}
+
 
 # }}}
 # {{{ mac
