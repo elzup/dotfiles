@@ -500,6 +500,11 @@ if echo $OSTYPE | grep -q darwin; then
 fi
 
 # }}}
+# {{{ windows
+if echo $OSTYPE | grep -q msys; then
+    alias open="explorer.exe"
+fi
+# }}}
 
 # {{{ hello
 # FLAG_KYOKO_KYOKO_TOSHINO
