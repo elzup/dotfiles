@@ -433,9 +433,6 @@ alias -s jpg=eog
 alias -s jpeg=eog
 alias -s gif=eog
 alias -s bmp=eog
-# wines
-alias -s exe=wine
-
 alias -s asta=astah
 
 
@@ -497,6 +494,9 @@ if echo $OSTYPE | grep -q darwin; then
     alias finder="open -a Finder"
     alias chrome="open -a Google\ Chrome"
     alias vim="nvim"
+
+    # wines
+    alias -s exe=wine
 fi
 
 # }}}
