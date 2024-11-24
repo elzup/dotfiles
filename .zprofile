@@ -1,4 +1,4 @@
-path=(
+path+=(
     "/usr/local/bin:/usr/local/sbin"
     "/usr/local"
     "/usr/bin:/usr/sbin"
@@ -9,9 +9,11 @@ path=(
     "$HOME/.local/bin"
     "/usr/local/opt/gettext/bin"
     "/usr/local/opt/binutils/bin"
-    "$(stack path --compiler-bin)"
-    "$HOME/.cargo/bin"
-    $path)
+    "$HOME/.cargo/bin")
+
+if command -v stack > /dev/null; then
+    path+=("$(stack path --compiler-bin)")
+fi
 
 # {{{ brew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -43,7 +45,8 @@ esac
 
 export ANDROID_HOME=$HOME/Library/Android/sdk/
 
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+path+=($ANDROID_HOME/tools $ANDROID_HOME/platform-tools)
+
 
 export ANDROID_NDK_HOME=$HOME/Library/Android/sdk/ndk-bundle
 # }}}
@@ -107,23 +110,23 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 # }}}
 
-export PATH=":$PATH"
 
 export PGDATA=/usr/local/var/postgres
 
-export JAVA_HOME=`/usr/libexec/java_home -v 14`
-# export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
-PATH=${JAVA_HOME}/bin:${PATH}
-export ANDROID_HOME=/Users/hiro/Library/Android/sdk
-# export ANDROID_NDK_HOME=/Users/hiro/Library/Android/sdk/ndk-bundle/
-PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+if echo $OSTYPE | grep -q darwin; then
+    export JAVA_HOME=`/usr/libexec/java_home -v 14`
+    # export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
+    export ANDROID_HOME=/Users/hiro/Library/Android/sdk
+    # export ANDROID_NDK_HOME=/Users/hiro/Library/Android/sdk/ndk-bundle/
+    path+=($JAVA_HOME/bin $ANDROID_HOME/tools $ANDROID_HOME/platform-tools)
+fi
 
 
 # export LDFLAGS="-L/usr/local/opt/gettext/lib"
 # export CPPFLAGS="-I/usr/local/opt/gettext/include"
 
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
+path+=("$PYENV_ROOT/bin")
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
@@ -131,9 +134,10 @@ fi
 
 
 # PHP
-export PATH="/usr/local/opt/php@7.4/sbin:$PATH"
-export PATH="/usr/local/opt/php@7.4/bin:$PATH"
+path+=("/usr/local/opt/php@7.4/{bin,sbin}")
 
 
 # Julia
-export PATH=${PATH}:/Applications/Julia-1.7.app/Contents/Resources/julia/bin
+path+=("/Applications/Julia-1.7.app/Contents/Resources/julia/bin")
+
+export PATH=":$PATH"
