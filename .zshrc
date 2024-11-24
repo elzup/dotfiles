@@ -501,7 +501,7 @@ fi
 
 # }}}
 # {{{ windows
-if echo $OSTYPE | grep -q msys; then
+if grep -qi microsoft /proc/version; then
     alias open="explorer.exe"
 fi
 # }}}
