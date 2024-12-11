@@ -14,11 +14,13 @@ fi
 # ghq get https://github.com/zsh-users/zsh-autosuggestions
 # ghq get https://github.com/zsh-users/zsh-syntax-highlighting
 # ghq get git@github.com:mollifier/anyframe.git
+export ZSH_CODEX_PYTHON="$HOME/.pyenv/versions/3.10.12/bin/python3"
 
 if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
   fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
   source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
   source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  source $HOME/.ghq/github.com/tom-doerr/zsh_codex/zsh_codex.plugin.zsh
 
   ### edit-command-line
   autoload -Uz edit-command-line
@@ -183,6 +185,7 @@ function peco-src () {
 }
 zle -N peco-src
 bindkey '^]' peco-src
+
 
 # }}}
 
@@ -501,7 +504,7 @@ fi
 
 # }}}
 # {{{ windows
-if grep -qi microsoft /proc/version; then
+if [ -f /proc/version ] && grep -qi microsoft /proc/version; then
     alias open="explorer.exe"
 fi
 # }}}
@@ -537,6 +540,56 @@ if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro
 
 
 export CLOUDSDK_PYTHON=~/.pyenv/versions/3.8.1/bin/python
+
+# shell gpt
+
+
+function sgpt_completion() {
+    # 現在の行全体を取得
+    local current_line=$(fc -ln -1 | sed 's/^\s*//')
+
+    # 最後の単語を抽出（例: 未完成部分）
+    local last_word=$(echo "$current_line" | awk '{print $NF}')
+
+    # 最後の単語だけを ChatGPT に送信して補完候補を取得
+    local suggestion=$(sgpt "$last_word" 2>/dev/null)
+
+    # fzf を使って候補を選択（任意）
+    if command -v fzf &>/dev/null; then
+        suggestion=$(echo "$suggestion" | fzf --prompt="Select suggestion: ")
+    fi
+
+    # 補完結果を現在の行に追加
+    if [ -n "$suggestion" ]; then
+        # 現在の行に続きとして補完を追加
+        print -z "${current_line%$last_word}$last_word$suggestion"
+    fi
+}
+# unbindkey '^G'
+# bindkey '^G' sgpt_completion
+
+function gpt_completion() {
+  local input="${BUFFER}"
+  echo $input
+  local gpt_response=$(curl -s -X POST "https://api.openai.com/v1/completions" \
+    -H "Authorization: Bearer REDACTED_OPENAI_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "model": "text-davinci-003",
+      "prompt": "'"$input"'",
+      "max_tokens": 10
+    }' | jq -r '.choices[0].text')
+  
+  # もしAPIのレスポンスが空でなければ、それを補完候補として提示
+  if [[ -n "$gpt_response" ]]; then
+    LBUFFER+="${gpt_response}"
+  fi
+}
+
+plugins=(zsh_codex)
+zle -N create_completion
+bindkey '^G' create_completion
+
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
