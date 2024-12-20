@@ -351,6 +351,10 @@ cnoremap <C-e> <End>
 cnoremap <C-f> <Right>
 " コマンドライン履歴を一つ進む
 cnoremap <C-n> <Down>
+
+" infocmp によっては "key_exit" が omit されてしまうため
+inoremap <C-[> <Esc>
+
 " コマンドライン履歴を一つ戻る
 
 cnoremap <C-p> <Up>

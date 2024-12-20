@@ -619,3 +619,6 @@ bindkey "^F" forward-char
 # if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
   eval "$(starship init zsh)"
 # fi
+
+# export TERM=xterm-256color
+export TERMINFO=~/.terminfo
