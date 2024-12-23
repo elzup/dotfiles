@@ -483,7 +483,7 @@ lessc() {
 # {{{ mac
 
 if echo $OSTYPE | grep -q darwin; then
-    alias ls="exa -l --icons --group-directories-first"
+    alias ls="exa -l --icons --group-directories-first --time-style=long-iso"
     alias -g C='| pbcopy'
 
     alias gvim="mvim"
