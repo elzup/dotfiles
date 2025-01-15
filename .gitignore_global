@@ -65,3 +65,5 @@ yarn-error.log
 # vscode extension?
 .lsp/.cache/*
 .clj-kondo/.cache/*
+
+**/__mocks__/*.zip
