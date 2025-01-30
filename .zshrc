@@ -622,3 +622,5 @@ bindkey "^F" forward-char
 
 # export TERM=xterm-256color
 export TERMINFO=~/.terminfo
+
+alias bison="/usr/local/opt/bison/bin/bison"
