@@ -18,6 +18,8 @@ fi
 
 # {{{ brew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 
 # }}}
 # {{{ sdkman
@@ -104,10 +106,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # export PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH
 
 # {{{ openssl
-export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
+export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
+
 
 # }}}
 

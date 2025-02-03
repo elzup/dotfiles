@@ -483,7 +483,7 @@ lessc() {
 # {{{ mac
 
 if echo $OSTYPE | grep -q darwin; then
-    alias ls="exa -l --icons --group-directories-first --time-style=long-iso"
+    alias ls="eza -l --icons --group-directories-first --time-style=long-iso"
     alias -g C='| pbcopy'
 
     alias gvim="mvim"
@@ -538,8 +538,7 @@ if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
-
-export CLOUDSDK_PYTHON=~/.pyenv/versions/3.8.1/bin/python
+export CLOUDSDK_PYTHON=$(pyenv which python3)
 
 # shell gpt
 
