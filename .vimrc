@@ -488,6 +488,9 @@ Plug 'mattn/emmet-vim'
 Plug 'koron/codic-vim'
 Plug 'junegunn/vim-easy-align'
 
+Plug 'farmergreg/vim-lastplace'
+
+
 " Plug 'vim-scripts/Align'
 "NeoBundle 'kana/vim-operator-replace'
 "NeoBundle 'thinca/vim-splash'
