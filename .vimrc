@@ -431,7 +431,6 @@ call plug#begin('~/.vim/plugged')
 "  {{{ -Bundles
 "neobundle 
 Plug 'Shougo/neobundle.vim'
-Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 "NeoBundle 'Shougo/neocomplcache'
