@@ -33,7 +33,7 @@
 [core]
   autoCRLF = false
   excludesfile = ~/.gitignore_global
-  editor = vim -c \"set fenc=utf-8\"
+	editor = nvim
   ignorecase = false
 
 [alias]
