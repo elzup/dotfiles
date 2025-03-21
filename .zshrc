@@ -1,4 +1,7 @@
 ## ----- Plugins -----
+#
+
+ulimit -n 524288
 
 enabled_prof=0
 if [ $enabled_prof -eq 1 ]; then

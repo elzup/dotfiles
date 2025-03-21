@@ -1,7 +1,5 @@
 " {{{ init
 
-ulimit -n 524288
-
 if &compatible
   set nocompatible
 endif
