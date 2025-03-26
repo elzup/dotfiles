@@ -431,9 +431,19 @@ call plug#begin('~/.vim/plugged')
 "  }}} end -Initialize
 "  {{{ -Bundles
 "neobundle 
-Plug 'Shougo/neobundle.vim'
-Plug 'Shougo/neosnippet'
+"
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/neosnippet-snippets'
+
 "NeoBundle 'Shougo/neocomplcache'
 
 Plug 'Shougo/unite.vim'
@@ -456,7 +466,6 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'tpope/vim-markdown', { 'for': ['markdown'] }
 Plug 'itchyny/lightline.vim'
 Plug 'LeafCage/foldCC'
-" Plug 'nathanaelkane/vim-indent-guides'
 " Plug 'taglist.vim'
 Plug 'majutsushi/tagbar'
 Plug 'szw/vim-tags'
@@ -986,24 +995,6 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 
 "  }}}
-"  {{{ php cs fixer
-let s:hooks = neobundle#get_hooks('vim-php-cs-fixer')
-function! s:hooks.on_source(bundle)
-    let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer' " define the path to the php-cs-fixer.phar
-    let g:php_cs_fixer_level='all'              " which level ?
-    let g:php_cs_fixer_config='default'         " configuration
-    let g:php_cs_fixer_php_path='php'           " Path to PHP
-    " If you want to define specific fixers:
-    "let g:php_cs_fixer_fixers_list = 'linefeed,short_tag,indentation'
-    let g:php_cs_fixer_enable_default_mapping=1 " Enable the mapping by default (<leader>pcd)
-    let g:php_cs_fixer_dry_run=0                " Call command with dry-run option
-    let g:php_cs_fixer_verbose=0                " Return the output of command if 1, else an inline information.
-    nnoremap <Leader>php :call PhpCsFixerFixFile()<CR>
-endfunction
-unlet s:hooks
-
-
-"  }}}
 "  {{{ Quickrun
 let g:quickrun_config={'*': {'split': ''}}
 nnoremap <silent> <Leader>q :QuickRun<CR>
@@ -1199,47 +1190,7 @@ nnoremap <silent> [unite]/ :<C-u>Unite -buffer-name=search line -start-insert<CR
 " map <Leader>ur :Unite -buffer-name=register register<CR>
 " map <Leader>uy     :Unite history/yank<CR>
 
-
-let s:hooks = neobundle#get_hooks('unite.vim')
-
 "   }}} -end
-
-"  }}}
-"  {{{ indent
-" " Vim 起動時 vim-indent-guides を自動起動
-" let g:indent_guides_enable_on_vim_startup=1
-" " ガイドをスタートするインデントの量
-" let g:indent_guides_start_level=1
-" " 自動カラー無効
-" " let g:indent_guides_auto_colors=0
-" " 奇数番目のインデントの色
-" au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#444433 ctermbg=black
-" " 偶数番目のインデントの色
-" au MyAutoCmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#333344 ctermbg=darkgray
-" " ガイドの幅
-" let g:indent_guides_guide_size = 1
-
-"  }}}
-"  {{{ vim php cs fixer
-let s:hooks = neobundle#get_hooks('vim-php-cs-fixer')
-function! s:hooks.on_source(bundle)
-    let g:php_cs_fixer_path = '$HOME/.vim/phpCsFixer/php-cs-fixer' " define the path to the php-cs-fixer.phar
-    let g:php_cs_fixer_level='all'              " which level ?
-    let g:php_cs_fixer_config='default'         " configuration
-    let g:php_cs_fixer_php_path='php'           " Path to PHP
-    " If you want to define specific fixers:
-    "let g:php_cs_fixer_fixers_list = 'linefeed,short_tag,indentation'
-    let g:php_cs_fixer_enable_default_mapping=1 " Enable the mapping by default (<leader>pcd)
-    let g:php_cs_fixer_dry_run=0                " Call command with dry-run option
-    let g:php_cs_fixer_verbose=0                " Return the output of command if 1, else an inline information.
-    nnoremap <Leader>php :call PhpCsFixerFixFile()<CR>
-endfunction
-unlet s:hooks
-
-
-"  }}}
-"  {{{ vimshell
-nnoremap <Leader>v :VimShell<CR>
 
 "  }}}
 "  {{{ vimfiler
