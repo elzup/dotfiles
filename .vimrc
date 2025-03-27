@@ -477,7 +477,6 @@ Plug 'sjl/gundo.vim'
 Plug 'haya14busa/incsearch.vim'
 
 " utility input
-Plug 'Shougo/neosnippet'
 Plug 'scrooloose/snipmate-snippets'
 Plug 'tpope/vim-surround'
 Plug 'marijnh/tern_for_vim', {
