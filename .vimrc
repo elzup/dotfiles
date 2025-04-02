@@ -104,7 +104,7 @@ endif
 set modifiable
 set write
 
-set guioptions=arc
+" set guioptions=arc
 set textwidth=0
 set langmenu=ja_jp.utf-8
 set hlsearch
