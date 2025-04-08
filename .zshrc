@@ -626,3 +626,5 @@ bindkey "^F" forward-char
 export TERMINFO=~/.terminfo
 
 alias bison="/usr/local/opt/bison/bin/bison"
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
