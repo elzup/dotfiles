@@ -33,7 +33,9 @@ export SDKMAN_DIR=$HOME/.sdkman
 case ${OSTYPE} in
     darwin*)
         export ANDROID_NDK_ROOT=/Applications/Android/android-ndk-r10d
-        export ANDROID_SDK_ROOT=/Applications/Android/sdk
+        # export ANDROID_SDK_ROOT=/Applications/Android/sdk
+        export ANDROID_SDK_ROOT=~/Library/Android/sdk
+
         export ANT_ROOT=/Applications/Android/apache-ant-1.9.4
         export NDK_ROOT=/Applications/Android/android-ndk-r10d
         ;;
