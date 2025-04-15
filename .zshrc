@@ -543,6 +543,9 @@ if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro
 
 export CLOUDSDK_PYTHON=$(pyenv which python3)
 
+# uv-zsh-completion
+eval "$(uv generate-shell-completion zsh)"
+
 # shell gpt
 
 
