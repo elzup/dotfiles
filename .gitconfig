@@ -69,6 +69,7 @@
   remotes = remote -v
   amend = commit --amend --reuse-message=HEAD
   rh = reset --hard
+  
   # branch関連
   br = branch
   ba = branch -a           # originも含めた全てのbranchを表示
