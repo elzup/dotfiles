@@ -67,3 +67,5 @@ yarn-error.log
 .clj-kondo/.cache/*
 
 **/__mocks__/*.zip
+
+# .clinerules/*
