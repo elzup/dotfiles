@@ -75,9 +75,9 @@ export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
 
 # }}}
 # {{{ go
-export GOPATH=$HOME/go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin:$GOROOT/bin
+export GOROOT="$(brew --prefix go)/libexec"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
 # if [ -f $(brew --prefix)/etc/bash_completion ]; then
 #   . $(brew --prefix)/etc/bash_completion
