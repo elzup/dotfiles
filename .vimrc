@@ -664,6 +664,8 @@ Plug 'yuratomo/w3m.vim'
 
 call plug#end()
 
+let g:python3_host_prog = '/Users/hiro/.pyenv/versions/3.9.15/bin/python3'
+
 filetype plugin on
 filetype indent on
 
