@@ -575,43 +575,12 @@ function sgpt_completion() {
 # unbindkey '^G'
 # bindkey '^G' sgpt_completion
 
-function gpt_completion() {
-  local input="${BUFFER}"
-  echo $input
-  local gpt_response=$(curl -s -X POST "https://api.openai.com/v1/completions" \
-    -H "Authorization: Bearer REDACTED_OPENAI_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "model": "text-davinci-003",
-      "prompt": "'"$input"'",
-      "max_tokens": 10
-    }' | jq -r '.choices[0].text')
-  
-  # もしAPIのレスポンスが空でなければ、それを補完候補として提示
-  if [[ -n "$gpt_response" ]]; then
-    LBUFFER+="${gpt_response}"
-  fi
-}
 
 plugins=(zsh_codex)
 zle -N create_completion
 bindkey '^G' create_completion
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/hiro/miniforge3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/hiro/miniforge3/etc/profile.d/conda.sh" ]; then
-        . "/Users/hiro/miniforge3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/hiro/miniforge3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 ### bench mark
 
