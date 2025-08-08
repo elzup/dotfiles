@@ -378,6 +378,7 @@ alias dc="docker compose"
 alias da="direnv allow"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"
+alias pg="code ~/.ghq/github.com/elzup/jupyter-notebook-pg"
 alias poem=novel
 alias memo="vim ~/memos/free"
 
