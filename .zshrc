@@ -347,6 +347,7 @@ alias reponame=basename-parent
 alias rsync-e="rsync -rtvpl --exclude-from=.rsyncignore"
 alias rsync-n="rsync -nrtvpl"
 alias rsync-en="rsync -nrtvpl --exclude-from=.rsyncignore"
+alias chmox="chmod +x"
 
 alias ktest='kotlinc Main.kt && oj t -c "kotlin MainKt" -d ./tests/'
 
