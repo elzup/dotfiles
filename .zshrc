@@ -608,3 +608,5 @@ alias bison="/usr/local/opt/bison/bin/bison"
 ASYNCAPI_AC_ZSH_SETUP_PATH=/Users/hiro/Library/Caches/@asyncapi/cli/autocomplete/zsh_setup && test -f $ASYNCAPI_AC_ZSH_SETUP_PATH && source $ASYNCAPI_AC_ZSH_SETUP_PATH; # asyncapi autocomplete setup
 
 
+# mise
+eval "$(mise activate zsh)"
