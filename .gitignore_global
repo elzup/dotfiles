@@ -69,3 +69,5 @@ yarn-error.log
 **/__mocks__/*.zip
 
 # .clinerules/*
+.cursor/
+CLAUDE.local.md
