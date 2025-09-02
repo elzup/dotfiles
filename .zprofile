@@ -31,20 +31,20 @@ export SDKMAN_DIR=$HOME/.sdkman
 # {{{ android
 # export PATH=$PATH:/opt/android-ndk-r10d
 case ${OSTYPE} in
-    darwin*)
-        export ANDROID_NDK_ROOT=/Applications/Android/android-ndk-r10d
-        # export ANDROID_SDK_ROOT=/Applications/Android/sdk
-        export ANDROID_SDK_ROOT=~/Library/Android/sdk
+  darwin*)
+    export ANDROID_NDK_ROOT=/Applications/Android/android-ndk-r10d
+    # export ANDROID_SDK_ROOT=/Applications/Android/sdk
+    export ANDROID_SDK_ROOT=~/Library/Android/sdk
 
-        export ANT_ROOT=/Applications/Android/apache-ant-1.9.4
-        export NDK_ROOT=/Applications/Android/android-ndk-r10d
-        ;;
-    *)
-        export NDK_ROOT=/opt/android-ndk-r9d
-        export ANDROID_NDK_ROOT=/opt/android-ndk-r9d
-        export ANDROID_SDK_ROOT=/opt/android-sdk
-        export ANT_ROOT=/usr/bin
-        ;;
+    export ANT_ROOT=/Applications/Android/apache-ant-1.9.4
+    export NDK_ROOT=/Applications/Android/android-ndk-r10d
+    ;;
+  *)
+    export NDK_ROOT=/opt/android-ndk-r9d
+    export ANDROID_NDK_ROOT=/opt/android-ndk-r9d
+    export ANDROID_SDK_ROOT=/opt/android-sdk
+    export ANT_ROOT=/usr/bin
+    ;;
 esac
 
 
@@ -147,4 +147,8 @@ path+=("/usr/local/opt/php@7.4/{bin,sbin}")
 # Julia
 path+=("/Applications/Julia-1.7.app/Contents/Resources/julia/bin")
 
-export PATH=":$PATH"
+
+# vcpkg
+export VCPKG_ROOT="$HOME/.ghq/github.com/microsoft/vcpkg"
+path+=($VCPKG_ROOT)
+

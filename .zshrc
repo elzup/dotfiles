@@ -143,6 +143,8 @@ function cdg () {
 
 GHQ=`ghq root`/github.com
 ME=`git config --get user.name`
+export GHQ_GET_OPTIONS="--depth=1 --single-branch"
+
 
 gcd() {
     ghq get $1
