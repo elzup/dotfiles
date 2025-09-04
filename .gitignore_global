@@ -71,6 +71,9 @@ yarn-error.log
 # .clinerules/*
 .cursor/
 CLAUDE.local.md
+CLAUDE.md
+
+GEMINI.md
 AGENTS.md
 
 .serena/
