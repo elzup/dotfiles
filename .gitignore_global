@@ -72,6 +72,7 @@ yarn-error.log
 .cursor/
 CLAUDE.local.md
 CLAUDE.md
+.claude/
 
 GEMINI.md
 AGENTS.md
