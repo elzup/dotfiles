@@ -4,3 +4,10 @@ command_timeout = 5000
 [gcloud]
 disabled = true
 format = 'on [$symbol$active(\($region\))]($style) '
+
+# [package]
+# 
+# space ˆê•¶Žš margin ‚ª“ü‚é‚½‚ß off
+# symbol = ""
+# version_format = """$if($version == "0.0.0" || $version == "1.0.0", "", "ðŸ“¦ v$version")"""
+

@@ -612,3 +612,5 @@ ASYNCAPI_AC_ZSH_SETUP_PATH=/Users/hiro/Library/Caches/@asyncapi/cli/autocomplete
 
 # mise
 eval "$(mise activate zsh)"
+
+# claude
