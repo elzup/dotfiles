@@ -614,8 +614,3 @@ ASYNCAPI_AC_ZSH_SETUP_PATH=/Users/hiro/Library/Caches/@asyncapi/cli/autocomplete
 eval "$(mise activate zsh)"
 
 # claude
-
-[ -f "/Users/hiro/.ghcup/env" ] && . "/Users/hiro/.ghcup/env" # ghcup-env
-
-# codepack
-export COREPACK_ENABLE_AUTO_PMM=0
