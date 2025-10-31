@@ -619,3 +619,5 @@ eval "$(mise activate zsh)"
 
 # codepack
 export COREPACK_ENABLE_AUTO_PMM=0
+
+alias claude="/Users/hiro/.claude/local/claude"
