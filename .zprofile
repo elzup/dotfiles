@@ -10,6 +10,7 @@ path+=(
     "/usr/local/opt/gettext/bin"
     "/usr/local/opt/binutils/bin"
     "/usr/local/opt/bison/bin"
+    "$HOME/.moon/bin"
     "$HOME/.cargo/bin")
 
 if command -v stack > /dev/null; then

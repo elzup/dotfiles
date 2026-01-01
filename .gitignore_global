@@ -80,3 +80,4 @@ AGENTS.md
 .serena/
 
 .yarn/
+tsconfig.tsbuildinfo
