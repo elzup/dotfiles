@@ -624,3 +624,17 @@ alias claude="/Users/hiro/.claude/local/claude"
 
 # moonbit
 export PATH="$HOME/.moon/bin:$PATH"
+
+# Auto switch node version using n (reads .node-version)
+autoload -U add-zsh-hook
+load-node-version() {
+  if [[ -f .node-version ]]; then
+    local required_version=$(cat .node-version | tr -d '[:space:]')
+    local current_version=$(node -v 2>/dev/null | sed 's/^v//')
+    if [[ "$current_version" != "$required_version" ]]; then
+      n "$required_version" 2>/dev/null
+    fi
+  fi
+}
+add-zsh-hook chpwd load-node-version
+load-node-version
