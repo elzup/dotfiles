@@ -122,9 +122,6 @@ if exists peco; then
         CURSOR=$#BUFFER         # move cursor
         zle -R -c               # refresh
     }
-
-    zle -N percol_select_history
-    bindkey '^R' percol_select_history
 fi
 
 # }}}
@@ -638,3 +635,9 @@ load-node-version() {
 }
 add-zsh-hook chpwd load-node-version
 load-node-version
+
+
+if exists peco; then
+    zle -N percol_select_history
+    bindkey '^R' percol_select_history
+fi
