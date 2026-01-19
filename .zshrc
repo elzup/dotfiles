@@ -636,8 +636,11 @@ load-node-version() {
 add-zsh-hook chpwd load-node-version
 load-node-version
 
+# zoxide
+eval "$(zoxide init zsh)"
 
 if exists peco; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
+alias cd="z"
