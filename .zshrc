@@ -622,6 +622,10 @@ alias claude="/Users/hiro/.claude/local/claude"
 # moonbit
 export PATH="$HOME/.moon/bin:$PATH"
 
+# n (Node.js version manager)
+export N_PREFIX="$HOME/.n"
+export PATH="$N_PREFIX/bin:$PATH"
+
 # Auto switch node version using n (reads .node-version)
 autoload -U add-zsh-hook
 load-node-version() {
