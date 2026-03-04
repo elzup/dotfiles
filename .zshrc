@@ -625,19 +625,19 @@ export PATH="$HOME/.moon/bin:$PATH"
 export N_PREFIX="$HOME/.n"
 export PATH="$N_PREFIX/bin:$PATH"
 
-# Auto switch node version using n (reads .node-version)
+# Warn if node version doesn't match .node-version
 autoload -U add-zsh-hook
-load-node-version() {
+check-node-version() {
   if [[ -f .node-version ]]; then
     local required_version=$(cat .node-version | tr -d '[:space:]')
     local current_version=$(node -v 2>/dev/null | sed 's/^v//')
-    if [[ "$current_version" != "$required_version" ]]; then
-      n "$required_version" 2>/dev/null
+    if [[ "$current_version" != "$required_version"* ]]; then
+      echo "\033[33m⚠ .node-version requires $required_version but current is $current_version (run: n $required_version)\033[0m"
     fi
   fi
 }
-add-zsh-hook chpwd load-node-version
-load-node-version
+add-zsh-hook chpwd check-node-version
+check-node-version
 
 # zoxide
 eval "$(zoxide init zsh)"
