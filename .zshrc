@@ -192,7 +192,11 @@ bindkey '^]' peco-src
 # }}}
 
 ### pyenv
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then
+  eval "$(pyenv init -)"
+  # Disable pyenv-virtualenv auto-activation (slow, activates venvs in unrelated dirs)
+  export PYENV_VIRTUALENV_INIT=0
+fi
 
 ### pure-prompt
 
@@ -628,11 +632,15 @@ export PATH="$N_PREFIX/bin:$PATH"
 # Warn if node version doesn't match .node-version
 autoload -U add-zsh-hook
 check-node-version() {
+  local current_version=$(node -v 2>/dev/null | sed 's/^v//')
   if [[ -f .node-version ]]; then
     local required_version=$(cat .node-version | tr -d '[:space:]')
-    local current_version=$(node -v 2>/dev/null | sed 's/^v//')
     if [[ "$current_version" != "$required_version"* ]]; then
       echo "\033[33m⚠ .node-version requires $required_version but current is $current_version (run: n $required_version)\033[0m"
+    fi
+  else
+    if [[ "$current_version" != 22.* ]]; then
+      echo "\033[33m⚠ node is $current_version (not 22.x) — run: n 22\033[0m"
     fi
   fi
 }

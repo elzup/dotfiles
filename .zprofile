@@ -137,7 +137,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 path+=("$PYENV_ROOT/bin")
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init --path)"
-    eval "$(pyenv virtualenv-init -)"
+    # eval "$(pyenv virtualenv-init -)"  # disabled: auto-activates venvs on every cd, slows down terminal
 fi
 
 
