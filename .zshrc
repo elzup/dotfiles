@@ -599,7 +599,10 @@ bindkey "^F" forward-char
   eval "$(starship init zsh)"
 # fi
 
-# export TERM=xterm-256color
+# Ghostty uses xterm-ghostty which tig doesn't recognize
+if [ "$TERM_PROGRAM" = "ghostty" ]; then
+  export TERM=xterm-256color
+fi
 export TERMINFO=~/.terminfo
 
 alias bison="/usr/local/opt/bison/bin/bison"
