@@ -1,1 +1,6 @@
+font-feature = -dlig
+
+font-family = JetBrains Mono
+font-family = BIZ UDGothic
+
 keybind = ctrl+m=text:\n
