@@ -1,6 +1,15 @@
+
+font-family = "Ricky"
+font-family = JetBrains Mono
+
+font-size = 15
 font-feature = -dlig
 
-font-family = JetBrains Mono
-font-family = BIZ UDGothic
-
 keybind = ctrl+m=text:\n
+
+theme = Banana Blueberry
+Language = ja
+mouse-hide-while-typing = true
+
+
+window-decoration = true
