@@ -409,10 +409,10 @@ alias screensize="xdpyinfo | grep 'dimensions' | egrep -o '[0-9]+x[0-9]+' | head
 alias firefoxp="firefox -P answer --new-instance"
 
 alias intellij="open -a IntelliJ\ IDEA\ CE"
-alias vscode="open -a Visual\ Studio\ Code"
 alias rubymine="open -a RubyMine"
 alias webstorm="open -a WebStorm"
 alias androidstudio="open -a Android\ Studio ."
+alias ghostty="open -a /Applications/Ghostty.app"
 
 alias geai="open https://github.com/elzup/admin/issues"
 
@@ -658,3 +658,10 @@ fi
 # zoxide (must be at the end of .zshrc)
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# bun completions
+[ -s "/Users/hiro/.bun/_bun" ] && source "/Users/hiro/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
