@@ -19,10 +19,11 @@ fi
 # ghq get git@github.com:mollifier/anyframe.git
 export ZSH_CODEX_PYTHON="$HOME/.pyenv/versions/3.10.12/bin/python3"
 
+fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
+source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
-  fpath=(~/.ghq/github.com/zsh-users/zsh-completions/src $fpath)
-  source $HOME/.ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-  source $HOME/.ghq/github.com/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
   source $HOME/.ghq/github.com/tom-doerr/zsh_codex/zsh_codex.plugin.zsh
 
   ### edit-command-line
@@ -86,6 +87,7 @@ fi
 fpath=($HOME/.ghq/github.com/mollifier/anyframe(N-/) $fpath)
 autoload -Uz anyframe-init
 anyframe-init
+zstyle ":anyframe:selector:" command fzf
 
 ## direnv
 eval "$(direnv hook zsh)"
@@ -112,15 +114,19 @@ function percol-search-document() {
 alias pd='percol-search-document'
 alias gitsw='anyframe-widget-insert-git-branch'
 
-# history search with percol
+# history search with fzf
 function exists { which $1 &> /dev/null }
-if exists peco; then
+if exists fzf; then
     function percol_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        BUFFER=$(history -n 1 | eval $tac | peco --query "$LBUFFER")
-        CURSOR=$#BUFFER         # move cursor
-        zle -R -c               # refresh
+        local selected
+        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | fzf --exact --no-sort --scheme=history --query "$LBUFFER")
+        if [ $? -eq 0 ]; then
+            BUFFER=$selected
+            CURSOR=$#BUFFER
+        fi
+        zle reset-prompt
     }
 fi
 
@@ -130,7 +136,7 @@ fi
 # {{{ ghq
 
 function cdg () {
-  local selected_dir=$(ghq list | peco --query "$LBUFFER")
+  local selected_dir=$(ghq list -p | fzf --exact --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
@@ -177,16 +183,16 @@ mkdev () {
 	cd ${devPath}
 }
 
-function peco-src () {
-  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+function fzf-src () {
+  local selected_dir=$(ghq list -p | fzf --exact --query "$LBUFFER")
   if [ -n "$selected_dir" ]; then
     BUFFER="cd ${selected_dir}"
     zle accept-line
   fi
   zle clear-screen
 }
-zle -N peco-src
-bindkey '^]' peco-src
+zle -N fzf-src
+bindkey '^]' fzf-src
 
 
 # }}}
@@ -650,7 +656,7 @@ check-node-version() {
 add-zsh-hook chpwd check-node-version
 check-node-version
 
-if exists peco; then
+if exists fzf; then
     zle -N percol_select_history
     bindkey '^R' percol_select_history
 fi
