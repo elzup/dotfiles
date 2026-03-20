@@ -8,5 +8,5 @@ cd "$repository"
 sh "./scripts/backup_history.sh"
 /usr/bin/git add .
 /usr/bin/git commit -m "Update `date "+%Y-%m-%d %H:%M:%S"`"
-/usr/bin/git push origin master
+/usr/bin/git push origin main
 osascript -e 'display notification "Finish syncing dotfiles" with title "dotfiles"'

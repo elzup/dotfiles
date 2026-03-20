@@ -43,10 +43,10 @@
   so = remote show origin
   ft = fetch
   fa = fetch --all
-  p = !"git pull; git submodule foreach git pull origin master"
+  p = !"git pull; git submodule foreach git pull origin main"
   c = clone --recursive
   up = pull --rebase       # pull rebase
-  rbm = rebase master      # masterへのrebaseはよく使うのでalias
+  rbm = rebase main        # mainへのrebaseはよく使うのでalias
   ad = add
   ci = commit -a           # modifiedなファイルを全てstageへ
   cm = commit -am          # コミットメッセージ
@@ -56,9 +56,9 @@
   co = checkout
   cob = checkout -b
   me = merge
-  mt = master
+  mt = main
   poh = origin HEAD -u
-  pom = push origin master -u
+  pom = push origin main -u
   rma = rm --cached -r .
   ra = !git rm --cached -r . && git add .
   remori = remote remove origin
@@ -75,7 +75,7 @@
   ba = branch -a           # originも含めた全てのbranchを表示
   bm = branch -m           # rename
   bn = branch --no-merged  # mergeしてないbranchを表示
-  branch-delmerged = !git branch --merged | grep -vE '^\\*|master$|develop$' | xargs -I % git branch -d %
+  branch-delmerged = !git branch --merged | grep -vE '^\\*|main$|develop$' | xargs -I % git branch -d %
   bd = branch -D
   db = branch -D
   # log関連
@@ -90,7 +90,7 @@
   logg = log --graph --date=short --pretty=format:'%Cgreen%h %cd %Cblue%cn %Creset%s'
   log-all = log --graph --all --color --pretty='%x09%h %cn%x09%s %Cred%d%Creset'
   # diff関連
-  dm = diff master           # masterとのdiff
+  dm = diff main             # mainとのdiff
   dw = diff --color-words    # 単語単位でいろつけてdiff
   dc = diff --cached         # addされているものとのdiff
   ds = diff --staged         # 同上(1.6.1移行)
