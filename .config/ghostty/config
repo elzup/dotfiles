@@ -1,16 +1,24 @@
-
+# Font
 font-family = "Ricky"
 font-family = JetBrains Mono
-
 font-size = 15
 font-feature = -dlig
 
-keybind = ctrl+m=text:\n
-
+# Theme
 theme = Detuned
 
-# Language = ja
+# Window
+window-decoration = true
+macos-titlebar-style = tabs
+
+# Shell
+shell-integration = zsh
 mouse-hide-while-typing = true
 
+# Keybinds
+keybind = ctrl+m=text:\n
+keybind = global:cmd+ctrl+enter=toggle_quick_terminal
 
-window-decoration = true
+# Quick Terminal
+quick-terminal-animation-duration = 0
+quick-terminal-size = 90%,90%
