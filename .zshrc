@@ -92,8 +92,8 @@ zstyle ":anyframe:selector:" command fzf
 ## direnv
 eval "$(direnv hook zsh)"
 
-### pecol
-#  {{{ pecol
+### fzf utils
+#  {{{ fzf utils
 function percol-search-document() {
     if [ $# -ge 1 ]; then
         DOCUMENT_DIR=$*
@@ -460,7 +460,7 @@ alias -g G="| grep"
 alias -g C='| xsel --input --clipboard'
 alias -g P='| percol'
 alias -g X='| xargs'
-alias -g PX='| peco | xargs'
+alias -g PX='| fzf | xargs'
 
 alias alert="osascript -e 'display notification \"🕐 get work!\" with title \"Command Finish!\"' -e 'beep 2'"
 alias -g A="&& osascript -e 'display notification \"🕐 get work!\" with title \"Command Finish!\"' -e 'beep 2'"
