@@ -89,8 +89,14 @@ autoload -Uz anyframe-init
 anyframe-init
 zstyle ":anyframe:selector:" command fzf
 
-## direnv
-eval "$(direnv hook zsh)"
+## direnv (cached)
+_direnv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/direnv_hook.zsh"
+if [[ ! -f "$_direnv_cache" || "$(command -v direnv)" -nt "$_direnv_cache" ]]; then
+  mkdir -p "${_direnv_cache:h}"
+  direnv hook zsh > "$_direnv_cache"
+fi
+source "$_direnv_cache"
+unset _direnv_cache
 
 ### fzf utils
 #  {{{ fzf utils
@@ -121,7 +127,7 @@ if exists fzf; then
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
         local selected
-        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | fzf --exact --no-sort --scheme=history --query "$LBUFFER")
+        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | fzf --exact --no-sort --scheme=history --layout=reverse --query "$LBUFFER")
         if [ $? -eq 0 ]; then
             BUFFER=$selected
             CURSOR=$#BUFFER
@@ -197,12 +203,13 @@ bindkey '^]' fzf-src
 
 # }}}
 
-### pyenv
-if which pyenv > /dev/null; then
-  eval "$(pyenv init -)"
-  # Disable pyenv-virtualenv auto-activation (slow, activates venvs in unrelated dirs)
-  export PYENV_VIRTUALENV_INIT=0
-fi
+### pyenv (lazy load)
+export PYENV_VIRTUALENV_INIT=0
+pyenv() {
+  unfunction pyenv
+  eval "$(command pyenv init -)"
+  pyenv "$@"
+}
 
 ### pure-prompt
 
@@ -285,26 +292,12 @@ setopt hist_no_store              # histroyコマンドは記録しない
 # yarn completion
 
 # autoload -U +X compinit && compinit
-_compinit() {
-  local re_initialize=0
-  for match in ~/.zcompdump*(.Nmh+24); do
-    re_initialize=1
-    break
-  done
-  
-  autoload -Uz compinit
-  if [ "$re_initialize" -eq "1" ]; then
-    # echo "cache find"
-    compinit
-    # update the timestamp on compdump file
-    compdump
-  else
-    # echo "cache not find"
-    # omit the check for new functions since we updated today
-    compinit -C
-  fi
-}
-_compinit
+autoload -Uz compinit
+if [[ -f ~/.zcompdump && $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
+  compinit
+else
+  compinit -C
+fi
 
 # autoload -U +X bashcompinit && bashcompinit
 
@@ -542,20 +535,17 @@ if [ -f '/Users/hiro/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiro/googl
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro/google-cloud-sdk/completion.zsh.inc'; fi
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.zsh
 
 export CLOUDSDK_PYTHON=$(pyenv which python3)
 
-# uv-zsh-completion
-eval "$(uv generate-shell-completion zsh)"
+# uv-zsh-completion (cached)
+_uv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/uv_completion.zsh"
+if [[ ! -f "$_uv_cache" || "$(command -v uv)" -nt "$_uv_cache" ]]; then
+  mkdir -p "${_uv_cache:h}"
+  uv generate-shell-completion zsh > "$_uv_cache"
+fi
+source "$_uv_cache"
+unset _uv_cache
 
 # shell gpt
 
@@ -602,7 +592,14 @@ fi
 
 bindkey "^F" forward-char
 # if [ "$TERM_PROGRAM" = "WarpTerminal" ]; then
-  eval "$(starship init zsh)"
+  # starship (cached)
+  _starship_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/starship_init.zsh"
+  if [[ ! -f "$_starship_cache" || "$(command -v starship)" -nt "$_starship_cache" ]]; then
+    mkdir -p "${_starship_cache:h}"
+    starship init zsh > "$_starship_cache"
+  fi
+  source "$_starship_cache"
+  unset _starship_cache
 # fi
 
 # Ghostty uses xterm-ghostty which tig doesn't recognize
@@ -615,13 +612,16 @@ alias bison="/usr/local/opt/bison/bin/bison"
 
 [[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
 
-# AsyncAPI CLI Autocomplete
-
-ASYNCAPI_AC_ZSH_SETUP_PATH=/Users/hiro/Library/Caches/@asyncapi/cli/autocomplete/zsh_setup && test -f $ASYNCAPI_AC_ZSH_SETUP_PATH && source $ASYNCAPI_AC_ZSH_SETUP_PATH; # asyncapi autocomplete setup
 
 
-# mise
-eval "$(mise activate zsh)"
+# mise (cached)
+_mise_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/mise_activate.zsh"
+if [[ ! -f "$_mise_cache" || "$(command -v mise)" -nt "$_mise_cache" ]]; then
+  mkdir -p "${_mise_cache:h}"
+  mise activate zsh > "$_mise_cache"
+fi
+source "$_mise_cache"
+unset _mise_cache
 
 # claude
 
@@ -654,7 +654,6 @@ check-node-version() {
   fi
 }
 add-zsh-hook chpwd check-node-version
-check-node-version
 
 if exists fzf; then
     zle -N percol_select_history
