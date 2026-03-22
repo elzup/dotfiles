@@ -126,10 +126,20 @@ if exists fzf; then
     function percol_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
+        local dir_cmds=""
+        if [[ -f "$ZSH_HISTORY_DIR_FILE" ]]; then
+            dir_cmds=$(awk -F'\t' -v dir="$PWD" '$1 == dir { print $2 }' "$ZSH_HISTORY_DIR_FILE" | sort -u)
+        fi
         local selected
-        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | fzf --exact --no-sort --scheme=history --layout=reverse --query "$LBUFFER")
+        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | while IFS= read -r line; do
+            if echo "$dir_cmds" | grep -qxF "$line"; then
+                echo " @ $line"
+            else
+                echo "   $line"
+            fi
+        done | fzf --exact --no-sort --scheme=history --layout=reverse --query "$LBUFFER")
         if [ $? -eq 0 ]; then
-            BUFFER=$selected
+            BUFFER="${selected#???}"
             CURSOR=$#BUFFER
         fi
         zle reset-prompt
@@ -288,6 +298,14 @@ setopt hist_find_no_dups          # 履歴検索中、(連続してなくとも)
 setopt hist_reduce_blanks         # 余分な空白は詰めて記録
 setopt hist_no_store              # histroyコマンドは記録しない
 
+# history with directory tracking
+export ZSH_HISTORY_DIR_FILE=~/.zsh_history_dir
+
+preexec_record_dir() {
+    echo "$PWD	$1" >> "$ZSH_HISTORY_DIR_FILE"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec preexec_record_dir
 
 # yarn completion
 
