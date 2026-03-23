@@ -151,13 +151,27 @@ fi
 ### ghq
 # {{{ ghq
 
-function cdg () {
-  local selected_dir=$(ghq list -p | fzf --exact --query "$LBUFFER")
-  if [ -n "$selected_dir" ]; then
-    BUFFER="cd ${selected_dir}"
-    zle accept-line
+_GHQ_CACHE="$HOME/.cache/ghq-list"
+
+function _ghq_list_cached () {
+  if [ ! -f "$_GHQ_CACHE" ] || [ $(( $(date +%s) - $(stat -f %m "$_GHQ_CACHE") )) -gt 3600 ]; then
+    mkdir -p "$(dirname "$_GHQ_CACHE")"
+    ghq list -p > "$_GHQ_CACHE"
   fi
-  zle clear-screen
+  cat "$_GHQ_CACHE"
+}
+
+function cdg () {
+  local selected_dir=$(_ghq_list_cached | fzf --exact --layout=reverse --query "$*")
+  if [ -n "$selected_dir" ]; then
+    cd "${selected_dir}"
+  fi
+}
+
+function cdg-refresh () {
+  rm -f "$_GHQ_CACHE"
+  _ghq_list_cached > /dev/null
+  echo "ghq cache refreshed"
 }
 
 GHQ=`ghq root`/github.com
@@ -348,7 +362,12 @@ alias egrep="egrep --color=auto"
 alias GREP_OPTIONS=""
 
 alias ln="ln -i -v"
-alias cdr="anyframe-widget-cdr"
+function cdr () {
+  local selected_dir=$(sed "s/^\$'//;s/'$//" ~/.chpwd-recent-dirs | fzf --exact --layout=reverse --query "$*")
+  if [ -n "$selected_dir" ]; then
+    cd "${selected_dir}"
+  fi
+}
 
 
 ### usefuls
