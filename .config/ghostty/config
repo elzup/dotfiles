@@ -15,6 +15,9 @@ macos-titlebar-style = tabs
 shell-integration = zsh
 mouse-hide-while-typing = true
 
+# Split
+split-divider-color = #555555
+
 # Keybinds
 keybind = ctrl+m=text:\n
 keybind = global:cmd+ctrl+enter=toggle_quick_terminal
