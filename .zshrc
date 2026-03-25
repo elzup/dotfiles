@@ -1,3 +1,54 @@
+# ============================================================================
+# .zshrc — Shell Configuration Summary
+# ============================================================================
+#
+# [Plugins]
+#   zsh-completions, zsh-autosuggestions, zsh-syntax-highlighting
+#   anyframe (fzf selector), zsh_codex (AI completion, iTerm only)
+#
+# [Prompt]
+#   pure (iTerm), starship (default)
+#
+# [Navigation]
+#   zoxide (cd replacement) .............. alias cd="z"
+#   ghq + fzf ............................ cdg, gcd, fzf-src (^])
+#   cdr (recent dirs + fzf) .............. cdr
+#   chpwd_recent_dirs .................... auto-track recent dirs
+#   chpwd_tab_color ...................... iTerm tab color by project
+#
+# [History]
+#   fzf history search ................... ^R (percol_select_history)
+#   directory-aware history .............. ZSH_HISTORY_DIR_FILE
+#   SAVEHIST/HISTSIZE=100000, share_history, dedup
+#
+# [Tools]
+#   eza (ls replacement) ................. alias ls="eza -l --icons ..."
+#   nvim ................................. alias vim="nvim"
+#   lazygit .............................. alias lg="lazygit"
+#   direnv (cached) ...................... auto env switching
+#   mise (cached) ........................ runtime version manager
+#   pyenv (lazy load) .................... on-demand init
+#   n (Node.js) .......................... + .node-version check on chpwd
+#   uv (cached completion)
+#   Google Cloud SDK, bun, moonbit, ghcup
+#
+# [Key Bindings]
+#   ^R  history search     ^]  fzf-src (ghq)    ^F  forward-char
+#   ^U  backward-kill-line ^K  insert-last-word  ^G  zsh_codex
+#   ^Xe edit-command-line (iTerm)
+#
+# [Global Aliases]
+#   G (grep), C (pbcopy), P (percol), X (xargs), PX (fzf|xargs)
+#   A (alert on finish)
+#
+# [Safety]
+#   rm → rmtrash, mv -i, cp -i, ln -i -v
+#
+# [Profiling]
+#   enabled_prof=1 to activate zprof benchmarking
+#
+# ============================================================================
+
 ## ----- Plugins -----
 #
 
@@ -697,13 +748,13 @@ if exists fzf; then
     bindkey '^R' percol_select_history
 fi
 
-# zoxide (must be at the end of .zshrc)
-eval "$(zoxide init zsh)"
-alias cd="z"
-
 # bun completions
 [ -s "/Users/hiro/.bun/_bun" ] && source "/Users/hiro/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# zoxide (must be at the end of .zshrc)
+eval "$(zoxide init zsh)"
+alias cd="z"
