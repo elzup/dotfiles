@@ -203,17 +203,19 @@ fi
 # {{{ ghq
 
 _GHQ_CACHE="$HOME/.cache/ghq-list"
+zmodload -F zsh/stat b:zstat
+zmodload -F zsh/datetime p:EPOCHSECONDS
 
 function _ghq_list_cached () {
-  if [ ! -f "$_GHQ_CACHE" ] || [ $(( $(date +%s) - $(stat -f %m "$_GHQ_CACHE") )) -gt 3600 ]; then
-    mkdir -p "$(dirname "$_GHQ_CACHE")"
+  if [ ! -f "$_GHQ_CACHE" ] || (( EPOCHSECONDS - $(zstat +mtime "$_GHQ_CACHE") > 3600 )); then
+    mkdir -p "${_GHQ_CACHE:h}"
     ghq list -p > "$_GHQ_CACHE"
   fi
-  cat "$_GHQ_CACHE"
 }
 
 function cdg () {
-  local selected_dir=$(_ghq_list_cached | fzf --exact --layout=reverse --query "$*")
+  _ghq_list_cached
+  local selected_dir=$(fzf --exact --layout=reverse --query "$*" < "$_GHQ_CACHE")
   if [ -n "$selected_dir" ]; then
     cd "${selected_dir}"
   fi
@@ -221,7 +223,7 @@ function cdg () {
 
 function cdg-refresh () {
   rm -f "$_GHQ_CACHE"
-  _ghq_list_cached > /dev/null
+  _ghq_list_cached
   echo "ghq cache refreshed"
 }
 
@@ -609,7 +611,7 @@ fi
 # }}}
 
 
-zstyle ':chpwd:*' recent-dirs-max 1000
+zstyle ':chpwd:*' recent-dirs-max 3000
 function chpwd() { ls }
 
 
@@ -693,6 +695,11 @@ bindkey "^F" forward-char
 # Ghostty uses xterm-ghostty which tig doesn't recognize
 if [ "$TERM_PROGRAM" = "ghostty" ]; then
   export TERM=xterm-256color
+  # Reset kitty keyboard protocol and terminal state on each prompt.
+  # Programs (e.g. claude) may enable it and not clean up on exit,
+  # leaving the terminal sending extended escape sequences (backspace broken, etc).
+  _reset_keyboard_protocol() { printf '\e[<u'; stty sane 2>/dev/null }
+  add-zsh-hook precmd _reset_keyboard_protocol
 fi
 export TERMINFO=~/.terminfo
 

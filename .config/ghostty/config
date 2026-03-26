@@ -1,7 +1,7 @@
 # Font
 font-family = "Ricky"
 font-family = JetBrains Mono
-font-size = 10
+font-size = 14
 font-feature = -dlig
 
 # Theme
@@ -20,8 +20,9 @@ split-divider-color = #555555
 
 # Keybinds
 keybind = ctrl+m=text:\n
-keybind = global:cmd+ctrl+enter=toggle_quick_terminal
+# keybind = global:cmd+ctrl+enter=toggle_quick_terminal
 
 # Quick Terminal
 quick-terminal-animation-duration = 0
 quick-terminal-size = 100%,90%
+
