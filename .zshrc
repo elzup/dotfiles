@@ -454,6 +454,15 @@ funciton pathname() {
   basename "$PWD"
 }
 
+function pwdf() {
+  local selected
+  selected=$(ls -1A | fzf --preview 'ls -lh {}' --prompt 'pwdf> ') || return
+  local fullpath="${PWD}/${selected}"
+  local result="${fullpath/#$HOME/~}"
+  echo "$result"
+  echo -n "$result" | pbcopy
+}
+
 # gnome-open
 alias gopen="gnome-open"
 
@@ -539,7 +548,7 @@ alias -s asta=astah
 ### end pipe
 
 # char alias
-alias -g G="| grep"
+alias -g G="| rg"
 alias -g C='| xsel --input --clipboard'
 alias -g P='| percol'
 alias -g X='| xargs'
