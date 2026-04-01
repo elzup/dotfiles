@@ -314,7 +314,7 @@ fi
 bindkey -e
 # bindkey -v
 
-export EDITOR=vim        # エディタをvimに設定
+export EDITOR=nvim       # エディタをnvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
 export KCODE=u           # KCODEにUTF-8を設定
 export AUTOFEATURE=true  # autotestでfeatureを動かす
@@ -476,6 +476,7 @@ alias xmod="xmodmap ~/.Xmodmap"
 alias shutdown="sudo shutdown"
 alias yaourt="yaourt --noconfirm"
 alias dc="docker compose"
+alias ts-node="tsx"
 alias da="direnv allow"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"

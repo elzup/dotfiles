@@ -648,7 +648,9 @@ Plug 'github/copilot.vim'
 Plug 'ujihisa/unite-colorscheme'
 Plug 'Gaochengzhi/vimColorSelector'
 Plug 'vim-scripts/summerfruit256.vim'
-Plug 'EdenEast/nightfox.nvim'
+if has('nvim')
+  Plug 'EdenEast/nightfox.nvim'
+endif
 " Plug 'nightsense/strawberry'
 " Plug 'vim-sciprts/phd'
 " Plug 'sfsekaran/cobalt.vim'
@@ -1226,7 +1228,11 @@ set background=dark
 " colorscheme phd
 " colorscheme slate
 " colorscheme habamax
-colorscheme nightfox
+if has('nvim')
+  colorscheme nightfox
+else
+  colorscheme habamax
+endif
 
 if has("gui_running")
     colorscheme strawberry-dark
