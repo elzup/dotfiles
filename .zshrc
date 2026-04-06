@@ -416,7 +416,7 @@ alias GREP_OPTIONS=""
 
 alias ln="ln -i -v"
 function cdr () {
-  local selected_dir=$(sed "s/^\$'//;s/'$//" ~/.chpwd-recent-dirs | fzf --exact --layout=reverse --query "$*")
+  local selected_dir=$(sed "s/^\$'//;s/'$//" ~/.chpwd-recent-dirs | fzf --exact --layout=reverse --no-sort --query "$*")
   if [ -n "$selected_dir" ]; then
     cd "${selected_dir}"
   fi
