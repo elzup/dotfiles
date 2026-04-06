@@ -782,9 +782,9 @@ fi
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Vite+ bin (https://viteplus.dev)
+. "$HOME/.vite-plus/env"
+
 # zoxide (must be at the end of .zshrc)
 eval "$(zoxide init zsh)"
 alias cd="z"
-
-# Vite+ bin (https://viteplus.dev)
-. "$HOME/.vite-plus/env"
