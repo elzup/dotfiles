@@ -786,5 +786,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 . "$HOME/.vite-plus/env"
 
 # zoxide (must be at the end of .zshrc)
-eval "$(zoxide init zsh)"
-alias cd="z"
+if [[ -o interactive ]]; then
+  eval "$(zoxide init zsh)"
+  alias cd="z"
+fi
