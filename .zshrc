@@ -478,6 +478,7 @@ alias yaourt="yaourt --noconfirm"
 alias dc="docker compose"
 alias ts-node="tsx"
 alias da="direnv allow"
+alias run-cpp="$HOME/.ghq/github.com/elzup/c-playground/run-cpp"
 
 alias novel="code ~/.ghq/github.com/elzup/novel"
 alias pg="code ~/.ghq/github.com/elzup/jupyter-notebook-pg"
