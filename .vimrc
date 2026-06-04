@@ -543,9 +543,15 @@ Plug 'koron/minimap-vim'
 Plug 'osyo-manga/vim-sound'
 
 "language
+if has('nvim')
+  Plug 'cameron-wags/rainbow_csv.nvim'
+endif
+
 " html5
 Plug 'othree/html5.vim', { 'for': ['html'] }
-Plug 'hokaccha/vim-html5validator', { 'for': ['html'] }
+if !has('nvim')
+  Plug 'hokaccha/vim-html5validator', { 'for': ['html'] }
+endif
 Plug 'hail2u/vim-css3-syntax', { 'for': ['html'] }
 
 "php
@@ -670,6 +676,14 @@ let g:python3_host_prog = '/Users/hiro/.pyenv/versions/3.9.15/bin/python3'
 
 filetype plugin on
 filetype indent on
+
+if has('nvim')
+lua << EOF
+pcall(function()
+  require('rainbow_csv').setup()
+end)
+EOF
+endif
 
 "  }}} -end Bundles
 
