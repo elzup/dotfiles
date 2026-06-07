@@ -52,7 +52,9 @@ if has('iconv')
   " fileencodingsを構築
   if &encoding ==# 'utf-8'
     let s:fileencodings_default = &fileencodings
-    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    " utf-8 を euc-jp/cp932 より前に置く (cp932 はほぼ何でも読めてしまい
+    " UTF-8 ファイルを誤認して文字化けするため、厳密判定できる utf-8 を先に試す)
+    let &fileencodings = s:enc_jis .',utf-8,'. s:enc_euc .',cp932'
     let &fileencodings = &fileencodings .','. s:fileencodings_default
     unlet s:fileencodings_default
   else
@@ -524,6 +526,9 @@ Plug 'deris/vim-textobj-enclosedsyntax'
 "tool
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
+" fzf + ripgrep (.gitignore を尊重した fuzzy file / 全文検索, VSCode 風)
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 " Plug 'cocopon/colorswatch.vim'
 Plug 'AndrewRadev/linediff.vim'
 Plug 'thinca/vim-quickrun'
@@ -793,6 +798,28 @@ let g:ctrlp_custom_ignore = {
 ""   }}} -end
 "
 ""  }}}
+"  {{{ fzf (VSCode 風 fuzzy file / 全文検索, .gitignore 尊重)
+if executable('rg')
+  " :Files の候補も rg で取得 → .gitignore を自動で尊重 (隠しファイルは含み .git は除外)
+  let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
+  " :Rg を rg ベースに (デフォルトで .gitignore 尊重)
+  command! -bang -nargs=* Rg
+        \ call fzf#vim#grep(
+        \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
+        \   1, fzf#vim#with_preview(), <bang>0)
+endif
+" ファイル名 fuzzy (git 管理外でも動く)
+nnoremap <silent> <Leader>f :<C-u>Files<CR>
+" git 管理ファイルのみ
+nnoremap <silent> <Leader>F :<C-u>GFiles<CR>
+" 全文検索 (rg backend, インクリメンタル)
+nnoremap <silent> <Leader>g :<C-u>Rg<CR>
+" カーソル下の単語で全文検索
+nnoremap <silent> <Leader>G :<C-u>Rg <C-r><C-w><CR>
+" 開いているバッファ / 最近のファイル
+nnoremap <silent> <Leader>b :<C-u>Buffers<CR>
+nnoremap <silent> <Leader>h :<C-u>History<CR>
+"  }}}
 "  {{{ Emmet
 let g:user_emmet_install_global = 0
 autocmd FileType html,css,js EmmetInstall
