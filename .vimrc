@@ -526,7 +526,7 @@ Plug 'deris/vim-textobj-enclosedsyntax'
 "tool
 Plug 'editorconfig/editorconfig-vim'
 Plug 'kien/ctrlp.vim'
-" fzf + ripgrep (.gitignore を尊重した fuzzy file / 全文検索, VSCode 風)
+" fzf + ripgrep
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 " Plug 'cocopon/colorswatch.vim'
@@ -798,25 +798,18 @@ let g:ctrlp_custom_ignore = {
 ""   }}} -end
 "
 ""  }}}
-"  {{{ fzf (VSCode 風 fuzzy file / 全文検索, .gitignore 尊重)
+"  {{{ fzf
 if executable('rg')
-  " :Files の候補も rg で取得 → .gitignore を自動で尊重 (隠しファイルは含み .git は除外)
   let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --glob "!.git/*"'
-  " :Rg を rg ベースに (デフォルトで .gitignore 尊重)
   command! -bang -nargs=* Rg
         \ call fzf#vim#grep(
         \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>),
         \   1, fzf#vim#with_preview(), <bang>0)
 endif
-" ファイル名 fuzzy (git 管理外でも動く)
 nnoremap <silent> <Leader>f :<C-u>Files<CR>
-" git 管理ファイルのみ
 nnoremap <silent> <Leader>F :<C-u>GFiles<CR>
-" 全文検索 (rg backend, インクリメンタル)
 nnoremap <silent> <Leader>g :<C-u>Rg<CR>
-" カーソル下の単語で全文検索
 nnoremap <silent> <Leader>G :<C-u>Rg <C-r><C-w><CR>
-" 開いているバッファ / 最近のファイル
 nnoremap <silent> <Leader>b :<C-u>Buffers<CR>
 nnoremap <silent> <Leader>h :<C-u>History<CR>
 "  }}}
