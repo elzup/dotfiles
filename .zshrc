@@ -177,18 +177,20 @@ if exists fzf; then
     function percol_select_history() {
         local tac
         exists gtac && tac="gtac" || { exists tac && tac="tac" || { tac="tail -r" } }
-        local dir_cmds=""
-        if [[ -f "$ZSH_HISTORY_DIR_FILE" ]]; then
-            dir_cmds=$(awk -F'\t' -v dir="$PWD" '$1 == dir { print $2 }' "$ZSH_HISTORY_DIR_FILE" | sort -u)
-        fi
         local selected
-        selected=$(history -n 1 | eval $tac | awk '!a[$0]++' | while IFS= read -r line; do
-            if echo "$dir_cmds" | grep -qxF "$line"; then
-                echo " @ $line"
-            else
-                echo "   $line"
-            fi
-        done | fzf --exact --no-sort --scheme=history --layout=reverse --query "$LBUFFER")
+        # dedup + tag (" @ ") commands previously run in $PWD, all in a single awk pass
+        selected=$(history -n 1 | eval $tac | awk -v dir="$PWD" -v dirfile="$ZSH_HISTORY_DIR_FILE" '
+            BEGIN {
+                if (dirfile != "") {
+                    while ((getline line < dirfile) > 0) {
+                        t = index(line, "\t")
+                        if (t > 0 && substr(line, 1, t - 1) == dir)
+                            dircmd[substr(line, t + 1)] = 1
+                    }
+                }
+            }
+            !seen[$0]++ { print ($0 in dircmd ? " @ " : "   ") $0 }
+        ' | fzf --exact --no-sort --scheme=history --layout=reverse --query "$LBUFFER")
         if [ $? -eq 0 ]; then
             BUFFER="${selected#???}"
             CURSOR=$#BUFFER
