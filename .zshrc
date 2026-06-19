@@ -642,7 +642,9 @@ if [ -f '/Users/hiro/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/hiro/googl
 if [ -f '/Users/hiro/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hiro/google-cloud-sdk/completion.zsh.inc'; fi
 
 
-export CLOUDSDK_PYTHON=$(pyenv which python3)
+# gcloud は 3.10+ 必須・gsutil 等が 3.13+ で壊れるため 3.12 を明示指定
+# (旧: $(pyenv which python3) は pyenv global 3.9.15 を指し打ち切り済みだった)
+export CLOUDSDK_PYTHON=$(which python3.12)
 
 # uv-zsh-completion (cached)
 _uv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/uv_completion.zsh"
