@@ -82,3 +82,7 @@ path+=("/Applications/Julia-1.7.app/Contents/Resources/julia/bin")
 # vcpkg
 export VCPKG_ROOT="$HOME/.ghq/github.com/microsoft/vcpkg"
 path+=("$VCPKG_ROOT")
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/hiro/.local/bin:$PATH"

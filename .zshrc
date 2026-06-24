@@ -798,3 +798,7 @@ if [[ -o interactive ]]; then
   eval "$(zoxide init zsh)"
   alias cd="z"
 fi
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/hiro/.local/bin:$PATH"
