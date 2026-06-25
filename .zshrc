@@ -802,3 +802,6 @@ fi
 
 # Added by Antigravity CLI installer
 export PATH="/Users/hiro/.local/bin:$PATH"
+
+# kimi-code
+export PATH="/Users/hiro/.kimi-code/bin:$PATH"
