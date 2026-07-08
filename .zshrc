@@ -100,15 +100,47 @@ tab-reset() {
     echo -ne "\033]6;1;bg;*;default\a"
 }
 
+# private リポは色を暗くして「注意」を直感的に示す。
+# gh の結果はリモート URL をキーにキャッシュし、chpwd をブロックしない
+# (初回は空を返してバックグラウンドで問い合わせ→次回 cd で反映)。
+_tab_color_cache_dir="$HOME/.cache/tab-color-private"
+
+# stdout: 1=private / 0=public / 空=不明(git 外・未キャッシュ)
+_repo_is_private() {
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return
+  local url
+  url=$(git config --get remote.origin.url 2>/dev/null)
+  [ -n "$url" ] || return
+  local key cache
+  key=$(printf '%s' "$url" | md5 -q 2>/dev/null || printf '%s' "$url" | md5sum 2>/dev/null | cut -d' ' -f1)
+  cache="$_tab_color_cache_dir/$key"
+  if [ -f "$cache" ]; then
+    cat "$cache"
+    return
+  fi
+  command -v gh >/dev/null 2>&1 || return
+  mkdir -p "$_tab_color_cache_dir"
+  ( # cwd = 対象リポ。gh が成功したときだけキャッシュ (失敗時は次回リトライ)
+    local out
+    out=$(gh repo view --json isPrivate -q '.isPrivate' 2>/dev/null) || exit
+    [ "$out" = true ] && echo 1 > "$cache" || echo 0 > "$cache"
+  ) &!
+}
+
 chpwd_tab_color() {
+  local r g b
   case $PWD/ in
-    */.ghq/github.com/elzup/*) tab-color 100 0 100;; # purple
-    */.ghq/github.com/elzup-sandbox/*) tab-color 100 100 255;; # blue
-    */.ghq/github.com/planckunits/*) tab-color 50 71 81;; # gray
-    */.ghq/github.com/*o/*) tab-color 255 255 200;; # light yellow
-    */.ghq/github.com/*) tab-color 100 100 100;; # base gray
-    *) tab-reset;;
+    */.ghq/github.com/elzup/*) r=100 g=0 b=100;; # purple
+    */.ghq/github.com/elzup-sandbox/*) r=100 g=100 b=255;; # blue
+    */.ghq/github.com/planckunits/*) r=50 g=71 b=81;; # gray
+    */.ghq/github.com/*o/*) r=255 g=255 b=200;; # light yellow
+    */.ghq/github.com/*) r=100 g=100 b=100;; # base gray
+    *) tab-reset; return;;
   esac
+  if [ "$(_repo_is_private)" = 1 ]; then
+    r=$((r / 2)) g=$((g / 2)) b=$((b / 2)) # private は暗く沈める
+  fi
+  tab-color $r $g $b
 }
 
 if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
@@ -227,6 +259,39 @@ function cdg-refresh () {
   rm -f "$_GHQ_CACHE"
   _ghq_list_cached
   echo "ghq cache refreshed"
+}
+
+# claude セッションを丸ごと別 repo dir へ引っ越す (session ごと移動)
+# セッション履歴 ~/.claude/projects/<slug>/<id>.jsonl を移動先スラグへ mv する
+# usage: ccmv [target-dir] [session-id]
+#   省略時: 移動先を ghq+fzf 選択 / 現 dir の最新セッションを移動
+# 注意: 実行中のセッションは exit してから。移動先で `claude --resume <id>`
+function ccmv () {
+  local proj="$HOME/.claude/projects"
+  local target="$1"
+  if [ -z "$target" ]; then
+    _ghq_list_cached
+    target=$(fzf --exact --layout=reverse < "$_GHQ_CACHE")
+  fi
+  [ -n "$target" ] || return 1
+  target="${target:A}"
+  [ -d "$target" ] || { echo "no dir: $target" >&2; return 1 }
+
+  local cur_slug="${PWD//[\/.]/-}"
+  local dst_slug="${target//[\/.]/-}"
+  local sid="$2" src
+  if [ -n "$sid" ]; then
+    src="$proj/$cur_slug/$sid.jsonl"
+  else
+    src=$(ls -t "$proj/$cur_slug"/*.jsonl 2>/dev/null | head -1)
+    sid="${${src:t}:r}"
+  fi
+  [ -f "$src" ] || { echo "session not found: $src" >&2; return 1 }
+
+  mkdir -p "$proj/$dst_slug"
+  mv "$src" "$proj/$dst_slug/"
+  echo "moved: $sid -> $target"
+  echo "resume: cd ${target} && claude --resume $sid"
 }
 
 GHQ=`ghq root`/github.com
