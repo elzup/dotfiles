@@ -520,6 +520,28 @@ function randpw(){
   openssl rand -base64 12 | fold -w 12 | head -1
 }
 
+# gignore <dir>: ディレクトリ全体を ignore する .gitignore を設置
+function gignore() {
+  local dir="${1:?usage: gignore <dir>}"
+  if [ -f "$dir" ]; then
+    echo "gignore: not a directory (file given): $dir" >&2
+    return 1
+  fi
+  if [ ! -d "$dir" ]; then
+    echo "gignore: no such directory: $dir" >&2
+    return 1
+  fi
+  # '../.' 等を絶対パスに正規化 (zsh :a modifier)
+  local target="${dir:a}/.gitignore"
+  if [ -e "$target" ]; then
+    echo "gignore: already exists: $target" >&2
+    return 1
+  fi
+  echo '*' > "$target"
+  echo "created: $target"
+}
+compdef '_files -/' gignore
+
 funciton pathname() {
   basename "$PWD"
 }
