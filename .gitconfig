@@ -28,7 +28,7 @@
   untracked = cyan
 
 [push]
-  default = tracking       # defaultのpush先はtrackingしているリポジトリ
+	default = simple
 
 [core]
   autoCRLF = false
