@@ -472,6 +472,7 @@ alias rm="rmtrash"
 alias rmdir="rmdirtrash"
 alias sl="ls"
 alias lg="lazygit"
+alias obsi='open -a "Obsidian"'
 
 alias cp="cp -i"	#上書きを確認
 
