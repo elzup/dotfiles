@@ -14,9 +14,9 @@ path+=(
     "$HOME/.cargo/bin"
 )
 
-if command -v stack > /dev/null; then
-    path+=("$(stack path --compiler-bin)")
-fi
+# haskell
+# ghc/stack/cabal は ~/.ghcup/env (.zshrc) 経由で PATH に入る。
+# stack 同梱の GHC はプロジェクト内で `stack exec` から使う
 
 # brew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
@@ -37,7 +37,7 @@ export ANDROID_NDK_HOME="$HOME/Library/Android/sdk/ndk-bundle"
 
 # rbenv
 export PATH="$HOME/.rbenv/shims:$PATH"
-if command -v rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if command -v rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
 
 # perl
 PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
@@ -46,7 +46,7 @@ export PERL_CPANM_OPT="--local-lib=$HOME/.perl-extlib"
 export PERL5LIB="$HOME/.perl-extlib/lib/perl5:$PERL5LIB"
 
 # go
-export GOROOT="$(brew --prefix go)/libexec"
+export GOROOT="/opt/homebrew/opt/go/libexec"
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"
 
@@ -61,7 +61,8 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 export PGDATA=/usr/local/var/postgres
 
 if echo "$OSTYPE" | grep -q darwin; then
-    export JAVA_HOME=$(/usr/libexec/java_home -v17)
+    export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+    [[ -d $JAVA_HOME ]] || export JAVA_HOME=$(/usr/libexec/java_home -v17)
     export ANDROID_HOME=/Users/hiro/Library/Android/sdk
     path+=("$JAVA_HOME/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/platform-tools")
 fi
@@ -70,7 +71,7 @@ fi
 export PYENV_ROOT="$HOME/.pyenv"
 path+=("$PYENV_ROOT/bin")
 if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init --path)"
+    eval "$(pyenv init --path --no-rehash)"
 fi
 
 # PHP
