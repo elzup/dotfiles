@@ -1,8 +1,21 @@
 # Font
-font-family = "Ricky"
-font-family = JetBrains Mono
+# Ricty (Inconsolata + Migu 1M) は英字と日本語を一体で持つので、これ 1 本で幅も太さも揃う。
+# 2 本目は Nerd アイコン専用のフォールバック (Ricty はアイコングリフを持たない)。
+# 注意: FontForge 製の Ricty は post.isFixedPitch=0 で出てくる。CoreText はこのフラグから
+# 等幅判定するため、立てないと Ghostty から不可視になり font-family 指定が黙って無視される。
+font-family = Ricty
+font-family = Hack Nerd Font Mono
 font-size = 14
 font-feature = -dlig
+# 外部モニタ(2560x1440 = 等倍)では Retina 補間もサブピクセル AA も効かず、
+# 字が細ってジャギる。macOS のみ有効なストローク太らせで補正する。
+font-thicken = true
+# 前景/背景のコントラスト下限。テーマ側の暗い配色が読めなくなるのを防ぐ。
+minimum-contrast = 1.05
+
+# スクロールバック上限 (バイト)。既定 10MB では出力量の多い TUI ですぐ流れる。
+# cmux もこの config を読むので cmux 側の遡れる量にも効く。
+scrollback-limit = 100000000
 
 # Theme
 theme = Detuned

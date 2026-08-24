@@ -29,13 +29,3 @@ setw -g automatic-rename on
 setw -g automatic-rename-format "#{b:pane_current_path}:#{pane_current_command}"
 
 set -g mouse on
-
-# 端末の色を素通しする。default-terminal を明示しないと外側の truecolor が
-# 256 色に丸められ、テーマの配色がくすんで見える (tmux 越しだけ暗い、の原因)。
-set  -g default-terminal "tmux-256color"
-set -as terminal-features ",*:RGB"
-
-# ペインごとのスクロールバック行数。既定 2000 は出力の多い TUI ではすぐ流れる。
-# tmux 内では端末側 (Ghostty) のスクロールバックは使われず、この値が遡れる上限になる。
-# 新規ペインにのみ適用される (既存ペインは作成時の値を保持)。
-set -g history-limit 50000

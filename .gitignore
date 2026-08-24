@@ -17,6 +17,7 @@
 /dotfiles/.vim/bundle/
 /dotfiles/.vim/undo/
 /dotfiles/.vim/plugged/
+/.metarc/
 
 # zsh
 /dotfiles/.zsh/*

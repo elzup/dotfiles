@@ -147,6 +147,29 @@ if [ "$TERM_PROGRAM" = "iTerm.app" ]; then
   add-zsh-hook chpwd chpwd_tab_color
   chpwd_tab_color
 fi
+
+# cmux は custom name が無い Workspace に選択中 Surface のタイトルを使う。
+# agent が Surface をタスク名へ変えても主見出しはプロジェクト名のままにする。
+_cmux_set_workspace_project_name() {
+  [[ -n "$CMUX_WORKSPACE_ID" ]] || return
+  command -v cmux >/dev/null 2>&1 || return
+
+  local project_root project_name
+  project_root=$(git rev-parse --show-toplevel 2>/dev/null) || project_root="$PWD"
+  project_name="${project_root:t}"
+  [[ -n "$project_name" ]] || return
+  [[ "$project_name" = "$_CMUX_LAST_WORKSPACE_PROJECT_NAME" ]] && return
+
+  if command cmux rename-workspace --workspace "$CMUX_WORKSPACE_ID" "$project_name" >/dev/null 2>&1; then
+    _CMUX_LAST_WORKSPACE_PROJECT_NAME="$project_name"
+  fi
+}
+
+if [[ -n "$CMUX_WORKSPACE_ID" ]]; then
+  add-zsh-hook chpwd _cmux_set_workspace_project_name
+  _cmux_set_workspace_project_name
+fi
+
 function set_name () {
   local dir_name
   if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
