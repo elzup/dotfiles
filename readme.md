@@ -5,3 +5,5 @@
 # Related
 
 [Brewfile](https://github.com/elzup/Brewfile)
+
+[この PC の主要リポジトリ](docs/repos.md)
