@@ -22,7 +22,7 @@
 #   SAVEHIST/HISTSIZE=100000, share_history, dedup
 #
 # [Tools]
-#   eza (ls replacement) ................. alias ls="eza -l --icons ..."
+#   eza (ls replacement) ................. ls() 関数。非対話 shell では stdin を塞ぐ
 #   nvim ................................. alias vim="nvim"
 #   lazygit .............................. alias lg="lazygit"
 #   direnv (cached) ...................... auto env switching
@@ -707,7 +707,33 @@ lessc() {
 # {{{ mac
 
 if echo $OSTYPE | grep -q darwin; then
-    alias ls="eza -l --icons --group-directories-first --time-style=long-iso"
+    # ls は eza。alias ではなく関数にしてあるのは、非対話 shell 用の分岐を
+    # 持たせるため。オプションは 2 箇所で使うので local 配列に名前を付ける
+    # (グローバル変数にすると shell-snapshot に載らず agent 側で消える)。
+    ls() {
+        local -a eza_opts=(-l --icons --group-directories-first --time-style=long-iso)
+
+        # ここは is_human_terminal ではなく stdin が tty かで判定する。
+        # 危険なのは「誰が叩いたか」ではなく「eza が stdin を読むか」であり、
+        # それを決めるのは stdin が tty かどうかだけだから。
+        if [[ -t 0 ]]; then
+            eza $eza_opts "$@"
+            return
+        fi
+
+        # 非対話 shell (coding agent の Bash ツール) 向け。
+        # eza v0.23.5 は stdin が tty でないと --stdin 無しでも stdin を
+        # ファイル名一覧として読む。agent の shell は stdin が閉じない unix
+        # socket のことがあり、対象パス無しで呼ぶと read で永久にブロックする。
+        # 対象パスを明示し、stdin も塞いで二重に防ぐ。
+        # 出典: elzup/pc-help-report reports/case/cd-heredoc-bash-hang.md
+        local -a operands=(${@:#-*})
+        if (( ${#operands} )); then
+            eza $eza_opts "$@" < /dev/null
+        else
+            eza $eza_opts "$@" . < /dev/null
+        fi
+    }
     alias -g C='| pbcopy'
 
     alias gvim="mvim"
@@ -739,7 +765,22 @@ fi
 
 
 zstyle ':chpwd:*' recent-dirs-max 3000
-function chpwd() { ls }
+# 人間が叩いている端末かどうか。coding agent (Claude Code / Codex / kimi / agy)
+# の Bash ツールは非対話 shell なので偽になる。agent ごとの環境変数を見るより
+# 移植性が高い。
+#
+# 変数ではなく関数なのは、Claude Code の shell-snapshot が複製するのが関数と
+# alias と PATH だけで、ユーザ定義変数は agent 側に届かないため。加えて判定は
+# 定義時ではなく呼び出し時でなければならない (snapshot 生成元は対話 shell)。
+#
+# 呼び出し側は必ず肯定形で使う (`is_human_terminal && 処理`)。否定形にすると、
+# 万一この関数が届かなかったときに command not found が非ゼロを返して処理が
+# 走ってしまう。
+is_human_terminal() { [[ -o interactive ]] }
+
+# cd のたびに ls する。agent 側では走らせない (引数なしの eza が stdin を
+# 読んでブロックするため。ls() のコメント参照)。
+function chpwd() { is_human_terminal && ls }
 
 
 # export NVM_DIR="$HOME/.nvm"
