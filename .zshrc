@@ -317,6 +317,31 @@ function ccmv () {
   echo "resume: cd ${target} && claude --resume $sid"
 }
 
+# project dashboard (dash-viz) を開く
+# usage: pdash              今いるリポ (ghq 外は HTML を生成して開く)
+#        pdash owner/repo.. 指定リポ
+#        pdash -a           全リポ横断 SPA
+function pdash () {
+  local ghq_root="$HOME/.ghq"
+  if [ "$1" = "-a" ]; then
+    open "$HOME/.agent/diagrams/dash.html"
+    return
+  fi
+  if [ $# -gt 0 ]; then
+    open "https://dash.bayalhost/?repo=${(j:,:)@}"
+    return
+  fi
+
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "pdash: not in a git repo" >&2; return 1 }
+  [ -f "$root/.metarc/log/events.jsonl" ] || { echo "pdash: no log: $root/.metarc/log/events.jsonl" >&2; return 1 }
+  if [[ "$root" == "$ghq_root"/* ]]; then
+    open "https://dash.bayalhost/?repo=${root#$ghq_root/}"
+    return
+  fi
+  (cd "$root" && node "$HOME/.agents/skills/dash-viz/scripts/render.ts") && open "$root/.metarc/dashboard.html"
+}
+
 GHQ=`ghq root`/github.com
 ME=`git config --get user.name`
 export GHQ_GET_OPTIONS="--depth=1 --single-branch"
