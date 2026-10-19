@@ -36,8 +36,25 @@ path+=("$ANDROID_HOME/tools" "$ANDROID_HOME/platform-tools")
 export ANDROID_NDK_HOME="$HOME/Library/Android/sdk/ndk-bundle"
 
 # rbenv
+# `rbenv init -` の出力 (rbenv 1.3.2) を静的展開。eval だと毎回 fork して ~180ms かかる
 export PATH="$HOME/.rbenv/shims:$PATH"
-if command -v rbenv > /dev/null; then eval "$(rbenv init - --no-rehash)"; fi
+if command -v rbenv > /dev/null; then
+  export RBENV_SHELL=zsh
+  rbenv() {
+    local command
+    command="${1:-}"
+    if [ "$#" -gt 0 ]; then
+      shift
+    fi
+
+    case "$command" in
+    rehash|shell)
+      eval "$(rbenv "sh-$command" "$@")";;
+    *)
+      command rbenv "$command" "$@";;
+    esac
+  }
+fi
 
 # perl
 PERL_MB_OPT="--install_base \"$HOME/perl5\""; export PERL_MB_OPT;
@@ -70,8 +87,9 @@ fi
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 path+=("$PYENV_ROOT/bin")
+# `pyenv init --path` は shims を PATH 先頭へ移すだけ。bash を fork して ~100ms かかるので zsh で直接やる
 if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init --path --no-rehash)"
+    path=("$PYENV_ROOT/shims" ${path:#$PYENV_ROOT/shims})
 fi
 
 # PHP

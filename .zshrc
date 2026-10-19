@@ -160,9 +160,9 @@ _cmux_set_workspace_project_name() {
   [[ -n "$project_name" ]] || return
   [[ "$project_name" = "$_CMUX_LAST_WORKSPACE_PROJECT_NAME" ]] && return
 
-  if command cmux rename-workspace --workspace "$CMUX_WORKSPACE_ID" "$project_name" >/dev/null 2>&1; then
-    _CMUX_LAST_WORKSPACE_PROJECT_NAME="$project_name"
-  fi
+  # rename-workspace は 1 回 ~400ms かかり起動と cd を待たせるので、裏で投げて成否は見ない
+  _CMUX_LAST_WORKSPACE_PROJECT_NAME="$project_name"
+  command cmux rename-workspace --workspace "$CMUX_WORKSPACE_ID" "$project_name" >/dev/null 2>&1 &!
 }
 
 if [[ -n "$CMUX_WORKSPACE_ID" ]]; then
@@ -342,7 +342,9 @@ function pdash () {
   (cd "$root" && node "$HOME/.agents/skills/dash-viz/scripts/render.ts") && open "$root/.metarc/dashboard.html"
 }
 
-GHQ=`ghq root`/github.com
+# `ghq root` は ~65ms かかるので既定の場所を先に見る
+GHQ="$HOME/.ghq/github.com"
+[[ -d $GHQ ]] || GHQ=`ghq root`/github.com
 ME=`git config --get user.name`
 export GHQ_GET_OPTIONS="--depth=1 --single-branch"
 
