@@ -495,10 +495,12 @@ add-zsh-hook preexec preexec_record_dir
 
 # autoload -U +X compinit && compinit
 autoload -Uz compinit
-if [[ -f ~/.zcompdump && $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump 2>/dev/null) ]]; then
-  compinit
-else
+# fork (date/stat) を避けるため glob qualifier で鮮度判定する。
+# 旧: 日付が変わったら再生成。新: 20h 以内に更新済みなら -C で security check を skip。
+if [[ -n ~/.zcompdump(#qN.mh-20) ]]; then
   compinit -C
+else
+  compinit
 fi
 
 # autoload -U +X bashcompinit && bashcompinit
@@ -733,7 +735,7 @@ lessc() {
 # }}}
 # {{{ mac
 
-if echo $OSTYPE | grep -q darwin; then
+if [[ $OSTYPE == darwin* ]]; then
     # ls は eza。alias ではなく関数にしてあるのは、非対話 shell 用の分岐を
     # 持たせるため。オプションは 2 箇所で使うので local 配列に名前を付ける
     # (グローバル変数にすると shell-snapshot に載らず agent 側で消える)。
