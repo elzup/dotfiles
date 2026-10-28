@@ -78,8 +78,8 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig"
 export PGDATA=/usr/local/var/postgres
 
 if [[ $OSTYPE == darwin* ]]; then
-    export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-    [[ -d $JAVA_HOME ]] || export JAVA_HOME=$(/usr/libexec/java_home -v17)
+    export JAVA_HOME=/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home
+    [[ -d $JAVA_HOME ]] || export JAVA_HOME=$(/usr/libexec/java_home -v27)
     export ANDROID_HOME=/Users/hiro/Library/Android/sdk
     path+=("$JAVA_HOME/bin" "$ANDROID_HOME/tools" "$ANDROID_HOME/platform-tools")
 fi
