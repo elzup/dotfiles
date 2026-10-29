@@ -163,3 +163,5 @@
 	required = true
 [http]
 	lowSpeedTime = 10
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
