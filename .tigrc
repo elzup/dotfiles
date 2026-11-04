@@ -41,6 +41,8 @@ bind main    R !git rebase -i %(commit)
 bind diff    R !git rebase -i %(commit)
 
 # color setting
-# default cursor is "white green bold"; unreadable when the terminal theme renders green as bright yellow-green
-color cursor black green bold
-color title-focus black cyan bold
+# default cursor is "white green bold"; unreadable when the terminal theme renders green as bright yellow-green.
+# use 256-palette colors (color16 = #000000) instead of ANSI "black", which themes often render as grey
+color cursor color16 color114 bold
+color title-focus color16 color80 bold
+color title-blur color16 color110
