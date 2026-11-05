@@ -521,7 +521,7 @@ bindkey '^k' insert-last-word # → alt(meta) + .
 alias lsa="ls -a"
 alias mv="mv -i"
 alias rm="rmtrash"
-alias rmdir="rmdirtrash"
+alias rmdir="rmtrash -d"  # rmtrash (TBXark) 0.6+ has no rmdirtrash binary
 alias sl="ls"
 alias lg="lazygit"
 alias obsi='open -a "Obsidian"'
