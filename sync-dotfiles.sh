@@ -6,7 +6,9 @@ repository=$HOME/dotfiles
 
 cd "$repository"
 sh "./scripts/backup_history.sh"
-/usr/bin/git add .
+# PUBLIC リポへ自動 push するので、新規ファイルは拾わず追跡済みファイルの変更だけを載せる。
+# 新しいファイルを公開したいときは手動で git add する
+/usr/bin/git add -u
 # 変更の無い日に commit が exit 1 になり、set -e でジョブ全体が失敗扱いになるのを避ける。
 # push は毎回行い、手動コミットの未 push 分も送る
 /usr/bin/git diff --cached --quiet || /usr/bin/git commit -m "Update `date "+%Y-%m-%d %H:%M:%S"`"

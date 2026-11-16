@@ -1,27 +1,15 @@
-/dotfiles/ime_controller.js
-/dotfiles/.ssh/
+# sync-dotfiles.sh が毎日 PUBLIC リポへ自動 push するため、秘密情報になりうるものを明示的に弾く
+.env
+.env.*
+.envrc
+*.pem
+*.key
+*.p12
+.netrc
+.npmrc
+.ssh/
+.aws/
+.zsh_history
+.zshenv
 
-/dotfiles/.vimperator/dev/
-
-/dotfiles/.vimperator/vimperator-plugins-other/caisui
-/dotfiles/.vimperator/vimppm
-
-# vimperator
-/dotfiles/.vimperator/plugin/
-/dotfiles/.vimperator/colors/
-/dotfiles/.vimperator/info/
-/dotfiles/.vimperator/dev/
-# .vimperator/vimperator-plugins-other/
-
-# vim
-/dotfiles/.vim/bundle/
-/dotfiles/.vim/undo/
-/dotfiles/.vim/plugged/
 /.metarc/
-
-# zsh
-/dotfiles/.zsh/*
-/dotfiles/.zshenv
-!/dotfiles/.zsh/rc/
-
-/dotfiles/.zsh_history
