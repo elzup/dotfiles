@@ -165,9 +165,60 @@ _cmux_set_workspace_project_name() {
   command cmux rename-workspace --workspace "$CMUX_WORKSPACE_ID" "$project_name" >/dev/null 2>&1 &!
 }
 
+# cmux の Workspace Color は GUI 専用で CLI から変えられない (0.62.2 時点)。
+# 代わりにサイドバーの status ピルで「どういう場所か」を色分けする。
+# stdout: "<label> <#hex> <SF Symbol>"
+_cmux_workspace_kind() {
+  case $PWD/ in
+    /tmp/*|/private/tmp/*|*/tmp/*|*/playground/*) echo "tmp #f59e0b hammer.fill"; return;;
+  esac
+
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "no-git #ef4444 exclamationmark.triangle.fill"; return; }
+
+  case ${root:t} in
+    dotfiles|agent-setup) echo "meta #a855f7 gearshape.fill"; return;;
+  esac
+
+  local url owner
+  url=$(git config --get remote.origin.url 2>/dev/null)
+  case $url in
+    '') echo "local #2dd4bf internaldrive.fill"; return;;
+    git@github-private:*) echo "sub #fde68a star.fill"; return;; # ~/.ssh/config の別アカウント用 Host
+    *github.com[:/]*) ;;
+    *) echo "other-host #eab308 server.rack"; return;;
+  esac
+
+  owner=${${url#*github.com[:/]}%%/*}
+  case $owner in
+    elzup) echo "elzup #3b82f6 person.fill";;
+    planckunits) echo "planck #94a3b8 building.2.fill";;
+    *) echo "github #22c55e globe";;
+  esac
+}
+
+_cmux_set_workspace_kind() {
+  [[ -n "$CMUX_WORKSPACE_ID" ]] || return
+  command -v cmux >/dev/null 2>&1 || return
+
+  local label color icon
+  read -r label color icon <<< "$(_cmux_workspace_kind)"
+  [[ "$label" = elzup || "$label" = planck || "$label" = github ]] &&
+    [[ "$(_repo_is_private)" = 1 ]] && label="$label 🔒"
+
+  local state="$label|$color|$icon"
+  [[ "$state" = "$_CMUX_LAST_WORKSPACE_KIND" ]] && return
+  _CMUX_LAST_WORKSPACE_KIND="$state"
+  # cmux CLI は 1 回 ~400ms かかるので rename と同じく裏で投げる
+  command cmux set-status kind "$label" --color "$color" --icon "$icon" \
+    --workspace "$CMUX_WORKSPACE_ID" >/dev/null 2>&1 &!
+}
+
 if [[ -n "$CMUX_WORKSPACE_ID" ]]; then
   add-zsh-hook chpwd _cmux_set_workspace_project_name
+  add-zsh-hook chpwd _cmux_set_workspace_kind
   _cmux_set_workspace_project_name
+  _cmux_set_workspace_kind
 fi
 
 function set_name () {
@@ -536,7 +587,12 @@ alias GREP_OPTIONS=""
 
 alias ln="ln -i -v"
 function cdr () {
-  local selected_dir=$(sed "s/^\$'//;s/'$//" ~/.chpwd-recent-dirs | fzf --exact --layout=reverse --no-sort --query "$*")
+  local -a recent repos
+  recent=(${(f)"$(sed "s/^\$'//;s/'$//" ~/.chpwd-recent-dirs)"})
+  # 一度も cd していない ghq リポジトリ (clone 直後など) も最近の後ろに並べる。
+  # ghq list は重いと数秒かかるので glob で直接拾う
+  repos=(~/.ghq/*/*/*(/e:'[[ -e $REPLY/.git ]]':N))
+  local selected_dir=$(print -rl -- $recent ${repos:|recent} | fzf --exact --layout=reverse --no-sort --query "$*")
   if [ -n "$selected_dir" ]; then
     cd "${selected_dir}"
   fi
