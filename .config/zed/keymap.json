@@ -1,0 +1,67 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // --- Workspace / Panel ---
+  {
+    "context": "Workspace",
+    "bindings": {
+      // VSCode: cmd+0 -> workbench.view.scm
+      "cmd-0": "git_panel::ToggleFocus",
+      // VSCode: cmd+1 -> explorer
+      "cmd-1": "project_panel::ToggleFocus",
+      // VSCode: cmd+3 -> chatgpt sidebar -> assistant on Zed
+      "cmd-3": "agent::ToggleFocus",
+      // VSCode: shift+cmd+i -> chat edit panel
+      "shift-cmd-i": "agent::ToggleFocus",
+      // VSCode: shift+cmd+e -> outline.focus
+      "shift-cmd-e": "outline::Toggle",
+      // VSCode: cmd+e -> quickOpen (file finder)
+      "cmd-e": "file_finder::Toggle",
+      // VSCode: ctrl+shift+w -> switchWindow
+      "ctrl-shift-w": "workspace::ActivateNextWindow",
+    },
+  },
+
+  // --- Editor: navigation / refactor ---
+  {
+    "context": "Editor",
+    "bindings": {
+      // VSCode: cmd+b -> revealDefinition
+      "cmd-b": "editor::GoToDefinition",
+      // VSCode: alt+cmd+b -> goToImplementation
+      "alt-cmd-b": "editor::GoToImplementation",
+      // VSCode: cmd+2 -> rename
+      "cmd-2": "editor::Rename",
+      // VSCode: f8 / shift+f8 -> next/prev diagnostic
+      "f8": "editor::GoToDiagnostic",
+      "shift-f8": "editor::GoToPreviousDiagnostic",
+      // VSCode: ctrl+alt+o -> organizeImports
+      "ctrl-alt-o": "editor::OrganizeImports",
+      // VSCode: cmd+h -> find & replace
+      "cmd-h": "buffer_search::DeployReplace",
+      // VSCode: cmd+e -> quickOpen (file finder)
+      // Editor context でデフォルト(検索系)を上書きしないと、
+      // エディタにフォーカス中は Workspace 側の cmd-e が負ける
+      "cmd-e": "file_finder::Toggle",
+      // VSCode: alt+shift+j/k -> copy line down / up
+      "alt-shift-j": "editor::DuplicateLineDown",
+      "alt-shift-k": "editor::DuplicateLineUp",
+    },
+  },
+
+  // --- Tasks ---
+  {
+    "context": "Workspace",
+    "bindings": {
+      // VSCode: cmd+r -> tasks.runTask "run"
+      "cmd-r": "task::Spawn",
+      // VSCode: shift+cmd+r -> runFileSpecs (rerun last task on Zed)
+      "shift-cmd-r": "task::Rerun",
+    },
+  },
+]

@@ -25,6 +25,13 @@ setup() {
   done
   symlink "$DOTFILES/.config/starship.toml" "$HOME/.config/starship.toml"
 
+  # zed/ には prompts の DB や他リポ由来の themes も置かれるので、ディレクトリごとではなくファイル単位で張る
+  mkdir -p "$HOME/.config/zed"
+  for filename in settings.json keymap.json
+  do
+    symlink "$DOTFILES/.config/zed/$filename" "$HOME/.config/zed/$filename"
+  done
+
   readonly NEOVIM_PATH=$HOME/.config/nvim
   mkdir -p $NEOVIM_PATH
   symlink "$DOTFILES/.vimrc" "$NEOVIM_PATH/init.vim"

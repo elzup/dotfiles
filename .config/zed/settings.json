@@ -1,0 +1,108 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "edit_predictions": {
+    "provider": "copilot"
+  },
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini",
+      "enable_thinking": true,
+      "effort": "high"
+    },
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "vim_mode": true,
+  "terminal": {
+    "env": {
+      "FIG_NEW_SESSION": "\"1\""
+    }
+  },
+  "git": {
+    "inline_blame": {
+      "enabled": false
+    }
+  },
+  "base_keymap": "VSCode",
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "gutter": {
+    "line_numbers": true
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "buffer_font_fallbacks": [
+    "Monaco",
+    "Courier New",
+    // "monospace",
+    "Hack Nerd Font"
+  ],
+  "buffer_font_family": "Menlo",
+  "file_types": {
+    "kidilang": [
+      "*.kd"
+    ]
+  },
+  "colorize_brackets": true,
+  "linked_edits": true,
+  "show_whitespaces": "all",
+  "show_edit_predictions": true,
+  "wrap_guides": [
+    80
+  ],
+  "soft_wrap": "none",
+  "tab_size": 2,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Ayu Dark",
+  },
+  // "markdown_preview_theme": "One Light",
+  // マークダウンプレビューの表は、見出し行と 1 行おきの行の背景だけ全体テーマ (Ayu Dark) から取る。
+  // プレビューを One Light にすると黒地に黒文字になるので、白の上でも暗い本体の上でも読める半透明のグレーにする
+  "theme_overrides": {
+    "Ayu Dark": {
+      "panel.background": "#80808014",
+      "title_bar.background": "#80808028",
+    },
+  },
+}
